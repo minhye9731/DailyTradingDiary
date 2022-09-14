@@ -71,13 +71,24 @@ extension UIColor {
         }
     }
     
+    static var mainTextColorReverse: UIColor {
+        
+        return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+            if traitCollection.userInterfaceStyle == .light {
+                return .white
+            } else {
+                return .black
+            }
+        }
+    }
+    
     static var subTextColor: UIColor {
         
         return UIColor { (traitCollection: UITraitCollection) -> UIColor in
             if traitCollection.userInterfaceStyle == .light {
                 return .lightGray
             } else {
-                return .lightGray
+                return .darkGray
             }
         }
     }

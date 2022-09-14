@@ -27,6 +27,7 @@
 		0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3CD28D1D8660036D389 /* PortfolioViewController.swift */; };
 		0E04A3D028D205C60036D389 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3CF28D205C60036D389 /* HomeView.swift */; };
 		0E04A3D328D215CA0036D389 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0E04A3D228D215CA0036D389 /* FSCalendar */; };
+		0E6E2FB228D22E56004ED8D9 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB128D22E56004ED8D9 /* CalendarView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		0E04A3CB28D1D6C40036D389 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		0E04A3CD28D1D8660036D389 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		0E04A3CF28D205C60036D389 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0E6E2FB128D22E56004ED8D9 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 			children = (
 				0E04A3C728D1D5030036D389 /* HomeViewController.swift */,
 				0E04A3CF28D205C60036D389 /* HomeView.swift */,
+				0E6E2FB128D22E56004ED8D9 /* CalendarView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			files = (
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
+				0E6E2FB228D22E56004ED8D9 /* CalendarView.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */,
