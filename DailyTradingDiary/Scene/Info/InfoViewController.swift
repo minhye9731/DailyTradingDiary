@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  InfoViewController.swift
 //  DailyTradingDiary
 //
 //  Created by 강민혜 on 9/14/22.
@@ -7,13 +7,15 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class InfoViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-    }
 
+        self.view.backgroundColor = .orange
+    }
+    
+
+    
 
 }
-
