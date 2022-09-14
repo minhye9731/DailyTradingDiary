@@ -9,21 +9,47 @@
 /* Begin PBXBuildFile section */
 		0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A39128D1B2200036D389 /* AppDelegate.swift */; };
 		0E04A39428D1B2200036D389 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A39328D1B2200036D389 /* SceneDelegate.swift */; };
-		0E04A39628D1B2200036D389 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A39528D1B2200036D389 /* ViewController.swift */; };
 		0E04A39928D1B2200036D389 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E04A39728D1B2200036D389 /* Main.storyboard */; };
 		0E04A39B28D1B2220036D389 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E04A39A28D1B2220036D389 /* Assets.xcassets */; };
 		0E04A39E28D1B2220036D389 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E04A39C28D1B2220036D389 /* LaunchScreen.storyboard */; };
+		0E04A3A728D1B4C10036D389 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0E04A3A628D1B4C10036D389 /* SnapKit */; };
+		0E04A3AD28D1BF3C0036D389 /* ReusableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3AC28D1BF3C0036D389 /* ReusableProtocol.swift */; };
+		0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3AE28D1C67B0036D389 /* BaseViewController.swift */; };
+		0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3B028D1C6AD0036D389 /* BaseView.swift */; };
+		0E04A3B328D1C6D00036D389 /* BaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3B228D1C6D00036D389 /* BaseTableViewCell.swift */; };
+		0E04A3B728D1C7220036D389 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3B628D1C7220036D389 /* Constants.swift */; };
+		0E04A3B928D1C7890036D389 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3B828D1C7890036D389 /* Image.swift */; };
+		0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3BB28D1CEDF0036D389 /* UIColor+Extension.swift */; };
+		0E04A3BE28D1D2930036D389 /* Transition+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3BD28D1D2920036D389 /* Transition+Extension.swift */; };
+		0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3C728D1D5030036D389 /* HomeViewController.swift */; };
+		0E04A3CA28D1D5C10036D389 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3C928D1D5C10036D389 /* TabBarController.swift */; };
+		0E04A3CC28D1D6C40036D389 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3CB28D1D6C40036D389 /* InfoViewController.swift */; };
+		0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3CD28D1D8660036D389 /* PortfolioViewController.swift */; };
+		0E04A3D028D205C60036D389 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3CF28D205C60036D389 /* HomeView.swift */; };
+		0E04A3D328D215CA0036D389 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0E04A3D228D215CA0036D389 /* FSCalendar */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0E04A38E28D1B2200036D389 /* DailyTradingDiary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DailyTradingDiary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E04A39128D1B2200036D389 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0E04A39328D1B2200036D389 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		0E04A39528D1B2200036D389 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		0E04A39828D1B2200036D389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0E04A39A28D1B2220036D389 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0E04A39D28D1B2220036D389 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0E04A39F28D1B2220036D389 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0E04A3AC28D1BF3C0036D389 /* ReusableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReusableProtocol.swift; sourceTree = "<group>"; };
+		0E04A3AE28D1C67B0036D389 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0E04A3B028D1C6AD0036D389 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		0E04A3B228D1C6D00036D389 /* BaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewCell.swift; sourceTree = "<group>"; };
+		0E04A3B628D1C7220036D389 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		0E04A3B828D1C7890036D389 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		0E04A3BB28D1CEDF0036D389 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		0E04A3BD28D1D2920036D389 /* Transition+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Transition+Extension.swift"; sourceTree = "<group>"; };
+		0E04A3C728D1D5030036D389 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0E04A3C928D1D5C10036D389 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		0E04A3CB28D1D6C40036D389 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		0E04A3CD28D1D8660036D389 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
+		0E04A3CF28D205C60036D389 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E04A3A728D1B4C10036D389 /* SnapKit in Frameworks */,
+				0E04A3D328D215CA0036D389 /* FSCalendar in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,13 +86,121 @@
 			children = (
 				0E04A39128D1B2200036D389 /* AppDelegate.swift */,
 				0E04A39328D1B2200036D389 /* SceneDelegate.swift */,
-				0E04A39528D1B2200036D389 /* ViewController.swift */,
-				0E04A39728D1B2200036D389 /* Main.storyboard */,
-				0E04A39A28D1B2220036D389 /* Assets.xcassets */,
-				0E04A39C28D1B2220036D389 /* LaunchScreen.storyboard */,
+				0E04A3C928D1D5C10036D389 /* TabBarController.swift */,
 				0E04A39F28D1B2220036D389 /* Info.plist */,
+				0E04A39728D1B2200036D389 /* Main.storyboard */,
+				0E04A39C28D1B2220036D389 /* LaunchScreen.storyboard */,
+				0E04A39A28D1B2220036D389 /* Assets.xcassets */,
+				0E04A3BA28D1CECD0036D389 /* Extensions */,
+				0E04A3A828D1B5C00036D389 /* Utility */,
+				0E04A3C028D1D3DF0036D389 /* Scene */,
 			);
 			path = DailyTradingDiary;
+			sourceTree = "<group>";
+		};
+		0E04A3A828D1B5C00036D389 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A3AC28D1BF3C0036D389 /* ReusableProtocol.swift */,
+				0E04A3A928D1B5CF0036D389 /* Constants */,
+				0E04A3AA28D1B5D70036D389 /* CustomView */,
+				0E04A3AB28D1B5DF0036D389 /* BaseView */,
+			);
+			path = Utility;
+			sourceTree = "<group>";
+		};
+		0E04A3A928D1B5CF0036D389 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A3B628D1C7220036D389 /* Constants.swift */,
+				0E04A3B828D1C7890036D389 /* Image.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		0E04A3AA28D1B5D70036D389 /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		0E04A3AB28D1B5DF0036D389 /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A3AE28D1C67B0036D389 /* BaseViewController.swift */,
+				0E04A3B028D1C6AD0036D389 /* BaseView.swift */,
+				0E04A3B228D1C6D00036D389 /* BaseTableViewCell.swift */,
+			);
+			path = BaseView;
+			sourceTree = "<group>";
+		};
+		0E04A3BA28D1CECD0036D389 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A3BB28D1CEDF0036D389 /* UIColor+Extension.swift */,
+				0E04A3BD28D1D2920036D389 /* Transition+Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		0E04A3C028D1D3DF0036D389 /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A3C128D1D4240036D389 /* WalkThrough */,
+				0E04A3C228D1D43E0036D389 /* Home */,
+				0E04A3C528D1D4AB0036D389 /* TradingDiaryTemplate */,
+				0E04A3C628D1D4C30036D389 /* CropAnalysisTemplate */,
+				0E04A3C328D1D44F0036D389 /* Info */,
+				0E04A3C428D1D4630036D389 /* Portfolio */,
+			);
+			path = Scene;
+			sourceTree = "<group>";
+		};
+		0E04A3C128D1D4240036D389 /* WalkThrough */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = WalkThrough;
+			sourceTree = "<group>";
+		};
+		0E04A3C228D1D43E0036D389 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A3C728D1D5030036D389 /* HomeViewController.swift */,
+				0E04A3CF28D205C60036D389 /* HomeView.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		0E04A3C328D1D44F0036D389 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A3CB28D1D6C40036D389 /* InfoViewController.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		0E04A3C428D1D4630036D389 /* Portfolio */ = {
+			isa = PBXGroup;
+			children = (
+				0E04A3CD28D1D8660036D389 /* PortfolioViewController.swift */,
+			);
+			path = Portfolio;
+			sourceTree = "<group>";
+		};
+		0E04A3C528D1D4AB0036D389 /* TradingDiaryTemplate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TradingDiaryTemplate;
+			sourceTree = "<group>";
+		};
+		0E04A3C628D1D4C30036D389 /* CropAnalysisTemplate */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CropAnalysisTemplate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +219,10 @@
 			dependencies = (
 			);
 			name = DailyTradingDiary;
+			packageProductDependencies = (
+				0E04A3A628D1B4C10036D389 /* SnapKit */,
+				0E04A3D228D215CA0036D389 /* FSCalendar */,
+			);
 			productName = DailyTradingDiary;
 			productReference = 0E04A38E28D1B2200036D389 /* DailyTradingDiary.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +251,10 @@
 				Base,
 			);
 			mainGroup = 0E04A38528D1B2200036D389;
+			packageReferences = (
+				0E04A3A528D1B4C10036D389 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+			);
 			productRefGroup = 0E04A38F28D1B2200036D389 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -138,9 +282,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E04A39628D1B2200036D389 /* ViewController.swift in Sources */,
+				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
+				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
+				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
+				0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */,
+				0E04A3B328D1C6D00036D389 /* BaseTableViewCell.swift in Sources */,
+				0E04A3BE28D1D2930036D389 /* Transition+Extension.swift in Sources */,
+				0E04A3AD28D1BF3C0036D389 /* ReusableProtocol.swift in Sources */,
+				0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */,
 				0E04A39428D1B2200036D389 /* SceneDelegate.swift in Sources */,
+				0E04A3CC28D1D6C40036D389 /* InfoViewController.swift in Sources */,
+				0E04A3CA28D1D5C10036D389 /* TabBarController.swift in Sources */,
+				0E04A3B728D1C7220036D389 /* Constants.swift in Sources */,
+				0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */,
+				0E04A3B928D1C7890036D389 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +449,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -304,7 +461,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -321,6 +478,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -332,7 +490,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -358,6 +516,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0E04A3A528D1B4C10036D389 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/WenchaoD/FSCalendar.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0E04A3A628D1B4C10036D389 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E04A3A528D1B4C10036D389 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		0E04A3D228D215CA0036D389 /* FSCalendar */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */;
+			productName = FSCalendar;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0E04A38628D1B2200036D389 /* Project object */;
 }
