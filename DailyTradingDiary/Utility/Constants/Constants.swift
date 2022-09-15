@@ -15,9 +15,9 @@ enum Constants {
     }
     
     enum MenuName {
-        static let home: String = "Home0000"
-        static let info: String = "Info000"
-        static let portfolio: String = "Portfolio"
+        static let home: String = "Home"
+        static let info: String = "Info"
+        static let portfolio: String = "Portfolio0000"
     }
     
 }
