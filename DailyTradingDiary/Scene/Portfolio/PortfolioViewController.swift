@@ -12,7 +12,7 @@ class PortfolioViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.view.backgroundColor = .blue
+        self.view.backgroundColor = .brown
         
     }
     
