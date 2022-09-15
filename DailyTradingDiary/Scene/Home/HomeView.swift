@@ -22,7 +22,7 @@ final class HomeView: BaseView {
         tableview.backgroundColor = .backgroundColor
         tableview.rowHeight = 60
         tableview.register(TradeTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
-//        tableview.register(memoTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: memoTableViewHeaderView.headerViewID)
+        tableview.register(AnalysisTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
         tableview.sectionHeaderHeight = 70
         return tableview
     }()
@@ -31,8 +31,6 @@ final class HomeView: BaseView {
         [calendar, tableView].forEach {
             self.addSubview($0)
         }
-        
-//        self.addSubview(calendar)
     }
     
     override func setConstraints() {

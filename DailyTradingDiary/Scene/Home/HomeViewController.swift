@@ -27,8 +27,8 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     override func configure() {
         print(#function)
-//        mainView.tableView.delegate = self
-//        mainView.tableView.dataSource = self
+        mainView.tableView.delegate = self
+        mainView.tableView.dataSource = self
         mainView.calendar.dataSource = self
         mainView.calendar.delegate = self
         setNav()
@@ -65,6 +65,86 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
 
     
 }
+
+
+// MARK: - tableview 설정
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+//        return realm에 업데이트된 데이터 배열의 수
+        return 4
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        guard let tradeCell = tableView.dequeueReusableCell(withIdentifier: TradeTableViewCell.reuseIdentifier) as? TradeTableViewCell else { return UITableViewCell() }
+        
+        guard let analysisCell = tableView.dequeueReusableCell(withIdentifier: AnalysisTableViewCell.reuseIdentifier) as? AnalysisTableViewCell else { return UITableViewCell() }
+        
+        // 임시 test. 메모작성 완료하고나면 tag값에 따라 cell 종류 구분 예정
+        
+        if indexPath.section < 3 {
+            // 이거 묶어서 setTradeData 함수로 묶자
+            tradeCell.nameLabel.text = "MSFT" // test
+            tradeCell.amountLabel.text = "2 주" // test
+            tradeCell.isTradingLabel.text = "매수" // test - 매수/매도값에 따라서 구분 필요
+            tradeCell.priceLabel.text = "(매수단가 : $251.44 )" // test
+            return tradeCell
+        }
+        
+        analysisCell.nameLabel.text = "삼성전자" // test
+        analysisCell.buyExpectPriceLabel.text = "55,000 원"
+        analysisCell.buyExpectDateLabel.text = "2022.09.21"
+        analysisCell.sellExpectPriceLabel.text = "63,000 원"
+        analysisCell.sellExpectDateLabel.text = "2022.09.28"
+        
+        return analysisCell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("\(indexPath.row)번 째 셀을 클릭했습니다. 해당 생성파일의 보기으로 넘어감")
+        
+//        let tradeDiaryVC = 매매일지 뷰컨()
+//        let corpAnalysisVC = 기업분석 뷰컨()
+        
+//        만약 매매일지/기업분석 tag값으로 구분을 해서 각 해당하는 화면으로 넘어가기
+//        이 때 데이터도 넘겨주자
+        
+//        transition()
+        
+    }
+    
+    // 오른쪽에서 스와이프시 삭제
+//    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//
+//        print(#function)
+//
+//        let row = self.filteredArray[indexPath.row]
+//
+//        let delete = UIContextualAction(style: .normal, title: nil) { action, view, completion in
+//
+//            self.deleteConfirmAlert(title: "해당 메모를 삭제하시겠습니까?") { _ in
+//
+//                self.repository.deleteItem(item: row)
+//                self.fetchSortRealm(sort: "memoDate")
+//            }
+//        }
+//        delete.image = UIImage(systemName: Constants.ImageName.trash.rawValue)
+//        delete.backgroundColor = .deleteColor
+//
+//        return UISwipeActionsConfiguration(actions: [delete])
+//
+//    }
+    
+}
+
+
+
 
 // MARK: - FSCalendar 설정
 extension HomeViewController: FSCalendarDelegateAppearance {

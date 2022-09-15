@@ -12,6 +12,7 @@ class TradeTableViewCell: BaseTableViewCell {
     let tagLabel: UILabel = {
         let label = UILabel()
         label.text = "매매일지"
+        label.textColor = .black
         label.font = .boldSystemFont(ofSize: 10)
         label.backgroundColor = .systemGreen // 상세 디자인 변경 예정
         label.textAlignment = .center
@@ -27,64 +28,72 @@ class TradeTableViewCell: BaseTableViewCell {
         return label
     }()
     
-//    let contentLabel: UILabel = {
-//        let label = UILabel()
-//        label.textColor = .subTextColor
-//        label.font = .systemFont(ofSize: 13)
-//        label.textAlignment = .left
-//        return label
-//    }()
-//
-//    let contentLabel: UILabel = {
-//        let label = UILabel()
-//        label.textColor = .subTextColor
-//        label.font = .systemFont(ofSize: 13)
-//        label.textAlignment = .left
-//        return label
-//    }()
-//
-//    let contentLabel: UILabel = {
-//        let label = UILabel()
-//        label.textColor = .subTextColor
-//        label.font = .systemFont(ofSize: 13)
-//        label.textAlignment = .left
-//        return label
-//    }()
-//
-//    override func configure() {
-//        backgroundColor = .cellBackgroundColor
-//
-//        [titleLabel, dateLabel, contentLabel].forEach {
-//            contentView.addSubview($0)
-//        }
-//    }
-//
-//    override func setConstraints() {
-//
+    let amountLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .subTextColor
+        label.font = .systemFont(ofSize: 16)
+        label.textAlignment = .left
+        return label
+    }()
+    
+    let isTradingLabel: UILabel = {
+        let label = UILabel()
+//        label.textColor = .subTextColor 매수/매도 여부에 따라서 색상구분(빨/파)
+        // 매수/매도 여부에 따라서 문구구분(매수/매도)
+        label.font = .systemFont(ofSize: 16)
+        label.textAlignment = .left
+        return label
+    }()
+
+    let priceLabel: UILabel = {
+        let label = UILabel()
+        label.textColor = .systemGray5 // 변경가능
+        label.font = .systemFont(ofSize: 12)
+        label.textAlignment = .center
+        return label
+    }()
+
+    override func configure() {
+        backgroundColor = .cellBackgroundColor
+
+        [tagLabel, nameLabel, amountLabel, isTradingLabel, priceLabel].forEach {
+            contentView.addSubview($0)
+        }
+    }
+
+    override func setConstraints() {
+        
 //        self.dateLabel.setContentHuggingPriority( .defaultHigh, for: .horizontal)
-//
+
 //        let spacing = 16
-//
-//        titleLabel.snp.makeConstraints { make in
-//            make.leading.equalTo(self.safeAreaLayoutGuide).offset(spacing)
-//            make.top.equalTo(self.safeAreaLayoutGuide).offset(12)
-//            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-spacing)
-//        }
-//
-//        dateLabel.snp.makeConstraints { make in
-//            make.leading.equalTo(self.safeAreaLayoutGuide).offset(spacing)
-//            make.top.equalTo(self.titleLabel.snp.bottom).offset(6)
-//            make.trailing.equalTo(self.contentLabel.snp.leading).offset(-8)
-//        }
-//
-//        contentLabel.snp.makeConstraints { make in
-//            make.top.equalTo(self.titleLabel.snp.bottom).offset(6)
-//            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-spacing)
-//        }
-//
-//
-//    }
-//
+
+        tagLabel.snp.makeConstraints { make in
+            make.leading.top.equalTo(self.safeAreaLayoutGuide).offset(8)
+            make.width.equalTo(30)
+            make.height.equalTo(10)
+        }
+
+        nameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
+            make.top.equalTo(self.tagLabel.snp.bottom).offset(6)
+        }
+
+        amountLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(30)
+        }
+        
+        isTradingLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
+            make.top.equalTo(self.tagLabel.snp.bottom).offset(30)
+        }
+        
+        priceLabel.snp.makeConstraints { make in
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
+            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-12)
+            make.top.equalTo(self.tagLabel.snp.bottom).offset(30)
+        }
+        
 //    func getProperDateForm(memotime: Date) -> String {
 //
 //        let formatter = DateFormatter()
@@ -106,7 +115,7 @@ class TradeTableViewCell: BaseTableViewCell {
 //        self.titleLabel.text = row.memoTitle
 //        self.dateLabel.text = "\(getProperDateForm(memotime: row.memoDate))"
 //        self.contentLabel.text = row.memoContent
-//    }
-//
+    }
+
 }
 
