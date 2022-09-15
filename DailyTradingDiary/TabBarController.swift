@@ -31,7 +31,7 @@ class TabBarController: UITabBarController {
         let secondNav = UINavigationController(rootViewController: secondVC)
         
         let thirdVC = PortfolioViewController()
-        thirdVC.tabBarItem = UITabBarItem(title: Constants.MenuName.calendar,
+        thirdVC.tabBarItem = UITabBarItem(title: Constants.MenuName.portfolio,
                                           image: UIImage(systemName: Constants.ImageName.portfolifo.rawValue),
                                            selectedImage: UIImage(systemName: Constants.ImageName.portfolifoClicked.rawValue))
         let thirdNav = UINavigationController(rootViewController: thirdVC)

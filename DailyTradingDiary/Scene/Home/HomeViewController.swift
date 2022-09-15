@@ -123,7 +123,7 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         // 선택일
         self.mainView.calendar.select(selectedDate)
         self.mainView.calendar.appearance.selectionColor = .pointColor
-        self.mainView.calendar.appearance.titleSelectionColor = .mainTextColorReverse
+        self.mainView.calendar.appearance.titleSelectionColor = .mainTextColor
     }
     
     // 날짜 선택시 발생하는 일
@@ -137,7 +137,7 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         return appearance.selectionColor
     }
     
-    
+    // event 설정
     
     
 }
