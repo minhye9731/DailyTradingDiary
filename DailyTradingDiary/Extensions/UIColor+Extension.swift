@@ -103,7 +103,7 @@ extension UIColor {
     static var deleteColor: UIColor {
         
         return UIColor { (traitCollection: UITraitCollection) -> UIColor in
-            return UIColor.red
+            return UIColor.systemRed
         }
     }
 
