@@ -38,13 +38,13 @@ class TradeTableViewCell: BaseTableViewCell {
     
     let isTradingLabel: UILabel = {
         let label = UILabel()
-//        label.textColor = .subTextColor 매수/매도 여부에 따라서 색상구분(빨/파)
+        //        label.textColor = .subTextColor 매수/매도 여부에 따라서 색상구분(빨/파)
         // 매수/매도 여부에 따라서 문구구분(매수/매도)
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .left
         return label
     }()
-
+    
     let priceLabel: UILabel = {
         let label = UILabel()
         label.textColor = .systemGray5 // 변경가능
@@ -52,70 +52,71 @@ class TradeTableViewCell: BaseTableViewCell {
         label.textAlignment = .center
         return label
     }()
-
+    
     override func configure() {
         backgroundColor = .cellBackgroundColor
-
+        
         [tagLabel, nameLabel, amountLabel, isTradingLabel, priceLabel].forEach {
             contentView.addSubview($0)
         }
     }
-
+    
     override func setConstraints() {
         
-//        self.dateLabel.setContentHuggingPriority( .defaultHigh, for: .horizontal)
-
-//        let spacing = 16
-
+        //        self.dateLabel.setContentHuggingPriority( .defaultHigh, for: .horizontal)
+        
+        //        let spacing = 16
+        
         tagLabel.snp.makeConstraints { make in
             make.leading.top.equalTo(self.safeAreaLayoutGuide).offset(8)
             make.width.equalTo(30)
             make.height.equalTo(10)
         }
-
+        
         nameLabel.snp.makeConstraints { make in
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
             make.top.equalTo(self.tagLabel.snp.bottom).offset(6)
         }
-
+        
         amountLabel.snp.makeConstraints { make in
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
+            make.leading.equalTo(nameLabel.snp.trailing).offset(12)
             make.top.equalTo(self.safeAreaLayoutGuide).offset(30)
         }
         
         isTradingLabel.snp.makeConstraints { make in
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
+            make.leading.equalTo(amountLabel.snp.trailing).offset(12)
             make.top.equalTo(self.tagLabel.snp.bottom).offset(30)
         }
         
         priceLabel.snp.makeConstraints { make in
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
-            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-12)
+            make.leading.equalTo(isTradingLabel.snp.trailing).offset(12)
+//            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-12)
             make.top.equalTo(self.tagLabel.snp.bottom).offset(30)
         }
         
-//    func getProperDateForm(memotime: Date) -> String {
-//
-//        let formatter = DateFormatter()
-//        formatter.locale = Locale(identifier: "ko_KR")
-//
-//        if memotime.isInToday {
-//            formatter.dateFormat = "a HH:mm"
-//        } else if memotime.isInThisWeek {
-//            formatter.dateFormat = "EEEE"
-//        } else {
-//            formatter.dateFormat = "yyyy. MM. dd a HH:mm"
-//        }
-//
-//        return formatter.string(from: memotime)
-//    }
-//
-//    func setDataAtCell(arr: [UserMemo], indexPath: IndexPath) {
-//        let row = arr[indexPath.row]
-//        self.titleLabel.text = row.memoTitle
-//        self.dateLabel.text = "\(getProperDateForm(memotime: row.memoDate))"
-//        self.contentLabel.text = row.memoContent
+        //    func getProperDateForm(memotime: Date) -> String {
+        //
+        //        let formatter = DateFormatter()
+        //        formatter.locale = Locale(identifier: "ko_KR")
+        //
+        //        if memotime.isInToday {
+        //            formatter.dateFormat = "a HH:mm"
+        //        } else if memotime.isInThisWeek {
+        //            formatter.dateFormat = "EEEE"
+        //        } else {
+        //            formatter.dateFormat = "yyyy. MM. dd a HH:mm"
+        //        }
+        //
+        //        return formatter.string(from: memotime)
+        //    }
+        //
+        //    func setDataAtCell(arr: [UserMemo], indexPath: IndexPath) {
+        //        let row = arr[indexPath.row]
+        //        self.titleLabel.text = row.memoTitle
+        //        self.dateLabel.text = "\(getProperDateForm(memotime: row.memoDate))"
+        //        self.contentLabel.text = row.memoContent
+        //    }
+        
     }
-
+    
 }
-

@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import FSCalendar
 
+
 final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     let mainView = HomeView()
@@ -21,8 +22,6 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         super.viewDidLoad()
         self.view = mainView
         self.view.backgroundColor = .backgroundColor
-
-        
     }
     
     override func configure() {
@@ -71,23 +70,23 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        // 작성한 매매일지나 기업분석의 데이터 유무로 분기처리를 해주는 것도 좋을 듯. 있으면 4. 없으면 이미지를 넣고 싶은데 그건 여기가 아니라 다른 곳에서 설정을 해야할 듯?
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        return realm에 업데이트된 데이터 배열의 수
-        return 4
+        return 4 // return realm에 업데이트된 데이터 배열의 수
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let tradeCell = tableView.dequeueReusableCell(withIdentifier: TradeTableViewCell.reuseIdentifier) as? TradeTableViewCell else { return UITableViewCell() }
         
-        guard let analysisCell = tableView.dequeueReusableCell(withIdentifier: AnalysisTableViewCell.reuseIdentifier) as? AnalysisTableViewCell else { return UITableViewCell() }
+//        guard let analysisCell = tableView.dequeueReusableCell(withIdentifier: AnalysisTableViewCell.reuseIdentifier) as? AnalysisTableViewCell else { return UITableViewCell() }
         
         // 임시 test. 메모작성 완료하고나면 tag값에 따라 cell 종류 구분 예정
-        
-        if indexPath.section < 3 {
+            tradeCell.backgroundColor = .yellow
+            
             // 이거 묶어서 setTradeData 함수로 묶자
             tradeCell.nameLabel.text = "MSFT" // test
             tradeCell.amountLabel.text = "2 주" // test
@@ -96,15 +95,13 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
             return tradeCell
         }
         
-        analysisCell.nameLabel.text = "삼성전자" // test
-        analysisCell.buyExpectPriceLabel.text = "55,000 원"
-        analysisCell.buyExpectDateLabel.text = "2022.09.21"
-        analysisCell.sellExpectPriceLabel.text = "63,000 원"
-        analysisCell.sellExpectDateLabel.text = "2022.09.28"
-        
-        return analysisCell
-        
-    }
+
+//        analysisCell.nameLabel.text = "삼성전자" // test
+//        analysisCell.buyExpectPriceLabel.text = "55,000 원"
+//        analysisCell.buyExpectDateLabel.text = "2022.09.21"
+//        analysisCell.sellExpectPriceLabel.text = "63,000 원"
+//        analysisCell.sellExpectDateLabel.text = "2022.09.28"
+//        return analysisCell
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)번 째 셀을 클릭했습니다. 해당 생성파일의 보기으로 넘어감")

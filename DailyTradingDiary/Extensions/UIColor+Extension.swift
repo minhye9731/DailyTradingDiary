@@ -24,7 +24,7 @@ extension UIColor {
         
         return UIColor { (traitCollection: UITraitCollection) -> UIColor in
             if traitCollection.userInterfaceStyle == .light {
-                return UIColor(red: 242/255, green: 241/255, blue: 245/255, alpha: 1)
+                return .white
             } else {
                 return UIColor(red: 28/255, green: 28/255, blue: 28/255, alpha: 1)
             }

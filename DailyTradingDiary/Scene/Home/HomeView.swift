@@ -23,7 +23,6 @@ final class HomeView: BaseView {
         tableview.rowHeight = 60
         tableview.register(TradeTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
         tableview.register(AnalysisTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
-        tableview.sectionHeaderHeight = 70
         return tableview
     }()
     
@@ -43,7 +42,7 @@ final class HomeView: BaseView {
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(calendar.snp.bottom)
+            make.top.equalTo(calendar.snp.bottom).offset(10)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         

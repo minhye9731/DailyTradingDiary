@@ -27,6 +27,14 @@
 		0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3CD28D1D8660036D389 /* PortfolioViewController.swift */; };
 		0E04A3D028D205C60036D389 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3CF28D205C60036D389 /* HomeView.swift */; };
 		0E04A3D328D215CA0036D389 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0E04A3D228D215CA0036D389 /* FSCalendar */; };
+		0E2DB01128D32C8700CDFD14 /* TradingDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01028D32C8600CDFD14 /* TradingDiaryViewController.swift */; };
+		0E2DB01328D32D1B00CDFD14 /* TradingDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01228D32D1B00CDFD14 /* TradingDiaryView.swift */; };
+		0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01428D3395900CDFD14 /* CorpNameTableViewCell.swift */; };
+		0E2DB01728D3398500CDFD14 /* TradeDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01628D3398400CDFD14 /* TradeDateTableViewCell.swift */; };
+		0E2DB01928D3399600CDFD14 /* BuySellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01828D3399600CDFD14 /* BuySellTableViewCell.swift */; };
+		0E2DB01B28D339AB00CDFD14 /* NumPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01A28D339AB00CDFD14 /* NumPriceTableViewCell.swift */; };
+		0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */; };
+		0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E6E2FB628D258B6004ED8D9 /* AnalysisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -52,6 +60,14 @@
 		0E04A3CB28D1D6C40036D389 /* InfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		0E04A3CD28D1D8660036D389 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		0E04A3CF28D205C60036D389 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		0E2DB01028D32C8600CDFD14 /* TradingDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDiaryViewController.swift; sourceTree = "<group>"; };
+		0E2DB01228D32D1B00CDFD14 /* TradingDiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDiaryView.swift; sourceTree = "<group>"; };
+		0E2DB01428D3395900CDFD14 /* CorpNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpNameTableViewCell.swift; sourceTree = "<group>"; };
+		0E2DB01628D3398400CDFD14 /* TradeDateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeDateTableViewCell.swift; sourceTree = "<group>"; };
+		0E2DB01828D3399600CDFD14 /* BuySellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuySellTableViewCell.swift; sourceTree = "<group>"; };
+		0E2DB01A28D339AB00CDFD14 /* NumPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumPriceTableViewCell.swift; sourceTree = "<group>"; };
+		0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingMemoTableViewCell.swift; sourceTree = "<group>"; };
+		0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
 		0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -144,6 +160,7 @@
 			children = (
 				0E04A3BB28D1CEDF0036D389 /* UIColor+Extension.swift */,
 				0E04A3BD28D1D2920036D389 /* Transition+Extension.swift */,
+				0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -198,6 +215,13 @@
 		0E04A3C528D1D4AB0036D389 /* TradingDiaryTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				0E2DB01028D32C8600CDFD14 /* TradingDiaryViewController.swift */,
+				0E2DB01228D32D1B00CDFD14 /* TradingDiaryView.swift */,
+				0E2DB01428D3395900CDFD14 /* CorpNameTableViewCell.swift */,
+				0E2DB01628D3398400CDFD14 /* TradeDateTableViewCell.swift */,
+				0E2DB01828D3399600CDFD14 /* BuySellTableViewCell.swift */,
+				0E2DB01A28D339AB00CDFD14 /* NumPriceTableViewCell.swift */,
+				0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */,
 			);
 			path = TradingDiaryTemplate;
 			sourceTree = "<group>";
@@ -245,6 +269,7 @@
 				TargetAttributes = {
 					0E04A38D28D1B2200036D389 = {
 						CreatedOnToolsVersion = 13.4.1;
+						LastSwiftMigration = 1340;
 					};
 				};
 			};
@@ -290,13 +315,17 @@
 			files = (
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
+				0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */,
+				0E2DB01928D3399600CDFD14 /* BuySellTableViewCell.swift in Sources */,
 				0E04A3B328D1C6D00036D389 /* BaseTableViewCell.swift in Sources */,
 				0E6E2FB628D258B6004ED8D9 /* AnalysisTableViewCell.swift in Sources */,
 				0E04A3BE28D1D2930036D389 /* Transition+Extension.swift in Sources */,
+				0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */,
 				0E04A3AD28D1BF3C0036D389 /* ReusableProtocol.swift in Sources */,
+				0E2DB01728D3398500CDFD14 /* TradeDateTableViewCell.swift in Sources */,
 				0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */,
 				0E04A39428D1B2200036D389 /* SceneDelegate.swift in Sources */,
 				0E04A3CC28D1D6C40036D389 /* InfoViewController.swift in Sources */,
@@ -304,6 +333,10 @@
 				0E04A3B728D1C7220036D389 /* Constants.swift in Sources */,
 				0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */,
 				0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */,
+				0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */,
+				0E2DB01B28D339AB00CDFD14 /* NumPriceTableViewCell.swift in Sources */,
+				0E2DB01328D32D1B00CDFD14 /* TradingDiaryView.swift in Sources */,
+				0E2DB01128D32C8700CDFD14 /* TradingDiaryViewController.swift in Sources */,
 				0E04A3B928D1C7890036D389 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +482,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
@@ -468,6 +502,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.mhkang.DailyTradingDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -478,6 +515,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
@@ -497,6 +535,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = net.mhkang.DailyTradingDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_INSTALL_OBJC_HEADER = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
