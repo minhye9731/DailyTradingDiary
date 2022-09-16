@@ -9,6 +9,8 @@ import UIKit
 
 class CorpNameTableViewCell: BaseTableViewCell {
     
+//    let searchBar = UISearchBar()
+    
     let nameLabel: UILabel = {
         let label = UILabel()
         label.text = "종목명"
@@ -18,8 +20,23 @@ class CorpNameTableViewCell: BaseTableViewCell {
         return label
     }()
     
+    let corpNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "매매한 주식의 기업명"
+        label.textColor = .subTextColor
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textAlignment = .center
+        return label
+    }()
+    
     override func configure() {
-        contentView.addSubview(nameLabel)
+//        [searchBar, nameLabel].forEach {
+//            contentView.addSubview($0)
+//        }
+        
+        [nameLabel, corpNameLabel].forEach {
+            contentView.addSubview($0)
+        }
     }
     
     override func setConstraints() {
@@ -27,6 +44,18 @@ class CorpNameTableViewCell: BaseTableViewCell {
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(15)
             make.centerY.equalTo(self)
         }
+        
+        corpNameLabel.snp.makeConstraints { make in
+            make.leading.equalTo(nameLabel.snp.trailing).offset(10)
+            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
+            make.centerY.equalTo(self)
+        }
+        
+        //        searchBar.snp.makeConstraints { make in
+        //            make.leading.equalTo(nameLabel.snp.trailing).offset(10)
+        //            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
+        //            make.centerY.equalTo(self)
+        //        }
     }
     
 }

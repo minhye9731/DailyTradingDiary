@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: scene.coordinateSpace.bounds)
         window?.windowScene = scene
         
-//        let viewController = TabBarController()
-        let viewController = TradingDiaryViewController()
+        let viewController = TabBarController()
+//        let viewController = TradingDiaryViewController()
         window?.rootViewController = UINavigationController(rootViewController: viewController)
         window?.makeKeyAndVisible()
         

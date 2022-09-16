@@ -37,6 +37,20 @@
 		0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E6E2FB628D258B6004ED8D9 /* AnalysisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */; };
+		0EF4826528D4312C00CC8A49 /* TradingSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826428D4312C00CC8A49 /* TradingSearchViewController.swift */; };
+		0EF4826728D4593900CC8A49 /* SearchedStockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826628D4593900CC8A49 /* SearchedStockTableViewCell.swift */; };
+		0EF4826928D4678600CC8A49 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0EF4826828D4678600CC8A49 /* .gitignore */; };
+		0EF4826D28D467DD00CC8A49 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826C28D467DD00CC8A49 /* APIKey.swift */; };
+		0EF4827028D468E200CC8A49 /* KRXModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826F28D468E200CC8A49 /* KRXModel.swift */; };
+		0EF4827228D469A900CC8A49 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827128D469A900CC8A49 /* URL+Extension.swift */; };
+		0EF4827428D46AD300CC8A49 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827328D46AD300CC8A49 /* Endpoint.swift */; };
+		0EF4827628D46B8900CC8A49 /* KRXAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827528D46B8900CC8A49 /* KRXAPIManager.swift */; };
+		0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4827828D46BAB00CC8A49 /* Alamofire */; };
+		0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4827B28D46BC100CC8A49 /* SwiftyJSON */; };
+		0EF4828028D4E19600CC8A49 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827F28D4E19600CC8A49 /* RealmModel.swift */; };
+		0EF4828328D4E1D500CC8A49 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4828228D4E1D500CC8A49 /* Realm */; };
+		0EF4828528D4E1D500CC8A49 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4828428D4E1D500CC8A49 /* RealmSwift */; };
+		0EF4828728D4E3C800CC8A49 /* UserMemoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +84,16 @@
 		0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
 		0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTableViewCell.swift; sourceTree = "<group>"; };
+		0EF4826428D4312C00CC8A49 /* TradingSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingSearchViewController.swift; sourceTree = "<group>"; };
+		0EF4826628D4593900CC8A49 /* SearchedStockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedStockTableViewCell.swift; sourceTree = "<group>"; };
+		0EF4826828D4678600CC8A49 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		0EF4826C28D467DD00CC8A49 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
+		0EF4826F28D468E200CC8A49 /* KRXModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXModel.swift; sourceTree = "<group>"; };
+		0EF4827128D469A900CC8A49 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
+		0EF4827328D46AD300CC8A49 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		0EF4827528D46B8900CC8A49 /* KRXAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXAPIManager.swift; sourceTree = "<group>"; };
+		0EF4827F28D4E19600CC8A49 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMemoRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,8 +101,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EF4828528D4E1D500CC8A49 /* RealmSwift in Frameworks */,
+				0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */,
 				0E04A3A728D1B4C10036D389 /* SnapKit in Frameworks */,
+				0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */,
 				0E04A3D328D215CA0036D389 /* FSCalendar in Frameworks */,
+				0EF4828328D4E1D500CC8A49 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +116,7 @@
 		0E04A38528D1B2200036D389 = {
 			isa = PBXGroup;
 			children = (
+				0EF4826828D4678600CC8A49 /* .gitignore */,
 				0E04A39028D1B2200036D389 /* DailyTradingDiary */,
 				0E04A38F28D1B2200036D389 /* Products */,
 			);
@@ -111,6 +140,10 @@
 				0E04A39728D1B2200036D389 /* Main.storyboard */,
 				0E04A39C28D1B2220036D389 /* LaunchScreen.storyboard */,
 				0E04A39A28D1B2220036D389 /* Assets.xcassets */,
+				0EF4826B28D467C600CC8A49 /* Key */,
+				0EF4826A28D467B900CC8A49 /* Network */,
+				0EF4826E28D4687F00CC8A49 /* Data */,
+				0EF4827E28D4E17C00CC8A49 /* Realm */,
 				0E04A3BA28D1CECD0036D389 /* Extensions */,
 				0E04A3A828D1B5C00036D389 /* Utility */,
 				0E04A3C028D1D3DF0036D389 /* Scene */,
@@ -172,6 +205,7 @@
 				0E04A3C228D1D43E0036D389 /* Home */,
 				0E04A3C528D1D4AB0036D389 /* TradingDiaryTemplate */,
 				0E04A3C628D1D4C30036D389 /* CropAnalysisTemplate */,
+				0EF4826328D430EE00CC8A49 /* Search */,
 				0E04A3C328D1D44F0036D389 /* Info */,
 				0E04A3C428D1D4630036D389 /* Portfolio */,
 			);
@@ -233,6 +267,50 @@
 			path = CropAnalysisTemplate;
 			sourceTree = "<group>";
 		};
+		0EF4826328D430EE00CC8A49 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				0EF4826428D4312C00CC8A49 /* TradingSearchViewController.swift */,
+				0EF4826628D4593900CC8A49 /* SearchedStockTableViewCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		0EF4826A28D467B900CC8A49 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				0EF4827328D46AD300CC8A49 /* Endpoint.swift */,
+				0EF4827128D469A900CC8A49 /* URL+Extension.swift */,
+				0EF4827528D46B8900CC8A49 /* KRXAPIManager.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		0EF4826B28D467C600CC8A49 /* Key */ = {
+			isa = PBXGroup;
+			children = (
+				0EF4826C28D467DD00CC8A49 /* APIKey.swift */,
+			);
+			path = Key;
+			sourceTree = "<group>";
+		};
+		0EF4826E28D4687F00CC8A49 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				0EF4826F28D468E200CC8A49 /* KRXModel.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		0EF4827E28D4E17C00CC8A49 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				0EF4827F28D4E19600CC8A49 /* RealmModel.swift */,
+				0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -252,6 +330,10 @@
 			packageProductDependencies = (
 				0E04A3A628D1B4C10036D389 /* SnapKit */,
 				0E04A3D228D215CA0036D389 /* FSCalendar */,
+				0EF4827828D46BAB00CC8A49 /* Alamofire */,
+				0EF4827B28D46BC100CC8A49 /* SwiftyJSON */,
+				0EF4828228D4E1D500CC8A49 /* Realm */,
+				0EF4828428D4E1D500CC8A49 /* RealmSwift */,
 			);
 			productName = DailyTradingDiary;
 			productReference = 0E04A38E28D1B2200036D389 /* DailyTradingDiary.app */;
@@ -285,6 +367,9 @@
 			packageReferences = (
 				0E04A3A528D1B4C10036D389 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */,
+				0EF4827728D46BAB00CC8A49 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				0EF4827A28D46BC100CC8A49 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				0EF4828128D4E1D500CC8A49 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 0E04A38F28D1B2200036D389 /* Products */;
 			projectDirPath = "";
@@ -300,6 +385,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EF4826928D4678600CC8A49 /* .gitignore in Resources */,
 				0E04A39E28D1B2220036D389 /* LaunchScreen.storyboard in Resources */,
 				0E04A39B28D1B2220036D389 /* Assets.xcassets in Resources */,
 				0E04A39928D1B2200036D389 /* Main.storyboard in Resources */,
@@ -313,18 +399,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0EF4827028D468E200CC8A49 /* KRXModel.swift in Sources */,
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
 				0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */,
+				0EF4827428D46AD300CC8A49 /* Endpoint.swift in Sources */,
 				0E2DB01928D3399600CDFD14 /* BuySellTableViewCell.swift in Sources */,
 				0E04A3B328D1C6D00036D389 /* BaseTableViewCell.swift in Sources */,
+				0EF4828728D4E3C800CC8A49 /* UserMemoRepository.swift in Sources */,
 				0E6E2FB628D258B6004ED8D9 /* AnalysisTableViewCell.swift in Sources */,
 				0E04A3BE28D1D2930036D389 /* Transition+Extension.swift in Sources */,
 				0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */,
 				0E04A3AD28D1BF3C0036D389 /* ReusableProtocol.swift in Sources */,
+				0EF4826528D4312C00CC8A49 /* TradingSearchViewController.swift in Sources */,
 				0E2DB01728D3398500CDFD14 /* TradeDateTableViewCell.swift in Sources */,
 				0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */,
 				0E04A39428D1B2200036D389 /* SceneDelegate.swift in Sources */,
@@ -334,9 +424,14 @@
 				0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */,
 				0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */,
 				0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */,
+				0EF4827628D46B8900CC8A49 /* KRXAPIManager.swift in Sources */,
+				0EF4828028D4E19600CC8A49 /* RealmModel.swift in Sources */,
+				0EF4827228D469A900CC8A49 /* URL+Extension.swift in Sources */,
+				0EF4826D28D467DD00CC8A49 /* APIKey.swift in Sources */,
 				0E2DB01B28D339AB00CDFD14 /* NumPriceTableViewCell.swift in Sources */,
 				0E2DB01328D32D1B00CDFD14 /* TradingDiaryView.swift in Sources */,
 				0E2DB01128D32C8700CDFD14 /* TradingDiaryViewController.swift in Sources */,
+				0EF4826728D4593900CC8A49 /* SearchedStockTableViewCell.swift in Sources */,
 				0E04A3B928D1C7890036D389 /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +677,30 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		0EF4827728D46BAB00CC8A49 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		0EF4827A28D46BC100CC8A49 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		0EF4828128D4E1D500CC8A49 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -594,6 +713,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		0EF4827828D46BAB00CC8A49 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EF4827728D46BAB00CC8A49 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		0EF4827B28D46BC100CC8A49 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EF4827A28D46BC100CC8A49 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		0EF4828228D4E1D500CC8A49 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EF4828128D4E1D500CC8A49 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0EF4828428D4E1D500CC8A49 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0EF4828128D4E1D500CC8A49 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

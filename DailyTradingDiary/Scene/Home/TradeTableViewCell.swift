@@ -55,8 +55,8 @@ class TradeTableViewCell: BaseTableViewCell {
     
     override func configure() {
         backgroundColor = .cellBackgroundColor
-        
-        [tagLabel, nameLabel, amountLabel, isTradingLabel, priceLabel].forEach {
+        // nameLabel, amountLabel, isTradingLabel, priceLabel
+        [tagLabel].forEach {
             contentView.addSubview($0)
         }
     }
@@ -73,43 +73,28 @@ class TradeTableViewCell: BaseTableViewCell {
             make.height.equalTo(10)
         }
         
-        nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
-            make.top.equalTo(self.tagLabel.snp.bottom).offset(6)
-        }
+//        nameLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
+//            make.top.equalTo(self.tagLabel.snp.bottom).offset(6)
+//        }
+//
+//        amountLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(nameLabel.snp.trailing).offset(12)
+//            make.top.equalTo(self.safeAreaLayoutGuide).offset(30)
+//        }
+//
+//        isTradingLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(amountLabel.snp.trailing).offset(12)
+//            make.top.equalTo(self.tagLabel.snp.bottom).offset(30)
+//        }
+//
+//        priceLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(isTradingLabel.snp.trailing).offset(12)
+////            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-12)
+//            make.top.equalTo(self.tagLabel.snp.bottom).offset(30)
+//        }
         
-        amountLabel.snp.makeConstraints { make in
-            make.leading.equalTo(nameLabel.snp.trailing).offset(12)
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(30)
-        }
-        
-        isTradingLabel.snp.makeConstraints { make in
-            make.leading.equalTo(amountLabel.snp.trailing).offset(12)
-            make.top.equalTo(self.tagLabel.snp.bottom).offset(30)
-        }
-        
-        priceLabel.snp.makeConstraints { make in
-            make.leading.equalTo(isTradingLabel.snp.trailing).offset(12)
-//            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-12)
-            make.top.equalTo(self.tagLabel.snp.bottom).offset(30)
-        }
-        
-        //    func getProperDateForm(memotime: Date) -> String {
-        //
-        //        let formatter = DateFormatter()
-        //        formatter.locale = Locale(identifier: "ko_KR")
-        //
-        //        if memotime.isInToday {
-        //            formatter.dateFormat = "a HH:mm"
-        //        } else if memotime.isInThisWeek {
-        //            formatter.dateFormat = "EEEE"
-        //        } else {
-        //            formatter.dateFormat = "yyyy. MM. dd a HH:mm"
-        //        }
-        //
-        //        return formatter.string(from: memotime)
-        //    }
-        //
+
         //    func setDataAtCell(arr: [UserMemo], indexPath: IndexPath) {
         //        let row = arr[indexPath.row]
         //        self.titleLabel.text = row.memoTitle

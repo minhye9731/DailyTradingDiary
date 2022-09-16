@@ -15,6 +15,7 @@ class TradingMemoTableViewCell: BaseTableViewCell {
         textview.font = .systemFont(ofSize: 16)
         textview.text = "매수·매도의 근거와 전략을 적어주세요 :)"
         textview.textColor = .subTextColor
+        textview.backgroundColor = .clear
         return textview
     }()
     
