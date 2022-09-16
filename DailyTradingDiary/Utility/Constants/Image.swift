@@ -15,6 +15,7 @@ extension Constants {
         case filter = "slider.horizontal.3"
         case diary = "square.and.pencil"
         case corporation = "building"
+        case plus = "plus"
         
         case home = "house"
         case homeClicked = "house.fill"

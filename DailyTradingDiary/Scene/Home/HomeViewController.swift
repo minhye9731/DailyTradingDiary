@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 import FSCalendar
 
-
 final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     let mainView = HomeView()
@@ -22,6 +21,8 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         super.viewDidLoad()
         self.view = mainView
         self.view.backgroundColor = .backgroundColor
+        
+        mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
     }
     
     override func configure() {
@@ -70,12 +71,11 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // 작성한 매매일지나 기업분석의 데이터 유무로 분기처리를 해주는 것도 좋을 듯. 있으면 4. 없으면 이미지를 넣고 싶은데 그건 여기가 아니라 다른 곳에서 설정을 해야할 듯?
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4 // return realm에 업데이트된 데이터 배열의 수
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -219,3 +219,12 @@ extension HomeViewController: FSCalendarDelegateAppearance {
     
 }
 
+// MARK: - 기타함수들
+extension HomeViewController {
+    
+    @objc func floatingBtnTapped() {
+        let vc = TradingDiaryViewController()
+        transition(vc, transitionStyle: .push)
+    }
+    
+}
