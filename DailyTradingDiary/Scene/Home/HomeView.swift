@@ -9,7 +9,6 @@ import UIKit
 import SnapKit
 import FSCalendar
 
-
 final class HomeView: BaseView {
     
     lazy var calendar: FSCalendar = {
@@ -19,10 +18,10 @@ final class HomeView: BaseView {
     
     lazy var tableView: UITableView = {
         let tableview = UITableView(frame: .zero, style: .plain)
-        tableview.backgroundColor = .orange
+        tableview.backgroundColor = .backgroundColor
         tableview.rowHeight = 70
         tableview.register(TradeTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
-        tableview.register(AnalysisTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
+//        tableview.register(AnalysisTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
         return tableview
     }()
     
@@ -43,7 +42,7 @@ final class HomeView: BaseView {
         
         let image = UIImage(systemName: Constants.ImageName.plus.rawValue, withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .light))
         floatingButton.setImage(image, for: .normal)
-        floatingButton.setTitleColor(.white, for: .normal)
+        floatingButton.setTitleColor(.backgroundColor, for: .normal)
     }
     
     override func setConstraints() {
@@ -61,8 +60,8 @@ final class HomeView: BaseView {
         }
         
         floatingButton.snp.makeConstraints { make in
-            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-35)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-45)
+            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-28)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-36)
             make.width.height.equalTo(60)
         }
         
