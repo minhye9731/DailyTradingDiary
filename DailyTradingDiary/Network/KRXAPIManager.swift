@@ -22,7 +22,9 @@ class KRXAPIManager {
         
         guard let searchText = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
-        let url = type.requestURL + "serviceKey=\(APIKey.KRX_KEY)&likeItmsNm=\(searchText)&resultType=json&basDt=\(baseDate)"
+//        let url = type.requestURL + "serviceKey=\(APIKey.KRX_KEY)&likeItmsNm=\(searchText)&resultType=json&basDt=\(baseDate)"
+        
+        let url = "https://apis.data.go.kr/1160100/service/GetKrxListedInfoService/getItemInfo?"
 //
 //        let parameter = [
 //            "serviceKey": APIKey.KRX_KEY,

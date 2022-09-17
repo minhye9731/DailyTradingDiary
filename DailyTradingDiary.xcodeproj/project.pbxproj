@@ -37,6 +37,12 @@
 		0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E6E2FB628D258B6004ED8D9 /* AnalysisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */; };
+		0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353C28D58F600039D802 /* SettingViewController.swift */; };
+		0E87354028D598840039D802 /* PageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353F28D598840039D802 /* PageMode.swift */; };
+		0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354128D5DEC50039D802 /* String+Extension.swift */; };
+		0E87354528D5EFA80039D802 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */; };
+		0E87354728D609D10039D802 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354628D609D00039D802 /* Word.swift */; };
+		0E87354928D616060039D802 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354828D616060039D802 /* Date+Extension.swift */; };
 		0EF4826528D4312C00CC8A49 /* TradingSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826428D4312C00CC8A49 /* TradingSearchViewController.swift */; };
 		0EF4826728D4593900CC8A49 /* SearchedStockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826628D4593900CC8A49 /* SearchedStockTableViewCell.swift */; };
 		0EF4826928D4678600CC8A49 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0EF4826828D4678600CC8A49 /* .gitignore */; };
@@ -84,6 +90,11 @@
 		0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
 		0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTableViewCell.swift; sourceTree = "<group>"; };
+		0E87353C28D58F600039D802 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		0E87353F28D598840039D802 /* PageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMode.swift; sourceTree = "<group>"; };
+		0E87354128D5DEC50039D802 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
+		0E87354628D609D00039D802 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
+		0E87354828D616060039D802 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0EF4826428D4312C00CC8A49 /* TradingSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingSearchViewController.swift; sourceTree = "<group>"; };
 		0EF4826628D4593900CC8A49 /* SearchedStockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedStockTableViewCell.swift; sourceTree = "<group>"; };
 		0EF4826828D4678600CC8A49 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
@@ -101,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E87354528D5EFA80039D802 /* IQKeyboardManagerSwift in Frameworks */,
 				0EF4828528D4E1D500CC8A49 /* RealmSwift in Frameworks */,
 				0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */,
 				0E04A3A728D1B4C10036D389 /* SnapKit in Frameworks */,
@@ -155,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				0E04A3AC28D1BF3C0036D389 /* ReusableProtocol.swift */,
+				0E87353E28D598730039D802 /* Enum */,
 				0E04A3A928D1B5CF0036D389 /* Constants */,
 				0E04A3AA28D1B5D70036D389 /* CustomView */,
 				0E04A3AB28D1B5DF0036D389 /* BaseView */,
@@ -167,6 +180,7 @@
 			children = (
 				0E04A3B628D1C7220036D389 /* Constants.swift */,
 				0E04A3B828D1C7890036D389 /* Image.swift */,
+				0E87354628D609D00039D802 /* Word.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -194,6 +208,8 @@
 				0E04A3BB28D1CEDF0036D389 /* UIColor+Extension.swift */,
 				0E04A3BD28D1D2920036D389 /* Transition+Extension.swift */,
 				0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */,
+				0E87354128D5DEC50039D802 /* String+Extension.swift */,
+				0E87354828D616060039D802 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -201,6 +217,7 @@
 		0E04A3C028D1D3DF0036D389 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0E87353B28D58F4F0039D802 /* Setting */,
 				0E04A3C128D1D4240036D389 /* WalkThrough */,
 				0E04A3C228D1D43E0036D389 /* Home */,
 				0E04A3C528D1D4AB0036D389 /* TradingDiaryTemplate */,
@@ -252,9 +269,9 @@
 				0E2DB01028D32C8600CDFD14 /* TradingDiaryViewController.swift */,
 				0E2DB01228D32D1B00CDFD14 /* TradingDiaryView.swift */,
 				0E2DB01428D3395900CDFD14 /* CorpNameTableViewCell.swift */,
-				0E2DB01628D3398400CDFD14 /* TradeDateTableViewCell.swift */,
-				0E2DB01828D3399600CDFD14 /* BuySellTableViewCell.swift */,
 				0E2DB01A28D339AB00CDFD14 /* NumPriceTableViewCell.swift */,
+				0E2DB01828D3399600CDFD14 /* BuySellTableViewCell.swift */,
+				0E2DB01628D3398400CDFD14 /* TradeDateTableViewCell.swift */,
 				0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */,
 			);
 			path = TradingDiaryTemplate;
@@ -265,6 +282,22 @@
 			children = (
 			);
 			path = CropAnalysisTemplate;
+			sourceTree = "<group>";
+		};
+		0E87353B28D58F4F0039D802 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0E87353C28D58F600039D802 /* SettingViewController.swift */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		0E87353E28D598730039D802 /* Enum */ = {
+			isa = PBXGroup;
+			children = (
+				0E87353F28D598840039D802 /* PageMode.swift */,
+			);
+			path = Enum;
 			sourceTree = "<group>";
 		};
 		0EF4826328D430EE00CC8A49 /* Search */ = {
@@ -334,6 +367,7 @@
 				0EF4827B28D46BC100CC8A49 /* SwiftyJSON */,
 				0EF4828228D4E1D500CC8A49 /* Realm */,
 				0EF4828428D4E1D500CC8A49 /* RealmSwift */,
+				0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */,
 			);
 			productName = DailyTradingDiary;
 			productReference = 0E04A38E28D1B2200036D389 /* DailyTradingDiary.app */;
@@ -370,6 +404,7 @@
 				0EF4827728D46BAB00CC8A49 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				0EF4827A28D46BC100CC8A49 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				0EF4828128D4E1D500CC8A49 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 0E04A38F28D1B2200036D389 /* Products */;
 			projectDirPath = "";
@@ -401,12 +436,15 @@
 			files = (
 				0EF4827028D468E200CC8A49 /* KRXModel.swift in Sources */,
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
+				0E87354928D616060039D802 /* Date+Extension.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
 				0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
+				0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */,
 				0EF4827428D46AD300CC8A49 /* Endpoint.swift in Sources */,
+				0E87354728D609D10039D802 /* Word.swift in Sources */,
 				0E2DB01928D3399600CDFD14 /* BuySellTableViewCell.swift in Sources */,
 				0E04A3B328D1C6D00036D389 /* BaseTableViewCell.swift in Sources */,
 				0EF4828728D4E3C800CC8A49 /* UserMemoRepository.swift in Sources */,
@@ -416,6 +454,7 @@
 				0E04A3AD28D1BF3C0036D389 /* ReusableProtocol.swift in Sources */,
 				0EF4826528D4312C00CC8A49 /* TradingSearchViewController.swift in Sources */,
 				0E2DB01728D3398500CDFD14 /* TradeDateTableViewCell.swift in Sources */,
+				0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */,
 				0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */,
 				0E04A39428D1B2200036D389 /* SceneDelegate.swift in Sources */,
 				0E04A3CC28D1D6C40036D389 /* InfoViewController.swift in Sources */,
@@ -433,6 +472,7 @@
 				0E2DB01128D32C8700CDFD14 /* TradingDiaryViewController.swift in Sources */,
 				0EF4826728D4593900CC8A49 /* SearchedStockTableViewCell.swift in Sources */,
 				0E04A3B928D1C7890036D389 /* Image.swift in Sources */,
+				0E87354028D598840039D802 /* PageMode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -677,6 +717,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.0;
+			};
+		};
 		0EF4827728D46BAB00CC8A49 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
@@ -713,6 +761,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
 		};
 		0EF4827828D46BAB00CC8A49 /* Alamofire */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -8,7 +8,7 @@
 import Foundation
 import RealmSwift
 
-class UserTradingDiary: Object {
+class TradingDiary: Object {
     @Persisted var corpName: String // 기업명(필수)
     @Persisted var corpCode: String // 종목코드(필수)
 

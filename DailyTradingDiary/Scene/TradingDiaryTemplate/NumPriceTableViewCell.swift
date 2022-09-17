@@ -21,7 +21,7 @@ class NumPriceTableViewCell: BaseTableViewCell {
         let textfield = UITextField()
         textfield.placeholder = "0.00"
         textfield.textAlignment = .right
-        textfield.keyboardType = .numberPad
+        textfield.keyboardType = .numbersAndPunctuation // 점있ㄴ,ㄴ 숫자 키보드로 바꾸고 싶다
         return textfield
     }()
     
@@ -40,7 +40,7 @@ class NumPriceTableViewCell: BaseTableViewCell {
         
         amountTextField.snp.makeConstraints { make in
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
-            make.width.equalTo(50)
+            make.width.equalTo(120)
             make.centerY.equalTo(self)
         }
         

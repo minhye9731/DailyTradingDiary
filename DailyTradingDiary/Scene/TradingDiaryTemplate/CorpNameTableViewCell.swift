@@ -10,6 +10,7 @@ import UIKit
 class CorpNameTableViewCell: BaseTableViewCell {
     
 //    let searchBar = UISearchBar()
+    var textFieldTapped : (() -> Void) = {}
     
     let nameLabel: UILabel = {
         let label = UILabel()
@@ -20,21 +21,32 @@ class CorpNameTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    let corpNameLabel: UILabel = {
-        let label = UILabel()
-        label.text = "매매한 주식의 기업명"
-        label.textColor = .subTextColor
-        label.font = .boldSystemFont(ofSize: 18)
-        label.textAlignment = .center
-        return label
+//    let corpNameLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "매매한 주식의 기업명"
+//        label.textColor = .subTextColor
+//        label.font = .boldSystemFont(ofSize: 18)
+//        label.textAlignment = .center
+//        return label
+//    }()
+    
+    let corpNameTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.placeholder = "(기업명)"
+        textfield.textAlignment = .right
+        textfield.keyboardType = .default
+
+        return textfield
     }()
+    
+    
     
     override func configure() {
 //        [searchBar, nameLabel].forEach {
 //            contentView.addSubview($0)
 //        }
         
-        [nameLabel, corpNameLabel].forEach {
+        [nameLabel, corpNameTextField].forEach {
             contentView.addSubview($0)
         }
     }
@@ -45,7 +57,7 @@ class CorpNameTableViewCell: BaseTableViewCell {
             make.centerY.equalTo(self)
         }
         
-        corpNameLabel.snp.makeConstraints { make in
+        corpNameTextField.snp.makeConstraints { make in
             make.leading.equalTo(nameLabel.snp.trailing).offset(10)
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
             make.centerY.equalTo(self)
@@ -56,6 +68,10 @@ class CorpNameTableViewCell: BaseTableViewCell {
         //            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
         //            make.centerY.equalTo(self)
         //        }
+    }
+    
+    @objc func textFieldDidChange() {
+        textFieldTapped()
     }
     
 }

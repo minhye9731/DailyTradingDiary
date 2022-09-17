@@ -19,7 +19,10 @@ class BaseTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configure() {}
+    func configure() {
+        
+        self.backgroundColor = .subBackgroundColor
+    }
     
     func setConstraints() {}
 }
