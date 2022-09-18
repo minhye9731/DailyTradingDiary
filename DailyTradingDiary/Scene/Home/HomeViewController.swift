@@ -16,9 +16,6 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     let repository = DiaryRepository()
     var selectedDate: Date = Date()
     
-//    var diaryArr: [TradingDiary] = []
-    var dailyArr: [TradingDiary] = []
-    
     var tasks: Results<TradingDiary>! {
         didSet {
             print("tasks 프로퍼티 관찰자 실행")
@@ -28,12 +25,14 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     // MARK: - Lifecycle
     override func loadView() {
-        self.view = mainView
         fetchSortRealm(sort: "regDate")
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+        self.view = mainView
         self.view.backgroundColor = .backgroundColor
         
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
@@ -44,7 +43,8 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        self.dailyArr = self.tasks.filter { $0.tradingDate.toString() == self.mainView.calendar.selectedDate?.toString() }
+        self.tasks.filter { $0.tradingDate.toString() == self.mainView.calendar.selectedDate?.toString() }
+        
         fetchSortRealm(sort: "regDate")
     }
     
@@ -58,7 +58,6 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     }
 
     func setNav() {
-        // 아니면 아예 제목용 라벨 커스텀으로 저장해도 좋을 듯
         let titleLabel = UILabel()
         titleLabel.text = "Trading Diary"
         titleLabel.textAlignment = .left
@@ -92,20 +91,20 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        // 일단 보여주기용으로 필터링. 어차피 캘린더와 연동할때 날짜 기준으로 filter해서 구분할 예정
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return dailyArr.count
+        let result = self.tasks.filter { $0.tradingDate.toString() == self.mainView.calendar.selectedDate?.toString() }.count
+        
+        return result
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let tradeCell = tableView.dequeueReusableCell(withIdentifier: TradeTableViewCell.reuseIdentifier) as? TradeTableViewCell else { return UITableViewCell() }
-        
-        
-        tradeCell.setData(arr: dailyArr, indexPath: indexPath)
+
+        tradeCell.setData(arr: Array(tasks), indexPath: indexPath)
                 
         return tradeCell
     }
@@ -113,11 +112,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)번 째 셀을 클릭했습니다. 해당 생성파일의 보기으로 넘어감")
         
-        // 매매일지/기업분석 구분 필요
-        
         let tradeDiaryVC = TradingDiaryViewController()
-//        let row = diaryArr[indexPath.row]
-        let row = dailyArr[indexPath.row]
+        let row = Array(tasks)[indexPath.row]
         
         tradeDiaryVC.diaryData = row
         tradeDiaryVC.addOrEditAction = .edit
@@ -129,9 +125,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
         print(#function)
 
-//        let row = self.diaryArr[indexPath.row]
-        let row = self.dailyArr[indexPath.row]
-
+        let row = Array(tasks)[indexPath.row]
+        
         let delete = UIContextualAction(style: .normal, title: nil) { action, view, completion in
             
             self.deleteConfirmAlert(title: "해당 메모를 삭제하시겠습니까?") { _ in
@@ -159,8 +154,6 @@ extension HomeViewController: FSCalendarDelegateAppearance {
 //        self.view.layoutIfNeeded()
 //    }
     
-    // 오늘 날짜로 돌아오는 액션 추가
-    
     func setCalendarUI() {
         
         self.mainView.calendar.dataSource = self
@@ -182,24 +175,23 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         self.mainView.calendar.scrollDirection = .horizontal
         
         // 요일
-        self.mainView.calendar.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .regular) // 요일 글자
+        self.mainView.calendar.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .regular)
         self.mainView.calendar.appearance.weekdayTextColor = .mainTextColor
         self.mainView.calendar.calendarWeekdayView.weekdayLabels[0].textColor = .systemRed // 적용안됨
         self.mainView.calendar.calendarWeekdayView.weekdayLabels[6].textColor = .systemBlue // 적용안됨
         
-        self.mainView.calendar.appearance.titleFont = .systemFont(ofSize: 14, weight: .regular) // 숫자 글자
+        // 일자
+        self.mainView.calendar.appearance.titleFont = .systemFont(ofSize: 14, weight: .regular)
+        self.mainView.calendar.appearance.titlePlaceholderColor = .subTextColor
+        self.mainView.calendar.appearance.titleDefaultColor = .mainTextColor
+//        self.mainView.calendar.appearance.title // 일요일은 빨간색
+        // 토요일은 파란색
         
         self.mainView.calendar.appearance.headerDateFormat = "YYYY MM월"
         self.mainView.calendar.appearance.headerTitleFont = .systemFont(ofSize: 16, weight: .regular)
         self.mainView.calendar.appearance.headerTitleColor = .mainTextColor
         self.mainView.calendar.appearance.headerTitleAlignment = .center
         
-        // 일자
-        self.mainView.calendar.appearance.titlePlaceholderColor = .subTextColor // 유효하지 않은 날
-        self.mainView.calendar.appearance.titleDefaultColor = .mainTextColor // 평일
-//        self.mainView.calendar.appearance.title // 일요일은 빨간색
-        // 토요일은 파란색
-
         // today
         self.mainView.calendar.appearance.titleTodayColor = .mainTextColor
         self.mainView.calendar.appearance.todayColor = .subTextColor
@@ -217,7 +209,8 @@ extension HomeViewController: FSCalendarDelegateAppearance {
     
     // 날짜 선택시 발생하는 일
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        self.dailyArr = self.tasks.filter { $0.tradingDate.toString() == date.toString() }
+        
+        self.tasks.filter { $0.tradingDate.toString() == date.toString() }
         
         self.mainView.tableView.reloadData()
     }
