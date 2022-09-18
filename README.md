@@ -18,3 +18,11 @@ https://truckon-faq.notion.site/20220915-1ffd2b7af0cd4498820d2ed495d72340
 * 매매일지 작성화면 UI (70%)
   * tableview 및 입력항목 구성 완료
   * 매매정보 입력시 보완 필요한 추가 상세기능들 11개 list-up
+
+<2022.09.16>
+
+<2022.09.17>
+https://truckon-faq.notion.site/20220917-9dcd8215604c40dc805b2e58df81aeef
+
+<2022.09.18>
+https://truckon-faq.notion.site/20220918-5f04cc59c9334c65b6e6f8ef7c25b7af
