@@ -15,6 +15,7 @@ extension Constants {
         case tradingPrice = "매매단가"
         case buy = "매수"
         case sell = "매도"
+        case trdDryMemoPlchdr = "매수·매도의 근거와 전략을 적어주세요 (공백 포함 최대 300자)"
     }
     
     enum CurrencySign: String {

@@ -14,7 +14,7 @@ class CorpNameTableViewCell: BaseTableViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "종목명"
+        label.text = "* 종목명"
         label.textColor = .mainTextColor
         label.font = .boldSystemFont(ofSize: 18)
         label.textAlignment = .left
@@ -35,7 +35,8 @@ class CorpNameTableViewCell: BaseTableViewCell {
         textfield.placeholder = "(기업명)"
         textfield.textAlignment = .right
         textfield.keyboardType = .default
-
+        textfield.autocorrectionType = .no
+        textfield.autocapitalizationType = .none
         return textfield
     }()
     
@@ -49,6 +50,9 @@ class CorpNameTableViewCell: BaseTableViewCell {
         [nameLabel, corpNameTextField].forEach {
             contentView.addSubview($0)
         }
+        
+        giveColotString(label: nameLabel, colorStr: "*")
+        
     }
     
     override func setConstraints() {

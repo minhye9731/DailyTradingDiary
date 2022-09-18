@@ -40,4 +40,13 @@ class BaseViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    func giveColotString(label: UILabel, colorStr: String) {
+        
+        let attributeLabelStr = NSMutableAttributedString(string: label.text!)
+        
+        attributeLabelStr.addAttribute(.foregroundColor, value: UIColor.systemRed, range: (label.text! as NSString).range(of: colorStr))
+        
+        label.attributedText = attributeLabelStr
+    }
+    
 }

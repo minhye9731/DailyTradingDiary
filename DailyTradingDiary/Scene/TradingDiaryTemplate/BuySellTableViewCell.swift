@@ -13,7 +13,7 @@ class BuySellTableViewCell: BaseTableViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "매수 · 매도"
+        label.text = "* 매수 · 매도"
         label.textColor = .mainTextColor
         label.font = .boldSystemFont(ofSize: 18)
         label.textAlignment = .left
@@ -34,6 +34,7 @@ class BuySellTableViewCell: BaseTableViewCell {
         [nameLabel, segmentControl].forEach {
             contentView.addSubview($0)
         }
+        giveColotString(label: nameLabel, colorStr: "*")
     }
     
     override func setConstraints() {

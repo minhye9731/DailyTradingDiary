@@ -19,9 +19,9 @@ class NumPriceTableViewCell: BaseTableViewCell {
     
     let amountTextField: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "0.00"
+        textfield.placeholder = "0"
         textfield.textAlignment = .right
-        textfield.keyboardType = .numbersAndPunctuation // 점있ㄴ,ㄴ 숫자 키보드로 바꾸고 싶다
+        textfield.keyboardType = .numberPad
         return textfield
     }()
     
