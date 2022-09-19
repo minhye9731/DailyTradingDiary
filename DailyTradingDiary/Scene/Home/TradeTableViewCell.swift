@@ -13,16 +13,16 @@ class TradeTableViewCell: BaseTableViewCell {
         let label = UILabel()
         label.text = "매매일지"
         label.textColor = .black
+        label.backgroundColor = .tradeDiaryTagColor
         label.font = .boldSystemFont(ofSize: 10)
-        label.backgroundColor = .systemGreen // 상세 디자인 변경 예정
         label.textAlignment = .center
-        label.layer.cornerRadius = Constants.Desgin.cornerRadius
+        label.layer.cornerRadius = 4
+        label.layer.masksToBounds = true
         return label
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "test" // 삭제예정
         label.textColor = .mainTextColor
         label.font = .boldSystemFont(ofSize: 24)
         label.textAlignment = .left
@@ -31,7 +31,6 @@ class TradeTableViewCell: BaseTableViewCell {
     
     let amountLabel: UILabel = {
         let label = UILabel()
-        label.text = "test" // 삭제예정
         label.textColor = .mainTextColor
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .left
@@ -41,7 +40,6 @@ class TradeTableViewCell: BaseTableViewCell {
     let isTradingLabel: UILabel = {
         let label = UILabel()
         label.textColor = .mainTextColor
-        label.text = "test" // 삭제예정
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .left
         return label
@@ -49,7 +47,6 @@ class TradeTableViewCell: BaseTableViewCell {
     
     let priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "test" // 삭제예정
         label.textColor = .mainTextColor
         label.font = .systemFont(ofSize: 12)
         label.textAlignment = .center
