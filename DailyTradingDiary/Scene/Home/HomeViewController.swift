@@ -33,7 +33,6 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         self.view = mainView
-        self.view.backgroundColor = .backgroundColor
         
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
     }

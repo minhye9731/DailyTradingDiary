@@ -93,17 +93,32 @@ extension UIColor {
         }
     }
     
-    static var pointColor: UIColor {
+    static var subTextColorReverse: UIColor {
         
+        return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+            if traitCollection.userInterfaceStyle == .light {
+                return .darkGray
+            } else {
+                return .lightGray
+            }
+        }
+    }
+    
+    static var pointColor: UIColor {
         return UIColor { (traitCollection: UITraitCollection) -> UIColor in
             return UIColor.systemPurple
         }
     }
     
     static var deleteColor: UIColor {
-        
         return UIColor { (traitCollection: UITraitCollection) -> UIColor in
             return UIColor.systemRed
+        }
+    }
+    
+    static var tradeDiaryTagColor: UIColor {
+        return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+            return UIColor.systemGreen
         }
     }
 
