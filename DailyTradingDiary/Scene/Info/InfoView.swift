@@ -15,6 +15,7 @@ final class InfoView: BaseView {
         let tableview = UITableView(frame: .zero, style: .plain)
         tableview.backgroundColor = .backgroundColor
         tableview.register(IndexTableViewCell.self, forCellReuseIdentifier: IndexTableViewCell.reuseIdentifier)
+        tableview.register(FearGreedGraphTableViewCell.self, forCellReuseIdentifier: FearGreedGraphTableViewCell.reuseIdentifier)
         tableview.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.reuseIdentifier)
         tableview.register(InfoTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: InfoTableViewHeaderView.reuseIdentifier)
         return tableview

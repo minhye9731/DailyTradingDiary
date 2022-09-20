@@ -35,6 +35,8 @@
 		0E2DB01B28D339AB00CDFD14 /* NumPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01A28D339AB00CDFD14 /* NumPriceTableViewCell.swift */; };
 		0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */; };
 		0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */; };
+		0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */; };
+		0E40BF6928D98B0D00F99DEF /* AlphaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6828D98B0D00F99DEF /* AlphaModel.swift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E6E2FB628D258B6004ED8D9 /* AnalysisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */; };
 		0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353C28D58F600039D802 /* SettingViewController.swift */; };
@@ -97,6 +99,8 @@
 		0E2DB01A28D339AB00CDFD14 /* NumPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumPriceTableViewCell.swift; sourceTree = "<group>"; };
 		0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingMemoTableViewCell.swift; sourceTree = "<group>"; };
 		0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPHAAPIManager.swift; sourceTree = "<group>"; };
+		0E40BF6828D98B0D00F99DEF /* AlphaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaModel.swift; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
 		0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTableViewCell.swift; sourceTree = "<group>"; };
 		0E87353C28D58F600039D802 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -341,6 +345,7 @@
 				0EF4827328D46AD300CC8A49 /* Endpoint.swift */,
 				0EF4827128D469A900CC8A49 /* URL+Extension.swift */,
 				0EF4827528D46B8900CC8A49 /* KRXAPIManager.swift */,
+				0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -357,6 +362,7 @@
 			isa = PBXGroup;
 			children = (
 				0EF4826F28D468E200CC8A49 /* KRXModel.swift */,
+				0E40BF6828D98B0D00F99DEF /* AlphaModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 			files = (
 				0EF4827028D468E200CC8A49 /* KRXModel.swift in Sources */,
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
+				0E40BF6928D98B0D00F99DEF /* AlphaModel.swift in Sources */,
 				0E87354928D616060039D802 /* Date+Extension.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
 				0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */,
@@ -489,6 +496,7 @@
 				0EB85EFC28D8D2C2002145A2 /* WebViewController.swift in Sources */,
 				0EB85EEF28D874FA002145A2 /* FearGreedGraphTableViewCell.swift in Sources */,
 				0EB85EF128D87561002145A2 /* IndexCollectionViewCell.swift in Sources */,
+				0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */,
 				0E2DB01728D3398500CDFD14 /* TradeDateTableViewCell.swift in Sources */,
 				0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */,
 				0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */,

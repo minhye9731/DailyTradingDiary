@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 import FSCalendar
-
 final class HomeView: BaseView {
     
     lazy var calendar: FSCalendar = {
         let calendar = FSCalendar()
+//        calendar.backgroundColor = .backgroundColor
         return calendar
     }()
     

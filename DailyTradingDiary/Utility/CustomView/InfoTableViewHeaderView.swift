@@ -36,6 +36,7 @@ final class InfoTableViewHeaderView: UITableViewHeaderFooterView {
     }
     
     func configure() {
+        
         [sectionTitleLabel, grayline].forEach {
             contentView.addSubview($0)
         }

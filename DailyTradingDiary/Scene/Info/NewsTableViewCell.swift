@@ -12,17 +12,15 @@ final class NewsTableViewCell: BaseTableViewCell {
     
     let titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Iconic Sports Carmaker Porsche Will Go Public on September 29" // test
         label.textColor = .mainTextColor
         label.font = .boldSystemFont(ofSize: 15)
         label.textAlignment = .left
-        label.numberOfLines = 3
+        label.numberOfLines = 2
         return label
     }()
     
     let releaseDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "2022.09.19" // test
         label.textColor = .subTextColor
         label.font = .systemFont(ofSize: 12)
         label.textAlignment = .left
@@ -31,7 +29,6 @@ final class NewsTableViewCell: BaseTableViewCell {
     
     let sourceLabel: UILabel = {
         let label = UILabel()
-        label.text = "The Street" // test
         label.textColor = .systemBlue
         label.font = .boldSystemFont(ofSize: 13)
         label.textAlignment = .left
@@ -40,7 +37,6 @@ final class NewsTableViewCell: BaseTableViewCell {
     
     let topicLabel: UILabel = {
         let label = UILabel()
-        label.text = " Economy - Monetary " // test
         label.textColor = .subTextColorReverse
         label.backgroundColor = .subTextColor
         label.font = .systemFont(ofSize: 11)
@@ -52,7 +48,6 @@ final class NewsTableViewCell: BaseTableViewCell {
     
     let tickerLabel: UILabel = {
         let label = UILabel()
-        label.text = " TSLA " // test
         label.textColor = .subTextColorReverse
         label.backgroundColor = .subTextColor
         label.font = .systemFont(ofSize: 11)
@@ -67,10 +62,6 @@ final class NewsTableViewCell: BaseTableViewCell {
         imageview.layer.cornerRadius = 6
         imageview.contentMode = .scaleAspectFill
         imageview.layer.masksToBounds = true
-        
-        let url = URL(string: "https://www.thestreet.com/.image/ar_16:9%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cg_faces:center%2Cq_auto:good%2Cw_620/MTg1Mzk2NDQ1ODI0Njg5NDQz/xpeng-smart-suv-g9.jpg")
-        imageview.kf.setImage(with: url)
-        
         return imageview
     }()
     
@@ -114,6 +105,25 @@ final class NewsTableViewCell: BaseTableViewCell {
             make.top.equalTo(releaseDateLabel.snp.bottom).offset(12)
         }
         
+    }
+    
+    
+    func setData(data: [MarketNewsModel], indexPath: IndexPath) {
+        
+        print("newsCell의 setData 실행이다~!")
+        
+        let row = data[indexPath.row]
+        
+        self.titleLabel.text = row.title
+        self.releaseDateLabel.text = row.publishedDate
+        self.sourceLabel.text = row.source
+        self.topicLabel.text = " \(row.topic) "
+        self.tickerLabel.text = " \(row.relatedTicker) "
+        
+        let url = URL(string: row.profileImageUrl)
+        
+        self.profileImageView.kf.indicatorType = .activity
+        self.profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "newsPlaceholder.png") )
     }
     
 }
