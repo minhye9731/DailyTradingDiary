@@ -21,13 +21,13 @@ class ALPHAAPIManager {
         AF.request(url, method: .get).responseData { response in
             switch response.result {
             case .success(let value):
-                print("성공이다")
+//                print("성공이다")
                 
                 let json = JSON(value)
                 
                 let newsData = json["feed"].arrayValue
                 
-                print("\(newsData.count)")
+//                print("\(newsData.count)")
                 
                 let newsDataArray: [MarketNewsModel] = newsData.map { news -> MarketNewsModel in
                     
@@ -43,8 +43,8 @@ class ALPHAAPIManager {
                     return MarketNewsModel(title: title, url: url, publishedDate: date, profileImageUrl: imageUrl, source: source, topic: topic, relatedTicker: relatedCorp)
                 }
                 
-                print("newsDataArray : \(newsDataArray.count)")
-                dump(newsDataArray[0])
+//                print("newsDataArray : \(newsDataArray.count)")
+//                dump(newsDataArray[0])
                 
                 completionHandler(newsDataArray)
 

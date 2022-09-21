@@ -13,14 +13,13 @@ final class InfoViewController: BaseViewController {
     
     let mainView = InfoView()
     var alphaNewsList: [MarketNewsModel] = []
+    var fearGreedIndex: FearGreedModel = FearGreedModel(updateTime: "0000.00.00", now: FearGreed(indexValue: 0, indexStatus: ""), weekAgo: FearGreed(indexValue: 0, indexStatus: ""))
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = mainView
         
         connectAPI()
-        
-        
     }
     
     func connectAPI() {
@@ -32,6 +31,13 @@ final class InfoViewController: BaseViewController {
             }
         }
         
+        FEARGREEDAPIManager.shared.fetchFearGreedAPI() { data in
+            self.fearGreedIndex = data
+            
+            DispatchQueue.main.async {
+                self.mainView.tableView.reloadData()
+            }
+        }
     }
     
     
@@ -107,14 +113,22 @@ extension InfoViewController:  UITableViewDelegate, UITableViewDataSource {
         
         indexCell.collectionView.delegate = self
         indexCell.collectionView.dataSource = self
+        indexCell.collectionView.tag = indexPath.section // 1~3섹션별 구분용
         
         switch indexPath.section {
         case 0: return indexCell
         case 1: return indexCell
         case 2: return indexCell
-        case 3: return fearGreedCell
+        case 3:
+            fearGreedCell.setData(data: fearGreedIndex)
+            return fearGreedCell
         case 4:
-            newsCell.setData(data: alphaNewsList, indexPath: indexPath)
+            
+            DispatchQueue.main.async {
+                newsCell.setData(data: self.alphaNewsList, indexPath: indexPath)
+            }
+            
+//            newsCell.setData(data: alphaNewsList, indexPath: indexPath)
             return newsCell
         default: return indexCell
         }
@@ -157,6 +171,12 @@ extension InfoViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 4
         // 빈배열을 만들어두고, 지수별 데이터가 들어와서 채워지는 수에 따라서
+        //        switch collectionView.tag {
+        //        case 0:
+        //        case 1:
+        //        case 2:
+        //        default :
+        //        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -164,6 +184,12 @@ extension InfoViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndexCollectionViewCell.reuseIdentifier, for: indexPath) as? IndexCollectionViewCell else { return UICollectionViewCell() }
         
         // 테이블뷰의 섹션에 따라서 setdata 등 설정
+//        switch collectionView.tag {
+//        case 0:
+//        case 1:
+//        case 2:
+//        default :
+//        }
         
         return cell
     }

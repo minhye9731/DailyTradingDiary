@@ -82,9 +82,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         self.navigationItem.rightBarButtonItems = [settingButton, todayButton]
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
-
 }
-
 
 // MARK: - tableview 설정
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {

@@ -112,7 +112,7 @@ final class NewsTableViewCell: BaseTableViewCell {
         
         print("newsCell의 setData 실행이다~!")
         
-        let row = data[indexPath.row]
+        let row = data[indexPath.row] // 화면이 다 그려지기 전에 스크롤하면 여기에 index 오류가 난다.
         
         self.titleLabel.text = row.title
         self.releaseDateLabel.text = row.publishedDate

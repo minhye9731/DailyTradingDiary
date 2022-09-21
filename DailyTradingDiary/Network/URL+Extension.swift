@@ -13,7 +13,7 @@ extension URL {
     
     static let alphaURL = "https://www.alphavantage.co/query?"
     
-    
+    static let fearGreedURL = "https://fear-and-greed-index.p.rapidapi.com/v1/fgi"
     
     
     static func krxMakeEndPOintString(_ endpoint: String) -> String {
