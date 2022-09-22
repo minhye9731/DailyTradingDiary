@@ -20,6 +20,7 @@ class NumPriceTableViewCell: BaseTableViewCell {
     let amountTextField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "0"
+        textfield.tintColor = .pointColor
         textfield.textAlignment = .right
         textfield.keyboardType = .numberPad
         return textfield
@@ -43,8 +44,6 @@ class NumPriceTableViewCell: BaseTableViewCell {
             make.width.equalTo(120)
             make.centerY.equalTo(self)
         }
-        
-
     }
     
 }

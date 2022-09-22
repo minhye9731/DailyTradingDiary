@@ -13,7 +13,6 @@ class TradingMemoTableViewCell: BaseTableViewCell {
         let textview = UITextView()
         textview.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         textview.font = .systemFont(ofSize: 16)
-        
         textview.tintColor = .pointColor
         textview.backgroundColor = .clear
         textview.autocorrectionType = .no

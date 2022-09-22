@@ -9,15 +9,62 @@ import Foundation
 import RealmSwift
 
 protocol DiaryRepositoryType {
+    func fetchRealm()
+    func sortByRegDate()
+    func filteredByTradingDate(selectedDate: Date)
+    
     func sort(_ sort: String) -> Results<TradingDiary>
     func update(oldItem: TradingDiary, newItem: TradingDiary)
     func plusDiary(item: TradingDiary)
     func deleteDiary(item: TradingDiary)
 }
 
-class DiaryRepository: DiaryRepositoryType {
+class TradingDiaryRepository: DiaryRepositoryType {
+    
+    // 싱글톤
+    private init() { }
+    static let standard = TradingDiaryRepository()
 
     let localRealm = try! Realm()
+    var tasks: Results<TradingDiary>!
+    
+    let calendar = Calendar.current
+
+    
+    // 데이터 패치하기
+    func fetchRealm() {
+        tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self)
+    }
+    
+    func sortByRegDate() {
+        tasks = localRealm.objects(TradingDiary.self).sorted(byKeyPath: "regDate", ascending: true)
+    }
+    
+    func filteredByTradingDate(selectedDate: Date) {
+        tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+            $0.tradingDate >= calendar.startOfDay(for: selectedDate) && $0.tradingDate < calendar.startOfDay(for: selectedDate) + 86400
+        }
+    }
+    
+    // 매매내역 필터링 계산기
+    func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int) {
+        
+        switch buySellIndex {
+        case 0:
+            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+                $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400
+            }
+        case 1:
+            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+                $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400 && $0.buyAndSell == false
+            }
+        case 2:
+            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+                $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400 && $0.buyAndSell == true
+            }
+        default : break
+        }
+    }
     
     func sort(_ sort: String) -> Results<TradingDiary> {
         print(#function)

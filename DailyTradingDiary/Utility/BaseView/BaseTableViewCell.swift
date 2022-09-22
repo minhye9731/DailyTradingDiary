@@ -26,7 +26,7 @@ class BaseTableViewCell: UITableViewCell {
     
     func setConstraints() {}
     
-    func giveColotString(label: UILabel, colorStr: String) {
+    func giveColorString(label: UILabel, colorStr: String) {
         
         let attributeLabelStr = NSMutableAttributedString(string: label.text!)
         

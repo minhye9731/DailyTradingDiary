@@ -12,7 +12,6 @@ import RealmSwift
 final class TradingDiaryViewController: BaseViewController {
 
     let mainView = TradingDiaryView()
-    let repository = DiaryRepository()
     
     // api로 받는 데이터 model
     var krxData: KRXModel = KRXModel(itemName: "-", corpName: "-", marketName: "-", srtnCode: "-", isinCode: "-")
@@ -24,14 +23,12 @@ final class TradingDiaryViewController: BaseViewController {
     
     // MARK: - lifecycle
     override func loadView() {
+        self.view = mainView
         self.tabBarController?.tabBar.isHidden = true
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view = mainView
-        
-        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
@@ -53,7 +50,6 @@ final class TradingDiaryViewController: BaseViewController {
         self.navigationItem.scrollEdgeAppearance = navibarAppearance
         self.navigationItem.standardAppearance = navibarAppearance
     }
-    
     func setNavItem() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         let doneButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(doneButtonTapped))
@@ -82,7 +78,6 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
         case 5: return 1
         default: return 0
         }
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,7 +85,6 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
         switch indexPath.section {
         case 0:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CorpNameTableViewCell.reuseIdentifier) as? CorpNameTableViewCell else { return UITableViewCell() }
-            print("cellForRowAt - 종목명 ")
             cell.selectionStyle = .none
             
             cell.corpNameTextField.tag = 0
@@ -103,9 +97,9 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NumPriceTableViewCell.reuseIdentifier) as? NumPriceTableViewCell else { return UITableViewCell() }
-            print("cellForRowAt - 매매단가 ")
             cell.nameLabel.text = "* 매매단가"
             giveColotString(label: cell.nameLabel, colorStr: "*")
+            
             cell.selectionStyle = .none
             cell.amountTextField.tag = 1
             cell.amountTextField.delegate = self
@@ -117,9 +111,9 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NumPriceTableViewCell.reuseIdentifier) as? NumPriceTableViewCell else { return UITableViewCell() }
-            print("cellForRowAt - 수량 ")
             cell.nameLabel.text = "* 수량"
             giveColotString(label: cell.nameLabel, colorStr: "*")
+            
             cell.selectionStyle = .none
             cell.amountTextField.tag = 2
             cell.amountTextField.delegate = self
@@ -132,10 +126,15 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             
         case 3:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: BuySellTableViewCell.reuseIdentifier) as? BuySellTableViewCell else { return UITableViewCell() }
-            print("cellForRowAt - 매수매도 ")
             cell.selectionStyle = .none
             cell.segmentControl.tag = 5
             
+            // 표기용
+            if addOrEditAction == .edit {
+                cell.segmentControl.selectedSegmentIndex = diaryData.buyAndSell ? 1 : 0
+            }
+            
+            // 저장/수정용
             cell.segmentTapped = { [self] in
                 
                 switch self.addOrEditAction {
@@ -147,16 +146,12 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
                     }
                 case .edit:
                     switch cell.segmentControl.selectedSegmentIndex {
-                    case 0: self.repository.buyAndSellUpdate(oldItem: self.diaryData, newItem: false)
-                    case 1: self.repository.buyAndSellUpdate(oldItem: self.diaryData, newItem: true)
+                    case 0: TradingDiaryRepository.standard.buyAndSellUpdate(oldItem: self.diaryData, newItem: false)
+                    case 1:
+                        TradingDiaryRepository.standard.buyAndSellUpdate(oldItem: self.diaryData, newItem: true)
                     default: break
                     }
                 }
-
-            }
-            
-            if addOrEditAction == .edit {
-                cell.segmentControl.selectedSegmentIndex = diaryData.buyAndSell ? 1 : 0
             }
             return cell
             
@@ -220,7 +215,7 @@ extension TradingDiaryViewController: UITextFieldDelegate {
             switch textField.tag {
             case 0:
                 self.diaryData.corpName = textField.text ?? "(기업명)"
-                self.diaryData.corpCode = "00000" // 임시 가라데이터 (수정예정)
+                self.diaryData.corpCode = "00000" // 임시데이터
             case 1:
                 self.diaryData.tradingPrice = Int(textField.text ?? "0") ?? 0
             case 2:
@@ -231,12 +226,11 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         case .edit:
             switch textField.tag {
             case 0:
-                repository.corpNameUpdate(oldItem: diaryData, newItem: textField.text ?? "(기업명)")
-                // corpCode 업데이트는 api 이슈 해결시 연동예정
+                TradingDiaryRepository.standard.corpNameUpdate(oldItem: diaryData, newItem: textField.text ?? "(기업명)")
             case 1:
-                repository.tradingPriceUpdate(oldItem: diaryData, newItem: Int(textField.text ?? "0") ?? 0)
+                TradingDiaryRepository.standard.tradingPriceUpdate(oldItem: diaryData, newItem: Int(textField.text ?? "0") ?? 0)
             case 2:
-                repository.tradingAmountUpdate(oldItem: diaryData, newItem: Int(textField.text ?? "0") ?? 0)
+                TradingDiaryRepository.standard.tradingAmountUpdate(oldItem: diaryData, newItem: Int(textField.text ?? "0") ?? 0)
             default:
                 break
             }
@@ -248,9 +242,7 @@ extension TradingDiaryViewController: UITextFieldDelegate {
 // MARK: - textview delegate
 extension TradingDiaryViewController: UITextViewDelegate {
     
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print(#function)
         
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.textColor = .subTextColor
@@ -269,9 +261,7 @@ extension TradingDiaryViewController: UITextViewDelegate {
         }
     }
     
-    
     func textViewDidEndEditing(_ textView: UITextView) {
-        print(#function)
         
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || textView.text == Constants.Word.trdDryMemoPlchdr.rawValue {
             textView.textColor = .subTextColor
@@ -282,7 +272,7 @@ extension TradingDiaryViewController: UITextViewDelegate {
         case .write:
                 self.diaryData.tradingMemo = textView.text
         case .edit:
-            repository.tradingMemoUpdate(oldItem: diaryData, newItem: textView.text)
+            TradingDiaryRepository.standard.tradingMemoUpdate(oldItem: diaryData, newItem: textView.text)
         }
     }
     
@@ -293,8 +283,10 @@ extension TradingDiaryViewController: UITextViewDelegate {
 extension TradingDiaryViewController {
     
     @objc func doneButtonTapped() {
-        print("TradingDiaryView - \(#function)")
-        
+        if diaryData.corpName.isEmpty || diaryData.tradingPrice == 0 || diaryData.tradingAmount == 0 {
+            self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
+            return
+        }
         plusOrUpate(task: diaryData)
         navigationController?.popViewController(animated: true)
     }
@@ -303,9 +295,9 @@ extension TradingDiaryViewController {
         switch addOrEditAction {
         case .write:
             task.regDate = Date()
-            repository.plusDiary(item: task)
+            TradingDiaryRepository.standard.plusDiary(item: task)
         case .edit:
-            repository.regDateUpdate(oldItem: task, newItem: Date())
+            TradingDiaryRepository.standard.regDateUpdate(oldItem: task, newItem: Date())
         }
     }
     
@@ -315,12 +307,11 @@ extension TradingDiaryViewController {
     }
     
     @objc func onDidChangeDate(sender: UIDatePicker) {
-        
         switch addOrEditAction {
         case .write:
             self.diaryData.tradingDate = sender.date
         case .edit:
-            repository.tradingDateUpdate(oldItem: diaryData, newItem: sender.date)
+            TradingDiaryRepository.standard.tradingDateUpdate(oldItem: diaryData, newItem: sender.date)
         }
     }
     

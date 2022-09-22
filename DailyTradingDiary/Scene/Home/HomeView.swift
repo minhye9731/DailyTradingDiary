@@ -21,7 +21,6 @@ final class HomeView: BaseView {
         tableview.backgroundColor = .backgroundColor
         tableview.rowHeight = 70
         tableview.register(TradeTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
-//        tableview.register(AnalysisTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
         return tableview
     }()
     

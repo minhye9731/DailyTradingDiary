@@ -13,48 +13,55 @@ import RealmSwift
 final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalendarDataSource {
     
     let mainView = HomeView()
-    let repository = DiaryRepository()
     var selectedDate: Date = Date()
-    
-    var tasks: Results<TradingDiary>! {
-        didSet {
-            print("tasks 프로퍼티 관찰자 실행")
-            mainView.tableView.reloadData()
-        }
-    }
     
     // MARK: - Lifecycle
     override func loadView() {
-        fetchSortRealm(sort: "regDate")
+        print("HomeViewController - \(#function)")
+        TradingDiaryRepository.standard.sortByRegDate()
+        self.mainView.tableView.reloadData()
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
-        
-        self.view = mainView
-        
-        mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        self.tabBarController?.tabBar.isHidden = false
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        self.tasks.filter { $0.tradingDate.toString() == self.mainView.calendar.selectedDate?.toString() }
-        
-        fetchSortRealm(sort: "regDate")
-    }
-    
     override func configure() {
-        print(#function)
+        print("HomeViewController - \(#function)")
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         setNav()
         setNavItem()
         setCalendarUI()
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        print("HomeViewController - \(#function)")
+        print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+        self.view = mainView
+        
+        TradingDiaryRepository.standard.sortByRegDate()
+        mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
+        
+        dump(TradingDiaryRepository.standard.tasks)
+        dump("선택된 시작 날짜 : \(mainView.calendar.selectedDate)")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        print("HomeViewController - \(#function)")
+        self.tabBarController?.tabBar.isHidden = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("HomeViewController - \(#function)")
+
+        guard let date = self.mainView.calendar.selectedDate else { return }
+     
+        TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)
+        
+        TradingDiaryRepository.standard.sortByRegDate()
+        self.mainView.tableView.reloadData()
+    }
+    
+ 
 
     func setNav() {
         let titleLabel = UILabel()
@@ -92,7 +99,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let result = self.tasks.filter { $0.tradingDate.toString() == self.mainView.calendar.selectedDate?.toString() }.count
+        let result = TradingDiaryRepository.standard.tasks.filter { $0.tradingDate.toString() == self.mainView.calendar.selectedDate?.toString() }.count
         
         return result
     }
@@ -101,7 +108,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         guard let tradeCell = tableView.dequeueReusableCell(withIdentifier: TradeTableViewCell.reuseIdentifier) as? TradeTableViewCell else { return UITableViewCell() }
 
-        tradeCell.setData(arr: Array(tasks), indexPath: indexPath)
+        tradeCell.setData(arr: Array(TradingDiaryRepository.standard.tasks), indexPath: indexPath)
                 
         return tradeCell
     }
@@ -110,7 +117,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         print("\(indexPath.row)번 째 셀을 클릭했습니다. 해당 생성파일의 보기으로 넘어감")
         
         let tradeDiaryVC = TradingDiaryViewController()
-        let row = Array(tasks)[indexPath.row]
+        let row = Array(TradingDiaryRepository.standard.tasks)[indexPath.row]
         
         tradeDiaryVC.diaryData = row
         tradeDiaryVC.addOrEditAction = .edit
@@ -122,13 +129,15 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
         print(#function)
 
-        let row = Array(tasks)[indexPath.row]
+        let row = Array(TradingDiaryRepository.standard.tasks)[indexPath.row]
         
         let delete = UIContextualAction(style: .normal, title: nil) { action, view, completion in
             
             self.deleteConfirmAlert(title: "해당 메모를 삭제하시겠습니까?") { _ in
-                self.repository.deleteDiary(item: row)
-                self.fetchSortRealm(sort: "regDate")
+                
+                TradingDiaryRepository.standard.deleteDiary(item: row)
+                TradingDiaryRepository.standard.sortByRegDate()
+                self.mainView.tableView.reloadData()
             }
         }
         
@@ -207,7 +216,20 @@ extension HomeViewController: FSCalendarDelegateAppearance {
     // 날짜 선택시 발생하는 일
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
-        self.tasks.filter { $0.tradingDate.toString() == date.toString() }
+//        self.tasks.filter { $0.tradingDate.toString() == date.toString() }
+        
+//        TradingDiaryRepository.standard.tasks.filter { $0.tradingDate.toString() == date.toString() }
+        
+//        TradingDiaryRepository.standard.tasks.where {
+//            checkDay(realmDate: $0.tradingDate, calendarDate: self.mainView.calendar.selectedDate)
+//        }
+//
+//        TradingDiaryRepository.standard.tasks.where { $0.tradingDate }
+        
+//        dump("\(TradingDiaryRepository.standard.tasks.)")
+        print("\(self.mainView.calendar.selectedDate?.toString())")
+        
+        TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)
         
         self.mainView.tableView.reloadData()
     }
@@ -233,12 +255,18 @@ extension HomeViewController {
     
     @objc func todayButtonClicked() {
         self.mainView.calendar.select(Date())
-        // 오늘날짜로 찍어오는 거 만들까 무슨 기준인지 확인하자
     }
     
-    func fetchSortRealm(sort: String) {
-        print(#function)
-        tasks = repository.sort(sort)
-    }
+//    func checkDay(realmDate: Query<Date>, calendarDate: Date) -> Bool {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "yyyy-MM-dd"
+//        dateFormatter.timeZone = TimeZone.current
+////        dateFormatter.string(from: self)
+//
+//        let result = dateFormatter.string(from: realmDate) == dateFormatter.string(from: calendarDate)
+//
+//        return result
+//    }
     
 }
+

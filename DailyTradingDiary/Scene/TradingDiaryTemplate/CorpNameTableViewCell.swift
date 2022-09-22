@@ -33,6 +33,7 @@ class CorpNameTableViewCell: BaseTableViewCell {
     let corpNameTextField: UITextField = {
         let textfield = UITextField()
         textfield.placeholder = "(기업명)"
+        textfield.tintColor = .pointColor
         textfield.textAlignment = .right
         textfield.keyboardType = .default
         textfield.autocorrectionType = .no
@@ -51,7 +52,7 @@ class CorpNameTableViewCell: BaseTableViewCell {
             contentView.addSubview($0)
         }
         
-        giveColotString(label: nameLabel, colorStr: "*")
+        giveColorString(label: nameLabel, colorStr: "*")
         
     }
     

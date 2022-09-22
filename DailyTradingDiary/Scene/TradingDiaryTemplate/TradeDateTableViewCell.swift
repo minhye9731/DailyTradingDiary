@@ -35,14 +35,10 @@ class TradeDateTableViewCell: BaseTableViewCell {
     }()
     
     override func configure() {
-        
-//        [nameLabel, textField].forEach {
-//            contentView.addSubview($0)
-//        }
         [nameLabel, datePicker].forEach {
             contentView.addSubview($0)
         }
-        giveColotString(label: nameLabel, colorStr: "*")
+        giveColorString(label: nameLabel, colorStr: "*")
         
     }
     
@@ -52,18 +48,9 @@ class TradeDateTableViewCell: BaseTableViewCell {
             make.centerY.equalTo(self)
         }
         
-//        textField.snp.makeConstraints { make in
-//            make.centerY.equalTo(self)
-//            make.leading.equalTo(nameLabel.snp.trailing).offset(20)
-//            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-20)
-//        }
-        
         datePicker.snp.makeConstraints { make in
             make.centerY.equalTo(self)
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
         }
-        
     }
-    
-    
 }

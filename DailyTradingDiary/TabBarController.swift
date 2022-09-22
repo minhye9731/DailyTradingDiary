@@ -51,13 +51,3 @@ class TabBarController: UITabBarController {
 
 }
 
-
-//extension TabBarController: UITabBarControllerDelegate {
-//
-//    override func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
-//        print(item)
-//    }
-//}
-
-
-
