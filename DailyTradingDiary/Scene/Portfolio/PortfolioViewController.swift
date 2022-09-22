@@ -21,11 +21,9 @@ class PortfolioViewController: TabmanViewController {
         
         let firstVC = AssetStatusViewController()
         let secondVC = TradeRecordViewController()
-        let thirdVC = IndividualStatusViewController()
         
         viewControllers.append(firstVC)
         viewControllers.append(secondVC)
-        viewControllers.append(thirdVC)
         
         self.dataSource = self
         
@@ -60,7 +58,6 @@ extension PortfolioViewController: PageboyViewControllerDataSource, TMBarDataSou
             switch index {
             case 0: return TMBarItem(title: "자산현황")
             case 1: return TMBarItem(title: "매매내역")
-            case 2: return TMBarItem(title: "종목별현황")
             default:
                 let title = "Page \(index)"
                 return TMBarItem(title: title)

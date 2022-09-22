@@ -15,28 +15,22 @@ class AssetStatusViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = mainView
-        self.view.backgroundColor = .systemBlue
-        
+
 //        self.mainView.ratioChart.animateChart()
         
         pleaseeeeee()
 //        presentCircleView()
+//        self.mainView.ratioChart.animateChart()
     }
-    
-    
-    
-    
     
     func pleaseeeeee() {
         
-        // realm데이터를 넣어야 해서 뷰컨에도 있어야 함.
+        // realm데이터를 넣어야 해서 뷰컨에 있어야 함.
         self.mainView.ratioChart.slices = [newVersionSlice(percent: 0.4, color: UIColor.systemOrange),
                                newVersionSlice(percent: 0.3, color: UIColor.systemTeal),
                                newVersionSlice(percent: 0.2, color: UIColor.systemRed),
                                newVersionSlice(percent: 0.1, color: UIColor.systemIndigo)]
         self.mainView.ratioChart.animateChart()
-        
-        
     }
     
     

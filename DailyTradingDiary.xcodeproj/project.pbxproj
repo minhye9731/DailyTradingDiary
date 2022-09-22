@@ -42,7 +42,6 @@
 		0E40BF6B28D9D53300F99DEF /* FEARGREEDAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */; };
 		0E40BF6D28D9D74100F99DEF /* FearGreedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6C28D9D74100F99DEF /* FearGreedModel.swift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
-		0E6E2FB628D258B6004ED8D9 /* AnalysisTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */; };
 		0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353C28D58F600039D802 /* SettingViewController.swift */; };
 		0E87354028D598840039D802 /* PageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353F28D598840039D802 /* PageMode.swift */; };
 		0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354128D5DEC50039D802 /* String+Extension.swift */; };
@@ -58,10 +57,10 @@
 		0EB85EF728D8BC4E002145A2 /* InfoTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EF628D8BC4E002145A2 /* InfoTableViewHeaderView.swift */; };
 		0EB85EFA28D8CB49002145A2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB85EF928D8CB49002145A2 /* Kingfisher */; };
 		0EB85EFC28D8D2C2002145A2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EFB28D8D2C2002145A2 /* WebViewController.swift */; };
+		0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */; };
 		0ED5D64F28DB6167009A1057 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED5D64E28DB6167009A1057 /* Tabman */; };
 		0ED5D65128DB61D1009A1057 /* AssetStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */; };
 		0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */; };
-		0ED5D65528DB6286009A1057 /* IndividualStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65428DB6286009A1057 /* IndividualStatusViewController.swift */; };
 		0ED5D65A28DB6523009A1057 /* AssetStatusView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65928DB6523009A1057 /* AssetStatusView.swift */; };
 		0ED5D65C28DB7965009A1057 /* PortfolioChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65B28DB7965009A1057 /* PortfolioChartView.swift */; };
 		0EF4826528D4312C00CC8A49 /* TradingSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826428D4312C00CC8A49 /* TradingSearchViewController.swift */; };
@@ -116,7 +115,6 @@
 		0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEARGREEDAPIManager.swift; sourceTree = "<group>"; };
 		0E40BF6C28D9D74100F99DEF /* FearGreedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FearGreedModel.swift; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
-		0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisTableViewCell.swift; sourceTree = "<group>"; };
 		0E87353C28D58F600039D802 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0E87353F28D598840039D802 /* PageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMode.swift; sourceTree = "<group>"; };
 		0E87354128D5DEC50039D802 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -130,9 +128,9 @@
 		0EB85EF428D881A6002145A2 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		0EB85EF628D8BC4E002145A2 /* InfoTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewHeaderView.swift; sourceTree = "<group>"; };
 		0EB85EFB28D8D2C2002145A2 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordView.swift; sourceTree = "<group>"; };
 		0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStatusViewController.swift; sourceTree = "<group>"; };
 		0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordViewController.swift; sourceTree = "<group>"; };
-		0ED5D65428DB6286009A1057 /* IndividualStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualStatusViewController.swift; sourceTree = "<group>"; };
 		0ED5D65928DB6523009A1057 /* AssetStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStatusView.swift; sourceTree = "<group>"; };
 		0ED5D65B28DB7965009A1057 /* PortfolioChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioChartView.swift; sourceTree = "<group>"; };
 		0EF4826428D4312C00CC8A49 /* TradingSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingSearchViewController.swift; sourceTree = "<group>"; };
@@ -288,7 +286,6 @@
 				0E04A3C728D1D5030036D389 /* HomeViewController.swift */,
 				0E04A3CF28D205C60036D389 /* HomeView.swift */,
 				0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */,
-				0E6E2FB528D258B6004ED8D9 /* AnalysisTableViewCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -313,7 +310,6 @@
 				0E04A3CD28D1D8660036D389 /* PortfolioViewController.swift */,
 				0ED5D65628DB64E5009A1057 /* firstVC */,
 				0ED5D65728DB6503009A1057 /* secondVC */,
-				0ED5D65828DB650E009A1057 /* thirdVC */,
 			);
 			path = Portfolio;
 			sourceTree = "<group>";
@@ -361,16 +357,9 @@
 			isa = PBXGroup;
 			children = (
 				0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */,
+				0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */,
 			);
 			path = secondVC;
-			sourceTree = "<group>";
-		};
-		0ED5D65828DB650E009A1057 /* thirdVC */ = {
-			isa = PBXGroup;
-			children = (
-				0ED5D65428DB6286009A1057 /* IndividualStatusViewController.swift */,
-			);
-			path = thirdVC;
 			sourceTree = "<group>";
 		};
 		0EF4826328D430EE00CC8A49 /* Search */ = {
@@ -525,6 +514,7 @@
 				0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
 				0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */,
+				0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */,
 				0EB85EF728D8BC4E002145A2 /* InfoTableViewHeaderView.swift in Sources */,
@@ -538,7 +528,6 @@
 				0E04A3B328D1C6D00036D389 /* BaseTableViewCell.swift in Sources */,
 				0ED5D65A28DB6523009A1057 /* AssetStatusView.swift in Sources */,
 				0EF4828728D4E3C800CC8A49 /* UserMemoRepository.swift in Sources */,
-				0E6E2FB628D258B6004ED8D9 /* AnalysisTableViewCell.swift in Sources */,
 				0E40BF6B28D9D53300F99DEF /* FEARGREEDAPIManager.swift in Sources */,
 				0E04A3BE28D1D2930036D389 /* Transition+Extension.swift in Sources */,
 				0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */,
@@ -552,7 +541,6 @@
 				0EB85EF128D87561002145A2 /* IndexCollectionViewCell.swift in Sources */,
 				0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */,
 				0ED5D65128DB61D1009A1057 /* AssetStatusViewController.swift in Sources */,
-				0ED5D65528DB6286009A1057 /* IndividualStatusViewController.swift in Sources */,
 				0E2DB01728D3398500CDFD14 /* TradeDateTableViewCell.swift in Sources */,
 				0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */,
 				0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */,

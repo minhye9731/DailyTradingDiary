@@ -107,8 +107,7 @@ final class AssetStatusView: BaseView {
     }()
     
     let ratioChart: PortfolioChartView = {
-        let pieChartView = PortfolioChartView() // 첫번쨰 조각은 안나와버림ㅠㅠㅠㅠㅠㅠㅠㅠㅠ
-        
+        let pieChartView = PortfolioChartView() // 첫번째 조각은 안나옴
         return pieChartView
     }()
     
@@ -117,16 +116,13 @@ final class AssetStatusView: BaseView {
 //        let pieWidth = self.chartView.frame.width
 //        let pieHeight = self.chartView.frame.height
 //
-//        let pieChartView = PortfolioChartView(frame: CGRect(x: pieWidth / 2, y: pieHeight / 2, width: pieWidth, height: pieHeight))
+//        let pieChartView = PortfolioChartView(frame: C, y: 0, width: pieWidth, height: pieHeight))
 //        pieChartView.slices = [newVersionSlice(percent: 0.4, color: UIColor.systemOrange),
 //                               newVersionSlice(percent: 0.3, color: UIColor.systemTeal),
 //                               newVersionSlice(percent: 0.2, color: UIColor.systemRed),
 //                               newVersionSlice(percent: 0.1, color: UIColor.systemIndigo)]
 //        chartView.addSubview(pieChartView)
 //        pieChartView.animateChart()
-        
-        
-        
         
         [resultView, chartView].forEach {
             self.addSubview($0)
