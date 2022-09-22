@@ -7,23 +7,38 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class AssetStatusViewController: BaseViewController {
     
     let mainView = AssetStatusView()
+    
+    override func loadView() {
+        print("AssetStatusViewController - \(#function)")
+        self.view = mainView
+    }
 
     override func viewDidLoad() {
+        print("AssetStatusViewController - \(#function)")
         super.viewDidLoad()
-        self.view = mainView
+        TradingDiaryRepository.standard.fetchRealm()
 
-//        self.mainView.ratioChart.animateChart()
+        let buyTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+        mainView.investmentValueLabel.text = "\(buyTotalAmount) \(Constants.CurrencySign.won.rawValue)"
         
-        pleaseeeeee()
-//        presentCircleView()
-//        self.mainView.ratioChart.animateChart()
+        getPieChart()
+        
     }
     
-    func pleaseeeeee() {
+    override func viewWillAppear(_ animated: Bool) {
+        print("AssetStatusViewController - \(#function)")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        print("AssetStatusViewController - \(#function)")
+    }
+    
+    func getPieChart() {
         
         // realm데이터를 넣어야 해서 뷰컨에 있어야 함.
         self.mainView.ratioChart.slices = [newVersionSlice(percent: 0.4, color: UIColor.systemOrange),
@@ -33,6 +48,12 @@ class AssetStatusViewController: BaseViewController {
         self.mainView.ratioChart.animateChart()
     }
     
+    func eee() {
+        // 매수/매도로 우선 구분
+        // 매수한 모든 종목별 '총 매입금액'을 계산
+        // 매수종목과 동일한 이름의 매도기록이 있다면, 해당 금액들의 '총 매도금액'을 계산해서 매수한 쪽에 마이너스를 해줌.
+        TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+    }
     
 //    private func presentCircleView() {
 //        let width = self.mainView.chartView.frame.width
@@ -51,6 +72,17 @@ class AssetStatusViewController: BaseViewController {
 //
 //        pieChartView.animateChart()
 //    }
+    
+    
+    func calculateTotalInput() {
+        
+        
+//        let buyTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+        
+//        let sellTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+        
+        
+    }
     
 
 }

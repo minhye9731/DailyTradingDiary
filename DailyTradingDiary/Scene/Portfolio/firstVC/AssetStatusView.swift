@@ -38,7 +38,6 @@ final class AssetStatusView: BaseView {
     
     let investmentValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "77,777 \(Constants.CurrencySign.won.rawValue)" // 뷰컨에서 전달예정
         label.textColor = .mainTextColor
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .right
@@ -106,17 +105,20 @@ final class AssetStatusView: BaseView {
         return label
     }()
     
-    let ratioChart: PortfolioChartView = {
-        let pieChartView = PortfolioChartView() // 첫번째 조각은 안나옴
+    
+    lazy var ratioChart: PortfolioChartView = {
+        let pieChartView = PortfolioChartView(frame: CGRect(x: self.chartView.frame.width / 2, y: self.chartView.frame.height / 2, width: 100, height: 100))
         return pieChartView
     }()
     
     override func configureUI() {
         
+
+        
 //        let pieWidth = self.chartView.frame.width
 //        let pieHeight = self.chartView.frame.height
 //
-//        let pieChartView = PortfolioChartView(frame: C, y: 0, width: pieWidth, height: pieHeight))
+//        let pieChartView = PortfolioChartView(frame: CGRect(x: 0, y: 0, width: width, height: height))
 //        pieChartView.slices = [newVersionSlice(percent: 0.4, color: UIColor.systemOrange),
 //                               newVersionSlice(percent: 0.3, color: UIColor.systemTeal),
 //                               newVersionSlice(percent: 0.2, color: UIColor.systemRed),

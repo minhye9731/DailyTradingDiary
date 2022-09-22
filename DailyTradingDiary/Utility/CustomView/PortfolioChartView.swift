@@ -31,6 +31,13 @@ class PortfolioChartView: UIView {
     
     // MARK: - slice 더해주는 함수
     func addSlice(_ slice: newVersionSlice) {
+        let canvasWidth = self.frame.width * 0.8
+        let path = UIBezierPath(arcCenter: self.center, // portfolio > 자산현황 > 자산구성 의 중앙으로 수정
+                                    radius: canvasWidth * 3 / 8,
+                                    startAngle: percentToRadian(currentPercent),
+                                    endAngle: percentToRadian(currentPercent + slice.percent),
+                                    clockwise: true)
+        
             let animation = CABasicAnimation(keyPath: "strokeEnd")
             animation.fromValue = 0
             animation.toValue = 1
@@ -38,12 +45,13 @@ class PortfolioChartView: UIView {
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear) // 이건뭘까
             animation.delegate = self
             
-        let canvasWidth = self.frame.width * 0.8
-        let path = UIBezierPath(arcCenter: self.center, // portfolio > 자산현황 > 자산구성 의 중앙으로 수정
-                                    radius: canvasWidth * 3 / 8,
-                                    startAngle: percentToRadian(currentPercent),
-                                    endAngle: percentToRadian(currentPercent + slice.percent),
-                                    clockwise: true)
+//        let canvasWidth = self.frame.width * 0.8
+        
+//        let path = UIBezierPath(arcCenter: self.center, // portfolio > 자산현황 > 자산구성 의 중앙으로 수정
+//                                    radius: canvasWidth * 3 / 8,
+//                                    startAngle: percentToRadian(currentPercent),
+//                                    endAngle: percentToRadian(currentPercent + slice.percent),
+//                                    clockwise: true)
             
             let sliceLayer = CAShapeLayer()
             sliceLayer.path = path.cgPath
@@ -121,6 +129,7 @@ extension PortfolioChartView: CAAnimationDelegate {
         if flag {
             currentPercent += slices![sliceIndex].percent
             sliceIndex += 1
+            
             if sliceIndex < slices!.count {
                 let nextSlice = slices![sliceIndex]
                 addSlice(nextSlice)
