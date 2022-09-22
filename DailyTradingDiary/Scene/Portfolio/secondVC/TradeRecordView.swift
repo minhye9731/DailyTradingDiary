@@ -60,7 +60,6 @@ final class TradeRecordView: BaseView {
         view.backgroundColor = .pointColor
         view.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.black], for: UIControl.State.selected)
         view.selectedSegmentTintColor = .white
-//        view.addTarget(self, action: #selector(buysellChanged), for: .valueChanged)
         return view
     }()
     
@@ -76,7 +75,6 @@ final class TradeRecordView: BaseView {
     
     let totalBuyValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "77,777 \(Constants.CurrencySign.won.rawValue)" // 뷰컨에서 전달예정
         label.textColor = .mainTextColor
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .right
@@ -95,7 +93,6 @@ final class TradeRecordView: BaseView {
     
     let totalSellValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "0 \(Constants.CurrencySign.won.rawValue)" // 뷰컨에서 전달예정
         label.textColor = .mainTextColor
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .right
@@ -114,7 +111,6 @@ final class TradeRecordView: BaseView {
     
     let profitLossValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "0 \(Constants.CurrencySign.won.rawValue) (0.00%)" // 뷰컨에서 전달예정
         label.textColor = .mainTextColor
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .right
