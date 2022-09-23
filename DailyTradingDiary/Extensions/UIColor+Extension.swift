@@ -13,7 +13,8 @@ extension UIColor {
         
         return UIColor { (traitCollection: UITraitCollection) -> UIColor in
             if traitCollection.userInterfaceStyle == .light {
-                return UIColor(red: 242/255, green: 241/255, blue: 245/255, alpha: 1)
+//                return UIColor(red: 242/255, green: 241/255, blue: 245/255, alpha: 1)
+                return .white
             } else {
                 return .black
             }
@@ -49,16 +50,16 @@ extension UIColor {
         }
     }
     
-    static var tabBarColor: UIColor {
-        
-        return UIColor { (traitCollection: UITraitCollection) -> UIColor in
-            if traitCollection.userInterfaceStyle == .light {
-                return UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
-            } else {
-                return UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 1)
-            }
-        }
-    }
+//    static var tabBarColor: UIColor {
+//        
+//        return UIColor { (traitCollection: UITraitCollection) -> UIColor in
+//            if traitCollection.userInterfaceStyle == .light {
+//                return UIColor(red: 246/255, green: 246/255, blue: 246/255, alpha: 1)
+//            } else {
+//                return UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 1)
+//            }
+//        }
+//    }
     
     static var mainTextColor: UIColor {
         

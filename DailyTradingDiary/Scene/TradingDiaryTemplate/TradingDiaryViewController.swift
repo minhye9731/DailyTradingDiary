@@ -44,7 +44,7 @@ final class TradingDiaryViewController: BaseViewController {
         self.navigationItem.title = "매매일지 작성"
         self.navigationController?.navigationBar.tintColor = .pointColor
         let navibarAppearance = UINavigationBarAppearance()
-        navibarAppearance.backgroundColor = .subBackgroundColor
+        navibarAppearance.backgroundColor = .backgroundColor
         navibarAppearance.titleTextAttributes = [.foregroundColor: UIColor.mainTextColor, .font: UIFont.systemFont(ofSize: 18, weight: .bold)]
         
         self.navigationItem.scrollEdgeAppearance = navibarAppearance

@@ -11,10 +11,8 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         configure()
         setupTabBarAppearance()
-        
     }
     
     func configure() {
@@ -42,7 +40,7 @@ class TabBarController: UITabBarController {
     func setupTabBarAppearance() {
         let appearance = UITabBarAppearance()
         appearance.configureWithTransparentBackground()
-        appearance.backgroundColor = .tabBarColor
+        appearance.backgroundColor = .backgroundColor
         tabBar.standardAppearance = appearance
         tabBar.scrollEdgeAppearance = appearance
         tabBar.unselectedItemTintColor = .white

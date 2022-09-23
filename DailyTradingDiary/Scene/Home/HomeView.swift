@@ -12,7 +12,7 @@ final class HomeView: BaseView {
     
     lazy var calendar: FSCalendar = {
         let calendar = FSCalendar()
-//        calendar.backgroundColor = .backgroundColor
+        calendar.backgroundColor = .backgroundColor
         return calendar
     }()
     

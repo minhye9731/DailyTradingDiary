@@ -58,6 +58,8 @@
 		0EB85EFA28D8CB49002145A2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB85EF928D8CB49002145A2 /* Kingfisher */; };
 		0EB85EFC28D8D2C2002145A2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EFB28D8D2C2002145A2 /* WebViewController.swift */; };
 		0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */; };
+		0ED1834228DE0B4B00B31C2E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1834128DE0B4B00B31C2E /* SettingView.swift */; };
+		0ED1834428DE0C3400B31C2E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1834328DE0C3400B31C2E /* SettingTableViewCell.swift */; };
 		0ED5D64F28DB6167009A1057 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED5D64E28DB6167009A1057 /* Tabman */; };
 		0ED5D65128DB61D1009A1057 /* AssetStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */; };
 		0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */; };
@@ -129,6 +131,8 @@
 		0EB85EF628D8BC4E002145A2 /* InfoTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewHeaderView.swift; sourceTree = "<group>"; };
 		0EB85EFB28D8D2C2002145A2 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordView.swift; sourceTree = "<group>"; };
+		0ED1834128DE0B4B00B31C2E /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		0ED1834328DE0C3400B31C2E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
 		0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStatusViewController.swift; sourceTree = "<group>"; };
 		0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordViewController.swift; sourceTree = "<group>"; };
 		0ED5D65928DB6523009A1057 /* AssetStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStatusView.swift; sourceTree = "<group>"; };
@@ -332,6 +336,8 @@
 			isa = PBXGroup;
 			children = (
 				0E87353C28D58F600039D802 /* SettingViewController.swift */,
+				0ED1834128DE0B4B00B31C2E /* SettingView.swift */,
+				0ED1834328DE0C3400B31C2E /* SettingTableViewCell.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -531,6 +537,7 @@
 				0E40BF6B28D9D53300F99DEF /* FEARGREEDAPIManager.swift in Sources */,
 				0E04A3BE28D1D2930036D389 /* Transition+Extension.swift in Sources */,
 				0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */,
+				0ED1834228DE0B4B00B31C2E /* SettingView.swift in Sources */,
 				0EB85EF528D881A6002145A2 /* BaseCollectionViewCell.swift in Sources */,
 				0E04A3AD28D1BF3C0036D389 /* ReusableProtocol.swift in Sources */,
 				0EF4826528D4312C00CC8A49 /* TradingSearchViewController.swift in Sources */,
@@ -541,6 +548,7 @@
 				0EB85EF128D87561002145A2 /* IndexCollectionViewCell.swift in Sources */,
 				0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */,
 				0ED5D65128DB61D1009A1057 /* AssetStatusViewController.swift in Sources */,
+				0ED1834428DE0C3400B31C2E /* SettingTableViewCell.swift in Sources */,
 				0E2DB01728D3398500CDFD14 /* TradeDateTableViewCell.swift in Sources */,
 				0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */,
 				0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */,

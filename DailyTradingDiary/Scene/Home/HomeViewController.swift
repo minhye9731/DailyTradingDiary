@@ -37,7 +37,6 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         self.view = mainView
-        
         TradingDiaryRepository.standard.sortByRegDate()
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         
@@ -54,15 +53,11 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         print("HomeViewController - \(#function)")
 
         guard let date = self.mainView.calendar.selectedDate else { return }
-     
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)
-        
         TradingDiaryRepository.standard.sortByRegDate()
         self.mainView.tableView.reloadData()
     }
     
- 
-
     func setNav() {
         let titleLabel = UILabel()
         titleLabel.text = "Trading Diary"
