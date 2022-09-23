@@ -7,11 +7,13 @@
 
 import Foundation
 import RealmSwift
+import UIKit
 
 protocol DiaryRepositoryType {
     func fetchRealm()
     func sortByRegDate()
     func filteredByTradingDate(selectedDate: Date)
+    func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int)
     
     func sort(_ sort: String) -> Results<TradingDiary>
     func update(oldItem: TradingDiary, newItem: TradingDiary)
@@ -24,12 +26,12 @@ class TradingDiaryRepository: DiaryRepositoryType {
     // 싱글톤
     private init() { }
     static let standard = TradingDiaryRepository()
-
+    
     let localRealm = try! Realm()
     var tasks: Results<TradingDiary>!
     
     let calendar = Calendar.current
-
+    
     
     // 데이터 패치하기
     func fetchRealm() {
@@ -46,25 +48,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
     
-    // 매매내역 필터링 계산기
-    func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int) {
-        
-        switch buySellIndex {
-        case 0:
-            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
-                $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400
-            }
-        case 1:
-            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
-                $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400 && $0.buyAndSell == false
-            }
-        case 2:
-            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
-                $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400 && $0.buyAndSell == true
-            }
-        default : break
-        }
-    }
+    
     
     func sort(_ sort: String) -> Results<TradingDiary> {
         print(#function)
@@ -88,8 +72,8 @@ class TradingDiaryRepository: DiaryRepositoryType {
             print(error)
         }
     }
-
-    // MARK: - 개별요소 업데이트
+    
+    // MARK: - 개별요소 업데이트용
     func corpNameUpdate(oldItem: TradingDiary, newItem: String) {
         do {
             try localRealm.write {
@@ -190,5 +174,36 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
     
+    // MARK: - 매매내역 조회조건값에 따른 매매총액 계산기
+    func getTotalBuyPrice(from: Date, to: Date) -> Int {
+         let result = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where { $0.tradingDate >= calendar.startOfDay(for: from) && ($0.tradingDate <= calendar.startOfDay(for: to) + 86400) && $0.buyAndSell == false }.map{ $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+        return result
+    }
+    
+    func getTotalSellPrice(from: Date, to: Date) -> Int {
+         let result = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where { $0.tradingDate >= calendar.startOfDay(for: from) && ($0.tradingDate <= calendar.startOfDay(for: to) + 86400) && $0.buyAndSell == true }.map{ $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+        return result
+    }
+    
+    
+    // MARK: - 매매내역 조회조건값에 따른 tableview 계산기
+    func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int) {
+        
+        switch buySellIndex {
+        case 0:
+            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+                $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400
+            }.sorted(byKeyPath: "regDate", ascending: true)
+        case 1:
+            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+                $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400 && $0.buyAndSell == false
+            }.sorted(byKeyPath: "regDate", ascending: true)
+        case 2:
+            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+                $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400 && $0.buyAndSell == true
+            }.sorted(byKeyPath: "regDate", ascending: true)
+        default : break
+        }
+    }
+    
 }
-

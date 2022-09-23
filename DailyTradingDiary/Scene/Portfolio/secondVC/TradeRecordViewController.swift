@@ -21,8 +21,10 @@ class TradeRecordViewController: BaseViewController {
         super.viewDidLoad()
         print("TradeRecordViewController - \(#function)")
         
-        buySellChangedResult()
-        filteringQualificatinos()
+        TradingDiaryRepository.standard.fetchRealm()
+        
+                buySellChangedResult()
+                filteringQualificatinos()
         self.mainView.tableView.reloadData()
     }
     
@@ -72,7 +74,14 @@ class TradeRecordViewController: BaseViewController {
         filteringQualificatinos()
         self.mainView.tableView.reloadData()
     }
-
+    func filteringQualificatinos() {
+        TradingDiaryRepository.standard.filteredByAllTrading(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date, buySellIndex: mainView.segmentControl.selectedSegmentIndex)
+    }
+    
+    //    func filteringQualificatinos() {
+    //        TradingDiaryRepository.standard.filteredByAllTrading(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date, buySellIndex: mainView.segmentControl.selectedSegmentIndex)
+    //    }
+    
 }
 
 // MARK: - tableview 설정
@@ -98,20 +107,20 @@ extension TradeRecordViewController: UITableViewDelegate, UITableViewDataSource 
         guard let tradeCell = tableView.dequeueReusableCell(withIdentifier: TradeTableViewCell.reuseIdentifier) as? TradeTableViewCell else { return UITableViewCell() }
         
         tradeCell.setData(arr: Array(TradingDiaryRepository.standard.tasks), indexPath: indexPath)
-
+        
         return tradeCell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("\(indexPath.row)번 째 셀을 클릭했습니다. 해당 생성파일의 보기으로 넘어감")
         
-//        let tradeDiaryVC = TradingDiaryViewController()
-//        let row = Array(tasks)[indexPath.row]
-//
-//        tradeDiaryVC.diaryData = row
-//        tradeDiaryVC.addOrEditAction = .edit // enum 내역 하나 더 추가해서 화면 재사용 3번째 : 차이점은 완료&뒤로가기하면 포트폴리오로 넘어오도록.
-//
-//        transition(tradeDiaryVC, transitionStyle: .push)
+        //        let tradeDiaryVC = TradingDiaryViewController()
+        //        let row = Array(tasks)[indexPath.row]
+        //
+        //        tradeDiaryVC.diaryData = row
+        //        tradeDiaryVC.addOrEditAction = .edit // enum 내역 하나 더 추가해서 화면 재사용 3번째 : 차이점은 완료&뒤로가기하면 포트폴리오로 넘어오도록.
+        //
+        //        transition(tradeDiaryVC, transitionStyle: .push)
     }
     
 }
@@ -131,30 +140,63 @@ extension TradeRecordViewController {
         return sellTotalAmount
     }
     
-    func getEarningsRate() {
-        
-    }
-    
     func buySellChangedResult() {
         switch mainView.segmentControl.selectedSegmentIndex {
         case 0:
-            mainView.totalBuyValueLabel.text = "\(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)) \(Constants.CurrencySign.won.rawValue)"
-            mainView.totalSellValueLabel.text = "\(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)) \(Constants.CurrencySign.won.rawValue)"
+            getBuyTotal()
+            getSellTotal()
             mainView.profitLossValueLabel.text = "구현중"
         case 1:
-            mainView.totalBuyValueLabel.text = "\(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)) \(Constants.CurrencySign.won.rawValue)"
+            getBuyTotal()
             mainView.totalSellValueLabel.text = "0 \(Constants.CurrencySign.won.rawValue)"
             mainView.profitLossValueLabel.text = "0\(Constants.CurrencySign.won.rawValue) (0.00%)"
         case 2:
             mainView.totalBuyValueLabel.text = "0 \(Constants.CurrencySign.won.rawValue)"
-            mainView.totalSellValueLabel.text = "\(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)) \(Constants.CurrencySign.won.rawValue)"
+            getSellTotal()
             mainView.profitLossValueLabel.text = "구현중"
         default : break
         }
+        
+        //        switch mainView.segmentControl.selectedSegmentIndex {
+        //        case 0:
+        //            mainView.totalBuyValueLabel.text = "\(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)) \(Constants.CurrencySign.won.rawValue)"
+        //            mainView.totalSellValueLabel.text = "\(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)) \(Constants.CurrencySign.won.rawValue)"
+        //            mainView.profitLossValueLabel.text = "구현중"
+        //        case 1:
+        //            mainView.totalBuyValueLabel.text = "\(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)) \(Constants.CurrencySign.won.rawValue)"
+        //            mainView.totalSellValueLabel.text = "0 \(Constants.CurrencySign.won.rawValue)"
+        //            mainView.profitLossValueLabel.text = "0\(Constants.CurrencySign.won.rawValue) (0.00%)"
+        //        case 2:
+        //            mainView.totalBuyValueLabel.text = "0 \(Constants.CurrencySign.won.rawValue)"
+        //            mainView.totalSellValueLabel.text = "\(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)) \(Constants.CurrencySign.won.rawValue)"
+        //            mainView.profitLossValueLabel.text = "구현중"
+        //        default : break
+        //        }
+        
+        func getBuyTotal() {
+            let buyResult = TradingDiaryRepository.standard.getTotalBuyPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
+            
+            mainView.totalBuyValueLabel.text = "\(thousandSeparatorCommas(value: buyResult)) \(Constants.CurrencySign.won.rawValue)"
+        }
+        
+        func getSellTotal() {
+            let sellResult = TradingDiaryRepository.standard.getTotalSellPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
+            
+            mainView.totalSellValueLabel.text = "\(thousandSeparatorCommas(value: sellResult)) \(Constants.CurrencySign.won.rawValue)"
+        }
+        
+        
+//        func filteringQualificatinos() {
+//            TradingDiaryRepository.standard.filteredByAllTrading(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date, buySellIndex: mainView.segmentControl.selectedSegmentIndex)
+//        }
+        
+        func thousandSeparatorCommas(value: Int) -> String {
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            return numberFormatter.string(for: value) ?? "0"
+        }
+        
+        
+        
     }
-    
-    func filteringQualificatinos() {
-        TradingDiaryRepository.standard.filteredByAllTrading(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date, buySellIndex: mainView.segmentControl.selectedSegmentIndex)
-    }
-
 }

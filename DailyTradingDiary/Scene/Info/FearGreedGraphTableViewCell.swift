@@ -20,7 +20,7 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
     
     let chartView: UIView = {
        let view = UIView()
-        view.backgroundColor = .systemMint
+        view.backgroundColor = .backgroundColor
         return view
     }()
     
@@ -66,8 +66,6 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
     
     
     override func configure() {
-//        presentCircleView()
-        
         [updateTimeLabel, chartView, fearLabel, greedLabel].forEach {
             contentView.addSubview($0)
         }
