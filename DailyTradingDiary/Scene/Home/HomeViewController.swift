@@ -54,7 +54,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
 
         guard let date = self.mainView.calendar.selectedDate else { return }
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)
-        TradingDiaryRepository.standard.sortByRegDate()
+        
         self.mainView.tableView.reloadData()
     }
     
@@ -94,9 +94,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let result = TradingDiaryRepository.standard.tasks.filter { $0.tradingDate.toString() == self.mainView.calendar.selectedDate?.toString() }.count
+        TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
         
-        return result
+        return TradingDiaryRepository.standard.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -210,18 +210,6 @@ extension HomeViewController: FSCalendarDelegateAppearance {
     
     // 날짜 선택시 발생하는 일
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        
-//        self.tasks.filter { $0.tradingDate.toString() == date.toString() }
-        
-//        TradingDiaryRepository.standard.tasks.filter { $0.tradingDate.toString() == date.toString() }
-        
-//        TradingDiaryRepository.standard.tasks.where {
-//            checkDay(realmDate: $0.tradingDate, calendarDate: self.mainView.calendar.selectedDate)
-//        }
-//
-//        TradingDiaryRepository.standard.tasks.where { $0.tradingDate }
-        
-//        dump("\(TradingDiaryRepository.standard.tasks.)")
         print("\(self.mainView.calendar.selectedDate?.toString())")
         
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)

@@ -9,17 +9,31 @@ import UIKit
 import SnapKit
 import RealmSwift
 
+
+struct UpdateTradingDiary {
+    
+    var corpName: String // 기업명(필수)
+    var corpCode: String // 종목코드(필수)
+
+    var tradingPrice : Int // 매매 가격(필수)
+    var tradingAmount : Int // 매매 수량(필수)
+    
+    var buyAndSell : Bool // 매수매도 구분(필수) -> false가 '매수', true가 '매도'
+    
+    var regDate : Date  // 등록 날짜(필수)
+    var tradingDate : Date // 매매 일자(필수)
+    var tradingMemo : String? // 매매일지 메모(옵션)
+}
+
+
 final class TradingDiaryViewController: BaseViewController {
 
     let mainView = TradingDiaryView()
-    
-    // api로 받는 데이터 model
-    var krxData: KRXModel = KRXModel(itemName: "-", corpName: "-", marketName: "-", srtnCode: "-", isinCode: "-")
-    
-    // realm으로 저장할 데이터 model
-    var diaryData: TradingDiary = TradingDiary(corpName: "", corpCode: "", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
-    
     var addOrEditAction: PageMode = .write
+
+    var krxData: KRXModel = KRXModel(itemName: "-", corpName: "-", marketName: "-", srtnCode: "-", isinCode: "-")
+    var diaryData: TradingDiary = TradingDiary(corpName: "", corpCode: "", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
+    var updateData: UpdateTradingDiary = UpdateTradingDiary(corpName: "", corpCode: "", tradingPrice: 0, tradingAmount: 0, buyAndSell: false, regDate: Date(), tradingDate: Date(), tradingMemo: "")
     
     // MARK: - lifecycle
     override func loadView() {
@@ -29,6 +43,16 @@ final class TradingDiaryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // edit 상태에서 아래항목들을 수정하지 않고 저장했을때, 누락되는 경우를 방지하기 위함
+        self.updateData.corpName = diaryData.corpName
+        self.updateData.corpCode = diaryData.corpCode
+        self.updateData.tradingPrice = diaryData.tradingPrice
+        self.updateData.tradingAmount = diaryData.tradingAmount
+        self.updateData.buyAndSell = diaryData.buyAndSell
+        self.updateData.tradingDate = diaryData.tradingDate
+        self.updateData.tradingMemo = diaryData.tradingMemo
+        
         print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
@@ -88,6 +112,7 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             cell.selectionStyle = .none
             
             cell.corpNameTextField.tag = 0
+            cell.corpNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             cell.corpNameTextField.delegate = self
             
             if addOrEditAction == .edit {
@@ -102,10 +127,11 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             
             cell.selectionStyle = .none
             cell.amountTextField.tag = 1
+            cell.amountTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             cell.amountTextField.delegate = self
             
             if addOrEditAction == .edit {
-                cell.amountTextField.text = "\(diaryData.tradingPrice)"
+                cell.amountTextField.text = "\(updateData.tradingPrice)"
             }
             return cell
             
@@ -116,12 +142,12 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             
             cell.selectionStyle = .none
             cell.amountTextField.tag = 2
+            cell.amountTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             cell.amountTextField.delegate = self
             
             if addOrEditAction == .edit {
-                cell.amountTextField.text = "\(diaryData.tradingAmount)"
+                cell.amountTextField.text = "\(updateData.tradingAmount)"
             }
-            
             return cell
             
         case 3:
@@ -129,14 +155,11 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             cell.selectionStyle = .none
             cell.segmentControl.tag = 5
             
-            // 표기용
             if addOrEditAction == .edit {
-                cell.segmentControl.selectedSegmentIndex = diaryData.buyAndSell ? 1 : 0
+                cell.segmentControl.selectedSegmentIndex = updateData.buyAndSell ? 1 : 0
             }
             
-            // 저장/수정용
             cell.segmentTapped = { [self] in
-                
                 switch self.addOrEditAction {
                 case .write:
                     switch cell.segmentControl.selectedSegmentIndex {
@@ -146,9 +169,8 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
                     }
                 case .edit:
                     switch cell.segmentControl.selectedSegmentIndex {
-                    case 0: TradingDiaryRepository.standard.buyAndSellUpdate(oldItem: self.diaryData, newItem: false)
-                    case 1:
-                        TradingDiaryRepository.standard.buyAndSellUpdate(oldItem: self.diaryData, newItem: true)
+                    case 0: self.updateData.buyAndSell = false
+                    case 1: self.updateData.buyAndSell = true
                     default: break
                     }
                 }
@@ -174,13 +196,13 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
                 cell.memoTextView.textColor = .subTextColor
             case .edit:
                 if diaryData.tradingMemo == "" {
-                    cell.memoTextView.text = diaryData.tradingMemo
+                    cell.memoTextView.text = Constants.Word.trdDryMemoPlchdr.rawValue
+                    cell.memoTextView.textColor = .subTextColor
+                } else {
+                    cell.memoTextView.text = updateData.tradingMemo
                     cell.memoTextView.textColor = .mainTextColor
                 }
-                cell.memoTextView.text = Constants.Word.trdDryMemoPlchdr.rawValue
-                cell.memoTextView.textColor = .subTextColor
             }
-            
             return cell
             
         default:
@@ -208,42 +230,46 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         return true
     }
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
+    @objc func textFieldDidChange(_ sender: UITextField) {
+        
+        guard let result = sender.text else { return }
         
         switch self.addOrEditAction {
         case .write:
-            switch textField.tag {
+            switch sender.tag {
             case 0:
-                self.diaryData.corpName = textField.text ?? "(기업명)"
+                self.diaryData.corpName = result
                 self.diaryData.corpCode = "00000" // 임시데이터
             case 1:
-                self.diaryData.tradingPrice = Int(textField.text ?? "0") ?? 0
+                self.diaryData.tradingPrice = Int(result) ?? 0
             case 2:
-                self.diaryData.tradingAmount = Int(textField.text ?? "0") ?? 0
+                self.diaryData.tradingAmount = Int(result) ?? 0
             default:
                 break
             }
         case .edit:
-            switch textField.tag {
+            switch sender.tag {
             case 0:
-                TradingDiaryRepository.standard.corpNameUpdate(oldItem: diaryData, newItem: textField.text ?? "(기업명)")
+                self.updateData.corpName = result
+                self.updateData.corpCode = "00000" // 임시데이터
             case 1:
-                TradingDiaryRepository.standard.tradingPriceUpdate(oldItem: diaryData, newItem: Int(textField.text ?? "0") ?? 0)
+                self.updateData.tradingPrice = Int(result) ?? 0
             case 2:
-                TradingDiaryRepository.standard.tradingAmountUpdate(oldItem: diaryData, newItem: Int(textField.text ?? "0") ?? 0)
+                self.updateData.tradingAmount = Int(result) ?? 0
             default:
                 break
             }
         }
-
     }
+
+    
+
 }
 
 // MARK: - textview delegate
 extension TradingDiaryViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.textColor = .subTextColor
             textView.text = Constants.Word.trdDryMemoPlchdr.rawValue
@@ -252,10 +278,16 @@ extension TradingDiaryViewController: UITextViewDelegate {
             textView.text = nil
         }
         textView.textColor = .mainTextColor
-        
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        switch addOrEditAction {
+        case .write:
+                self.diaryData.tradingMemo = textView.text
+        case .edit:
+            self.updateData.tradingMemo = textView.text
+        }
+        
         if textView.text.count > 300 {
             textView.deleteBackward()
         }
@@ -272,7 +304,7 @@ extension TradingDiaryViewController: UITextViewDelegate {
         case .write:
                 self.diaryData.tradingMemo = textView.text
         case .edit:
-            TradingDiaryRepository.standard.tradingMemoUpdate(oldItem: diaryData, newItem: textView.text)
+            self.updateData.tradingMemo = textView.text
         }
     }
     
@@ -283,23 +315,47 @@ extension TradingDiaryViewController: UITextViewDelegate {
 extension TradingDiaryViewController {
     
     @objc func doneButtonTapped() {
-        if diaryData.corpName.isEmpty || diaryData.tradingPrice == 0 || diaryData.tradingAmount == 0 {
-            self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
-            return
-        }
-        plusOrUpate(task: diaryData)
-        navigationController?.popViewController(animated: true)
-    }
-    
-    func plusOrUpate(task: TradingDiary) {
+        
         switch addOrEditAction {
         case .write:
-            task.regDate = Date()
-            TradingDiaryRepository.standard.plusDiary(item: task)
+            if diaryData.corpName.isEmpty || diaryData.tradingPrice == 0 || diaryData.tradingAmount == 0 {
+                self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
+                return
+            } else {
+                diaryData.regDate = Date()
+                TradingDiaryRepository.standard.plusDiary(item: diaryData)
+                navigationController?.popViewController(animated: true)
+            }
         case .edit:
-            TradingDiaryRepository.standard.regDateUpdate(oldItem: task, newItem: Date())
+            if updateData.corpName.isEmpty || updateData.tradingPrice == 0 || updateData.tradingAmount == 0 {
+                self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
+                return
+            } else {
+                updateData.regDate = Date()
+                TradingDiaryRepository.standard.update(oldItem: diaryData, newItem: updateData)
+                navigationController?.popViewController(animated: true)
+            }
         }
+
+//        if diaryData.corpName.isEmpty || updateData.corpName.isEmpty || diaryData.tradingPrice == 0 || updateData.tradingPrice == 0 || diaryData.tradingAmount == 0 || updateData.tradingAmount == 0 {
+//            self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
+//            return
+//        } else {
+//            plusOrUpate(task: diaryData)
+//            navigationController?.popViewController(animated: true)
+//        }
     }
+    
+//    func plusOrUpate(task: TradingDiary) {
+//        switch addOrEditAction {
+//        case .write:
+//            task.regDate = Date()
+//            TradingDiaryRepository.standard.plusDiary(item: task)
+//        case .edit:
+//            self.updateData.regDate = Date()
+//            TradingDiaryRepository.standard.update(oldItem: task, newItem: updateData)
+//        }
+//    }
     
     func setBackButtonName(name: String) {
         let backBarButtonItem = UIBarButtonItem(title: name, style: .plain, target: self, action: nil)
@@ -311,7 +367,7 @@ extension TradingDiaryViewController {
         case .write:
             self.diaryData.tradingDate = sender.date
         case .edit:
-            TradingDiaryRepository.standard.tradingDateUpdate(oldItem: diaryData, newItem: sender.date)
+            self.updateData.tradingDate = sender.date
         }
     }
     
