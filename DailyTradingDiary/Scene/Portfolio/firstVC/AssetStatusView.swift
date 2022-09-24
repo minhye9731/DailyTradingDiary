@@ -107,25 +107,13 @@ final class AssetStatusView: BaseView {
     
     
     lazy var ratioChart: PortfolioChartView = {
-        let pieChartView = PortfolioChartView(frame: CGRect(x: self.chartView.frame.width / 2, y: self.chartView.frame.height / 2, width: 100, height: 100))
+//        let pieChartView = PortfolioChartView(frame: CGRect(x: self.chartView.frame.width / 2, y: self.chartView.frame.height / 2, width: 100, height: 100))
+        let pieChartView = PortfolioChartView()
         return pieChartView
     }()
     
     override func configureUI() {
-        
 
-        
-//        let pieWidth = self.chartView.frame.width
-//        let pieHeight = self.chartView.frame.height
-//
-//        let pieChartView = PortfolioChartView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-//        pieChartView.slices = [newVersionSlice(percent: 0.4, color: UIColor.systemOrange),
-//                               newVersionSlice(percent: 0.3, color: UIColor.systemTeal),
-//                               newVersionSlice(percent: 0.2, color: UIColor.systemRed),
-//                               newVersionSlice(percent: 0.1, color: UIColor.systemIndigo)]
-//        chartView.addSubview(pieChartView)
-//        pieChartView.animateChart()
-        
         [resultView, chartView].forEach {
             self.addSubview($0)
         }

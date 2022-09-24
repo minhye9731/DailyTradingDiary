@@ -31,9 +31,9 @@ class PortfolioChartView: UIView {
     
     // MARK: - slice 더해주는 함수
     func addSlice(_ slice: newVersionSlice) {
-        let canvasWidth = self.frame.width * 0.8
-        let path = UIBezierPath(arcCenter: self.center, // portfolio > 자산현황 > 자산구성 의 중앙으로 수정
-                                    radius: canvasWidth * 3 / 8,
+        let canvasWidth = self.frame.width * 0.65 //여기
+        let path = UIBezierPath(arcCenter: self.center,
+                                    radius: canvasWidth * 3 / 8, //여기
                                     startAngle: percentToRadian(currentPercent),
                                     endAngle: percentToRadian(currentPercent + slice.percent),
                                     clockwise: true)
@@ -57,7 +57,7 @@ class PortfolioChartView: UIView {
             sliceLayer.path = path.cgPath
             sliceLayer.fillColor = nil
             sliceLayer.strokeColor = slice.color.cgColor
-            sliceLayer.lineWidth = canvasWidth * 2 / 8
+            sliceLayer.lineWidth = canvasWidth * 2 / 8 // 여기
             sliceLayer.strokeEnd = 1
             sliceLayer.add(animation, forKey: animation.keyPath)
             
@@ -90,8 +90,8 @@ class PortfolioChartView: UIView {
     // MARK: - 기타 함수들
     // 라벨 위치 잡기
     private func getLabelCenter(_ fromPercent: CGFloat, _ toPercent: CGFloat) -> CGPoint {
-            let canvasWidth = self.frame.width * 0.8
-            let radius = canvasWidth * 3 / 8
+            let canvasWidth = self.frame.width * 0.65 // 여기
+            let radius = canvasWidth * 3 / 8 // 여기
             let labelAngle = percentToRadian((toPercent - fromPercent) / 2 + fromPercent)
             let path = UIBezierPath(arcCenter: self.center,
                                     radius: radius,

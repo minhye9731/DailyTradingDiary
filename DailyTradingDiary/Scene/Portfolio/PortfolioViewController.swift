@@ -18,6 +18,7 @@ class PortfolioViewController: TabmanViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNav()
+//        setNavItem()
         
         let firstVC = AssetStatusViewController()
         let secondVC = TradeRecordViewController()
@@ -48,6 +49,11 @@ class PortfolioViewController: TabmanViewController {
         self.navigationItem.scrollEdgeAppearance = navibarAppearance
         self.navigationItem.standardAppearance = navibarAppearance
     }
+    
+//    func setNavItem() {
+//        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+//        self.navigationItem.backBarButtonItem = backBarButtonItem
+//    }
 }
 
 // MARK: - 화면구성 설정
