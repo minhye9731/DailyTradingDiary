@@ -49,7 +49,8 @@ final class InfoTableViewHeaderView: UITableViewHeaderFooterView {
         }
         
         grayline.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(16)
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(16)
+            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-16)
             make.height.equalTo(1)
             make.bottom.equalTo(self)
         }

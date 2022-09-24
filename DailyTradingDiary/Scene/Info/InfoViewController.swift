@@ -9,11 +9,19 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 
+//struct IndexDataModel {
+//    let name : String // 지수명
+//    let value : String // 현재 지수값
+//    let gap : String // 변동값
+//    let changeRate : String // 변동률
+//}
+
 final class InfoViewController: BaseViewController {
     
     let mainView = InfoView()
     var alphaNewsList: [MarketNewsModel] = []
     var fearGreedIndex: FearGreedModel = FearGreedModel(updateTime: "0000.00.00", now: FearGreed(indexValue: 0, indexStatus: ""), weekAgo: FearGreed(indexValue: 0, indexStatus: ""))
+    var fxList: [IndexDataModel] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,21 +31,47 @@ final class InfoViewController: BaseViewController {
     }
     
     func connectAPI() {
-        ALPHAAPIManager.shared.fetchAlphaNewsAPI(type: .alphaNews) { data in
-            self.alphaNewsList = data
+        
+        ALPHAAPIManager.shared.fetchAlphaFXAPI(type: .alpnaFX, from: "USD", to: "KRW") { dDayValue, xDayValue in
             
+            let name = "달러/원"
+            let value = "\(Constants.CurrencySign.won) \(String(dDayValue.prefix(4)))"
+            
+            let numberFormatter = NumberFormatter()
+            numberFormatter.maximumFractionDigits = 2
+            
+            let gapValueRaw = Double(dDayValue)! - Double(xDayValue)!
+            let gapValue = numberFormatter.string(for: gapValueRaw) ?? "0.00"
+            
+            let gapPercentRaw = gapValueRaw / Double(xDayValue)! * 100
+            let gapPercent = numberFormatter.string(for: gapPercentRaw) ?? "0.00"
+            
+            let wonDollar = IndexDataModel(name: name, value: value, gap: gapValue, changeRate: gapPercent)
+            
+            self.fxList.append(wonDollar)
+            
+            DispatchQueue.main.async {
+                self.mainView.tableView.reloadData()
+            }
+        }
+
+        
+        FEARGREEDAPIManager.shared.fetchFearGreedAPI() { data in
+            self.fearGreedIndex = data
             DispatchQueue.main.async {
                 self.mainView.tableView.reloadData()
             }
         }
         
-        FEARGREEDAPIManager.shared.fetchFearGreedAPI() { data in
-            self.fearGreedIndex = data
-            
+        ALPHAAPIManager.shared.fetchAlphaNewsAPI(type: .alphaNews) { data in
+            self.alphaNewsList = data
             DispatchQueue.main.async {
                 self.mainView.tableView.reloadData()
             }
         }
+        
+        
+        
     }
     
     
@@ -127,8 +161,6 @@ extension InfoViewController:  UITableViewDelegate, UITableViewDataSource {
             DispatchQueue.main.async {
                 newsCell.setData(data: self.alphaNewsList, indexPath: indexPath)
             }
-            
-//            newsCell.setData(data: alphaNewsList, indexPath: indexPath)
             return newsCell
         default: return indexCell
         }
@@ -169,14 +201,13 @@ extension InfoViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 4
         // 빈배열을 만들어두고, 지수별 데이터가 들어와서 채워지는 수에 따라서
-        //        switch collectionView.tag {
-        //        case 0:
-        //        case 1:
-        //        case 2:
-        //        default :
-        //        }
+                switch collectionView.tag {
+                case 0: return fxList.count
+                case 1: return 4
+                case 2: return 4
+                default : return 4
+                }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -184,14 +215,16 @@ extension InfoViewController: UICollectionViewDelegate, UICollectionViewDataSour
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: IndexCollectionViewCell.reuseIdentifier, for: indexPath) as? IndexCollectionViewCell else { return UICollectionViewCell() }
         
         // 테이블뷰의 섹션에 따라서 setdata 등 설정
-//        switch collectionView.tag {
-//        case 0:
-//        case 1:
-//        case 2:
-//        default :
-//        }
+        switch collectionView.tag {
+        case 0:
+            cell.setData(arr: fxList, indexPath: indexPath)
+            
+            return cell
+        case 1: return cell
+        case 2: return cell
+        default : return cell
+        }
         
-        return cell
     }
     
 }

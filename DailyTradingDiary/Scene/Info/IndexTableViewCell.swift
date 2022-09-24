@@ -9,6 +9,7 @@ import UIKit
 
 final class IndexTableViewCell: BaseTableViewCell {
     
+    
     lazy var collectionView: UICollectionView = {
         
         let layout = UICollectionViewFlowLayout()
@@ -18,7 +19,6 @@ final class IndexTableViewCell: BaseTableViewCell {
         layout.minimumInteritemSpacing = 16
         layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         
-        
         let collectionview = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionview.register(IndexCollectionViewCell.self, forCellWithReuseIdentifier: IndexCollectionViewCell.reuseIdentifier)
         
@@ -26,7 +26,6 @@ final class IndexTableViewCell: BaseTableViewCell {
     }()
     
     override func configure() {
-        self.backgroundColor = .yellow // test용, 추후에 mainbackgroundcolor로 변경
         contentView.addSubview(collectionView)
         
     }

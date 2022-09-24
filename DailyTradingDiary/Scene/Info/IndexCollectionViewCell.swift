@@ -73,9 +73,30 @@ final class IndexCollectionViewCell: BaseCollectionViewCell {
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(8)
             make.top.equalTo(valueLabel.snp.bottom).offset(3)
         }
-
-        
     }
+    
+    func setData(arr: [IndexDataModel], indexPath: IndexPath) {
+
+        let row = arr[indexPath.row]
+        decideColor(gap: row.gap)
+
+        self.nameLabel.text = row.name
+        self.valueLabel.text = row.value
+        self.resultLabel.text = "\(row.gap)" + "(\(row.changeRate)%)"
+    }
+    
+    func decideColor(gap: String) {
+        
+        guard let gapValue = Double(gap) else { return }
+        
+        if gapValue > 0 {
+            self.valueLabel.textColor = .systemRed
+        } else if gapValue < 0 {
+            self.valueLabel.textColor = .systemBlue
+        }
+        self.valueLabel.textColor = .mainTextColor
+    }
+    
     
 }
 
