@@ -60,6 +60,7 @@
 		0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */; };
 		0ED1834228DE0B4B00B31C2E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1834128DE0B4B00B31C2E /* SettingView.swift */; };
 		0ED1834428DE0C3400B31C2E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1834328DE0C3400B31C2E /* SettingTableViewCell.swift */; };
+		0ED1834628DF73C400B31C2E /* IndexDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1834528DF73C400B31C2E /* IndexDataModel.swift */; };
 		0ED5D64F28DB6167009A1057 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED5D64E28DB6167009A1057 /* Tabman */; };
 		0ED5D65128DB61D1009A1057 /* AssetStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */; };
 		0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */; };
@@ -133,6 +134,7 @@
 		0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordView.swift; sourceTree = "<group>"; };
 		0ED1834128DE0B4B00B31C2E /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		0ED1834328DE0C3400B31C2E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
+		0ED1834528DF73C400B31C2E /* IndexDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexDataModel.swift; sourceTree = "<group>"; };
 		0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStatusViewController.swift; sourceTree = "<group>"; };
 		0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordViewController.swift; sourceTree = "<group>"; };
 		0ED5D65928DB6523009A1057 /* AssetStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStatusView.swift; sourceTree = "<group>"; };
@@ -403,6 +405,7 @@
 				0EF4826F28D468E200CC8A49 /* KRXModel.swift */,
 				0E40BF6828D98B0D00F99DEF /* AlphaModel.swift */,
 				0E40BF6C28D9D74100F99DEF /* FearGreedModel.swift */,
+				0ED1834528DF73C400B31C2E /* IndexDataModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -520,6 +523,7 @@
 				0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
 				0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */,
+				0ED1834628DF73C400B31C2E /* IndexDataModel.swift in Sources */,
 				0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */,

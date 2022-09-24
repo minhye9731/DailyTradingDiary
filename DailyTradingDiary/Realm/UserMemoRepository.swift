@@ -16,13 +16,13 @@ protocol DiaryRepositoryType {
     func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int)
     
     func sort(_ sort: String) -> Results<TradingDiary>
-    func update(oldItem: TradingDiary, newItem: TradingDiary)
+    func update(oldItem: TradingDiary, newItem: UpdateTradingDiary)
     func plusDiary(item: TradingDiary)
     func deleteDiary(item: TradingDiary)
 }
 
 class TradingDiaryRepository: DiaryRepositoryType {
-    
+
     // 싱글톤
     private init() { }
     static let standard = TradingDiaryRepository()
@@ -55,7 +55,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         return localRealm.objects(TradingDiary.self).sorted(byKeyPath: sort, ascending: true)
     }
     
-    func update(oldItem: TradingDiary, newItem: TradingDiary) {
+    func update(oldItem: TradingDiary, newItem: UpdateTradingDiary) {
         do {
             try localRealm.write {
                 oldItem.corpName = newItem.corpName
