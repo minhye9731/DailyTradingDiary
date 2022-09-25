@@ -29,3 +29,7 @@ https://truckon-faq.notion.site/20220918-5f04cc59c9334c65b6e6f8ef7c25b7af
 
 <2022.09.19>
 https://www.notion.so/truckon-faq/20220919-54fe3e99d74540d7bee6f8281657ee9e
+
+<2022.09.25>
+https://truckon-faq.notion.site/20220925-5f7fc908c468432fb14cb23145c66116
+
