@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 final class FearGreedGraphTableViewCell: BaseTableViewCell {
     
@@ -15,6 +16,7 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
         label.textColor = .subTextColor
         label.font = .boldSystemFont(ofSize: 12)
         label.textAlignment = .left
+        label.isSkeletonable = true
         return label
     }()
     
@@ -45,6 +47,7 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
         label.textColor = .mainTextColor
         label.font = .boldSystemFont(ofSize: 20)
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
 
@@ -53,6 +56,7 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
         label.textColor = .mainTextColor
         label.font = .boldSystemFont(ofSize: 44)
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
     
@@ -61,6 +65,7 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
         label.textColor = .mainTextColor
         label.font = .systemFont(ofSize: 12)
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
     

@@ -40,6 +40,7 @@
 		0E37460428E0615F000EEBA7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460328E0615F000EEBA7 /* EmptyView.swift */; };
 		0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */; };
 		0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsModel.swift */; };
+		0E37460C28E0EF5C000EEBA7 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 0E37460B28E0EF5C000EEBA7 /* SkeletonView */; };
 		0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */; };
 		0E40BF6928D98B0D00F99DEF /* MarketNewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6828D98B0D00F99DEF /* MarketNewsData.swift */; };
 		0E40BF6B28D9D53300F99DEF /* FEARGREEDAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */; };
@@ -52,10 +53,8 @@
 		0E87354728D609D10039D802 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354628D609D00039D802 /* Word.swift */; };
 		0E87354928D616060039D802 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354828D616060039D802 /* Date+Extension.swift */; };
 		0EB85EE928D87419002145A2 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EE828D87419002145A2 /* InfoView.swift */; };
-		0EB85EEB28D874B3002145A2 /* IndexTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEA28D874B3002145A2 /* IndexTableViewCell.swift */; };
 		0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */; };
 		0EB85EEF28D874FA002145A2 /* FearGreedGraphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEE28D874FA002145A2 /* FearGreedGraphTableViewCell.swift */; };
-		0EB85EF128D87561002145A2 /* IndexCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EF028D87561002145A2 /* IndexCollectionViewCell.swift */; };
 		0EB85EF528D881A6002145A2 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EF428D881A6002145A2 /* BaseCollectionViewCell.swift */; };
 		0EB85EF728D8BC4E002145A2 /* InfoTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EF628D8BC4E002145A2 /* InfoTableViewHeaderView.swift */; };
 		0EB85EFA28D8CB49002145A2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB85EF928D8CB49002145A2 /* Kingfisher */; };
@@ -130,10 +129,8 @@
 		0E87354628D609D00039D802 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		0E87354828D616060039D802 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0EB85EE828D87419002145A2 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
-		0EB85EEA28D874B3002145A2 /* IndexTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexTableViewCell.swift; sourceTree = "<group>"; };
 		0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		0EB85EEE28D874FA002145A2 /* FearGreedGraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FearGreedGraphTableViewCell.swift; sourceTree = "<group>"; };
-		0EB85EF028D87561002145A2 /* IndexCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexCollectionViewCell.swift; sourceTree = "<group>"; };
 		0EB85EF428D881A6002145A2 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		0EB85EF628D8BC4E002145A2 /* InfoTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoTableViewHeaderView.swift; sourceTree = "<group>"; };
 		0EB85EFB28D8D2C2002145A2 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -166,6 +163,7 @@
 				0EF4828528D4E1D500CC8A49 /* RealmSwift in Frameworks */,
 				0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */,
 				0E04A3A728D1B4C10036D389 /* SnapKit in Frameworks */,
+				0E37460C28E0EF5C000EEBA7 /* SkeletonView in Frameworks */,
 				0EB85EFA28D8CB49002145A2 /* Kingfisher in Frameworks */,
 				0ED5D64F28DB6167009A1057 /* Tabman in Frameworks */,
 				0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */,
@@ -307,12 +305,10 @@
 			isa = PBXGroup;
 			children = (
 				0E04A3CB28D1D6C40036D389 /* InfoViewController.swift */,
-				0EB85EFB28D8D2C2002145A2 /* WebViewController.swift */,
 				0EB85EE828D87419002145A2 /* InfoView.swift */,
-				0EB85EEA28D874B3002145A2 /* IndexTableViewCell.swift */,
-				0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */,
 				0EB85EEE28D874FA002145A2 /* FearGreedGraphTableViewCell.swift */,
-				0EB85EF028D87561002145A2 /* IndexCollectionViewCell.swift */,
+				0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */,
+				0EB85EFB28D8D2C2002145A2 /* WebViewController.swift */,
 			);
 			path = Info;
 			sourceTree = "<group>";
@@ -454,6 +450,7 @@
 				0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */,
 				0EB85EF928D8CB49002145A2 /* Kingfisher */,
 				0ED5D64E28DB6167009A1057 /* Tabman */,
+				0E37460B28E0EF5C000EEBA7 /* SkeletonView */,
 			);
 			productName = DailyTradingDiary;
 			productReference = 0E04A38E28D1B2200036D389 /* DailyTradingDiary.app */;
@@ -493,6 +490,7 @@
 				0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				0EB85EF828D8CB49002145A2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0ED5D64D28DB6167009A1057 /* XCRemoteSwiftPackageReference "Tabman" */,
+				0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 			);
 			productRefGroup = 0E04A38F28D1B2200036D389 /* Products */;
 			projectDirPath = "";
@@ -542,7 +540,6 @@
 				0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */,
 				0EF4827428D46AD300CC8A49 /* Endpoint.swift in Sources */,
 				0E2D652628DAE6F9002EF4BC /* PieSlice.swift in Sources */,
-				0EB85EEB28D874B3002145A2 /* IndexTableViewCell.swift in Sources */,
 				0E87354728D609D10039D802 /* Word.swift in Sources */,
 				0E2DB01928D3399600CDFD14 /* BuySellTableViewCell.swift in Sources */,
 				0E04A3B328D1C6D00036D389 /* BaseTableViewCell.swift in Sources */,
@@ -559,7 +556,6 @@
 				0E2D652828DAE7FF002EF4BC /* PieChartView.swift in Sources */,
 				0ED5D65C28DB7965009A1057 /* PortfolioChartView.swift in Sources */,
 				0EB85EEF28D874FA002145A2 /* FearGreedGraphTableViewCell.swift in Sources */,
-				0EB85EF128D87561002145A2 /* IndexCollectionViewCell.swift in Sources */,
 				0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */,
 				0ED5D65128DB61D1009A1057 /* AssetStatusViewController.swift in Sources */,
 				0ED1834428DE0C3400B31C2E /* SettingTableViewCell.swift in Sources */,
@@ -829,6 +825,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -889,6 +893,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		0E37460B28E0EF5C000EEBA7 /* SkeletonView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */;
+			productName = SkeletonView;
 		};
 		0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

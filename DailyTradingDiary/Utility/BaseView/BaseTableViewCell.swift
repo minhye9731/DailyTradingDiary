@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class BaseTableViewCell: UITableViewCell {
     
@@ -13,6 +14,9 @@ class BaseTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
         setConstraints()
+        
+        self.isSkeletonable = true
+        self.contentView.isSkeletonable = true
     }
     
     required init?(coder: NSCoder) {
