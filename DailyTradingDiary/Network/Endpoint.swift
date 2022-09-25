@@ -12,6 +12,7 @@ enum Endpoint {
     case krxItemInfo
     case alphaNews
     case alpnaFX
+    case alphaTreasury
     
     var requestURL: String {
         switch self {
@@ -21,6 +22,8 @@ enum Endpoint {
             return URL.alphaEndPointString("function=NEWS_SENTIMENT")
         case .alpnaFX:
             return URL.alphaEndPointString("function=FX_DAILY")
+        case .alphaTreasury:
+            return URL.alphaEndPointString("function=TREASURY_YIELD")
         }
     }
     

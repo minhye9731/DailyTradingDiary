@@ -14,16 +14,17 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     let mainView = HomeView()
     var selectedDate: Date = Date()
+    var eventsArr = [Date]()
     
     // MARK: - Lifecycle
     override func loadView() {
-        print("HomeViewController - \(#function)")
+//        print("HomeViewController - \(#function)")
         TradingDiaryRepository.standard.sortByRegDate()
         self.mainView.tableView.reloadData()
     }
 
     override func configure() {
-        print("HomeViewController - \(#function)")
+//        print("HomeViewController - \(#function)")
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         setNav()
@@ -40,20 +41,38 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         TradingDiaryRepository.standard.sortByRegDate()
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         
-        dump(TradingDiaryRepository.standard.tasks)
-        dump("선택된 시작 날짜 : \(mainView.calendar.selectedDate)")
+//        dump(TradingDiaryRepository.standard.tasks)
+//        dump("선택된 시작 날짜 : \(mainView.calendar.selectedDate)")
+        
+        
+        
+        
+        
+        // 이벤트 점 추가하기
+        eventsArr = TradingDiaryRepository.standard.tasks.map {
+            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+            return result
+        }
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        print("HomeViewController - \(#function)")
+//        print("HomeViewController - \(#function)")
         self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("HomeViewController - \(#function)")
+//        print("HomeViewController - \(#function)")
 
         guard let date = self.mainView.calendar.selectedDate else { return }
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)
+        
+        // 이벤트 점 추가하기 - 아래처럼 추가해도 바로 표기가 안됨
+//        self.eventsArr = TradingDiaryRepository.standard.tasks.map {
+//            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+//            return result
+//        }
         
         self.mainView.tableView.reloadData()
     }
@@ -201,6 +220,10 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         self.mainView.calendar.select(selectedDate)
         self.mainView.calendar.appearance.selectionColor = .pointColor
         self.mainView.calendar.appearance.titleSelectionColor = .mainTextColor
+        
+        // 이벤트 색상
+        self.mainView.calendar.appearance.eventDefaultColor = .pointColor
+        self.mainView.calendar.appearance.eventSelectionColor = .pointColor
     }
     
     // 선택된 날짜의 채워진 색상 지정
@@ -216,8 +239,16 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         
         self.mainView.tableView.reloadData()
     }
+   
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+        
+        if self.eventsArr.contains(date) {
+            return 1
+        } else {
+            return 0
+        }
+    }
     
-    // event 설정
     
     
 }
@@ -240,16 +271,7 @@ extension HomeViewController {
         self.mainView.calendar.select(Date())
     }
     
-//    func checkDay(realmDate: Query<Date>, calendarDate: Date) -> Bool {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "yyyy-MM-dd"
-//        dateFormatter.timeZone = TimeZone.current
-////        dateFormatter.string(from: self)
-//
-//        let result = dateFormatter.string(from: realmDate) == dateFormatter.string(from: calendarDate)
-//
-//        return result
-//    }
+
     
 }
 

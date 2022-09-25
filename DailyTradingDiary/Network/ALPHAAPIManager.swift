@@ -14,6 +14,7 @@ class ALPHAAPIManager {
     
     private init() { }
     
+    // 뉴스
     func fetchAlphaNewsAPI(type: Endpoint, completionHandler: @escaping([MarketNewsModel]) -> ()) {
         
         let url = type.requestURL + "&apikey=\(APIKey.ALPHA_KEY_1)"
@@ -47,7 +48,7 @@ class ALPHAAPIManager {
         }
     }
     
-    
+    // 원달러 환율
     func fetchAlphaFXAPI(type: Endpoint, from: String, to: String, completionHandler: @escaping(String, String) -> ()) {
         let url = type.requestURL + "&from_symbol=\(from)&to_symbol=\(to)&interval=5min&apikey=\(APIKey.ALPHA_KEY_2)"
         
@@ -77,6 +78,27 @@ class ALPHAAPIManager {
         }
     }
     
+    // 미국채 10년물
+    func fetchAlphaTYAPI(type: Endpoint) {
+        // , completionHandler: @escaping(String, String) -> ()
+        let url = type.requestURL + "&interval=daily&maturity=10year&apikey=\(APIKey.ALPHA_KEY_2)"
+        
+        AF.request(url, method: .get).responseData { response in
+            switch response.result {
+            case .success(let value):
+                
+                let json = JSON(value)
+                print(json)
+                let data = json["data"].arrayValue
+                
+                
+//                completionHandler(dDayData, dDayBeforeData)
+
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
     
 }
 

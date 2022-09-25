@@ -107,7 +107,6 @@ final class NewsTableViewCell: BaseTableViewCell {
         
     }
     
-    
     func setData(data: [MarketNewsModel], indexPath: IndexPath) {
         
         print("newsCell의 setData 실행이다~!")

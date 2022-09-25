@@ -54,7 +54,9 @@ final class InfoViewController: BaseViewController {
                 self.mainView.tableView.reloadData()
             }
         }
-
+        
+        
+//        ALPHAAPIManager.shared.fetchAlphaTYAPI(type: .alphaTreasury)
         
         FEARGREEDAPIManager.shared.fetchFearGreedAPI() { data in
             self.fearGreedIndex = data
