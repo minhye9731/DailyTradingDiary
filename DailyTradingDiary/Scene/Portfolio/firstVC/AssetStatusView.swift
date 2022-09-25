@@ -112,6 +112,12 @@ final class AssetStatusView: BaseView {
         return pieChartView
     }()
     
+    let emptyView: EmptyView = {
+       let view = EmptyView()
+        view.setDataAtEmptyView(image: "pieChart.png", main: "현재 보유하고 있는 자산이 없어요.", sub: "홈화면의 + 버튼으로 매매일지를 작성해\n자산구성을 확인해보세요.")
+        return view
+    }()
+    
     override func configureUI() {
 
         [resultView, chartView].forEach {
@@ -122,7 +128,7 @@ final class AssetStatusView: BaseView {
             resultView.addSubview($0)
         }
         
-        [ratioLabel, grayline, ratioChart].forEach {
+        [ratioLabel, grayline, ratioChart, emptyView].forEach {
             chartView.addSubview($0)
         }
         
@@ -188,10 +194,17 @@ final class AssetStatusView: BaseView {
             make.top.equalTo(grayline.snp.bottom).offset(14)
         }
         
+        // 파이차트
         ratioChart.snp.makeConstraints { make in
             make.center.equalTo(chartView.snp.center)
             make.width.equalTo(chartView.snp.width)
             make.height.equalTo(chartView.snp.height)
+        }
+        
+        // empty화면
+        emptyView.snp.makeConstraints { make in
+            make.top.equalTo(ratioLabel.snp.bottom)
+            make.leading.bottom.trailing.equalTo(self.chartView)
         }
     }
     

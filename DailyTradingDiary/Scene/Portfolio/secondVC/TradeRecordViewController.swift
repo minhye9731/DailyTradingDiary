@@ -25,6 +25,7 @@ class TradeRecordViewController: BaseViewController {
         
         buySellChangedResult()
         filteringQualificatinos()
+        isEmptyCheck()
         self.mainView.tableView.reloadData()
     }
     
@@ -50,40 +51,6 @@ class TradeRecordViewController: BaseViewController {
         mainView.toDatePicker.addTarget(self, action: #selector(onDidChangeToDate(sender:)), for: .valueChanged)
         mainView.segmentControl.addTarget(self, action: #selector(buysellChanged), for: .valueChanged)
     }
-    
-    @objc func onDidChangeFromDate(sender: UIDatePicker) {
-        print("onDidChangeFromDate가 눌림! \(sender.date)")
-        
-        // 이거 왜 실행이 안되냐
-        if sender.date > mainView.toDatePicker.date {
-            showAlertMessage(title: "시작일이 종료일보다 클 수 없습니다.")
-            return
-        }
-        
-        filteringQualificatinos()
-        self.mainView.tableView.reloadData()
-    }
-    
-    @objc func onDidChangeToDate(sender: UIDatePicker) {
-        print("onDidChangeToDate가 눌림! \(sender.date)")
-        if sender.date < mainView.fromDatePicker.date {
-            showAlertMessage(title: "종료일이 시작일보다 작을 수 없습니다.")
-            return
-        }
-        filteringQualificatinos()
-        self.mainView.tableView.reloadData()
-    }
-    
-    @objc func buysellChanged() {
-        buySellChangedResult()
-        filteringQualificatinos()
-        self.mainView.tableView.reloadData()
-    }
-    
-    func filteringQualificatinos() {
-        TradingDiaryRepository.standard.filteredByAllTrading(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date, buySellIndex: mainView.segmentControl.selectedSegmentIndex)
-    }
-    
     
 }
 
@@ -131,6 +98,44 @@ extension TradeRecordViewController: UITableViewDelegate, UITableViewDataSource 
 // MARK: - 기타설정
 extension TradeRecordViewController {
     
+    @objc func onDidChangeFromDate(sender: UIDatePicker) {
+        print("onDidChangeFromDate가 눌림! \(sender.date)")
+        
+        // 이거 왜 실행이 안되냐
+        if sender.date > mainView.toDatePicker.date {
+            showAlertMessage(title: "시작일이 종료일보다 클 수 없습니다.")
+            return
+        }
+        
+        filteringQualificatinos()
+        isEmptyCheck()
+        self.mainView.tableView.reloadData()
+    }
+    
+    @objc func onDidChangeToDate(sender: UIDatePicker) {
+        print("onDidChangeToDate가 눌림! \(sender.date)")
+        
+        // 이거 왜 실행이 안되냐
+        if sender.date < mainView.fromDatePicker.date {
+            showAlertMessage(title: "종료일이 시작일보다 작을 수 없습니다.")
+            return
+        }
+        filteringQualificatinos()
+        isEmptyCheck()
+        self.mainView.tableView.reloadData()
+    }
+    
+    @objc func buysellChanged() {
+        buySellChangedResult()
+        filteringQualificatinos()
+        isEmptyCheck()
+        self.mainView.tableView.reloadData()
+    }
+    
+    func filteringQualificatinos() {
+        TradingDiaryRepository.standard.filteredByAllTrading(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date, buySellIndex: mainView.segmentControl.selectedSegmentIndex)
+    }
+    
     //날짜관련 데이터를 넣자
     func getBuyTotalAmount() -> Int {
         let buyTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
@@ -159,26 +164,34 @@ extension TradeRecordViewController {
             mainView.profitLossValueLabel.text = "구현중"
         default : break
         }
-        
-        func getBuyTotal() {
-            let buyResult = TradingDiaryRepository.standard.getTotalBuyPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
-            
-            mainView.totalBuyValueLabel.text = "\(thousandSeparatorCommas(value: buyResult)) \(Constants.CurrencySign.won.rawValue)"
-        }
-        
-        func getSellTotal() {
-            let sellResult = TradingDiaryRepository.standard.getTotalSellPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
-            
-            mainView.totalSellValueLabel.text = "\(thousandSeparatorCommas(value: sellResult)) \(Constants.CurrencySign.won.rawValue)"
-        }
-        
-        func thousandSeparatorCommas(value: Int) -> String {
-            let numberFormatter = NumberFormatter()
-            numberFormatter.numberStyle = .decimal
-            return numberFormatter.string(for: value) ?? "0"
-        }
-        
-        
-        
     }
+    
+    func getBuyTotal() {
+        let buyResult = TradingDiaryRepository.standard.getTotalBuyPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
+        
+        mainView.totalBuyValueLabel.text = "\(thousandSeparatorCommas(value: buyResult)) \(Constants.CurrencySign.won.rawValue)"
+    }
+    
+    func getSellTotal() {
+        let sellResult = TradingDiaryRepository.standard.getTotalSellPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
+        
+        mainView.totalSellValueLabel.text = "\(thousandSeparatorCommas(value: sellResult)) \(Constants.CurrencySign.won.rawValue)"
+    }
+    
+    func thousandSeparatorCommas(value: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(for: value) ?? "0"
+    }
+    
+    func isEmptyCheck() {
+        if TradingDiaryRepository.standard.tasks.count == 0 {
+            self.mainView.tableView.isHidden = true
+            self.mainView.emptyView.isHidden = false
+        } else {
+            self.mainView.tableView.isHidden = false
+            self.mainView.emptyView.isHidden = true
+        }
+    }
+    
 }

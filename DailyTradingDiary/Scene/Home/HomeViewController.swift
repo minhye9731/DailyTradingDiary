@@ -27,6 +27,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
 //        print("HomeViewController - \(#function)")
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
+        
         setNav()
         setNavItem()
         setCalendarUI()
@@ -41,21 +42,36 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         TradingDiaryRepository.standard.sortByRegDate()
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         
-//        dump(TradingDiaryRepository.standard.tasks)
-//        dump("선택된 시작 날짜 : \(mainView.calendar.selectedDate)")
-        
-        
-        
-        
-        
         // 이벤트 점 추가하기
         eventsArr = TradingDiaryRepository.standard.tasks.map {
             guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
             return result
         }
         
+        // 스와이프시 캘린더 방향처리 - 적용 안된다ㅠㅠ
+        setCalendarSwipe()
         
+//        isEmptyCheck()
     }
+    
+    func setCalendarSwipe() {
+        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
+        swipeUp.direction = .up
+        self.view.addGestureRecognizer(swipeUp)
+        
+        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
+        swipeUp.direction = .down
+        self.view.addGestureRecognizer(swipeDown)
+    }
+    
+    @objc func swipeEvent(_ swipe: UISwipeGestureRecognizer) {
+        if swipe.direction == .up {
+            self.mainView.calendar.scope = .week
+        } else if swipe.direction == .down {
+            self.mainView.calendar.scope = .month
+        }
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
 //        print("HomeViewController - \(#function)")
@@ -64,9 +80,9 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     override func viewDidAppear(_ animated: Bool) {
 //        print("HomeViewController - \(#function)")
-
-        guard let date = self.mainView.calendar.selectedDate else { return }
-        TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)
+        isEmptyCheck()
+//        guard let date = self.mainView.calendar.selectedDate else { return }
+        TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
         
         // 이벤트 점 추가하기 - 아래처럼 추가해도 바로 표기가 안됨
 //        self.eventsArr = TradingDiaryRepository.standard.tasks.map {
@@ -151,6 +167,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 
                 TradingDiaryRepository.standard.deleteDiary(item: row)
                 TradingDiaryRepository.standard.sortByRegDate()
+                
+                self.isEmptyCheck() // 에러는 안나지만 적용안됨
+                
+                self.eventsArr = TradingDiaryRepository.standard.tasks.map {
+                    guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+                    return result
+                } // 에러는 안나지만 적용안됨
+                
                 self.mainView.tableView.reloadData()
             }
         }
@@ -165,14 +189,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - FSCalendar 설정
 extension HomeViewController: FSCalendarDelegateAppearance {
     
-    // 변경이 필요할 때 별도설정 해야함
-//    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
-//        calendar.snp.updateConstraints { (make) in
-//            make.height.equalTo(bounds.height)
-//            // Do other updates
-//        }
-//        self.view.layoutIfNeeded()
-//    }
+    func calendar(_ calendar: FSCalendar, boundingRectWillChange bounds: CGRect, animated: Bool) {
+        self.mainView.calendar.snp.updateConstraints { make in
+            make.height.equalTo(bounds.height)
+        }
+        self.view.layoutIfNeeded()
+    }
     
     func setCalendarUI() {
         
@@ -197,20 +219,18 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         // 요일
         self.mainView.calendar.appearance.weekdayFont = .systemFont(ofSize: 14, weight: .regular)
         self.mainView.calendar.appearance.weekdayTextColor = .mainTextColor
-        self.mainView.calendar.calendarWeekdayView.weekdayLabels[0].textColor = .systemRed // 적용안됨
-        self.mainView.calendar.calendarWeekdayView.weekdayLabels[6].textColor = .systemBlue // 적용안됨
         
         // 일자
         self.mainView.calendar.appearance.titleFont = .systemFont(ofSize: 14, weight: .regular)
         self.mainView.calendar.appearance.titlePlaceholderColor = .subTextColor
         self.mainView.calendar.appearance.titleDefaultColor = .mainTextColor
-//        self.mainView.calendar.appearance.title // 일요일은 빨간색
-        // 토요일은 파란색
+//        self.mainView.calendar.appearance.titleWeekendColor = .systemRed
         
         self.mainView.calendar.appearance.headerDateFormat = "YYYY MM월"
         self.mainView.calendar.appearance.headerTitleFont = .systemFont(ofSize: 16, weight: .regular)
         self.mainView.calendar.appearance.headerTitleColor = .mainTextColor
         self.mainView.calendar.appearance.headerTitleAlignment = .center
+        self.mainView.calendar.appearance.headerMinimumDissolvedAlpha = 0.5
         
         // today
         self.mainView.calendar.appearance.titleTodayColor = .mainTextColor
@@ -226,6 +246,19 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         self.mainView.calendar.appearance.eventSelectionColor = .pointColor
     }
     
+    // 토요일, 일요일 색상구분
+    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, titleDefaultColorFor date: Date) -> UIColor? {
+        let day = Calendar.current.component(.weekday, from: date) - 1
+        
+        if Calendar.current.shortWeekdaySymbols[day] == "Sun" || Calendar.current.shortWeekdaySymbols[day] == "일" {
+            return .systemRed
+        } else if Calendar.current.shortWeekdaySymbols[day] == "Sat" || Calendar.current.shortWeekdaySymbols[day] == "토" {
+            return .systemBlue
+        } else {
+            return .label
+        }
+    }
+    
     // 선택된 날짜의 채워진 색상 지정
     func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillSelectionColorFor date: Date) -> UIColor? {
         return appearance.selectionColor
@@ -237,6 +270,8 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)
         
+        
+        isEmptyCheck()
         self.mainView.tableView.reloadData()
     }
    
@@ -271,6 +306,15 @@ extension HomeViewController {
         self.mainView.calendar.select(Date())
     }
     
+    func isEmptyCheck() {
+        if TradingDiaryRepository.standard.tasks.count == 0 {
+            self.mainView.tableView.isHidden = true
+            self.mainView.emptyView.isHidden = false
+        } else {
+            self.mainView.tableView.isHidden = false
+            self.mainView.emptyView.isHidden = true
+        }
+    }
 
     
 }

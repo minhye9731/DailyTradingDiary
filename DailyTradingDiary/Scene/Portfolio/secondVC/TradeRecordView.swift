@@ -132,8 +132,14 @@ final class TradeRecordView: BaseView {
         return tableview
     }()
     
+    let emptyView: EmptyView = {
+       let view = EmptyView()
+        view.setDataAtEmptyView(image: "accountingBook.png", main: "조회하신 조건에 해당하는 매매일지가 없어요.", sub: "홈화면의 + 버튼으로 매매일지를 작성해\n조건별 거래내역을 확인해보세요.")
+        return view
+    }()
+    
     override func configureUI() {
-        [searchView, tableView].forEach {
+        [searchView, tableView, emptyView].forEach {
             self.addSubview($0)
         }
         
@@ -219,6 +225,11 @@ final class TradeRecordView: BaseView {
             make.top.equalTo(searchView.snp.bottom)
         }
         
+        //emptyView
+        emptyView.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
+            make.top.equalTo(searchView.snp.bottom)
+        }
         
     }
     

@@ -34,8 +34,15 @@ final class HomeView: BaseView {
         return button
     }()
     
+    // empty view
+    let emptyView: EmptyView = {
+       let view = EmptyView()
+        view.setDataAtEmptyView(image: "accountingBook.png", main: "아직 생성된 매매일지가 없어요.", sub: "+ 버튼으로 매매일지를 작성해\n일자별 거래내역을 확인해보세요.")
+        return view
+    }()
+
     override func configureUI() {
-        [calendar, tableView, floatingButton].forEach {
+        [calendar, tableView, emptyView, floatingButton].forEach {
             self.addSubview($0)
         }
         
@@ -64,10 +71,13 @@ final class HomeView: BaseView {
             make.width.height.equalTo(60)
         }
         
+        // emptyview
+        emptyView.snp.makeConstraints { make in
+            make.top.equalTo(calendar.snp.bottom).offset(10)
+            make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
+        }
     }
-    
 
-    
 }
 
 
