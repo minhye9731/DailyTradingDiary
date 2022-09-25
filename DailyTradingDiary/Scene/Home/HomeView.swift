@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import FSCalendar
+
 final class HomeView: BaseView {
     
     lazy var calendar: FSCalendar = {
@@ -54,14 +55,14 @@ final class HomeView: BaseView {
     override func setConstraints() {
         
         calendar.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(10)
+            make.top.equalTo(self.safeAreaLayoutGuide)
             make.centerX.equalTo(self)
-            make.width.equalTo(320)
+            make.width.equalTo(self.safeAreaLayoutGuide)
             make.height.equalTo(300)
         }
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(calendar.snp.bottom).offset(10)
+            make.top.equalTo(calendar.snp.bottom)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         
@@ -73,7 +74,7 @@ final class HomeView: BaseView {
         
         // emptyview
         emptyView.snp.makeConstraints { make in
-            make.top.equalTo(calendar.snp.bottom).offset(10)
+            make.top.equalTo(calendar.snp.bottom)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
     }

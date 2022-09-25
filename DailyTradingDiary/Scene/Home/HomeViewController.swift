@@ -10,21 +10,34 @@ import SnapKit
 import FSCalendar
 import RealmSwift
 
-final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalendarDataSource {
+final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalendarDataSource, UIGestureRecognizerDelegate {
     
     let mainView = HomeView()
     var selectedDate: Date = Date()
     var eventsArr = [Date]()
     
+    lazy var dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy/MM/dd"
+        return formatter
+    }()
+    
+    lazy var scopeGesture: UIPanGestureRecognizer = { [unowned self] in
+        let panGesture = UIPanGestureRecognizer(target: self.mainView.calendar, action: #selector(self.mainView.calendar.handleScopeGesture(_:)))
+        panGesture.delegate = self
+        panGesture.minimumNumberOfTouches = 1
+        panGesture.maximumNumberOfTouches = 2
+        return panGesture
+    }()
+    
     // MARK: - Lifecycle
     override func loadView() {
-//        print("HomeViewController - \(#function)")
+        self.view = mainView
         TradingDiaryRepository.standard.sortByRegDate()
         self.mainView.tableView.reloadData()
     }
 
     override func configure() {
-//        print("HomeViewController - \(#function)")
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         
@@ -35,10 +48,8 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("HomeViewController - \(#function)")
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
-        self.view = mainView
         TradingDiaryRepository.standard.sortByRegDate()
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         
@@ -48,38 +59,34 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
             return result
         }
         
-        // 스와이프시 캘린더 방향처리 - 적용 안된다ㅠㅠ
-        setCalendarSwipe()
+        self.mainView.addGestureRecognizer(self.scopeGesture)
+        self.mainView.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
+        self.mainView.calendar.scope = .month
         
 //        isEmptyCheck()
     }
     
-    func setCalendarSwipe() {
-        let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
-        swipeUp.direction = .up
-        self.view.addGestureRecognizer(swipeUp)
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let shouldBegin = self.mainView.tableView.contentOffset.y >= self.mainView.tableView.contentInset.top
         
-        let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(swipeEvent(_:)))
-        swipeUp.direction = .down
-        self.view.addGestureRecognizer(swipeDown)
-    }
-    
-    @objc func swipeEvent(_ swipe: UISwipeGestureRecognizer) {
-        if swipe.direction == .up {
-            self.mainView.calendar.scope = .week
-        } else if swipe.direction == .down {
-            self.mainView.calendar.scope = .month
+        if shouldBegin {
+            let velocity = self.scopeGesture.velocity(in: self.mainView)
+            switch self.mainView.calendar.scope {
+            case .month:
+                return velocity.y < 0
+            case .week:
+                return velocity.y > 0
+            default : break
+            }
         }
+        return shouldBegin
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
-//        print("HomeViewController - \(#function)")
         self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
-//        print("HomeViewController - \(#function)")
         isEmptyCheck()
 //        guard let date = self.mainView.calendar.selectedDate else { return }
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
@@ -130,7 +137,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
-        
         return TradingDiaryRepository.standard.tasks.count
     }
     
@@ -144,8 +150,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row)번 째 셀을 클릭했습니다. 해당 생성파일의 보기으로 넘어감")
-        
         let tradeDiaryVC = TradingDiaryViewController()
         let row = Array(TradingDiaryRepository.standard.tasks)[indexPath.row]
         
@@ -156,20 +160,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-
-        print(#function)
-
-        let row = Array(TradingDiaryRepository.standard.tasks)[indexPath.row]
         
+        let row = Array(TradingDiaryRepository.standard.tasks)[indexPath.row]
         let delete = UIContextualAction(style: .normal, title: nil) { action, view, completion in
-            
             self.deleteConfirmAlert(title: "해당 메모를 삭제하시겠습니까?") { _ in
-                
                 TradingDiaryRepository.standard.deleteDiary(item: row)
                 TradingDiaryRepository.standard.sortByRegDate()
-                
+
                 self.isEmptyCheck() // 에러는 안나지만 적용안됨
-                
                 self.eventsArr = TradingDiaryRepository.standard.tasks.map {
                     guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
                     return result
@@ -193,7 +191,9 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         self.mainView.calendar.snp.updateConstraints { make in
             make.height.equalTo(bounds.height)
         }
-        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 0.5) {
+            self.mainView.layoutIfNeeded()
+        }
     }
     
     func setCalendarUI() {
@@ -203,7 +203,7 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         
         self.mainView.calendar.locale = Locale(identifier: "ko_KR")
         
-        self.mainView.calendar.placeholderType = .fillHeadTail
+        self.mainView.calendar.placeholderType = .none
         
         self.mainView.calendar.calendarWeekdayView.weekdayLabels[0].text = "일"
         self.mainView.calendar.calendarWeekdayView.weekdayLabels[1].text = "월"
@@ -222,9 +222,7 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         
         // 일자
         self.mainView.calendar.appearance.titleFont = .systemFont(ofSize: 14, weight: .regular)
-        self.mainView.calendar.appearance.titlePlaceholderColor = .subTextColor
         self.mainView.calendar.appearance.titleDefaultColor = .mainTextColor
-//        self.mainView.calendar.appearance.titleWeekendColor = .systemRed
         
         self.mainView.calendar.appearance.headerDateFormat = "YYYY MM월"
         self.mainView.calendar.appearance.headerTitleFont = .systemFont(ofSize: 16, weight: .regular)
@@ -266,13 +264,16 @@ extension HomeViewController: FSCalendarDelegateAppearance {
     
     // 날짜 선택시 발생하는 일
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
-        print("\(self.mainView.calendar.selectedDate?.toString())")
         
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)
         
-        
         isEmptyCheck()
         self.mainView.tableView.reloadData()
+        
+        // 해당월 외 일자 클릭시 넘어감
+        if monthPosition == .next || monthPosition == .previous {
+            calendar.setCurrentPage(date, animated: true)
+        }
     }
    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {

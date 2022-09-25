@@ -38,10 +38,12 @@
 		0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */; };
 		0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */; };
 		0E37460428E0615F000EEBA7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460328E0615F000EEBA7 /* EmptyView.swift */; };
+		0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */; };
+		0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsModel.swift */; };
 		0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */; };
-		0E40BF6928D98B0D00F99DEF /* AlphaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6828D98B0D00F99DEF /* AlphaModel.swift */; };
+		0E40BF6928D98B0D00F99DEF /* MarketNewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6828D98B0D00F99DEF /* MarketNewsData.swift */; };
 		0E40BF6B28D9D53300F99DEF /* FEARGREEDAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */; };
-		0E40BF6D28D9D74100F99DEF /* FearGreedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6C28D9D74100F99DEF /* FearGreedModel.swift */; };
+		0E40BF6D28D9D74100F99DEF /* FearGreedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6C28D9D74100F99DEF /* FearGreedData.swift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353C28D58F600039D802 /* SettingViewController.swift */; };
 		0E87354028D598840039D802 /* PageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353F28D598840039D802 /* PageMode.swift */; };
@@ -61,7 +63,7 @@
 		0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */; };
 		0ED1834228DE0B4B00B31C2E /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1834128DE0B4B00B31C2E /* SettingView.swift */; };
 		0ED1834428DE0C3400B31C2E /* SettingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1834328DE0C3400B31C2E /* SettingTableViewCell.swift */; };
-		0ED1834628DF73C400B31C2E /* IndexDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1834528DF73C400B31C2E /* IndexDataModel.swift */; };
+		0ED1834628DF73C400B31C2E /* IndexData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1834528DF73C400B31C2E /* IndexData.swift */; };
 		0ED5D64F28DB6167009A1057 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED5D64E28DB6167009A1057 /* Tabman */; };
 		0ED5D65128DB61D1009A1057 /* AssetStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */; };
 		0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */; };
@@ -115,10 +117,12 @@
 		0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingMemoTableViewCell.swift; sourceTree = "<group>"; };
 		0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		0E37460328E0615F000EEBA7 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
+		0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaMarketNewsModel.swift; sourceTree = "<group>"; };
 		0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPHAAPIManager.swift; sourceTree = "<group>"; };
-		0E40BF6828D98B0D00F99DEF /* AlphaModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaModel.swift; sourceTree = "<group>"; };
+		0E40BF6828D98B0D00F99DEF /* MarketNewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketNewsData.swift; sourceTree = "<group>"; };
 		0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEARGREEDAPIManager.swift; sourceTree = "<group>"; };
-		0E40BF6C28D9D74100F99DEF /* FearGreedModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FearGreedModel.swift; sourceTree = "<group>"; };
+		0E40BF6C28D9D74100F99DEF /* FearGreedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FearGreedData.swift; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
 		0E87353C28D58F600039D802 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0E87353F28D598840039D802 /* PageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMode.swift; sourceTree = "<group>"; };
@@ -136,7 +140,7 @@
 		0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordView.swift; sourceTree = "<group>"; };
 		0ED1834128DE0B4B00B31C2E /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		0ED1834328DE0C3400B31C2E /* SettingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTableViewCell.swift; sourceTree = "<group>"; };
-		0ED1834528DF73C400B31C2E /* IndexDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexDataModel.swift; sourceTree = "<group>"; };
+		0ED1834528DF73C400B31C2E /* IndexData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndexData.swift; sourceTree = "<group>"; };
 		0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStatusViewController.swift; sourceTree = "<group>"; };
 		0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordViewController.swift; sourceTree = "<group>"; };
 		0ED5D65928DB6523009A1057 /* AssetStatusView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStatusView.swift; sourceTree = "<group>"; };
@@ -385,6 +389,7 @@
 		0EF4826A28D467B900CC8A49 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */,
 				0EF4827328D46AD300CC8A49 /* Endpoint.swift */,
 				0EF4827128D469A900CC8A49 /* URL+Extension.swift */,
 				0EF4827528D46B8900CC8A49 /* KRXAPIManager.swift */,
@@ -406,9 +411,10 @@
 			isa = PBXGroup;
 			children = (
 				0EF4826F28D468E200CC8A49 /* KRXModel.swift */,
-				0E40BF6828D98B0D00F99DEF /* AlphaModel.swift */,
-				0E40BF6C28D9D74100F99DEF /* FearGreedModel.swift */,
-				0ED1834528DF73C400B31C2E /* IndexDataModel.swift */,
+				0E40BF6828D98B0D00F99DEF /* MarketNewsData.swift */,
+				0E40BF6C28D9D74100F99DEF /* FearGreedData.swift */,
+				0ED1834528DF73C400B31C2E /* IndexData.swift */,
+				0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsModel.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -517,16 +523,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF4827028D468E200CC8A49 /* KRXModel.swift in Sources */,
-				0E40BF6D28D9D74100F99DEF /* FearGreedModel.swift in Sources */,
+				0E40BF6D28D9D74100F99DEF /* FearGreedData.swift in Sources */,
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
-				0E40BF6928D98B0D00F99DEF /* AlphaModel.swift in Sources */,
+				0E40BF6928D98B0D00F99DEF /* MarketNewsData.swift in Sources */,
 				0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */,
 				0E87354928D616060039D802 /* Date+Extension.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
 				0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
 				0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */,
-				0ED1834628DF73C400B31C2E /* IndexDataModel.swift in Sources */,
+				0ED1834628DF73C400B31C2E /* IndexData.swift in Sources */,
 				0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */,
@@ -562,6 +568,7 @@
 				0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */,
 				0E04A39428D1B2200036D389 /* SceneDelegate.swift in Sources */,
 				0E04A3CC28D1D6C40036D389 /* InfoViewController.swift in Sources */,
+				0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsModel.swift in Sources */,
 				0E04A3CA28D1D5C10036D389 /* TabBarController.swift in Sources */,
 				0E04A3B728D1C7220036D389 /* Constants.swift in Sources */,
 				0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */,
@@ -571,6 +578,7 @@
 				0EF4828028D4E19600CC8A49 /* RealmModel.swift in Sources */,
 				0EF4827228D469A900CC8A49 /* URL+Extension.swift in Sources */,
 				0EF4826D28D467DD00CC8A49 /* APIKey.swift in Sources */,
+				0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */,
 				0E2DB01B28D339AB00CDFD14 /* NumPriceTableViewCell.swift in Sources */,
 				0E2DB01328D32D1B00CDFD14 /* TradingDiaryView.swift in Sources */,
 				0E2DB01128D32C8700CDFD14 /* TradingDiaryViewController.swift in Sources */,
