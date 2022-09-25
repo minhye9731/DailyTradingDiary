@@ -116,7 +116,7 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
 
     }
     
-    func setData(data: FearGreedModel) {
+    func setData(data: FearGreedData) {
         print("fearGreedCell의 setData 실행이다~!")
         
         let updateDate = changeFormatDate(data: data.updateTime)

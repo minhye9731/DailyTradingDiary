@@ -14,7 +14,7 @@ class FEARGREEDAPIManager {
     
     private init() { }
     
-    func fetchFearGreedAPI(completionHandler: @escaping(FearGreedModel) -> ()) {
+    func fetchFearGreedAPI(completionHandler: @escaping(FearGreedData) -> ()) {
         
         let url = URL.fearGreedURL
         
@@ -43,7 +43,7 @@ class FEARGREEDAPIManager {
                 let nowResult = FearGreed(indexValue: nowValue, indexStatus: nowStatus)
                 let weekAgoResult = FearGreed(indexValue: weekAgoValue, indexStatus: weekAgoStatus)
                 
-                let fearGreedIndex = FearGreedModel(updateTime: updateTime, now: nowResult, weekAgo: weekAgoResult)
+                let fearGreedIndex = FearGreedData(updateTime: updateTime, now: nowResult, weekAgo: weekAgoResult)
                 
                 completionHandler(fearGreedIndex)
                 

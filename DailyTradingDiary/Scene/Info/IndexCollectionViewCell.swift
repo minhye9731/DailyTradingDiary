@@ -75,7 +75,7 @@ final class IndexCollectionViewCell: BaseCollectionViewCell {
         }
     }
     
-    func setData(arr: [IndexDataModel], indexPath: IndexPath) {
+    func setData(arr: [IndexData], indexPath: IndexPath) {
 
         let row = arr[indexPath.row]
         decideColor(gap: row.gap)

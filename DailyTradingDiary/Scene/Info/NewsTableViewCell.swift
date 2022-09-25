@@ -107,17 +107,30 @@ final class NewsTableViewCell: BaseTableViewCell {
         
     }
     
-    func setData(data: [MarketNewsModel], indexPath: IndexPath) {
+    func setData(data: [MarketNewsData], indexPath: IndexPath) {
         
         print("newsCell의 setData 실행이다~!")
         
-        let row = data[indexPath.row] // 화면이 다 그려지기 전에 스크롤하면 여기에 index 오류가 난다.
+        let row = data[indexPath.row]
         
         self.titleLabel.text = row.title
         self.releaseDateLabel.text = row.publishedDate
         self.sourceLabel.text = row.source
-        self.topicLabel.text = " \(row.topic) "
-        self.tickerLabel.text = " \(row.relatedTicker) "
+        
+        if row.topic.isEmpty {
+            self.topicLabel.text = " - "
+        } else {
+            self.topicLabel.text = " \(row.topic[0].topic) "
+        }
+        
+        if row.relatedTicker.isEmpty {
+            self.tickerLabel.text = " - "
+        } else {
+            self.tickerLabel.text = " \(row.relatedTicker[0].ticker) "
+        }
+        
+//        self.topicLabel.text = " \(row.topic[0].topic) "
+//        self.tickerLabel.text = " \(row.relatedTicker[0].ticker) "
         
         let url = URL(string: row.profileImageUrl)
         

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct IndexDataModel {
+struct IndexData {
     let name : String // 지수명
     let value : String // 현재 지수값
     let gap : String // 변동값

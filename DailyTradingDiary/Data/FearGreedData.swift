@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FearGreedModel {
+struct FearGreedData {
     let updateTime : String // 업데이트된 시간
     let now : FearGreed
     let weekAgo : FearGreed

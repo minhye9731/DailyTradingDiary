@@ -8,6 +8,7 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
+import Network
 
 class ALPHAAPIManager {
     static let shared = ALPHAAPIManager()
@@ -15,38 +16,44 @@ class ALPHAAPIManager {
     private init() { }
     
     // 뉴스
-    func fetchAlphaNewsAPI(type: Endpoint, completionHandler: @escaping([MarketNewsModel]) -> ()) {
+    func fetchAlphaNewsAPI(type: Endpoint, completionHandler: @escaping(NetworkResult<Any>) -> ()) {
         
         let url = type.requestURL + "&apikey=\(APIKey.ALPHA_KEY_1)"
         
-        AF.request(url, method: .get).responseData { response in
+        AF.request(url, method: .get).validate(statusCode: 200..<500).responseData { response in
             switch response.result {
-            case .success(let value):
+            case .success:
                 
-                let json = JSON(value)
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let value = response.value else { return } // 결과데이터를 바로 뷰컨으로 보내지 않고, 상태코드별 판단을 거치고 가공을 한 후에 보낸다.
+                let networkResult = self.judgeStatus(by: statusCode, value)
                 
-                let newsData = json["feed"].arrayValue
-                
-                let newsDataArray: [MarketNewsModel] = newsData.map { news -> MarketNewsModel in
-                    
-                    let title = news["title"].stringValue
-                    let url = news["url"].stringValue
-                    let date = news["time_published"].stringValue
-                    
-                    let imageUrl = news["banner_image"].string ?? ""
-                    let source = news["source"].stringValue
-                    let topic = news["topics"][0]["topic"].stringValue
-                    let relatedCorp = news["ticker_sentiment"][0]["ticker"].stringValue
-                    
-                    return MarketNewsModel(title: title, url: url, publishedDate: date, profileImageUrl: imageUrl, source: source, topic: topic, relatedTicker: relatedCorp)
-                }
-                completionHandler(newsDataArray)
+                completionHandler(networkResult)
 
-            case .failure(let error):
-                print(error)
+            case .failure:
+                completionHandler(.pathErr)
             }
         }
     }
+    
+    // statusCode별 처리를 나눠줌
+    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
+        switch statusCode {
+        case 200: return isValidData(data: data) // 연결 성공시 데이터를 가공해서 전달해줘야 하기 때문에 별도 함수로 넘긴다
+        case 400: return .pathErr // 잘못된 요청
+        case 500: return .serverErr
+        default: return .networkFail // 기타 등등 에러들은 모두 네트워크 에러로 분기처리 예정
+        }
+    }
+    
+    private func isValidData(data: Data) -> NetworkResult<Any> {
+        
+        let decoder = JSONDecoder()
+        guard let decodedData = try? decoder.decode(AlphaMarketNewsModel.self, from: data) else { return .pathErr }
+        return .success(decodedData.feed)
+    }
+    
+    
     
     // 원달러 환율
     func fetchAlphaFXAPI(type: Endpoint, from: String, to: String, completionHandler: @escaping(String, String) -> ()) {
