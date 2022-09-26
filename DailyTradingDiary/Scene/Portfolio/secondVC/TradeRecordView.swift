@@ -128,7 +128,7 @@ final class TradeRecordView: BaseView {
         tableview.backgroundColor = .backgroundColor
         tableview.rowHeight = 70
         tableview.register(TradeTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
-        tableview.register(InfoTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: InfoTableViewHeaderView.reuseIdentifier)
+        tableview.register(CustomTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CustomTableViewHeaderView.reuseIdentifier)
         return tableview
     }()
     

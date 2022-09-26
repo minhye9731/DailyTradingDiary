@@ -205,7 +205,7 @@ extension InfoViewController: SkeletonTableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        guard let customHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: InfoTableViewHeaderView.reuseIdentifier) as? InfoTableViewHeaderView else { return UIView() }
+        guard let customHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomTableViewHeaderView.reuseIdentifier) as? CustomTableViewHeaderView else { return UIView() }
         switch section {
         case 0: customHeaderView.sectionTitleLabel.text = "시장 온도계"
         case 1: customHeaderView.sectionTitleLabel.text = "뉴스"

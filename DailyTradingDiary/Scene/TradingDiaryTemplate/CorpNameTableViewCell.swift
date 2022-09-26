@@ -9,7 +9,6 @@ import UIKit
 
 class CorpNameTableViewCell: BaseTableViewCell {
     
-//    let searchBar = UISearchBar()
     var textFieldTapped : (() -> Void) = {}
     
     let nameLabel: UILabel = {
@@ -21,25 +20,25 @@ class CorpNameTableViewCell: BaseTableViewCell {
         return label
     }()
     
-//    let corpNameLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "매매한 주식의 기업명"
-//        label.textColor = .subTextColor
-//        label.font = .boldSystemFont(ofSize: 18)
-//        label.textAlignment = .center
-//        return label
-//    }()
-    
-    let corpNameTextField: UITextField = {
-        let textfield = UITextField()
-        textfield.placeholder = "(기업명)"
-        textfield.tintColor = .pointColor
-        textfield.textAlignment = .right
-        textfield.keyboardType = .default
-        textfield.autocorrectionType = .no
-        textfield.autocapitalizationType = .none
-        return textfield
+    let corpNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "매매한 종목명 검색하기"
+        label.textColor = .subTextColor
+        label.font = .systemFont(ofSize: 17)
+        label.textAlignment = .right
+        return label
     }()
+    
+//    let corpNameTextField: UITextField = {
+//        let textfield = UITextField()
+//        textfield.placeholder = "(기업명)"
+//        textfield.tintColor = .pointColor
+//        textfield.textAlignment = .right
+//        textfield.keyboardType = .default
+//        textfield.autocorrectionType = .no
+//        textfield.autocapitalizationType = .none
+//        return textfield
+//    }()
     
     
     
@@ -48,7 +47,11 @@ class CorpNameTableViewCell: BaseTableViewCell {
 //            contentView.addSubview($0)
 //        }
         
-        [nameLabel, corpNameTextField].forEach {
+//        [nameLabel, corpNameTextField].forEach {
+//            contentView.addSubview($0)
+//        }
+        
+        [nameLabel, corpNameLabel].forEach {
             contentView.addSubview($0)
         }
         
@@ -62,21 +65,21 @@ class CorpNameTableViewCell: BaseTableViewCell {
             make.centerY.equalTo(self)
         }
         
-        corpNameTextField.snp.makeConstraints { make in
+//        corpNameTextField.snp.makeConstraints { make in
+//            make.leading.equalTo(nameLabel.snp.trailing).offset(10)
+//            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
+//            make.centerY.equalTo(self)
+//        }
+        
+        corpNameLabel.snp.makeConstraints { make in
             make.leading.equalTo(nameLabel.snp.trailing).offset(10)
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
             make.centerY.equalTo(self)
         }
-        
-        //        searchBar.snp.makeConstraints { make in
-        //            make.leading.equalTo(nameLabel.snp.trailing).offset(10)
-        //            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
-        //            make.centerY.equalTo(self)
-        //        }
     }
     
-    @objc func textFieldDidChange() {
-        textFieldTapped()
-    }
+//    @objc func textFieldDidChange() {
+//        textFieldTapped()
+//    }
     
 }

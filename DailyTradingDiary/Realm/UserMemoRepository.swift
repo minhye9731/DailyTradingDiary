@@ -185,8 +185,6 @@ class TradingDiaryRepository: DiaryRepositoryType {
         return result
     }
     
-    // ).sorted(byKeyPath: "regDate", ascending: true)
-    
     // 매수한 종목별 퍼센트 및 색상 뱉기
     func getPercentagePerStock() -> [newVersionSlice] {
         let buyTotalAmount: Double = Double(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +))

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class InfoTableViewHeaderView: UITableViewHeaderFooterView {
+final class CustomTableViewHeaderView: UITableViewHeaderFooterView {
     
     var sectionTitleLabel: UILabel = {
         let label = UILabel()
@@ -54,6 +54,15 @@ final class InfoTableViewHeaderView: UITableViewHeaderFooterView {
             make.height.equalTo(1)
             make.bottom.equalTo(self)
         }
+    }
+    
+    func giveColorString(label: UILabel, colorStr: String) {
+        
+        let attributeLabelStr = NSMutableAttributedString(string: label.text!)
+        
+        attributeLabelStr.addAttribute(.foregroundColor, value: UIColor.pointColor, range: (label.text! as NSString).range(of: colorStr))
+        
+        label.attributedText = attributeLabelStr
     }
     
     

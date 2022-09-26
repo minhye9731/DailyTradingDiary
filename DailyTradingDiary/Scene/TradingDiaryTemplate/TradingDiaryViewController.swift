@@ -29,9 +29,9 @@ final class TradingDiaryViewController: BaseViewController {
     let mainView = TradingDiaryView()
     var addOrEditAction: PageMode = .write
 
-    var krxData: KRXModel = KRXModel(itemName: "-", corpName: "-", marketName: "-", srtnCode: "-", isinCode: "-")
-    var diaryData: TradingDiary = TradingDiary(corpName: "", corpCode: "", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
-    var updateData: UpdateTradingDiary = UpdateTradingDiary(corpName: "", corpCode: "", tradingPrice: 0, tradingAmount: 0, buyAndSell: false, regDate: Date(), tradingDate: Date(), tradingMemo: "")
+//    var diaryData: TradingDiary = TradingDiary(corpName: "", corpCode: "", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
+    var diaryData: TradingDiary = TradingDiary(corpName: "매매한 종목 검색하기", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
+    var updateData: UpdateTradingDiary = UpdateTradingDiary(corpName: "", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, buyAndSell: false, regDate: Date(), tradingDate: Date(), tradingMemo: "")
     
     // MARK: - lifecycle
     override func loadView() {
@@ -41,7 +41,6 @@ final class TradingDiaryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.view.backgroundColor = .backgroundColor
         
         // edit 상태에서 아래항목들을 수정하지 않고 저장했을때, 누락되는 경우를 방지하기 위함
@@ -74,6 +73,7 @@ final class TradingDiaryViewController: BaseViewController {
         self.navigationItem.scrollEdgeAppearance = navibarAppearance
         self.navigationItem.standardAppearance = navibarAppearance
     }
+    
     func setNavItem() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         let doneButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(doneButtonTapped))
@@ -111,13 +111,23 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CorpNameTableViewCell.reuseIdentifier) as? CorpNameTableViewCell else { return UITableViewCell() }
             cell.selectionStyle = .none
             
-            cell.corpNameTextField.tag = 0
-            cell.corpNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-            cell.corpNameTextField.delegate = self
-            
-            if addOrEditAction == .edit {
-                cell.corpNameTextField.text = diaryData.corpName
+            switch addOrEditAction {
+            case .write:
+                cell.corpNameLabel.text = diaryData.corpName
+                cell.corpNameLabel.textColor = .mainTextColor
+            case .edit:
+                cell.corpNameLabel.text = updateData.corpName
+                cell.corpNameLabel.textColor = .mainTextColor
             }
+            
+//            cell.corpNameTextField.tag = 0
+//            cell.corpNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+//            cell.corpNameTextField.delegate = self
+//
+//            if addOrEditAction == .edit {
+//                cell.corpNameTextField.text = diaryData.corpName
+//            }
+            
             return cell
             
         case 1:
@@ -126,7 +136,7 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             giveColotString(label: cell.nameLabel, colorStr: "*")
             
             cell.selectionStyle = .none
-            cell.amountTextField.tag = 1
+            cell.amountTextField.tag = 0
             cell.amountTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             cell.amountTextField.delegate = self
             
@@ -141,7 +151,7 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             giveColotString(label: cell.nameLabel, colorStr: "*")
             
             cell.selectionStyle = .none
-            cell.amountTextField.tag = 2
+            cell.amountTextField.tag = 1
             cell.amountTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             cell.amountTextField.delegate = self
             
@@ -220,6 +230,15 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if indexPath.section == 0 {
+            let vc = TradingSearchViewController()
+            vc.delegate = self
+            transition(vc, transitionStyle: .prsentNavigation)
+        }
+    }
+    
 }
 
 // MARK: - textfield delegate
@@ -237,24 +256,24 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         switch self.addOrEditAction {
         case .write:
             switch sender.tag {
+//            case 0:
+//                self.diaryData.corpName = result
+//                self.diaryData.corpCode = "00000" // 임시데이터
             case 0:
-                self.diaryData.corpName = result
-                self.diaryData.corpCode = "00000" // 임시데이터
-            case 1:
                 self.diaryData.tradingPrice = Int(result) ?? 0
-            case 2:
+            case 1:
                 self.diaryData.tradingAmount = Int(result) ?? 0
             default:
                 break
             }
         case .edit:
             switch sender.tag {
+//            case 0:
+//                self.updateData.corpName = result
+//                self.updateData.corpCode = "00000" // 임시데이터
             case 0:
-                self.updateData.corpName = result
-                self.updateData.corpCode = "00000" // 임시데이터
-            case 1:
                 self.updateData.tradingPrice = Int(result) ?? 0
-            case 2:
+            case 1:
                 self.updateData.tradingAmount = Int(result) ?? 0
             default:
                 break
@@ -318,7 +337,7 @@ extension TradingDiaryViewController {
         
         switch addOrEditAction {
         case .write:
-            if diaryData.corpName.isEmpty || diaryData.tradingPrice == 0 || diaryData.tradingAmount == 0 {
+            if diaryData.corpName == "매매한 종목 검색하기" || diaryData.tradingPrice == 0 || diaryData.tradingAmount == 0 {
                 self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
                 return
             } else {
@@ -327,7 +346,7 @@ extension TradingDiaryViewController {
                 navigationController?.popViewController(animated: true)
             }
         case .edit:
-            if updateData.corpName.isEmpty || updateData.tradingPrice == 0 || updateData.tradingAmount == 0 {
+            if updateData.corpName == "매매한 종목 검색하기" || updateData.tradingPrice == 0 || updateData.tradingAmount == 0 {
                 self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
                 return
             } else {
@@ -372,6 +391,23 @@ extension TradingDiaryViewController {
     }
     
     
+}
+
+extension TradingDiaryViewController: SendDataDelegate {
+    
+    func sendData(_ vc: UIViewController, Input value: String) {
+        print("\(value) 기업을 선택하셨습니다!ㅠ")
+        
+        switch addOrEditAction {
+        case .write:
+            self.diaryData.corpName = value
+        case .edit:
+            self.updateData.corpName = value
+        }
+        
+        self.mainView.tableView.reloadData()
+        
+    }
 }
 
 
