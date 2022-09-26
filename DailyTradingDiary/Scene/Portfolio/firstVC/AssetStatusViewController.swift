@@ -22,24 +22,32 @@ class AssetStatusViewController: BaseViewController {
         print("AssetStatusViewController - \(#function)")
         super.viewDidLoad()
         
-        isEmptyCheck()
-        TradingDiaryRepository.standard.fetchRealm()
+        TradingDiaryRepository.standard.fetchRealm() // 데이터 fetching하고
+        isEmptyCheck() // 데이터여부 확인해서 view 선택적용
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("AssetStatusViewController - \(#function)")
+        
+        // viewWillAppear 에서도 데이터fetching, empty여부 체크하는 이유는 매매내역에서 매매일지 내용을 수정할 수도 있기 때문!
+        // 그럼 보유자산 %가 달라지니까
+        
+        TradingDiaryRepository.standard.fetchRealm() // 데이터 fetching하고
+        isEmptyCheck() // 데이터여부 확인해서 view 선택적용
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            print("빈 뷰가 적용되는 것 상관없이 일단 그리나? 만약 안보이면 그리더라고 어차피 얘를 담을 chartview가 없으니까 안보이지롱~")
+            self.getPieChart()
+            self.mainView.ratioChart.animateChart()
+        }
     }
-    
     
     override func viewDidAppear(_ animated: Bool) {
         print("AssetStatusViewController - \(#function)")
-        isEmptyCheck()
-        self.mainView.ratioChart.animateChart()
     }
     
     override func configure() {
         getTotalInput()
-        getPieChart()
     }
     
     func getPieChart() {

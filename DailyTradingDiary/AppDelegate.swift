@@ -18,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared.enable = true
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         
+//        UIView.appearance().backgroundColor = .backgroundColor
+        
         return true
     }
 

@@ -11,7 +11,6 @@ import RealmSwift
 
 
 struct UpdateTradingDiary {
-    
     var corpName: String // 기업명(필수)
     var corpCode: String // 종목코드(필수)
 
@@ -24,7 +23,6 @@ struct UpdateTradingDiary {
     var tradingDate : Date // 매매 일자(필수)
     var tradingMemo : String? // 매매일지 메모(옵션)
 }
-
 
 final class TradingDiaryViewController: BaseViewController {
 
@@ -43,6 +41,8 @@ final class TradingDiaryViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.view.backgroundColor = .backgroundColor
         
         // edit 상태에서 아래항목들을 수정하지 않고 저장했을때, 누락되는 경우를 방지하기 위함
         self.updateData.corpName = diaryData.corpName

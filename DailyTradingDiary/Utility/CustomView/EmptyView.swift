@@ -42,6 +42,7 @@ class EmptyView: BaseView {
         [emptyimage, emptyNoticeMainLabel, emptyNoticeSubLabel].forEach {
             self.addSubview($0)
         }
+        self.backgroundColor = .backgroundColor
     }
     
     override func setConstraints() {

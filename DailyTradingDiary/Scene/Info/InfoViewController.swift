@@ -20,7 +20,7 @@ final class InfoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view = mainView
-
+        
         let skeletonAnimation = SkeletonAnimationBuilder().makeSlidingAnimation(withDirection: .leftRight)
         self.view.showAnimatedGradientSkeleton(usingGradient: .init(colors: [.lightGray, .pointColor]), animation: skeletonAnimation, transition: .none)
           self.fetchDataSource()

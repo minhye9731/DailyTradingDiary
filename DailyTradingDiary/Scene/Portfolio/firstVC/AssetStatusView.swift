@@ -183,6 +183,12 @@ final class AssetStatusView: BaseView {
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
         
+        // empty화면
+        emptyView.snp.makeConstraints { make in
+            make.top.equalTo(ratioLabel.snp.bottom)
+            make.leading.bottom.trailing.equalTo(self.chartView)
+        }
+        
         grayline.snp.makeConstraints { make in
             make.top.equalTo(chartView.snp.top).offset(10)
             make.leading.trailing.equalTo(self.chartView).inset(14)
@@ -201,11 +207,7 @@ final class AssetStatusView: BaseView {
             make.height.equalTo(chartView.snp.height)
         }
         
-        // empty화면
-        emptyView.snp.makeConstraints { make in
-            make.top.equalTo(ratioLabel.snp.bottom)
-            make.leading.bottom.trailing.equalTo(self.chartView)
-        }
+
     }
     
 }

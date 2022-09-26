@@ -55,7 +55,7 @@ class PortfolioChartView: UIView {
             
             let sliceLayer = CAShapeLayer()
             sliceLayer.path = path.cgPath
-            sliceLayer.fillColor = nil
+        sliceLayer.fillColor = nil
             sliceLayer.strokeColor = slice.color.cgColor
             sliceLayer.lineWidth = canvasWidth * 2 / 8 // 여기
             sliceLayer.strokeEnd = 1
