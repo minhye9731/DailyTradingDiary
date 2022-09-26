@@ -45,14 +45,6 @@ class PortfolioChartView: UIView {
             animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear) // 이건뭘까
             animation.delegate = self
             
-//        let canvasWidth = self.frame.width * 0.8
-        
-//        let path = UIBezierPath(arcCenter: self.center, // portfolio > 자산현황 > 자산구성 의 중앙으로 수정
-//                                    radius: canvasWidth * 3 / 8,
-//                                    startAngle: percentToRadian(currentPercent),
-//                                    endAngle: percentToRadian(currentPercent + slice.percent),
-//                                    clockwise: true)
-            
             let sliceLayer = CAShapeLayer()
             sliceLayer.path = path.cgPath
         sliceLayer.fillColor = nil
@@ -66,7 +58,7 @@ class PortfolioChartView: UIView {
     
     // MARK: - label 더해주는 함수
     private func addLabel(_ slice: newVersionSlice) {
-            let center = self.center // 라벨 또한 'portfolio > 자산현황 > 자산구성'의 중앙으로 수정
+            let center = self.center
         let labelCenter = getLabelCenter(currentPercent, currentPercent + slice.percent) // 라벨 위치잡기
             
             // 종목명 라벨

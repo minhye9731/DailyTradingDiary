@@ -9,7 +9,7 @@ import Foundation
 import RealmSwift
 
 class TradingDiary: Object {
-    @Persisted var corpName: String // 기업명(필수)
+    @Persisted var corpName: String // 기업명(필수) // 여기를 검색으로 바꾸자
     @Persisted var corpCode: String // 종목코드(필수)
 
     @Persisted var tradingPrice : Int // 매매 가격(필수)

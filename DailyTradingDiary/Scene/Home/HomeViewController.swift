@@ -14,7 +14,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     let mainView = HomeView()
     var selectedDate: Date = Date()
-    var eventsArr = [Date]()
+//    var eventsArr = [Date]()
     
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -33,6 +33,8 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     // MARK: - Lifecycle
     override func loadView() {
         self.view = mainView
+        print("HomeViewController - \(#function)")
+        
         TradingDiaryRepository.standard.sortByRegDate()
         self.mainView.tableView.reloadData()
     }
@@ -44,42 +46,27 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         setNav()
         setNavItem()
         setCalendarUI()
+        setGesture()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("HomeViewController - \(#function)")
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        
-        TradingDiaryRepository.standard.sortByRegDate()
+//        TradingDiaryRepository.standard.sortByRegDate()
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         
         // 이벤트 점 추가하기
-        eventsArr = TradingDiaryRepository.standard.tasks.map {
-            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
-            return result
-        }
-        
+//        eventsArr = TradingDiaryRepository.standard.tasks.map {
+//            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+//            return result
+//        }
+    }
+    
+    func setGesture() {
         self.mainView.addGestureRecognizer(self.scopeGesture)
         self.mainView.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
         self.mainView.calendar.scope = .month
-        
-//        isEmptyCheck()
-    }
-    
-    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
-        let shouldBegin = self.mainView.tableView.contentOffset.y >= self.mainView.tableView.contentInset.top
-        
-        if shouldBegin {
-            let velocity = self.scopeGesture.velocity(in: self.mainView)
-            switch self.mainView.calendar.scope {
-            case .month:
-                return velocity.y < 0
-            case .week:
-                return velocity.y > 0
-            default : break
-            }
-        }
-        return shouldBegin
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -87,9 +74,9 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        isEmptyCheck()
-//        guard let date = self.mainView.calendar.selectedDate else { return }
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
+        
+        isEmptyCheck()
         
         // 이벤트 점 추가하기 - 아래처럼 추가해도 바로 표기가 안됨
 //        self.eventsArr = TradingDiaryRepository.standard.tasks.map {
@@ -167,15 +154,20 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 TradingDiaryRepository.standard.deleteDiary(item: row)
                 TradingDiaryRepository.standard.sortByRegDate()
 
-                self.isEmptyCheck() // 에러는 안나지만 적용안됨
-                self.eventsArr = TradingDiaryRepository.standard.tasks.map {
-                    guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
-                    return result
-                } // 에러는 안나지만 적용안됨
+                self.isEmptyCheck()
+                
+                // 에러는 안나지만 적용안됨, 데이터랑 뷰 둘 중에 뭐가 문제인가??
+//                self.eventsArr = TradingDiaryRepository.standard.tasks.map {
+//                    guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+//                    return result
+//                }
                 
                 self.mainView.tableView.reloadData()
+                self.mainView.layoutIfNeeded() // 추가해봄
             }
         }
+        
+        
         
         delete.image = UIImage(systemName: Constants.ImageName.trash.rawValue)
         delete.backgroundColor = .deleteColor
@@ -266,25 +258,24 @@ extension HomeViewController: FSCalendarDelegateAppearance {
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
         
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: date)
-        
         isEmptyCheck()
         self.mainView.tableView.reloadData()
-        
-        // 해당월 외 일자 클릭시 넘어감
-        if monthPosition == .next || monthPosition == .previous {
-            calendar.setCurrentPage(date, animated: true)
-        }
     }
    
-    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-        
-        if self.eventsArr.contains(date) {
-            return 1
-        } else {
-            return 0
-        }
-    }
-    
+//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+//
+//        self.eventsArr = TradingDiaryRepository.standard.tasks.map {
+//            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+//            return result
+//        }
+//
+//        if self.eventsArr.contains(date) {
+//            return 1
+//        } else {
+//            return 0
+//        }
+//    }
+//
     
     
 }
@@ -316,7 +307,22 @@ extension HomeViewController {
             self.mainView.emptyView.isHidden = true
         }
     }
-
+    
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        let shouldBegin = self.mainView.tableView.contentOffset.y >= self.mainView.tableView.contentInset.top
+        
+        if shouldBegin {
+            let velocity = self.scopeGesture.velocity(in: self.mainView)
+            switch self.mainView.calendar.scope {
+            case .month:
+                return velocity.y < 0
+            case .week:
+                return velocity.y > 0
+            default : break
+            }
+        }
+        return shouldBegin
+    }
     
 }
 
