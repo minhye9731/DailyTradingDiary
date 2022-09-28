@@ -42,6 +42,7 @@
 		0E3323A528E42FA400A1855F /* CorpSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A428E42FA300A1855F /* CorpSummaryTableViewCell.swift */; };
 		0E3323A728E445D100A1855F /* TitleNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A628E445D100A1855F /* TitleNameTableViewCell.swift */; };
 		0E3323A928E44C3D00A1855F /* FinanceInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A828E44C3D00A1855F /* FinanceInfoTableViewCell.swift */; };
+		0E3323AB28E46B4900A1855F /* OpinionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323AA28E46B4900A1855F /* OpinionTableViewCell.swift */; };
 		0E37460428E0615F000EEBA7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460328E0615F000EEBA7 /* EmptyView.swift */; };
 		0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */; };
 		0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */; };
@@ -126,6 +127,7 @@
 		0E3323A428E42FA300A1855F /* CorpSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		0E3323A628E445D100A1855F /* TitleNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleNameTableViewCell.swift; sourceTree = "<group>"; };
 		0E3323A828E44C3D00A1855F /* FinanceInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceInfoTableViewCell.swift; sourceTree = "<group>"; };
+		0E3323AA28E46B4900A1855F /* OpinionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpinionTableViewCell.swift; sourceTree = "<group>"; };
 		0E37460328E0615F000EEBA7 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaMarketNewsResponse.swift; sourceTree = "<group>"; };
@@ -350,6 +352,7 @@
 				0E3323A428E42FA300A1855F /* CorpSummaryTableViewCell.swift */,
 				0E3323A628E445D100A1855F /* TitleNameTableViewCell.swift */,
 				0E3323A828E44C3D00A1855F /* FinanceInfoTableViewCell.swift */,
+				0E3323AA28E46B4900A1855F /* OpinionTableViewCell.swift */,
 			);
 			path = CorpAnalysisTemplate;
 			sourceTree = "<group>";
@@ -562,6 +565,7 @@
 				0E9E9EBE28E1ED92009B5074 /* KRXListResponse.swift in Sources */,
 				0EF4827428D46AD300CC8A49 /* Endpoint.swift in Sources */,
 				0E2D652628DAE6F9002EF4BC /* PieSlice.swift in Sources */,
+				0E3323AB28E46B4900A1855F /* OpinionTableViewCell.swift in Sources */,
 				0E87354728D609D10039D802 /* Word.swift in Sources */,
 				0E2DB01928D3399600CDFD14 /* BuySellTableViewCell.swift in Sources */,
 				0E04A3B328D1C6D00036D389 /* BaseTableViewCell.swift in Sources */,

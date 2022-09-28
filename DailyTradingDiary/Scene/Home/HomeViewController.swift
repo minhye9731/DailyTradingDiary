@@ -63,6 +63,8 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
             guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
             return result
         }
+        
+        // dart 기업정보 통신해서 realm에 저장!
     }
     
     func setGesture() {

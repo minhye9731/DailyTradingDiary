@@ -13,6 +13,8 @@ class CorpAnalysisViewController: BaseViewController {
     let mainView = CorpAnalysis()
     var addOrEditAction: PageMode = .write
     
+    var finInfoNameList = ["-", "매출액", "영업이익", "당기순이익", "영업이익률", "순이익률", "ROE", "부채비율", "유보율", "매출채권 회전율", "재고자산 회전율", "주당배당금", "배당성향"]
+    
     override func loadView() {
         self.view = mainView
         self.tabBarController?.tabBar.isHidden = true
@@ -21,7 +23,6 @@ class CorpAnalysisViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
     }
     
     override func configure() {
@@ -72,7 +73,7 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
         switch indexPath.section {
         case 0: return 160
         case 1: return 50
-        case 2: return 300
+        case 2: return 400
         default: return 0
         }
     }
@@ -88,15 +89,38 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
         guard let finInfoCell = tableView.dequeueReusableCell(withIdentifier: FinanceInfoTableViewCell.reuseIdentifier) as? FinanceInfoTableViewCell else { return UITableViewCell() }
         finInfoCell.selectionStyle = .none
         
+        guard let opinionCell = tableView.dequeueReusableCell(withIdentifier: OpinionTableViewCell.reuseIdentifier) as? OpinionTableViewCell else { return UITableViewCell() }
+        opinionCell.selectionStyle = .none
+        
         
         switch indexPath.section {
         case 0: return summaryCell
         case 1:
-            switch indexPath.row {
-            case 0: return titleNameCell
-            default: return finInfoCell
+            if indexPath.row == 0 {
+                return titleNameCell
             }
-        case 2: return summaryCell
+//            finInfoCell.nameLabel.text = finInfoNameList[indexPath.row + 1]
+            
+            return finInfoCell
+            
+        case 2:
+            opinionCell.opinionTextView.delegate = self
+            
+            opinionCell.eBuyTextField.delegate = self
+            opinionCell.eBuyTextField.tag = 0
+            opinionCell.eBuyDatePicker.tag = 0
+            
+            opinionCell.eSellTextField.delegate = self
+            opinionCell.eSellTextField.tag = 1
+            opinionCell.eSellDatePicker.tag = 1
+            
+            opinionCell.eBuyTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+            opinionCell.eBuyDatePicker.addTarget(self, action: #selector(onDidChangeDate(sender:)), for: .valueChanged)
+            
+            opinionCell.eSellTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+            opinionCell.eSellDatePicker.addTarget(self, action: #selector(onDidChangeDate(sender:)), for: .valueChanged)
+            
+            return opinionCell
         default: return summaryCell
         }
     }
@@ -106,7 +130,7 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
         switch section {
         case 0: customHeaderView.sectionTitleLabel.text = "종합"
         case 1: customHeaderView.sectionTitleLabel.text = "주요재무"
-        case 1: customHeaderView.sectionTitleLabel.text = "My Opinion"
+        case 2: customHeaderView.sectionTitleLabel.text = "My Opinion"
         default: customHeaderView.sectionTitleLabel.text = ""
         }
         return customHeaderView
@@ -114,6 +138,57 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 35
+    }
+}
+
+// MARK: - opinionTextView 설정
+extension CorpAnalysisViewController: UITextViewDelegate {
+    func textViewDidBeginEditing(_ textView: UITextView) {
+//        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+//            textView.textColor = .subTextColor
+//            textView.text = Constants.Word.trdDryMemoPlchdr.rawValue
+//        } else if textView.text == Constants.Word.trdDryMemoPlchdr.rawValue {
+//            textView.textColor = .mainTextColor
+//            textView.text = nil
+//        }
+//        textView.textColor = .mainTextColor
+    }
+
+    func textViewDidChange(_ textView: UITextView) {
+//        switch addOrEditAction {
+//        case .write:
+//                self.diaryData.tradingMemo = textView.text
+//        case .edit:
+//            self.updateData.tradingMemo = textView.text
+//        }
+
+        if textView.text.count > 300 {
+            textView.deleteBackward()
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+
+//        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || textView.text == Constants.Word.trdDryMemoPlchdr.rawValue {
+//            textView.textColor = .subTextColor
+//            textView.text = Constants.Word.trdDryMemoPlchdr.rawValue
+//        }
+//
+//        switch addOrEditAction {
+//        case .write:
+//                self.diaryData.tradingMemo = textView.text
+//        case .edit:
+//            self.updateData.tradingMemo = textView.text
+//        }
+    }
+    
+}
+
+// MARK: - textfield 설정
+extension CorpAnalysisViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
@@ -128,4 +203,15 @@ extension CorpAnalysisViewController {
         print("검색 버튼이 눌렸다!")
     }
     
+    @objc func textFieldDidChange(_ sender: UITextField) {
+        print("입력한 희망 가격이 바뀌었다!")
+        // tag로 구분해서 저장하자
+    }
+    
+    @objc func onDidChangeDate(sender: UIDatePicker) {
+        print("선택한 날짜가 바뀌었다!")
+        // tag로 구분해서 저장하자
+    }
+    
+
 }

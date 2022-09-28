@@ -23,6 +23,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
         label.text = "2,304,009" // test
         label.font = .systemFont(ofSize: 16)
         label.textColor = .mainTextColor
+        label.textAlignment = .right
         return label
     }()
     
@@ -31,6 +32,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
         label.text = "2,368,070" // test
         label.font = .systemFont(ofSize: 16)
         label.textColor = .mainTextColor
+        label.textAlignment = .right
         return label
     }()
     
@@ -39,6 +41,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
         label.text = "2,796,048" // test
         label.font = .systemFont(ofSize: 16)
         label.textColor = .mainTextColor
+        label.textAlignment = .right
         return label
     }()
     
@@ -57,18 +60,21 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
         }
         
         threeYrsBfValueLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(twoYrsBfValueLabel.snp.leading).offset(-50)
+            make.trailing.equalTo(twoYrsBfValueLabel.snp.leading)
             make.centerY.equalTo(self)
+            make.width.equalTo(90)
         }
         
         twoYrsBfValueLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(oneYrsBfValueLabel.snp.leading).offset(-50)
+            make.trailing.equalTo(oneYrsBfValueLabel.snp.leading)
             make.centerY.equalTo(self)
+            make.width.equalTo(90)
         }
         
         oneYrsBfValueLabel.snp.makeConstraints { make in
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
             make.centerY.equalTo(self)
+            make.width.equalTo(90)
         }
         
     }

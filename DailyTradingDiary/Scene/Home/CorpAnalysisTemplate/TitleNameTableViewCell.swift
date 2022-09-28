@@ -24,8 +24,6 @@ final class TitleNameTableViewCell: BaseTableViewCell {
         label.font = .systemFont(ofSize: 16)
         label.textColor = .subTextColor
         label.textAlignment = .right
-        
-        label.backgroundColor = .orange
         return label
     }()
     
@@ -35,8 +33,6 @@ final class TitleNameTableViewCell: BaseTableViewCell {
         label.font = .systemFont(ofSize: 16)
         label.textColor = .subTextColor
         label.textAlignment = .right
-        
-        label.backgroundColor = .yellow
         return label
     }()
     
@@ -46,8 +42,6 @@ final class TitleNameTableViewCell: BaseTableViewCell {
         label.font = .systemFont(ofSize: 16)
         label.textColor = .subTextColor
         label.textAlignment = .right
-        
-        label.backgroundColor = .systemMint
         return label
     }()
     

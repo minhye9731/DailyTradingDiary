@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CorpSummaryTableViewCell: BaseTableViewCell {
+final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let updateDateLabel: UILabel = {
         let label = UILabel()
