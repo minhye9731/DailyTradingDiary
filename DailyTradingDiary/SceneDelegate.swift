@@ -19,11 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = scene
         
         let viewController = TabBarController()
-//        let viewController = TradingDiaryViewController()
         window?.rootViewController = UINavigationController(rootViewController: viewController)
         window?.makeKeyAndVisible()
-        
-//        viewController.checkFirstRun()
         
     }
 

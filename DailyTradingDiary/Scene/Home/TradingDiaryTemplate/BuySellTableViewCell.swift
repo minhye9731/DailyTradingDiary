@@ -34,7 +34,7 @@ class BuySellTableViewCell: BaseTableViewCell {
         [nameLabel, segmentControl].forEach {
             contentView.addSubview($0)
         }
-        giveColorString(label: nameLabel, colorStr: "*")
+        giveColorString(label: nameLabel, colorStr: "*", color: .systemRed)
     }
     
     override func setConstraints() {

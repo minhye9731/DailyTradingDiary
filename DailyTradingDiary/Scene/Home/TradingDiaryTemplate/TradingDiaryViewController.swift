@@ -29,7 +29,6 @@ final class TradingDiaryViewController: BaseViewController {
     let mainView = TradingDiaryView()
     var addOrEditAction: PageMode = .write
 
-//    var diaryData: TradingDiary = TradingDiary(corpName: "", corpCode: "", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
     var diaryData: TradingDiary = TradingDiary(corpName: "매매한 종목 검색하기", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
     var updateData: UpdateTradingDiary = UpdateTradingDiary(corpName: "", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, buyAndSell: false, regDate: Date(), tradingDate: Date(), tradingMemo: "")
     
@@ -120,20 +119,12 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
                 cell.corpNameLabel.textColor = .mainTextColor
             }
             
-//            cell.corpNameTextField.tag = 0
-//            cell.corpNameTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-//            cell.corpNameTextField.delegate = self
-//
-//            if addOrEditAction == .edit {
-//                cell.corpNameTextField.text = diaryData.corpName
-//            }
-            
             return cell
             
         case 1:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NumPriceTableViewCell.reuseIdentifier) as? NumPriceTableViewCell else { return UITableViewCell() }
             cell.nameLabel.text = "* 매매단가"
-            giveColotString(label: cell.nameLabel, colorStr: "*")
+            giveColotString(label: cell.nameLabel, colorStr: "*", color: .systemRed)
             
             cell.selectionStyle = .none
             cell.amountTextField.tag = 0
@@ -148,7 +139,7 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
         case 2:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: NumPriceTableViewCell.reuseIdentifier) as? NumPriceTableViewCell else { return UITableViewCell() }
             cell.nameLabel.text = "* 수량"
-            giveColotString(label: cell.nameLabel, colorStr: "*")
+            giveColotString(label: cell.nameLabel, colorStr: "*", color: .systemRed)
             
             cell.selectionStyle = .none
             cell.amountTextField.tag = 1
@@ -256,9 +247,6 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         switch self.addOrEditAction {
         case .write:
             switch sender.tag {
-//            case 0:
-//                self.diaryData.corpName = result
-//                self.diaryData.corpCode = "00000" // 임시데이터
             case 0:
                 self.diaryData.tradingPrice = Int(result) ?? 0
             case 1:
@@ -268,9 +256,6 @@ extension TradingDiaryViewController: UITextFieldDelegate {
             }
         case .edit:
             switch sender.tag {
-//            case 0:
-//                self.updateData.corpName = result
-//                self.updateData.corpCode = "00000" // 임시데이터
             case 0:
                 self.updateData.tradingPrice = Int(result) ?? 0
             case 1:
@@ -355,26 +340,7 @@ extension TradingDiaryViewController {
                 navigationController?.popViewController(animated: true)
             }
         }
-
-//        if diaryData.corpName.isEmpty || updateData.corpName.isEmpty || diaryData.tradingPrice == 0 || updateData.tradingPrice == 0 || diaryData.tradingAmount == 0 || updateData.tradingAmount == 0 {
-//            self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
-//            return
-//        } else {
-//            plusOrUpate(task: diaryData)
-//            navigationController?.popViewController(animated: true)
-//        }
     }
-    
-//    func plusOrUpate(task: TradingDiary) {
-//        switch addOrEditAction {
-//        case .write:
-//            task.regDate = Date()
-//            TradingDiaryRepository.standard.plusDiary(item: task)
-//        case .edit:
-//            self.updateData.regDate = Date()
-//            TradingDiaryRepository.standard.update(oldItem: task, newItem: updateData)
-//        }
-//    }
     
     func setBackButtonName(name: String) {
         let backBarButtonItem = UIBarButtonItem(title: name, style: .plain, target: self, action: nil)
@@ -389,9 +355,8 @@ extension TradingDiaryViewController {
             self.updateData.tradingDate = sender.date
         }
     }
-    
-    
 }
+
 
 extension TradingDiaryViewController: SendDataDelegate {
     

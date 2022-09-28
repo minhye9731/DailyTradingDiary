@@ -82,6 +82,17 @@ final class AssetStatusView: BaseView {
         return label
     }()
     
+    // MARK: - 여기서부터 수정
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     // MARK: - chartView
     let chartView: UIView = {
        let view = UIView()

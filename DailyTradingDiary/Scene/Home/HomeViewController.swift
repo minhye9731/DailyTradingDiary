@@ -14,7 +14,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     let mainView = HomeView()
     var selectedDate: Date = Date()
-//    var eventsArr = [Date]()
+    var eventsArr = [Date]()
     
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -55,12 +55,14 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         print(Realm.Configuration.defaultConfiguration.fileURL!)
 //        TradingDiaryRepository.standard.sortByRegDate()
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
+        mainView.tempfloatingButton.addTarget(self, action: #selector(tempfloatingBtnTapped), for: .touchUpInside) // 삭제예정
+        
         
         // 이벤트 점 추가하기
-//        eventsArr = TradingDiaryRepository.standard.tasks.map {
-//            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
-//            return result
-//        }
+        eventsArr = TradingDiaryRepository.standard.tasks.map {
+            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+            return result
+        }
     }
     
     func setGesture() {
@@ -262,21 +264,19 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         self.mainView.tableView.reloadData()
     }
    
-//    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-//
-//        self.eventsArr = TradingDiaryRepository.standard.tasks.map {
-//            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
-//            return result
-//        }
-//
-//        if self.eventsArr.contains(date) {
-//            return 1
-//        } else {
-//            return 0
-//        }
-//    }
-//
-    
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
+
+        self.eventsArr = TradingDiaryRepository.standard.tasks.map {
+            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+            return result
+        }
+
+        if self.eventsArr.contains(date) {
+            return 1
+        } else {
+            return 0
+        }
+    }
     
 }
 
@@ -285,6 +285,13 @@ extension HomeViewController {
     
     @objc func floatingBtnTapped() {
         let vc = TradingDiaryViewController()
+        vc.addOrEditAction = .write
+        transition(vc, transitionStyle: .push)
+    }
+    
+    // 삭제예정
+    @objc func tempfloatingBtnTapped() {
+        let vc = CorpAnalysisViewController()
         vc.addOrEditAction = .write
         transition(vc, transitionStyle: .push)
     }

@@ -30,11 +30,11 @@ class BaseTableViewCell: UITableViewCell {
     
     func setConstraints() {}
     
-    func giveColorString(label: UILabel, colorStr: String) {
+    func giveColorString(label: UILabel, colorStr: String, color: UIColor) {
         
         let attributeLabelStr = NSMutableAttributedString(string: label.text!)
         
-        attributeLabelStr.addAttribute(.foregroundColor, value: UIColor.systemRed, range: (label.text! as NSString).range(of: colorStr))
+        attributeLabelStr.addAttribute(.foregroundColor, value: color, range: (label.text! as NSString).range(of: colorStr))
         
         label.attributedText = attributeLabelStr
     }

@@ -35,6 +35,17 @@ final class HomeView: BaseView {
         return button
     }()
     
+    // 임시데이터
+    let tempfloatingButton: UIButton = {
+       let button = UIButton()
+        button.tintColor = .white
+        button.layer.cornerRadius = 30
+        button.backgroundColor = .pointColor
+        button.layer.shadowRadius = 10
+        button.layer.shadowOpacity = 0.3
+        return button
+    }()
+    
     // empty view
     let emptyView: EmptyView = {
        let view = EmptyView()
@@ -43,7 +54,7 @@ final class HomeView: BaseView {
     }()
 
     override func configureUI() {
-        [calendar, tableView, emptyView, floatingButton].forEach {
+        [calendar, tableView, emptyView, floatingButton, tempfloatingButton].forEach {
             self.addSubview($0)
         }
         
@@ -69,6 +80,12 @@ final class HomeView: BaseView {
         floatingButton.snp.makeConstraints { make in
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-28)
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-36)
+            make.width.height.equalTo(60)
+        }
+        
+        tempfloatingButton.snp.makeConstraints { make in
+            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-28)
+            make.bottom.equalTo(floatingButton.snp.top).offset(-12)
             make.width.height.equalTo(60)
         }
         

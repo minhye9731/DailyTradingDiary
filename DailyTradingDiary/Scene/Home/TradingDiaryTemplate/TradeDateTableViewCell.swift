@@ -38,7 +38,7 @@ class TradeDateTableViewCell: BaseTableViewCell {
         [nameLabel, datePicker].forEach {
             contentView.addSubview($0)
         }
-        giveColorString(label: nameLabel, colorStr: "*")
+        giveColorString(label: nameLabel, colorStr: "*", color: .systemRed)
         
     }
     

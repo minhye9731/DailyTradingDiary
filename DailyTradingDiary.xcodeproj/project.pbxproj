@@ -37,6 +37,11 @@
 		0E2DB01B28D339AB00CDFD14 /* NumPriceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01A28D339AB00CDFD14 /* NumPriceTableViewCell.swift */; };
 		0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */; };
 		0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */; };
+		0E3323A128E4017200A1855F /* CorpAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A028E4017100A1855F /* CorpAnalysisViewController.swift */; };
+		0E3323A328E40FCC00A1855F /* CorpAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A228E40FCB00A1855F /* CorpAnalysis.swift */; };
+		0E3323A528E42FA400A1855F /* CorpSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A428E42FA300A1855F /* CorpSummaryTableViewCell.swift */; };
+		0E3323A728E445D100A1855F /* TitleNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A628E445D100A1855F /* TitleNameTableViewCell.swift */; };
+		0E3323A928E44C3D00A1855F /* FinanceInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A828E44C3D00A1855F /* FinanceInfoTableViewCell.swift */; };
 		0E37460428E0615F000EEBA7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460328E0615F000EEBA7 /* EmptyView.swift */; };
 		0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */; };
 		0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */; };
@@ -116,6 +121,11 @@
 		0E2DB01A28D339AB00CDFD14 /* NumPriceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumPriceTableViewCell.swift; sourceTree = "<group>"; };
 		0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingMemoTableViewCell.swift; sourceTree = "<group>"; };
 		0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		0E3323A028E4017100A1855F /* CorpAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpAnalysisViewController.swift; sourceTree = "<group>"; };
+		0E3323A228E40FCB00A1855F /* CorpAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpAnalysis.swift; sourceTree = "<group>"; };
+		0E3323A428E42FA300A1855F /* CorpSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpSummaryTableViewCell.swift; sourceTree = "<group>"; };
+		0E3323A628E445D100A1855F /* TitleNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleNameTableViewCell.swift; sourceTree = "<group>"; };
+		0E3323A828E44C3D00A1855F /* FinanceInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceInfoTableViewCell.swift; sourceTree = "<group>"; };
 		0E37460328E0615F000EEBA7 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaMarketNewsResponse.swift; sourceTree = "<group>"; };
@@ -276,21 +286,12 @@
 			isa = PBXGroup;
 			children = (
 				0E87353B28D58F4F0039D802 /* Setting */,
-				0E04A3C128D1D4240036D389 /* WalkThrough */,
 				0E04A3C228D1D43E0036D389 /* Home */,
-				0E04A3C528D1D4AB0036D389 /* TradingDiaryTemplate */,
 				0EF4826328D430EE00CC8A49 /* Search */,
 				0E04A3C328D1D44F0036D389 /* Info */,
 				0E04A3C428D1D4630036D389 /* Portfolio */,
 			);
 			path = Scene;
-			sourceTree = "<group>";
-		};
-		0E04A3C128D1D4240036D389 /* WalkThrough */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = WalkThrough;
 			sourceTree = "<group>";
 		};
 		0E04A3C228D1D43E0036D389 /* Home */ = {
@@ -299,6 +300,8 @@
 				0E04A3C728D1D5030036D389 /* HomeViewController.swift */,
 				0E04A3CF28D205C60036D389 /* HomeView.swift */,
 				0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */,
+				0E04A3C528D1D4AB0036D389 /* TradingDiaryTemplate */,
+				0E33239F28E3FF1E00A1855F /* CorpAnalysisTemplate */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -337,6 +340,18 @@
 				0E2DB01C28D339BC00CDFD14 /* TradingMemoTableViewCell.swift */,
 			);
 			path = TradingDiaryTemplate;
+			sourceTree = "<group>";
+		};
+		0E33239F28E3FF1E00A1855F /* CorpAnalysisTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				0E3323A028E4017100A1855F /* CorpAnalysisViewController.swift */,
+				0E3323A228E40FCB00A1855F /* CorpAnalysis.swift */,
+				0E3323A428E42FA300A1855F /* CorpSummaryTableViewCell.swift */,
+				0E3323A628E445D100A1855F /* TitleNameTableViewCell.swift */,
+				0E3323A828E44C3D00A1855F /* FinanceInfoTableViewCell.swift */,
+			);
+			path = CorpAnalysisTemplate;
 			sourceTree = "<group>";
 		};
 		0E87353B28D58F4F0039D802 /* Setting */ = {
@@ -528,11 +543,14 @@
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
 				0E40BF6928D98B0D00F99DEF /* MarketNewsData.swift in Sources */,
 				0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */,
+				0E3323A928E44C3D00A1855F /* FinanceInfoTableViewCell.swift in Sources */,
+				0E3323A328E40FCC00A1855F /* CorpAnalysis.swift in Sources */,
 				0E87354928D616060039D802 /* Date+Extension.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
 				0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
 				0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */,
+				0E3323A528E42FA400A1855F /* CorpSummaryTableViewCell.swift in Sources */,
 				0ED1834628DF73C400B31C2E /* IndexData.swift in Sources */,
 				0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
@@ -562,6 +580,7 @@
 				0EB85EEF28D874FA002145A2 /* FearGreedGraphTableViewCell.swift in Sources */,
 				0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */,
 				0ED5D65128DB61D1009A1057 /* AssetStatusViewController.swift in Sources */,
+				0E3323A728E445D100A1855F /* TitleNameTableViewCell.swift in Sources */,
 				0ED1834428DE0C3400B31C2E /* SettingTableViewCell.swift in Sources */,
 				0E2DB01728D3398500CDFD14 /* TradeDateTableViewCell.swift in Sources */,
 				0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */,
@@ -581,6 +600,7 @@
 				0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */,
 				0E2DB01B28D339AB00CDFD14 /* NumPriceTableViewCell.swift in Sources */,
 				0E2DB01328D32D1B00CDFD14 /* TradingDiaryView.swift in Sources */,
+				0E3323A128E4017200A1855F /* CorpAnalysisViewController.swift in Sources */,
 				0E2DB01128D32C8700CDFD14 /* TradingDiaryViewController.swift in Sources */,
 				0EF4826728D4593900CC8A49 /* SearchedStockTableViewCell.swift in Sources */,
 				0E04A3B928D1C7890036D389 /* Image.swift in Sources */,
@@ -660,7 +680,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -714,7 +734,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -735,12 +755,14 @@
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyTradingDiary/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Trading Diary";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -768,12 +790,14 @@
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyTradingDiary/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Trading Diary";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -881,8 +905,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 10.0.0;
+				kind = exactVersion;
+				version = 10.30.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
