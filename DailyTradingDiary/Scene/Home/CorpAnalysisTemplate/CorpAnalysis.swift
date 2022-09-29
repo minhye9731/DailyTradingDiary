@@ -21,7 +21,6 @@ final class CorpAnalysis: BaseView {
         let view = UIView()
          view.backgroundColor = .subBackgroundColor
         view.layer.cornerRadius = 10
-        
          return view
     }()
     

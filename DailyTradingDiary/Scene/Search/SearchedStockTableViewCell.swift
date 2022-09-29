@@ -70,13 +70,15 @@ class SearchedStockTableViewCell: BaseTableViewCell {
         }
     }
     
-    func setDataAtCell(arr: [KRXModel], indexPath: IndexPath) {
+    func setData(arr: [CorpCodeRealmModel], indexPath: IndexPath) {
         let row = arr[indexPath.row]
-        self.nameLabel.text = row.itemName
-        self.marketLabel.text = row.marketName
-        self.srtnCdLabel.text = row.srtnCode
-        self.isinCdLabel.text = row.isinCode
+        
+        self.nameLabel.text = row.corpName
+        self.marketLabel.text = " "
+        self.srtnCdLabel.text = row.stockCode
+        self.isinCdLabel.text = " "
     }
+    
     
 }
 

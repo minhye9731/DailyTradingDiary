@@ -226,6 +226,9 @@ extension CorpAnalysisViewController {
     
     @objc func searchButtonClicked() {
         print("검색 버튼이 눌렸다!")
+        let vc = TradingSearchViewController()
+        vc.RegisterOrTrading = .registerCorp
+        transition(vc, transitionStyle: .prsentNavigation)
     }
     
     @objc func textFieldDidChange(_ sender: UITextField) {

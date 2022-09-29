@@ -80,7 +80,7 @@ class DARTAPIManager {
                     print("압축 해제에 실패했습니다.(2)")
                 }
             case .failure(let error):
-                print("파일 다운로드 실패")
+                print("파일 다운로드 실패, \(error)")
             }
         }
     }
@@ -102,7 +102,7 @@ class DARTAPIManager {
             // 파싱한 값을 렘에 저장하자
             
             let listsArr: [List] = try xml["result"]["list"].value()
-            print("listsArr 첫 번째 요소: \(listsArr[0])")
+            print("listsArr 첫 번째 요소의 종목코드 빈 값: \(listsArr[0].stock_code)")
             
             let corpCodeArr: [CorpCodeRealmModel] = listsArr.map {
                 let dartCd = $0.corp_code

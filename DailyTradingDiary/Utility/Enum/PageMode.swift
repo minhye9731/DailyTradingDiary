@@ -8,8 +8,11 @@
 import UIKit
 
 enum PageMode {
-    
     case write
     case edit
-    
+}
+
+enum SearchMode {
+    case registerCorp
+    case tradingDiary
 }

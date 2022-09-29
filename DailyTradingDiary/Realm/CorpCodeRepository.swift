@@ -10,8 +10,12 @@ import RealmSwift
 import UIKit
 
 protocol CorpCodeRepositoryType {
-    func fetchRealm()
-    func filteredByStockCodeExistence()
+    func fetchRealmRegisterMode()
+    func fetchRealmTradingMode()
+    
+    func filteredRegisterMode(searchText: String)
+    func filteredTradingMode(searchText: String)
+    
     func plusCorpCode(item: [CorpCodeRealmModel])
     func deleteAllItem()
 }
@@ -24,15 +28,33 @@ class CorpCodeRepository: CorpCodeRepositoryType {
     let localRealm = try! Realm()
     var tasks: Results<CorpCodeRealmModel>!
     
-    // 데이터 패치하기
-    func fetchRealm() {
-        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self)
+    // MARK: - 데이터 패치
+    func fetchRealmRegisterMode() {
+        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.stockCode != " " }
+        print("fetchRealmRegisterMode - \(tasks.count)")
     }
     
-    func filteredByStockCodeExistence() {
-        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.stockCode != "" }
+    func fetchRealmTradingMode() {
+        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.isRegistered == true && $0.stockCode != " " }
+        print("fetchRealmTradingMode - \(tasks.count)")
     }
     
+    // MARK: - 실시간 검색시
+    func filteredRegisterMode(searchText: String) {
+        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where {
+            ($0.stockCode != " "  && $0.corpName == searchText) || ($0.stockCode != " "  && $0.stockCode == searchText)
+        }
+        print("filteredRegisterMode - \(tasks.count)")
+    }
+    
+    func filteredTradingMode(searchText: String) {
+        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where {
+            $0.isRegistered == true && ($0.stockCode != " "  && $0.corpName == searchText) || ($0.stockCode != " "  && $0.stockCode == searchText)
+        }
+        print("filteredTradingMode - \(tasks.count)")
+    }
+    
+    // MARK: - 추가 / 삭제 / 업데이트
     func plusCorpCode(item: [CorpCodeRealmModel]) {
         do {
             try localRealm.write{

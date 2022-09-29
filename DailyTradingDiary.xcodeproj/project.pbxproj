@@ -68,6 +68,7 @@
 		0E8E753D28E5F3A100D52A2C /* CorpCodeRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753C28E5F3A000D52A2C /* CorpCodeRealmModel.swift */; };
 		0E8E753F28E5F5D400D52A2C /* CorpCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */; };
 		0E8E754128E60FF100D52A2C /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E754028E60FF100D52A2C /* List.swift */; };
+		0E8E754328E61B1E00D52A2C /* TradingSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E754228E61B1E00D52A2C /* TradingSearchView.swift */; };
 		0E9E9EBE28E1ED92009B5074 /* KRXListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */; };
 		0EB85EE928D87419002145A2 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EE828D87419002145A2 /* InfoView.swift */; };
 		0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */; };
@@ -159,6 +160,7 @@
 		0E8E753C28E5F3A000D52A2C /* CorpCodeRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpCodeRealmModel.swift; sourceTree = "<group>"; };
 		0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpCodeRepository.swift; sourceTree = "<group>"; };
 		0E8E754028E60FF100D52A2C /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		0E8E754228E61B1E00D52A2C /* TradingSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingSearchView.swift; sourceTree = "<group>"; };
 		0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXListResponse.swift; sourceTree = "<group>"; };
 		0EB85EE828D87419002145A2 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 			isa = PBXGroup;
 			children = (
 				0EF4826428D4312C00CC8A49 /* TradingSearchViewController.swift */,
+				0E8E754228E61B1E00D52A2C /* TradingSearchView.swift */,
 				0EF4826628D4593900CC8A49 /* SearchedStockTableViewCell.swift */,
 			);
 			path = Search;
@@ -586,6 +589,7 @@
 				0E87354928D616060039D802 /* Date+Extension.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
 				0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */,
+				0E8E754328E61B1E00D52A2C /* TradingSearchView.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
 				0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */,
 				0E3323A528E42FA400A1855F /* CorpSummaryTableViewCell.swift in Sources */,
