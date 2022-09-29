@@ -41,4 +41,5 @@ https://truckon-faq.notion.site/20220925-5f7fc908c468432fb14cb23145c66116
 https://truckon-faq.notion.site/20220928-4a72a83988164f12876735fff19f7165
 
 <2022.09.29>
+https://truckon-faq.notion.site/20220929-c2f7da77d03c4cc68f6abad5042d25f5
 
