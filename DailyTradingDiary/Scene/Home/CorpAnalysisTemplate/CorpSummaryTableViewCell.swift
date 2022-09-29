@@ -135,21 +135,24 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
         
     }
 
-    func setData(data: StockSummaryModel) {
-        print("데이터 담기 실행~")
-        self.updateDateLabel.text = "(UPDATE \(data.updateDate))"
-        self.corpIdtLabel.text = "\(data.corpName) (\(data.marketName) \(data.srtnCode))"
-        self.nowPriceLabel.text = "시가 : \(data.nowPrice)"
-        self.highPriceLabel.text = "고가 : \(data.highPrice)"
-        self.lowPriceLabel.text = "저가 : \(data.lowPrice)"
-        self.trdQutValueLabel.text = "\(data.tradingQnt)"
-        self.mrkTotAmtValueLabel.text = "\(data.totAmt)"
-
-        giveColorString(label: nowPriceLabel, colorStr: data.nowPrice, color: .systemBlue)
-        giveColorString(label: highPriceLabel, colorStr: data.highPrice, color: .systemRed)
-        giveColorString(label: lowPriceLabel, colorStr: data.lowPrice, color: .systemBlue)
+    func setData(data: [StockSummaryModel], indexPath: IndexPath) {
         
-        print("mrkTotAmtValueLabel: \(data.totAmt)")
+        let row = data[indexPath.row]
+        
+        print("데이터 담기 실행~")
+        self.updateDateLabel.text = "(UPDATE \(row.updateDate))"
+        self.corpIdtLabel.text = "\(row.corpName) (\(row.marketName) \(row.srtnCode))"
+        self.nowPriceLabel.text = "시가 : \(row.nowPrice)"
+        self.highPriceLabel.text = "고가 : \(row.highPrice)"
+        self.lowPriceLabel.text = "저가 : \(row.lowPrice)"
+        self.trdQutValueLabel.text = "\(row.tradingQnt)"
+        self.mrkTotAmtValueLabel.text = "\(row.totAmt)"
+
+        giveColorString(label: nowPriceLabel, colorStr: row.nowPrice, color: .systemBlue)
+        giveColorString(label: highPriceLabel, colorStr: row.highPrice, color: .systemRed)
+        giveColorString(label: lowPriceLabel, colorStr: row.lowPrice, color: .systemBlue)
+        
+        print("mrkTotAmtValueLabel: \(row.totAmt)")
     }
     
 }

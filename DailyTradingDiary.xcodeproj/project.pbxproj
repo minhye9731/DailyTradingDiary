@@ -60,6 +60,9 @@
 		0E87354928D616060039D802 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354828D616060039D802 /* Date+Extension.swift */; };
 		0E8E752928E5866D00D52A2C /* ApisStockInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */; };
 		0E8E752B28E5896800D52A2C /* StockSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */; };
+		0E8E752E28E5B0D300D52A2C /* DARTAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752D28E5B0D300D52A2C /* DARTAPIManager.swift */; };
+		0E8E753028E5B33B00D52A2C /* DartDividendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752F28E5B33B00D52A2C /* DartDividendModel.swift */; };
+		0E8E753228E5BFDA00D52A2C /* DartFinStatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753128E5BFDA00D52A2C /* DartFinStatModel.swift */; };
 		0E9E9EBE28E1ED92009B5074 /* KRXListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */; };
 		0EB85EE928D87419002145A2 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EE828D87419002145A2 /* InfoView.swift */; };
 		0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */; };
@@ -145,6 +148,9 @@
 		0E87354828D616060039D802 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApisStockInfoResponse.swift; sourceTree = "<group>"; };
 		0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSummaryModel.swift; sourceTree = "<group>"; };
+		0E8E752D28E5B0D300D52A2C /* DARTAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DARTAPIManager.swift; sourceTree = "<group>"; };
+		0E8E752F28E5B33B00D52A2C /* DartDividendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartDividendModel.swift; sourceTree = "<group>"; };
+		0E8E753128E5BFDA00D52A2C /* DartFinStatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartFinStatModel.swift; sourceTree = "<group>"; };
 		0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXListResponse.swift; sourceTree = "<group>"; };
 		0EB85EE828D87419002145A2 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -415,6 +421,7 @@
 				0EF4827528D46B8900CC8A49 /* APISAPIManager.swift */,
 				0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */,
 				0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */,
+				0E8E752D28E5B0D300D52A2C /* DARTAPIManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -432,6 +439,8 @@
 			children = (
 				0EF4826F28D468E200CC8A49 /* KRXModel.swift */,
 				0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */,
+				0E8E752F28E5B33B00D52A2C /* DartDividendModel.swift */,
+				0E8E753128E5BFDA00D52A2C /* DartFinStatModel.swift */,
 				0E40BF6828D98B0D00F99DEF /* MarketNewsData.swift */,
 				0E40BF6C28D9D74100F99DEF /* FearGreedData.swift */,
 				0ED1834528DF73C400B31C2E /* IndexData.swift */,
@@ -552,6 +561,7 @@
 				0E40BF6D28D9D74100F99DEF /* FearGreedData.swift in Sources */,
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
 				0E40BF6928D98B0D00F99DEF /* MarketNewsData.swift in Sources */,
+				0E8E753028E5B33B00D52A2C /* DartDividendModel.swift in Sources */,
 				0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */,
 				0E3323A928E44C3D00A1855F /* FinanceInfoTableViewCell.swift in Sources */,
 				0E8E752B28E5896800D52A2C /* StockSummaryModel.swift in Sources */,
@@ -588,6 +598,7 @@
 				0EF4826528D4312C00CC8A49 /* TradingSearchViewController.swift in Sources */,
 				0EB85EFC28D8D2C2002145A2 /* WebViewController.swift in Sources */,
 				0E2D652828DAE7FF002EF4BC /* PieChartView.swift in Sources */,
+				0E8E753228E5BFDA00D52A2C /* DartFinStatModel.swift in Sources */,
 				0ED5D65C28DB7965009A1057 /* PortfolioChartView.swift in Sources */,
 				0EB85EEF28D874FA002145A2 /* FearGreedGraphTableViewCell.swift in Sources */,
 				0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */,
@@ -606,6 +617,7 @@
 				0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */,
 				0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */,
 				0EF4827628D46B8900CC8A49 /* APISAPIManager.swift in Sources */,
+				0E8E752E28E5B0D300D52A2C /* DARTAPIManager.swift in Sources */,
 				0EF4828028D4E19600CC8A49 /* RealmModel.swift in Sources */,
 				0EF4827228D469A900CC8A49 /* URL+Extension.swift in Sources */,
 				0EF4826D28D467DD00CC8A49 /* APIKey.swift in Sources */,

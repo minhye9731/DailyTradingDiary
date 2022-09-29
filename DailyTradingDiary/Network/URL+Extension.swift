@@ -15,6 +15,8 @@ extension URL {
     
     static let fearGreedURL = "https://fear-and-greed-index.p.rapidapi.com/v1/fgi"
     
+    static let dartBaseURL = "https://opendart.fss.or.kr/api"
+    
     
     static func apisMakeEndPointString(_ endpoint: String) -> String {
         return apisBaseURL + endpoint
@@ -22,6 +24,10 @@ extension URL {
     
     static func alphaEndPointString(_ endpoint: String) -> String {
         return alphaURL + endpoint
+    }
+    
+    static func dartEndPointString(_ endpoint: String) -> String {
+        return dartBaseURL + endpoint
     }
     
     

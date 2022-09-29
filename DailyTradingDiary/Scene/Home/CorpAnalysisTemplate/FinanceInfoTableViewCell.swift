@@ -79,4 +79,32 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
         
     }
     
+    // 주요 재무정보 데이터
+    
+    
+    
+    
+    // 배당금 데이터
+    func setDividendData(data: DartDividendModel, indexPath: IndexPath) {
+        
+        switch indexPath.row {
+        case 0:
+            threeYrsBfValueLabel.text = data.dps_3yr_bf
+            twoYrsBfValueLabel.text = data.dps_2yr_bf
+            oneYrsBfValueLabel.text = data.dps_1yr_bf
+        case 1:
+            threeYrsBfValueLabel.text = data.dividend_payout_ratio_3yr_bf
+            twoYrsBfValueLabel.text = data.dividend_payout_ratio_2yr_bf
+            oneYrsBfValueLabel.text = data.dividend_payout_ratio_1yr_bf
+        default: break
+        }
+        
+        
+        
+    }
+    
+    
+    
+    
+    
 }
