@@ -58,6 +58,8 @@
 		0E87354528D5EFA80039D802 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */; };
 		0E87354728D609D10039D802 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354628D609D00039D802 /* Word.swift */; };
 		0E87354928D616060039D802 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354828D616060039D802 /* Date+Extension.swift */; };
+		0E8E752928E5866D00D52A2C /* ApisStockInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */; };
+		0E8E752B28E5896800D52A2C /* StockSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */; };
 		0E9E9EBE28E1ED92009B5074 /* KRXListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */; };
 		0EB85EE928D87419002145A2 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EE828D87419002145A2 /* InfoView.swift */; };
 		0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */; };
@@ -82,7 +84,7 @@
 		0EF4827028D468E200CC8A49 /* KRXModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826F28D468E200CC8A49 /* KRXModel.swift */; };
 		0EF4827228D469A900CC8A49 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827128D469A900CC8A49 /* URL+Extension.swift */; };
 		0EF4827428D46AD300CC8A49 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827328D46AD300CC8A49 /* Endpoint.swift */; };
-		0EF4827628D46B8900CC8A49 /* KRXAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827528D46B8900CC8A49 /* KRXAPIManager.swift */; };
+		0EF4827628D46B8900CC8A49 /* APISAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827528D46B8900CC8A49 /* APISAPIManager.swift */; };
 		0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4827828D46BAB00CC8A49 /* Alamofire */; };
 		0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4827B28D46BC100CC8A49 /* SwiftyJSON */; };
 		0EF4828028D4E19600CC8A49 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827F28D4E19600CC8A49 /* RealmModel.swift */; };
@@ -141,6 +143,8 @@
 		0E87354128D5DEC50039D802 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		0E87354628D609D00039D802 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		0E87354828D616060039D802 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApisStockInfoResponse.swift; sourceTree = "<group>"; };
+		0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSummaryModel.swift; sourceTree = "<group>"; };
 		0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXListResponse.swift; sourceTree = "<group>"; };
 		0EB85EE828D87419002145A2 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -163,7 +167,7 @@
 		0EF4826F28D468E200CC8A49 /* KRXModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXModel.swift; sourceTree = "<group>"; };
 		0EF4827128D469A900CC8A49 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		0EF4827328D46AD300CC8A49 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
-		0EF4827528D46B8900CC8A49 /* KRXAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXAPIManager.swift; sourceTree = "<group>"; };
+		0EF4827528D46B8900CC8A49 /* APISAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISAPIManager.swift; sourceTree = "<group>"; };
 		0EF4827F28D4E19600CC8A49 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMemoRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -408,7 +412,7 @@
 				0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */,
 				0EF4827328D46AD300CC8A49 /* Endpoint.swift */,
 				0EF4827128D469A900CC8A49 /* URL+Extension.swift */,
-				0EF4827528D46B8900CC8A49 /* KRXAPIManager.swift */,
+				0EF4827528D46B8900CC8A49 /* APISAPIManager.swift */,
 				0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */,
 				0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */,
 			);
@@ -427,11 +431,13 @@
 			isa = PBXGroup;
 			children = (
 				0EF4826F28D468E200CC8A49 /* KRXModel.swift */,
+				0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */,
 				0E40BF6828D98B0D00F99DEF /* MarketNewsData.swift */,
 				0E40BF6C28D9D74100F99DEF /* FearGreedData.swift */,
 				0ED1834528DF73C400B31C2E /* IndexData.swift */,
 				0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */,
 				0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */,
+				0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -542,11 +548,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EF4827028D468E200CC8A49 /* KRXModel.swift in Sources */,
+				0E8E752928E5866D00D52A2C /* ApisStockInfoResponse.swift in Sources */,
 				0E40BF6D28D9D74100F99DEF /* FearGreedData.swift in Sources */,
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
 				0E40BF6928D98B0D00F99DEF /* MarketNewsData.swift in Sources */,
 				0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */,
 				0E3323A928E44C3D00A1855F /* FinanceInfoTableViewCell.swift in Sources */,
+				0E8E752B28E5896800D52A2C /* StockSummaryModel.swift in Sources */,
 				0E3323A328E40FCC00A1855F /* CorpAnalysis.swift in Sources */,
 				0E87354928D616060039D802 /* Date+Extension.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
@@ -597,7 +605,7 @@
 				0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */,
 				0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */,
 				0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */,
-				0EF4827628D46B8900CC8A49 /* KRXAPIManager.swift in Sources */,
+				0EF4827628D46B8900CC8A49 /* APISAPIManager.swift in Sources */,
 				0EF4828028D4E19600CC8A49 /* RealmModel.swift in Sources */,
 				0EF4827228D469A900CC8A49 /* URL+Extension.swift in Sources */,
 				0EF4826D28D467DD00CC8A49 /* APIKey.swift in Sources */,

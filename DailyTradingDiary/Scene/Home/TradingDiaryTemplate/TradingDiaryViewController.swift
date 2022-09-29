@@ -223,11 +223,11 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 {
-            let vc = TradingSearchViewController()
-            vc.delegate = self
-            transition(vc, transitionStyle: .prsentNavigation)
-        }
+//        if indexPath.section == 0 {
+//            let vc = TradingSearchViewController()
+//            vc.delegate = self
+//            transition(vc, transitionStyle: .prsentNavigation)
+//        }
     }
     
 }
@@ -358,22 +358,22 @@ extension TradingDiaryViewController {
 }
 
 
-extension TradingDiaryViewController: SendDataDelegate {
-    
-    func sendData(_ vc: UIViewController, Input value: String) {
-        print("\(value) 기업을 선택하셨습니다!ㅠ")
-        
-        switch addOrEditAction {
-        case .write:
-            self.diaryData.corpName = value
-        case .edit:
-            self.updateData.corpName = value
-        }
-        
-        self.mainView.tableView.reloadData()
-        
-    }
-}
+//extension TradingDiaryViewController: SendDataDelegate {
+//
+//    func sendData(_ vc: UIViewController, Input value: String) {
+//        print("\(value) 기업을 선택하셨습니다!ㅠ")
+//
+//        switch addOrEditAction {
+//        case .write:
+//            self.diaryData.corpName = value
+//        case .edit:
+//            self.updateData.corpName = value
+//        }
+//
+//        self.mainView.tableView.reloadData()
+//
+//    }
+//}
 
 
 

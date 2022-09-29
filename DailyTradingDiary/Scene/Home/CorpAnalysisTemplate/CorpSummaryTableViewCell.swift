@@ -11,7 +11,6 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let updateDateLabel: UILabel = {
         let label = UILabel()
-        label.text = "(UPDATE 2022.09.27)" // test
         label.font = .systemFont(ofSize: 12)
         label.textColor = .subTextColor
         return label
@@ -19,7 +18,6 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let corpIdtLabel: UILabel = {
         let label = UILabel()
-        label.text = "삼성전자(주) (KOSPI 005930)"  // test
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .mainTextColor
         return label
@@ -27,7 +25,6 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let nowPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "시가 : 53,900"  // test (파란색)
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .subTextColor
         return label
@@ -35,7 +32,6 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let highPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "고가 : 54,400"  // test (빨간색)
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .subTextColor
         return label
@@ -43,7 +39,6 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let lowPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "저가 : 52,500"  // test (파란색)
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .subTextColor
         return label
@@ -59,7 +54,6 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let trdQutValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "19,656,807" // test
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .mainTextColor
         return label
@@ -76,7 +70,6 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let mrkTotAmtValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "323,562,214,210,000" // test
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .mainTextColor
         return label
@@ -86,10 +79,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
         [updateDateLabel, corpIdtLabel, nowPriceLabel, highPriceLabel, lowPriceLabel, trdQutLabel, trdQutValueLabel, mrkTotAmtLabel, mrkTotAmtValueLabel].forEach {
             contentView.addSubview($0)
         }
-        
-        giveColorString(label: nowPriceLabel, colorStr: "53,900", color: .systemBlue) // 이 함수 위치옮기기
-        giveColorString(label: highPriceLabel, colorStr: "54,400", color: .systemRed) // 이 함수 위치옮기기
-        giveColorString(label: lowPriceLabel, colorStr: "52,500", color: .systemBlue) // 이 함수 위치옮기기
+    
     }
     
     override func setConstraints() {
@@ -145,5 +135,21 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
         
     }
 
+    func setData(data: StockSummaryModel) {
+        print("데이터 담기 실행~")
+        self.updateDateLabel.text = "(UPDATE \(data.updateDate))"
+        self.corpIdtLabel.text = "\(data.corpName) (\(data.marketName) \(data.srtnCode))"
+        self.nowPriceLabel.text = "시가 : \(data.nowPrice)"
+        self.highPriceLabel.text = "고가 : \(data.highPrice)"
+        self.lowPriceLabel.text = "저가 : \(data.lowPrice)"
+        self.trdQutValueLabel.text = "\(data.tradingQnt)"
+        self.mrkTotAmtValueLabel.text = "\(data.totAmt)"
+
+        giveColorString(label: nowPriceLabel, colorStr: data.nowPrice, color: .systemBlue)
+        giveColorString(label: highPriceLabel, colorStr: data.highPrice, color: .systemRed)
+        giveColorString(label: lowPriceLabel, colorStr: data.lowPrice, color: .systemBlue)
+        
+        print("mrkTotAmtValueLabel: \(data.totAmt)")
+    }
     
 }

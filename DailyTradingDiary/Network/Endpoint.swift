@@ -10,6 +10,8 @@ import Foundation
 enum Endpoint {
     
     case krxItemInfo
+    case apisStockInfo
+    
     case alphaNews
     case alpnaFX
     case alphaTreasury
@@ -17,7 +19,12 @@ enum Endpoint {
     var requestURL: String {
         switch self {
         case .krxItemInfo:
-            return URL.krxMakeEndPOintString("getItemInfo?")
+            return URL.apisMakeEndPointString("/GetKrxListedInfoService/getItemInfo?")
+        case .apisStockInfo:
+            return URL.apisMakeEndPointString("/GetStockSecuritiesInfoService/getStockPriceInfo?")
+            
+            
+            
         case .alphaNews:
             return URL.alphaEndPointString("function=NEWS_SENTIMENT")
         case .alpnaFX:

@@ -9,15 +9,15 @@ import Foundation
 
 extension URL {
     
-    static let krxBaseURL = "https://apis.data.go.kr/1160100/service/GetKrxListedInfoService/"
+    static let apisBaseURL = "https://apis.data.go.kr/1160100/service"
     
     static let alphaURL = "https://www.alphavantage.co/query?"
     
     static let fearGreedURL = "https://fear-and-greed-index.p.rapidapi.com/v1/fgi"
     
     
-    static func krxMakeEndPOintString(_ endpoint: String) -> String {
-        return krxBaseURL + endpoint
+    static func apisMakeEndPointString(_ endpoint: String) -> String {
+        return apisBaseURL + endpoint
     }
     
     static func alphaEndPointString(_ endpoint: String) -> String {
