@@ -8,8 +8,9 @@
 import Foundation
 import Alamofire
 import SwiftyJSON
-
-
+import Zip
+import SWXMLHash
+import RealmSwift
 
 class DARTAPIManager {
     static let shared = DARTAPIManager()
@@ -17,8 +18,123 @@ class DARTAPIManager {
     private init() { }
     
     // 고유번호
+    func downloadCorpCode(type: Endpoint) {
+        
+        let url = type.requestURL
+        let parameter = ["crtfc_key": "\(APIKey.DART_KEY)"]
+        
+        let fileManager = FileManager.default
+        let documentDirectoryPath = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileName: String = URL(string: url)!.lastPathComponent.replacingOccurrences(of: ".xml", with: ".zip")
+        let fileURL = documentDirectoryPath.appendingPathComponent(fileName)
+        let destination: DownloadRequest.Destination = { _, _ in
+            return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
+        }
+        
+        
+        AF.download(url, method: .get, parameters: parameter, to: destination).response { response in
+            switch response.result {
+            case .success(let response):
+                
+                guard let baseURL = response else { return }
+                guard let path = self.documentDirectoryPath() else {
+                    print("도큐먼트 위치에 오류가 있습니다.")
+                    return
+                }
+                
+                let sandboxFileURL = path.appendingPathComponent(baseURL.lastPathComponent)
+                
+                if FileManager.default.fileExists(atPath: sandboxFileURL.path) {
+                    
+                    let newfileURL = documentDirectoryPath.appendingPathComponent("\(fileName)")
+                    print(newfileURL)
+                    
+                    do {
+                        try Zip.unzipFile(newfileURL, destination: documentDirectoryPath, overwrite: true, password: nil, progress: { progress in
+                        }, fileOutputHandler: { unzippedFile in
+                            print("unzippedFile(1): \(unzippedFile)")
+                            
+                            CorpCodeRepository.standard.deleteAllItem() // 일단 해당렘 전체삭제
+                            self.getDataFromXmlFile() // 파싱 함수 호출
+                            
+                        })
+                    } catch {
+                        print("압축 해제에 실패했습니다.(1)")
+                    }
+                    
+                } else {
+                    // 2)
+                    do {
+                        // 파일 앱의 zip -> 도큐먼트 폴더에 복사
+                        try FileManager.default.copyItem(at: baseURL, to: sandboxFileURL)
+                        let fileURL = documentDirectoryPath.appendingPathComponent("\(fileName)")
+                        try Zip.unzipFile(fileURL, destination: documentDirectoryPath, overwrite: true, password: nil, progress: { progress in
+                            print("progress(2): \(progress)")
+                        }, fileOutputHandler: { unzippedFile in
+                            print("복구가 완료되었습니다. unzippedFile(2): \(unzippedFile)")
+                        })
+                        
+                    } catch {
+                        print("압축 해제에 실패했습니다.(2)")
+                    }
+                    print("압축 해제에 실패했습니다.(2)")
+                }
+            case .failure(let error):
+                print("파일 다운로드 실패")
+            }
+        }
+    }
     
-    // 재무제표
+    // 파일경로
+    func documentDirectoryPath() -> URL? {
+        guard let documentDirectoryPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return nil }
+        return documentDirectoryPath
+    }
+
+    // 파싱
+    func getDataFromXmlFile() {
+        
+        let fileURL = documentDirectoryPath()?.appendingPathComponent("CORPCODE.xml")
+        do {
+            let data = try String(contentsOf: fileURL!, encoding: .utf8)
+            print("xml 파일 내부의 raw값 rawDirectoryContents 가져오기 성공~")
+            let xml = XMLHash.lazy(data)
+            // 파싱한 값을 렘에 저장하자
+            
+            let listsArr: [List] = try xml["result"]["list"].value()
+            print("listsArr 첫 번째 요소: \(listsArr[0])")
+            
+            let corpCodeArr: [CorpCodeRealmModel] = listsArr.map {
+                let dartCd = $0.corp_code
+                let name = $0.corp_name
+                let stckCd = $0.stock_code
+                let mDate = $0.modify_date
+                
+                return CorpCodeRealmModel(corpCode: dartCd, corpName: name, stockCode: stckCd, modifyDate: mDate)
+            }
+            print("corpCodeArr 첫 번째 요소: \(corpCodeArr[0])")
+            
+            CorpCodeRepository.standard.plusCorpCode(item: corpCodeArr)
+            
+        } catch {
+            print("xml 파일 내부의 raw값 가져오기 실패!")
+        }
+    }
+    
+    // MARK: - 재무제표
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     

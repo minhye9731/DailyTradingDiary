@@ -10,6 +10,7 @@ import SnapKit
 import FSCalendar
 import RealmSwift
 
+
 final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalendarDataSource, UIGestureRecognizerDelegate {
     
     let mainView = HomeView()
@@ -65,6 +66,9 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         }
         
         // dart 기업정보 통신해서 realm에 저장!
+        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
+        
+        
     }
     
     func setGesture() {
@@ -335,3 +339,9 @@ extension HomeViewController {
     
 }
 
+// MARK: - 앱 시작시 Dart 기업 고유정보 다운로드 및 저장
+extension HomeViewController {
+    
+
+    
+}

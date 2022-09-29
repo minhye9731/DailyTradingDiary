@@ -29,7 +29,7 @@ final class TradingDiaryViewController: BaseViewController {
     let mainView = TradingDiaryView()
     var addOrEditAction: PageMode = .write
 
-    var diaryData: TradingDiary = TradingDiary(corpName: "매매한 종목 검색하기", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
+    var diaryData: TradingDiaryRealmModel = TradingDiaryRealmModel(corpName: "매매한 종목 검색하기", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
     var updateData: UpdateTradingDiary = UpdateTradingDiary(corpName: "", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, buyAndSell: false, regDate: Date(), tradingDate: Date(), tradingMemo: "")
     
     // MARK: - lifecycle

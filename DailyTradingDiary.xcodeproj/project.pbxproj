@@ -63,6 +63,11 @@
 		0E8E752E28E5B0D300D52A2C /* DARTAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752D28E5B0D300D52A2C /* DARTAPIManager.swift */; };
 		0E8E753028E5B33B00D52A2C /* DartDividendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752F28E5B33B00D52A2C /* DartDividendModel.swift */; };
 		0E8E753228E5BFDA00D52A2C /* DartFinStatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753128E5BFDA00D52A2C /* DartFinStatModel.swift */; };
+		0E8E753828E5E4ED00D52A2C /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8E753728E5E4ED00D52A2C /* Zip */; };
+		0E8E753B28E5E9BB00D52A2C /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8E753A28E5E9BB00D52A2C /* SWXMLHash */; };
+		0E8E753D28E5F3A100D52A2C /* CorpCodeRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753C28E5F3A000D52A2C /* CorpCodeRealmModel.swift */; };
+		0E8E753F28E5F5D400D52A2C /* CorpCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */; };
+		0E8E754128E60FF100D52A2C /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E754028E60FF100D52A2C /* List.swift */; };
 		0E9E9EBE28E1ED92009B5074 /* KRXListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */; };
 		0EB85EE928D87419002145A2 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EE828D87419002145A2 /* InfoView.swift */; };
 		0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */; };
@@ -90,7 +95,7 @@
 		0EF4827628D46B8900CC8A49 /* APISAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827528D46B8900CC8A49 /* APISAPIManager.swift */; };
 		0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4827828D46BAB00CC8A49 /* Alamofire */; };
 		0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4827B28D46BC100CC8A49 /* SwiftyJSON */; };
-		0EF4828028D4E19600CC8A49 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827F28D4E19600CC8A49 /* RealmModel.swift */; };
+		0EF4828028D4E19600CC8A49 /* TradingDiaryRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827F28D4E19600CC8A49 /* TradingDiaryRealmModel.swift */; };
 		0EF4828328D4E1D500CC8A49 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4828228D4E1D500CC8A49 /* Realm */; };
 		0EF4828528D4E1D500CC8A49 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4828428D4E1D500CC8A49 /* RealmSwift */; };
 		0EF4828728D4E3C800CC8A49 /* UserMemoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */; };
@@ -151,6 +156,9 @@
 		0E8E752D28E5B0D300D52A2C /* DARTAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DARTAPIManager.swift; sourceTree = "<group>"; };
 		0E8E752F28E5B33B00D52A2C /* DartDividendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartDividendModel.swift; sourceTree = "<group>"; };
 		0E8E753128E5BFDA00D52A2C /* DartFinStatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartFinStatModel.swift; sourceTree = "<group>"; };
+		0E8E753C28E5F3A000D52A2C /* CorpCodeRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpCodeRealmModel.swift; sourceTree = "<group>"; };
+		0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpCodeRepository.swift; sourceTree = "<group>"; };
+		0E8E754028E60FF100D52A2C /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
 		0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXListResponse.swift; sourceTree = "<group>"; };
 		0EB85EE828D87419002145A2 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
@@ -174,7 +182,7 @@
 		0EF4827128D469A900CC8A49 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		0EF4827328D46AD300CC8A49 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0EF4827528D46B8900CC8A49 /* APISAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISAPIManager.swift; sourceTree = "<group>"; };
-		0EF4827F28D4E19600CC8A49 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
+		0EF4827F28D4E19600CC8A49 /* TradingDiaryRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDiaryRealmModel.swift; sourceTree = "<group>"; };
 		0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMemoRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -183,12 +191,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E8E753B28E5E9BB00D52A2C /* SWXMLHash in Frameworks */,
 				0E87354528D5EFA80039D802 /* IQKeyboardManagerSwift in Frameworks */,
 				0EF4828528D4E1D500CC8A49 /* RealmSwift in Frameworks */,
 				0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */,
 				0E04A3A728D1B4C10036D389 /* SnapKit in Frameworks */,
 				0E37460C28E0EF5C000EEBA7 /* SkeletonView in Frameworks */,
 				0EB85EFA28D8CB49002145A2 /* Kingfisher in Frameworks */,
+				0E8E753828E5E4ED00D52A2C /* Zip in Frameworks */,
 				0ED5D64F28DB6167009A1057 /* Tabman in Frameworks */,
 				0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */,
 				0E04A3D328D215CA0036D389 /* FSCalendar in Frameworks */,
@@ -437,6 +447,7 @@
 		0EF4826E28D4687F00CC8A49 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				0E8E754028E60FF100D52A2C /* List.swift */,
 				0EF4826F28D468E200CC8A49 /* KRXModel.swift */,
 				0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */,
 				0E8E752F28E5B33B00D52A2C /* DartDividendModel.swift */,
@@ -454,8 +465,10 @@
 		0EF4827E28D4E17C00CC8A49 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				0EF4827F28D4E19600CC8A49 /* RealmModel.swift */,
+				0EF4827F28D4E19600CC8A49 /* TradingDiaryRealmModel.swift */,
+				0E8E753C28E5F3A000D52A2C /* CorpCodeRealmModel.swift */,
 				0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */,
+				0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -487,6 +500,8 @@
 				0EB85EF928D8CB49002145A2 /* Kingfisher */,
 				0ED5D64E28DB6167009A1057 /* Tabman */,
 				0E37460B28E0EF5C000EEBA7 /* SkeletonView */,
+				0E8E753728E5E4ED00D52A2C /* Zip */,
+				0E8E753A28E5E9BB00D52A2C /* SWXMLHash */,
 			);
 			productName = DailyTradingDiary;
 			productReference = 0E04A38E28D1B2200036D389 /* DailyTradingDiary.app */;
@@ -527,6 +542,8 @@
 				0EB85EF828D8CB49002145A2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0ED5D64D28DB6167009A1057 /* XCRemoteSwiftPackageReference "Tabman" */,
 				0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */,
+				0E8E753628E5E4EC00D52A2C /* XCRemoteSwiftPackageReference "Zip" */,
+				0E8E753928E5E9BB00D52A2C /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 			);
 			productRefGroup = 0E04A38F28D1B2200036D389 /* Products */;
 			projectDirPath = "";
@@ -573,10 +590,12 @@
 				0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */,
 				0E3323A528E42FA400A1855F /* CorpSummaryTableViewCell.swift in Sources */,
 				0ED1834628DF73C400B31C2E /* IndexData.swift in Sources */,
+				0E8E754128E60FF100D52A2C /* List.swift in Sources */,
 				0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */,
 				0EB85EF728D8BC4E002145A2 /* CustomTableViewHeaderView.swift in Sources */,
+				0E8E753F28E5F5D400D52A2C /* CorpCodeRepository.swift in Sources */,
 				0EB85EE928D87419002145A2 /* InfoView.swift in Sources */,
 				0E37460428E0615F000EEBA7 /* EmptyView.swift in Sources */,
 				0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */,
@@ -590,6 +609,7 @@
 				0ED5D65A28DB6523009A1057 /* AssetStatusView.swift in Sources */,
 				0EF4828728D4E3C800CC8A49 /* UserMemoRepository.swift in Sources */,
 				0E40BF6B28D9D53300F99DEF /* FEARGREEDAPIManager.swift in Sources */,
+				0E8E753D28E5F3A100D52A2C /* CorpCodeRealmModel.swift in Sources */,
 				0E04A3BE28D1D2930036D389 /* Transition+Extension.swift in Sources */,
 				0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */,
 				0ED1834228DE0B4B00B31C2E /* SettingView.swift in Sources */,
@@ -618,7 +638,7 @@
 				0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */,
 				0EF4827628D46B8900CC8A49 /* APISAPIManager.swift in Sources */,
 				0E8E752E28E5B0D300D52A2C /* DARTAPIManager.swift in Sources */,
-				0EF4828028D4E19600CC8A49 /* RealmModel.swift in Sources */,
+				0EF4828028D4E19600CC8A49 /* TradingDiaryRealmModel.swift in Sources */,
 				0EF4827228D469A900CC8A49 /* URL+Extension.swift in Sources */,
 				0EF4826D28D467DD00CC8A49 /* APIKey.swift in Sources */,
 				0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */,
@@ -893,6 +913,22 @@
 				version = 6.5.0;
 			};
 		};
+		0E8E753628E5E4EC00D52A2C /* XCRemoteSwiftPackageReference "Zip" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/Zip";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+		0E8E753928E5E9BB00D52A2C /* XCRemoteSwiftPackageReference "SWXMLHash" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/drmohundro/SWXMLHash.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		0EB85EF828D8CB49002145A2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -955,6 +991,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
+		};
+		0E8E753728E5E4ED00D52A2C /* Zip */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E8E753628E5E4EC00D52A2C /* XCRemoteSwiftPackageReference "Zip" */;
+			productName = Zip;
+		};
+		0E8E753A28E5E9BB00D52A2C /* SWXMLHash */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E8E753928E5E9BB00D52A2C /* XCRemoteSwiftPackageReference "SWXMLHash" */;
+			productName = SWXMLHash;
 		};
 		0EB85EF928D8CB49002145A2 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

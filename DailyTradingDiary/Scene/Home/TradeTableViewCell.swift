@@ -90,7 +90,7 @@ class TradeTableViewCell: BaseTableViewCell {
         }
     }
     
-    func setData(arr: [TradingDiary], indexPath: IndexPath) {
+    func setData(arr: [TradingDiaryRealmModel], indexPath: IndexPath) {
         
         let row = arr[indexPath.row]
         

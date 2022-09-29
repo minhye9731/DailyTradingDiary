@@ -15,10 +15,10 @@ protocol DiaryRepositoryType {
     func filteredByTradingDate(selectedDate: Date)
     func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int)
     
-    func sort(_ sort: String) -> Results<TradingDiary>
-    func update(oldItem: TradingDiary, newItem: UpdateTradingDiary)
-    func plusDiary(item: TradingDiary)
-    func deleteDiary(item: TradingDiary)
+    func sort(_ sort: String) -> Results<TradingDiaryRealmModel>
+    func update(oldItem: TradingDiaryRealmModel, newItem: UpdateTradingDiary)
+    func plusDiary(item: TradingDiaryRealmModel)
+    func deleteDiary(item: TradingDiaryRealmModel)
 }
 
 class TradingDiaryRepository: DiaryRepositoryType {
@@ -28,34 +28,34 @@ class TradingDiaryRepository: DiaryRepositoryType {
     static let standard = TradingDiaryRepository()
     
     let localRealm = try! Realm()
-    var tasks: Results<TradingDiary>!
+    var tasks: Results<TradingDiaryRealmModel>!
     
     let calendar = Calendar.current
     
     
     // 데이터 패치하기
     func fetchRealm() {
-        tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self)
+        tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self)
     }
     
     func sortByRegDate() {
-        tasks = localRealm.objects(TradingDiary.self).sorted(byKeyPath: "regDate", ascending: true)
+        tasks = localRealm.objects(TradingDiaryRealmModel.self).sorted(byKeyPath: "regDate", ascending: true)
     }
     
     func filteredByTradingDate(selectedDate: Date) {
-        tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+        tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where {
             $0.tradingDate >= calendar.startOfDay(for: selectedDate) && $0.tradingDate < calendar.startOfDay(for: selectedDate) + 86400
         }
     }
     
     
     
-    func sort(_ sort: String) -> Results<TradingDiary> {
+    func sort(_ sort: String) -> Results<TradingDiaryRealmModel> {
         print(#function)
-        return localRealm.objects(TradingDiary.self).sorted(byKeyPath: sort, ascending: true)
+        return localRealm.objects(TradingDiaryRealmModel.self).sorted(byKeyPath: sort, ascending: true)
     }
     
-    func update(oldItem: TradingDiary, newItem: UpdateTradingDiary) {
+    func update(oldItem: TradingDiaryRealmModel, newItem: UpdateTradingDiary) {
         do {
             try localRealm.write {
                 oldItem.corpName = newItem.corpName
@@ -74,7 +74,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
     }
     
     // MARK: - 개별요소 업데이트용
-    func corpNameUpdate(oldItem: TradingDiary, newItem: String) {
+    func corpNameUpdate(oldItem: TradingDiaryRealmModel, newItem: String) {
         do {
             try localRealm.write {
                 oldItem.corpName = newItem
@@ -85,7 +85,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
     
-    func tradingPriceUpdate(oldItem: TradingDiary, newItem: Int) {
+    func tradingPriceUpdate(oldItem: TradingDiaryRealmModel, newItem: Int) {
         do {
             try localRealm.write {
                 oldItem.tradingPrice = newItem
@@ -96,7 +96,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
     
-    func tradingAmountUpdate(oldItem: TradingDiary, newItem: Int) {
+    func tradingAmountUpdate(oldItem: TradingDiaryRealmModel, newItem: Int) {
         do {
             try localRealm.write {
                 oldItem.tradingAmount = newItem
@@ -107,7 +107,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
     
-    func buyAndSellUpdate(oldItem: TradingDiary, newItem: Bool) {
+    func buyAndSellUpdate(oldItem: TradingDiaryRealmModel, newItem: Bool) {
         do {
             try localRealm.write {
                 oldItem.buyAndSell = newItem
@@ -118,7 +118,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
     
-    func tradingDateUpdate(oldItem: TradingDiary, newItem: Date) {
+    func tradingDateUpdate(oldItem: TradingDiaryRealmModel, newItem: Date) {
         do {
             try localRealm.write {
                 oldItem.tradingDate = newItem
@@ -129,7 +129,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
     
-    func tradingMemoUpdate(oldItem: TradingDiary, newItem: String) {
+    func tradingMemoUpdate(oldItem: TradingDiaryRealmModel, newItem: String) {
         do {
             try localRealm.write {
                 oldItem.tradingMemo = newItem
@@ -140,7 +140,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
     
-    func regDateUpdate(oldItem: TradingDiary, newItem: Date) {
+    func regDateUpdate(oldItem: TradingDiaryRealmModel, newItem: Date) {
         do {
             try localRealm.write {
                 oldItem.regDate = newItem
@@ -152,7 +152,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
     }
     
     // MARK: - 추가 및 삭제
-    func plusDiary(item: TradingDiary) {
+    func plusDiary(item: TradingDiaryRealmModel) {
         do {
             try localRealm.write{
                 localRealm.add(item)
@@ -163,7 +163,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
     
-    func deleteDiary(item: TradingDiary) {
+    func deleteDiary(item: TradingDiaryRealmModel) {
         do {
             try localRealm.write {
                 localRealm.delete(item)
@@ -176,12 +176,12 @@ class TradingDiaryRepository: DiaryRepositoryType {
     
     // MARK: - 매매내역 조회조건값에 따른 매매총액 계산기
     func getTotalBuyPrice(from: Date, to: Date) -> Int {
-         let result = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where { $0.tradingDate >= calendar.startOfDay(for: from) && ($0.tradingDate <= calendar.startOfDay(for: to) + 86400) && $0.buyAndSell == false }.map{ $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+         let result = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where { $0.tradingDate >= calendar.startOfDay(for: from) && ($0.tradingDate <= calendar.startOfDay(for: to) + 86400) && $0.buyAndSell == false }.map{ $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
         return result
     }
     
     func getTotalSellPrice(from: Date, to: Date) -> Int {
-         let result = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where { $0.tradingDate >= calendar.startOfDay(for: from) && ($0.tradingDate <= calendar.startOfDay(for: to) + 86400) && $0.buyAndSell == true }.map{ $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+         let result = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where { $0.tradingDate >= calendar.startOfDay(for: from) && ($0.tradingDate <= calendar.startOfDay(for: to) + 86400) && $0.buyAndSell == true }.map{ $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
         return result
     }
     
@@ -190,7 +190,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         let buyTotalAmount: Double = Double(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +))
         print("buyTotalAmount - \(buyTotalAmount)")
         
-        let realmSliceArr: [newVersionSlice] = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+        let realmSliceArr: [newVersionSlice] = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where {
             $0.buyAndSell == false }.map {
                 
                 let percent: Double = Double($0.tradingPrice) * Double($0.tradingAmount) / buyTotalAmount
@@ -217,15 +217,15 @@ class TradingDiaryRepository: DiaryRepositoryType {
         
         switch buySellIndex {
         case 0:
-            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where {
                 $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400
             }.sorted(byKeyPath: "regDate", ascending: true)
         case 1:
-            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where {
                 $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400 && $0.buyAndSell == false
             }.sorted(byKeyPath: "regDate", ascending: true)
         case 2:
-            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiary.self).where {
+            tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where {
                 $0.tradingDate >= calendar.startOfDay(for: from) && $0.tradingDate <= calendar.startOfDay(for: to) + 86400 && $0.buyAndSell == true
             }.sorted(byKeyPath: "regDate", ascending: true)
         default : break
