@@ -35,22 +35,25 @@ class CorpCodeRepository: CorpCodeRepositoryType {
     }
     
     func fetchRealmTradingMode() {
-        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.isRegistered == true && $0.stockCode != " " }
+        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.isRegistered == true }
         print("fetchRealmTradingMode - \(tasks.count)")
     }
     
     // MARK: - 실시간 검색시
     func filteredRegisterMode(searchText: String) {
-        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where {
-            ($0.stockCode != " "  && $0.corpName == searchText) || ($0.stockCode != " "  && $0.stockCode == searchText)
-        }
+//        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where {
+//            ($0.stockCode != " "  && $0.corpName == searchText) || ($0.stockCode != " "  && $0.stockCode == searchText)
+//        }
+        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.stockCode != " " }.where { $0.corpName.contains(searchText) || $0.stockCode.contains(searchText) }
+        // 이렇게 2개로 나누어서 조건을 필터링해도 괜찮은지??
         print("filteredRegisterMode - \(tasks.count)")
     }
     
     func filteredTradingMode(searchText: String) {
-        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where {
-            $0.isRegistered == true && ($0.stockCode != " "  && $0.corpName == searchText) || ($0.stockCode != " "  && $0.stockCode == searchText)
-        }
+//        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where {
+//            $0.isRegistered == true && ($0.stockCode != " "  && $0.corpName == searchText) || ($0.stockCode != " "  && $0.stockCode == searchText)
+//        }
+        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.isRegistered == true }.where { $0.corpName == searchText || $0.stockCode == searchText }
         print("filteredTradingMode - \(tasks.count)")
     }
     

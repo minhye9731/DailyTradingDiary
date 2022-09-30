@@ -40,6 +40,9 @@ class TradingSearchViewController: BaseViewController {
     }
     
     // MARK: - lifecycle
+    override func loadView() {
+        self.view = mainView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,10 +86,15 @@ extension TradingSearchViewController: UISearchResultsUpdating {
         
         switch RegisterOrTrading {
         case .registerCorp: CorpCodeRepository.standard.filteredRegisterMode(searchText: searchText)
+            isEmptyCheck()
+            self.mainView.tableView.reloadData()
         case .tradingDiary: CorpCodeRepository.standard.filteredTradingMode(searchText: searchText)
+            isEmptyCheck()
+            self.mainView.tableView.reloadData()
         }
         
-        DispatchQueue.main.async { self.mainView.tableView.reloadData() }
+//        DispatchQueue.main.async { self.mainView.tableView.reloadData() }
+//        self.mainView.tableView.reloadData()
     }
 }
 
@@ -104,15 +112,17 @@ extension TradingSearchViewController: UISearchBarDelegate {
 extension TradingSearchViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
+        print(#function)
         return self.isFiltering ? 1 : 0
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(#function)
         return self.isFiltering ? CorpCodeRepository.standard.tasks.count : 0
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        
+        print(#function)
         guard let customHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomTableViewHeaderView.reuseIdentifier) as? CustomTableViewHeaderView else { return UIView() }
         
         customHeaderView.sectionTitleLabel.text = "검색결과 \(CorpCodeRepository.standard.tasks.count)건"
@@ -122,6 +132,7 @@ extension TradingSearchViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        print(#function)
         guard let cell = tableView.dequeueReusableCell(withIdentifier: SearchedStockTableViewCell.reuseIdentifier) as? SearchedStockTableViewCell else { return UITableViewCell() }
         
         cell.setData(arr: Array(CorpCodeRepository.standard.tasks), indexPath: indexPath)
@@ -130,6 +141,7 @@ extension TradingSearchViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(#function)
         //
         //        let selectedCorpName = filteredArray[indexPath.row].itemName
         print("눌렸다")
@@ -150,10 +162,14 @@ extension TradingSearchViewController: UITableViewDelegate, UITableViewDataSourc
     }
     
     func isEmptyCheck() {
-        if CorpCodeRepository.standard.tasks.count == 0 {
+        if !self.isFiltering {
+            self.mainView.tableView.isHidden = true
+            self.mainView.emptyView.isHidden = false
+        } else if CorpCodeRepository.standard.tasks.count == 0 {
             self.mainView.tableView.isHidden = true
             self.mainView.emptyView.isHidden = false
         } else {
+            print("tasks개수가 0개가 아니다! - \(CorpCodeRepository.standard.tasks.count)개")
             self.mainView.tableView.isHidden = false
             self.mainView.emptyView.isHidden = true
         }
