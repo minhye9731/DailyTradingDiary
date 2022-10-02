@@ -29,6 +29,13 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    func toStringForAPI() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyyMMdd"
+        dateFormatter.timeZone = TimeZone(identifier: "ko_KR")
+        return dateFormatter.string(from: self)
+    }
+    
 //    func toDateinKR() -> Date {
 //        let dateFormatter = DateFormatter()
 //        dateFormatter.dateFormat = "yyyy-MM-dd"

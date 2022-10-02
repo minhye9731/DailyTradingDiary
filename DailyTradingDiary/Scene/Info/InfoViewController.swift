@@ -13,8 +13,8 @@ import SkeletonView
 final class InfoViewController: BaseViewController {
     
     let mainView = InfoView()
-    var alphaNewsList: [MarketNewsData] = []
-    var fearGreedIndex: FearGreedData = FearGreedData(updateTime: "0000.00.00", now: FearGreed(indexValue: 0, indexStatus: ""), weekAgo: FearGreed(indexValue: 0, indexStatus: ""))
+    var alphaNewsList: [MarketNewsDTO] = []
+    var fearGreedIndex: FearGreedDTO = FearGreedDTO(updateTime: "0000.00.00", now: FearGreed(indexValue: 0, indexStatus: ""), weekAgo: FearGreed(indexValue: 0, indexStatus: ""))
     var fxList: [IndexData] = []
 
     override func viewDidLoad() {
@@ -49,7 +49,7 @@ final class InfoViewController: BaseViewController {
                 
                 if let data = AlphaMarketNewsModel as? [Feed] {
                     
-                    let newsDataArray: [MarketNewsData] = data.map { news -> MarketNewsData in
+                    let newsDataArray: [MarketNewsDTO] = data.map { news -> MarketNewsDTO in
                         
                         let title = news.title
                         let url = news.url
@@ -59,7 +59,7 @@ final class InfoViewController: BaseViewController {
                         let topic = news.topics
                         let relatedCorp = news.tickerSentiment
                         
-                        return MarketNewsData(title: title, url: url, publishedDate: date, profileImageUrl: imageUrl ?? "", source: source, topic: topic, relatedTicker: relatedCorp)
+                        return MarketNewsDTO(title: title, url: url, publishedDate: date, profileImageUrl: imageUrl ?? "", source: source, topic: topic, relatedTicker: relatedCorp)
                     }
                     
                     self.alphaNewsList.append(contentsOf: newsDataArray)

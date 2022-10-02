@@ -1,28 +1,13 @@
-//
-//  TradingDiaryViewController.swift
-//  DailyTradingDiary
-//
-//  Created by 강민혜 on 9/15/22.
-//
+////
+////  TradingDiaryViewController.swift
+////  DailyTradingDiary
+////
+////  Created by 강민혜 on 9/15/22.
+////
 
 import UIKit
 import SnapKit
 import RealmSwift
-
-
-struct UpdateTradingDiary {
-    var corpName: String // 기업명(필수)
-    var corpCode: String // 종목코드(필수)
-
-    var tradingPrice : Int // 매매 가격(필수)
-    var tradingAmount : Int // 매매 수량(필수)
-    
-    var buyAndSell : Bool // 매수매도 구분(필수) -> false가 '매수', true가 '매도'
-    
-    var regDate : Date  // 등록 날짜(필수)
-    var tradingDate : Date // 매매 일자(필수)
-    var tradingMemo : String? // 매매일지 메모(옵션)
-}
 
 final class TradingDiaryViewController: BaseViewController {
 
@@ -30,7 +15,7 @@ final class TradingDiaryViewController: BaseViewController {
     var addOrEditAction: PageMode = .write
 
     var diaryData: TradingDiaryRealmModel = TradingDiaryRealmModel(corpName: "매매한 종목 검색하기", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
-    var updateData: UpdateTradingDiary = UpdateTradingDiary(corpName: "", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, buyAndSell: false, regDate: Date(), tradingDate: Date(), tradingMemo: "")
+    var updateData: UpdateTradingDiaryDTO = UpdateTradingDiaryDTO(corpName: "", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, buyAndSell: false, regDate: Date(), tradingDate: Date(), tradingMemo: "")
     
     // MARK: - lifecycle
     override func loadView() {
@@ -50,8 +35,6 @@ final class TradingDiaryViewController: BaseViewController {
         self.updateData.buyAndSell = diaryData.buyAndSell
         self.updateData.tradingDate = diaryData.tradingDate
         self.updateData.tradingMemo = diaryData.tradingMemo
-        
-        print(Realm.Configuration.defaultConfiguration.fileURL!)
     }
     
     override func configure() {
@@ -72,7 +55,6 @@ final class TradingDiaryViewController: BaseViewController {
         self.navigationItem.scrollEdgeAppearance = navibarAppearance
         self.navigationItem.standardAppearance = navibarAppearance
     }
-    
     func setNavItem() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         let doneButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(doneButtonTapped))
@@ -80,7 +62,6 @@ final class TradingDiaryViewController: BaseViewController {
         self.navigationItem.rightBarButtonItems = [doneButton]
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
-    
 }
 
 // MARK: - tableview 설정 관련
@@ -91,7 +72,6 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
         switch section {
         case 0: return 1
         case 1: return 1
@@ -118,7 +98,6 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
                 cell.corpNameLabel.text = updateData.corpName
                 cell.corpNameLabel.textColor = .mainTextColor
             }
-            
             return cell
             
         case 1:
@@ -183,6 +162,11 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             print("cellForRowAt - 매매일자 ")
             cell.selectionStyle = .none
             cell.datePicker.addTarget(self, action: #selector(onDidChangeDate(sender:)), for: .valueChanged)
+            
+            if self.addOrEditAction == .edit {
+                cell.datePicker.date = updateData.tradingDate
+            }
+            
             return cell
             
         case 5:
@@ -223,11 +207,12 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        if indexPath.section == 0 {
-//            let vc = TradingSearchViewController()
-//            vc.delegate = self
-//            transition(vc, transitionStyle: .prsentNavigation)
-//        }
+        if indexPath.section == 0 {
+            let vc = TradingSearchViewController()
+            vc.delegate = self
+            vc.RegisterOrTrading = .tradingDiary
+            transition(vc, transitionStyle: .prsentNavigation)
+        }
     }
     
 }
@@ -265,8 +250,6 @@ extension TradingDiaryViewController: UITextFieldDelegate {
             }
         }
     }
-
-    
 
 }
 
@@ -327,7 +310,8 @@ extension TradingDiaryViewController {
                 return
             } else {
                 diaryData.regDate = Date()
-                TradingDiaryRepository.standard.plusDiary(item: diaryData)
+//                TradingDiaryRepository.standard.plusDiary(item: diaryData)
+                CorpRegisterRepository.standard.plusDiaryatList(item: diaryData)
                 navigationController?.popViewController(animated: true)
             }
         case .edit:
@@ -337,6 +321,7 @@ extension TradingDiaryViewController {
             } else {
                 updateData.regDate = Date()
                 TradingDiaryRepository.standard.update(oldItem: diaryData, newItem: updateData)
+                
                 navigationController?.popViewController(animated: true)
             }
         }
@@ -358,22 +343,20 @@ extension TradingDiaryViewController {
 }
 
 
-//extension TradingDiaryViewController: SendDataDelegate {
-//
-//    func sendData(_ vc: UIViewController, Input value: String) {
-//        print("\(value) 기업을 선택하셨습니다!ㅠ")
-//
-//        switch addOrEditAction {
-//        case .write:
-//            self.diaryData.corpName = value
-//        case .edit:
-//            self.updateData.corpName = value
-//        }
-//
-//        self.mainView.tableView.reloadData()
-//
-//    }
-//}
+extension TradingDiaryViewController: SendDataDelegate {
+    func sendData(_ vc: UIViewController, Input value: String, formalName: String, dartCode: String) {
+        
+        print("매매일지로 넘어옴 : \(value), \(formalName), \(dartCode) 선택")
+        
+        switch addOrEditAction {
+        case .write: self.diaryData.corpName = value
+        case .edit: self.updateData.corpName = value
+        }
+
+        self.mainView.tableView.reloadData()
+    }
+    
+}
 
 
 

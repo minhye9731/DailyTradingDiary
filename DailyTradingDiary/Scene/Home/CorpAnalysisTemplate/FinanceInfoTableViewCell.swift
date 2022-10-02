@@ -20,7 +20,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
     
     let threeYrsBfValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "2,304,009" // test
+        label.text = "-" // test
         label.font = .systemFont(ofSize: 16)
         label.textColor = .mainTextColor
         label.textAlignment = .right
@@ -29,7 +29,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
     
     let twoYrsBfValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "2,368,070" // test
+        label.text = "-" // test
         label.font = .systemFont(ofSize: 16)
         label.textColor = .mainTextColor
         label.textAlignment = .right
@@ -38,7 +38,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
     
     let oneYrsBfValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "2,796,048" // test
+        label.text = "-" // test
         label.font = .systemFont(ofSize: 16)
         label.textColor = .mainTextColor
         label.textAlignment = .right
@@ -79,14 +79,16 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
         
     }
     
-    // 주요 재무정보 데이터
+    // MARK: - 주요 재무정보 데이터 적용
+    func setFinStatementData(data: [DartFinInfoDTO], indexPath: IndexPath) {
+        let row = data[indexPath.row]
+        self.threeYrsBfValueLabel.text = row.amount_3yr_bf
+        self.twoYrsBfValueLabel.text = row.amount_2yr_bf
+        self.oneYrsBfValueLabel.text = row.amount_1yr_bf
+    }
     
-    
-    
-    
-    // 배당금 데이터
-    func setDividendData(data: DartDividendModel, indexPath: IndexPath) {
-        
+    // MARK: - 배당금 데이터 적용
+    func setDividendData(data: DartDividendDTO, indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
             threeYrsBfValueLabel.text = data.dps_3yr_bf
@@ -98,9 +100,6 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
             oneYrsBfValueLabel.text = data.dividend_payout_ratio_1yr_bf
         default: break
         }
-        
-        
-        
     }
     
     

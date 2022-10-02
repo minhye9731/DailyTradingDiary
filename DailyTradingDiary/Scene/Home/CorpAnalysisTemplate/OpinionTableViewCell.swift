@@ -34,7 +34,7 @@ final class OpinionTableViewCell: BaseTableViewCell {
     }()
     let eBuyTextField: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "00.00"
+        textfield.placeholder = "0"
         textfield.tintColor = .pointColor
         textfield.font = .systemFont(ofSize: 20)
         textfield.textAlignment = .center
@@ -69,7 +69,7 @@ final class OpinionTableViewCell: BaseTableViewCell {
     }()
     let eSellTextField: UITextField = {
         let textfield = UITextField()
-        textfield.placeholder = "00.00"
+        textfield.placeholder = "0"
         textfield.tintColor = .pointColor
         textfield.font = .systemFont(ofSize: 20)
         textfield.textAlignment = .center

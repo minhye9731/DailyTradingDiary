@@ -114,7 +114,7 @@ final class NewsTableViewCell: BaseTableViewCell {
         
     }
     
-    func setData(data: [MarketNewsData], indexPath: IndexPath) {
+    func setData(data: [MarketNewsDTO], indexPath: IndexPath) {
         
         print("newsCell의 setData 실행이다~!")
         

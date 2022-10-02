@@ -11,6 +11,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let updateDateLabel: UILabel = {
         let label = UILabel()
+        label.text = "(UPDATE ----.--.--)"
         label.font = .systemFont(ofSize: 12)
         label.textColor = .subTextColor
         return label
@@ -18,6 +19,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let corpIdtLabel: UILabel = {
         let label = UILabel()
+        label.text = " - ( - - )"
         label.font = .boldSystemFont(ofSize: 20)
         label.textColor = .mainTextColor
         return label
@@ -25,6 +27,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let nowPriceLabel: UILabel = {
         let label = UILabel()
+        label.text = "시가 : -"
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .subTextColor
         return label
@@ -32,6 +35,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let highPriceLabel: UILabel = {
         let label = UILabel()
+        label.text = "고가 : -"
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .subTextColor
         return label
@@ -39,6 +43,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let lowPriceLabel: UILabel = {
         let label = UILabel()
+        label.text = "저가 : -"
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .subTextColor
         return label
@@ -54,6 +59,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let trdQutValueLabel: UILabel = {
         let label = UILabel()
+        label.text = " - "
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .mainTextColor
         return label
@@ -70,6 +76,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
     
     let mrkTotAmtValueLabel: UILabel = {
         let label = UILabel()
+        label.text = " - "
         label.font = .boldSystemFont(ofSize: 16)
         label.textColor = .mainTextColor
         return label
@@ -135,7 +142,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
         
     }
 
-    func setData(data: [StockSummaryModel], indexPath: IndexPath) {
+    func setData(data: [StockSummaryDTO], indexPath: IndexPath) {
         
         let row = data[indexPath.row]
         

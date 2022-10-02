@@ -54,16 +54,16 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         super.viewDidLoad()
         print("HomeViewController - \(#function)")
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-//        TradingDiaryRepository.standard.sortByRegDate()
+        TradingDiaryRepository.standard.sortByRegDate()
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         mainView.tempfloatingButton.addTarget(self, action: #selector(tempfloatingBtnTapped), for: .touchUpInside) // 삭제예정
         
         
-        // 이벤트 점 추가하기
-        eventsArr = TradingDiaryRepository.standard.tasks.map {
-            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
-            return result
-        }
+        // 이벤트 점 추가하기 -> 이거 옵셔널 에러때문에 런타이 ㅁ에러남
+//        eventsArr = TradingDiaryRepository.standard.tasks.map {
+//            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+//            return result
+//        }
         
         // dart 기업정보 통신해서 realm에 저장!
         DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
