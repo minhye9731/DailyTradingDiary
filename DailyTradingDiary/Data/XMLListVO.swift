@@ -8,14 +8,14 @@
 import Foundation
 import SWXMLHash
 
-struct List: XMLObjectDeserialization {
+struct XMLListVO: XMLObjectDeserialization {
     let corp_code: String
     let corp_name: String
     let stock_code: String?
     let modify_date: String
 
-    static func deserialize(_ element: XMLIndexer) throws -> List {
-        return try List(
+    static func deserialize(_ element: XMLIndexer) throws -> XMLListVO {
+        return try XMLListVO(
             corp_code: element["corp_code"].value(),
             corp_name: element["corp_name"].value(),
             stock_code: element["stock_code"].value(),

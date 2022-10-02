@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FearGreedData {
+struct FearGreedDTO {
     let updateTime : String // 업데이트된 시간
     let now : FearGreed
     let weekAgo : FearGreed

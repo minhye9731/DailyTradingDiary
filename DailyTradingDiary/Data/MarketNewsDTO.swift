@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MarketNewsData {
+struct MarketNewsDTO {
     let title : String // 기사 제목
     let url : String //기사 url
     let publishedDate : String // 기사 출간 일자

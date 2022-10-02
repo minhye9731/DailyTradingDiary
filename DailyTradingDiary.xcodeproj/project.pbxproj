@@ -48,9 +48,16 @@
 		0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */; };
 		0E37460C28E0EF5C000EEBA7 /* SkeletonView in Frameworks */ = {isa = PBXBuildFile; productRef = 0E37460B28E0EF5C000EEBA7 /* SkeletonView */; };
 		0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */; };
-		0E40BF6928D98B0D00F99DEF /* MarketNewsData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6828D98B0D00F99DEF /* MarketNewsData.swift */; };
+		0E40BF6928D98B0D00F99DEF /* MarketNewsDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6828D98B0D00F99DEF /* MarketNewsDTO.swift */; };
 		0E40BF6B28D9D53300F99DEF /* FEARGREEDAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */; };
-		0E40BF6D28D9D74100F99DEF /* FearGreedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6C28D9D74100F99DEF /* FearGreedData.swift */; };
+		0E40BF6D28D9D74100F99DEF /* FearGreedDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E40BF6C28D9D74100F99DEF /* FearGreedDTO.swift */; };
+		0E58BCA128E6C89C00204275 /* CorpRegisterRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58BCA028E6C89C00204275 /* CorpRegisterRealmModel.swift */; };
+		0E58BCA328E80F8C00204275 /* DartFinInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58BCA228E80F8C00204275 /* DartFinInfoResponse.swift */; };
+		0E58BCA528E89DAC00204275 /* KRXListDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58BCA428E89DAB00204275 /* KRXListDTO.swift */; };
+		0E58BCA728E8BB4400204275 /* UpdateTradingDiaryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58BCA628E8BB4400204275 /* UpdateTradingDiaryDTO.swift */; };
+		0E58BCA928E9841700204275 /* CorpRegisterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58BCA828E9841600204275 /* CorpRegisterRepository.swift */; };
+		0E58BCD528E9D05500204275 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0E58BCD428E9D05500204275 /* Realm */; };
+		0E58BCD728E9D05500204275 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E58BCD628E9D05500204275 /* RealmSwift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353C28D58F600039D802 /* SettingViewController.swift */; };
 		0E87354028D598840039D802 /* PageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353F28D598840039D802 /* PageMode.swift */; };
@@ -59,17 +66,16 @@
 		0E87354728D609D10039D802 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354628D609D00039D802 /* Word.swift */; };
 		0E87354928D616060039D802 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354828D616060039D802 /* Date+Extension.swift */; };
 		0E8E752928E5866D00D52A2C /* ApisStockInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */; };
-		0E8E752B28E5896800D52A2C /* StockSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */; };
+		0E8E752B28E5896800D52A2C /* StockSummaryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752A28E5896700D52A2C /* StockSummaryDTO.swift */; };
 		0E8E752E28E5B0D300D52A2C /* DARTAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752D28E5B0D300D52A2C /* DARTAPIManager.swift */; };
-		0E8E753028E5B33B00D52A2C /* DartDividendModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752F28E5B33B00D52A2C /* DartDividendModel.swift */; };
-		0E8E753228E5BFDA00D52A2C /* DartFinStatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753128E5BFDA00D52A2C /* DartFinStatModel.swift */; };
+		0E8E753028E5B33B00D52A2C /* DartDividendDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752F28E5B33B00D52A2C /* DartDividendDTO.swift */; };
+		0E8E753228E5BFDA00D52A2C /* DartFinInfoDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753128E5BFDA00D52A2C /* DartFinInfoDTO.swift */; };
 		0E8E753828E5E4ED00D52A2C /* Zip in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8E753728E5E4ED00D52A2C /* Zip */; };
 		0E8E753B28E5E9BB00D52A2C /* SWXMLHash in Frameworks */ = {isa = PBXBuildFile; productRef = 0E8E753A28E5E9BB00D52A2C /* SWXMLHash */; };
 		0E8E753D28E5F3A100D52A2C /* CorpCodeRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753C28E5F3A000D52A2C /* CorpCodeRealmModel.swift */; };
 		0E8E753F28E5F5D400D52A2C /* CorpCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */; };
-		0E8E754128E60FF100D52A2C /* List.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E754028E60FF100D52A2C /* List.swift */; };
+		0E8E754128E60FF100D52A2C /* XMLListVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E754028E60FF100D52A2C /* XMLListVO.swift */; };
 		0E8E754328E61B1E00D52A2C /* TradingSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E754228E61B1E00D52A2C /* TradingSearchView.swift */; };
-		0E9E9EBE28E1ED92009B5074 /* KRXListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */; };
 		0EB85EE928D87419002145A2 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EE828D87419002145A2 /* InfoView.swift */; };
 		0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */; };
 		0EB85EEF28D874FA002145A2 /* FearGreedGraphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEE28D874FA002145A2 /* FearGreedGraphTableViewCell.swift */; };
@@ -90,16 +96,13 @@
 		0EF4826728D4593900CC8A49 /* SearchedStockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826628D4593900CC8A49 /* SearchedStockTableViewCell.swift */; };
 		0EF4826928D4678600CC8A49 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 0EF4826828D4678600CC8A49 /* .gitignore */; };
 		0EF4826D28D467DD00CC8A49 /* APIKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826C28D467DD00CC8A49 /* APIKey.swift */; };
-		0EF4827028D468E200CC8A49 /* KRXModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4826F28D468E200CC8A49 /* KRXModel.swift */; };
 		0EF4827228D469A900CC8A49 /* URL+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827128D469A900CC8A49 /* URL+Extension.swift */; };
 		0EF4827428D46AD300CC8A49 /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827328D46AD300CC8A49 /* Endpoint.swift */; };
 		0EF4827628D46B8900CC8A49 /* APISAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827528D46B8900CC8A49 /* APISAPIManager.swift */; };
 		0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4827828D46BAB00CC8A49 /* Alamofire */; };
 		0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4827B28D46BC100CC8A49 /* SwiftyJSON */; };
 		0EF4828028D4E19600CC8A49 /* TradingDiaryRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827F28D4E19600CC8A49 /* TradingDiaryRealmModel.swift */; };
-		0EF4828328D4E1D500CC8A49 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4828228D4E1D500CC8A49 /* Realm */; };
-		0EF4828528D4E1D500CC8A49 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4828428D4E1D500CC8A49 /* RealmSwift */; };
-		0EF4828728D4E3C800CC8A49 /* UserMemoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */; };
+		0EF4828728D4E3C800CC8A49 /* TradingDiaryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4828628D4E3C800CC8A49 /* TradingDiaryRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -143,9 +146,14 @@
 		0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaMarketNewsResponse.swift; sourceTree = "<group>"; };
 		0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPHAAPIManager.swift; sourceTree = "<group>"; };
-		0E40BF6828D98B0D00F99DEF /* MarketNewsData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketNewsData.swift; sourceTree = "<group>"; };
+		0E40BF6828D98B0D00F99DEF /* MarketNewsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketNewsDTO.swift; sourceTree = "<group>"; };
 		0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEARGREEDAPIManager.swift; sourceTree = "<group>"; };
-		0E40BF6C28D9D74100F99DEF /* FearGreedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FearGreedData.swift; sourceTree = "<group>"; };
+		0E40BF6C28D9D74100F99DEF /* FearGreedDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FearGreedDTO.swift; sourceTree = "<group>"; };
+		0E58BCA028E6C89C00204275 /* CorpRegisterRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpRegisterRealmModel.swift; sourceTree = "<group>"; };
+		0E58BCA228E80F8C00204275 /* DartFinInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartFinInfoResponse.swift; sourceTree = "<group>"; };
+		0E58BCA428E89DAB00204275 /* KRXListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXListDTO.swift; sourceTree = "<group>"; };
+		0E58BCA628E8BB4400204275 /* UpdateTradingDiaryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTradingDiaryDTO.swift; sourceTree = "<group>"; };
+		0E58BCA828E9841600204275 /* CorpRegisterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpRegisterRepository.swift; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
 		0E87353C28D58F600039D802 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		0E87353F28D598840039D802 /* PageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMode.swift; sourceTree = "<group>"; };
@@ -153,15 +161,14 @@
 		0E87354628D609D00039D802 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		0E87354828D616060039D802 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApisStockInfoResponse.swift; sourceTree = "<group>"; };
-		0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSummaryModel.swift; sourceTree = "<group>"; };
+		0E8E752A28E5896700D52A2C /* StockSummaryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSummaryDTO.swift; sourceTree = "<group>"; };
 		0E8E752D28E5B0D300D52A2C /* DARTAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DARTAPIManager.swift; sourceTree = "<group>"; };
-		0E8E752F28E5B33B00D52A2C /* DartDividendModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartDividendModel.swift; sourceTree = "<group>"; };
-		0E8E753128E5BFDA00D52A2C /* DartFinStatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartFinStatModel.swift; sourceTree = "<group>"; };
+		0E8E752F28E5B33B00D52A2C /* DartDividendDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartDividendDTO.swift; sourceTree = "<group>"; };
+		0E8E753128E5BFDA00D52A2C /* DartFinInfoDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DartFinInfoDTO.swift; sourceTree = "<group>"; };
 		0E8E753C28E5F3A000D52A2C /* CorpCodeRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpCodeRealmModel.swift; sourceTree = "<group>"; };
 		0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpCodeRepository.swift; sourceTree = "<group>"; };
-		0E8E754028E60FF100D52A2C /* List.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = List.swift; sourceTree = "<group>"; };
+		0E8E754028E60FF100D52A2C /* XMLListVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLListVO.swift; sourceTree = "<group>"; };
 		0E8E754228E61B1E00D52A2C /* TradingSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingSearchView.swift; sourceTree = "<group>"; };
-		0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXListResponse.swift; sourceTree = "<group>"; };
 		0EB85EE828D87419002145A2 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		0EB85EEE28D874FA002145A2 /* FearGreedGraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FearGreedGraphTableViewCell.swift; sourceTree = "<group>"; };
@@ -180,12 +187,11 @@
 		0EF4826628D4593900CC8A49 /* SearchedStockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchedStockTableViewCell.swift; sourceTree = "<group>"; };
 		0EF4826828D4678600CC8A49 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		0EF4826C28D467DD00CC8A49 /* APIKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKey.swift; sourceTree = "<group>"; };
-		0EF4826F28D468E200CC8A49 /* KRXModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXModel.swift; sourceTree = "<group>"; };
 		0EF4827128D469A900CC8A49 /* URL+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extension.swift"; sourceTree = "<group>"; };
 		0EF4827328D46AD300CC8A49 /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		0EF4827528D46B8900CC8A49 /* APISAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISAPIManager.swift; sourceTree = "<group>"; };
 		0EF4827F28D4E19600CC8A49 /* TradingDiaryRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDiaryRealmModel.swift; sourceTree = "<group>"; };
-		0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMemoRepository.swift; sourceTree = "<group>"; };
+		0EF4828628D4E3C800CC8A49 /* TradingDiaryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDiaryRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -193,9 +199,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E58BCD728E9D05500204275 /* RealmSwift in Frameworks */,
+				0E58BCD528E9D05500204275 /* Realm in Frameworks */,
 				0E8E753B28E5E9BB00D52A2C /* SWXMLHash in Frameworks */,
 				0E87354528D5EFA80039D802 /* IQKeyboardManagerSwift in Frameworks */,
-				0EF4828528D4E1D500CC8A49 /* RealmSwift in Frameworks */,
 				0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */,
 				0E04A3A728D1B4C10036D389 /* SnapKit in Frameworks */,
 				0E37460C28E0EF5C000EEBA7 /* SkeletonView in Frameworks */,
@@ -204,7 +211,6 @@
 				0ED5D64F28DB6167009A1057 /* Tabman in Frameworks */,
 				0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */,
 				0E04A3D328D215CA0036D389 /* FSCalendar in Frameworks */,
-				0EF4828328D4E1D500CC8A49 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -324,8 +330,8 @@
 				0E04A3C728D1D5030036D389 /* HomeViewController.swift */,
 				0E04A3CF28D205C60036D389 /* HomeView.swift */,
 				0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */,
-				0E04A3C528D1D4AB0036D389 /* TradingDiaryTemplate */,
 				0E33239F28E3FF1E00A1855F /* CorpAnalysisTemplate */,
+				0E04A3C528D1D4AB0036D389 /* TradingDiaryTemplate */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -450,17 +456,18 @@
 		0EF4826E28D4687F00CC8A49 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				0E8E754028E60FF100D52A2C /* List.swift */,
-				0EF4826F28D468E200CC8A49 /* KRXModel.swift */,
-				0E8E752A28E5896700D52A2C /* StockSummaryModel.swift */,
-				0E8E752F28E5B33B00D52A2C /* DartDividendModel.swift */,
-				0E8E753128E5BFDA00D52A2C /* DartFinStatModel.swift */,
-				0E40BF6828D98B0D00F99DEF /* MarketNewsData.swift */,
-				0E40BF6C28D9D74100F99DEF /* FearGreedData.swift */,
+				0E58BCA628E8BB4400204275 /* UpdateTradingDiaryDTO.swift */,
+				0E8E754028E60FF100D52A2C /* XMLListVO.swift */,
+				0E58BCA428E89DAB00204275 /* KRXListDTO.swift */,
+				0E8E752A28E5896700D52A2C /* StockSummaryDTO.swift */,
+				0E8E752F28E5B33B00D52A2C /* DartDividendDTO.swift */,
+				0E8E753128E5BFDA00D52A2C /* DartFinInfoDTO.swift */,
+				0E40BF6828D98B0D00F99DEF /* MarketNewsDTO.swift */,
+				0E40BF6C28D9D74100F99DEF /* FearGreedDTO.swift */,
 				0ED1834528DF73C400B31C2E /* IndexData.swift */,
 				0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */,
-				0E9E9EBD28E1ED92009B5074 /* KRXListResponse.swift */,
 				0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */,
+				0E58BCA228E80F8C00204275 /* DartFinInfoResponse.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -468,10 +475,12 @@
 		0EF4827E28D4E17C00CC8A49 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				0EF4827F28D4E19600CC8A49 /* TradingDiaryRealmModel.swift */,
 				0E8E753C28E5F3A000D52A2C /* CorpCodeRealmModel.swift */,
-				0EF4828628D4E3C800CC8A49 /* UserMemoRepository.swift */,
+				0E58BCA028E6C89C00204275 /* CorpRegisterRealmModel.swift */,
+				0EF4827F28D4E19600CC8A49 /* TradingDiaryRealmModel.swift */,
 				0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */,
+				0E58BCA828E9841600204275 /* CorpRegisterRepository.swift */,
+				0EF4828628D4E3C800CC8A49 /* TradingDiaryRepository.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -497,14 +506,14 @@
 				0E04A3D228D215CA0036D389 /* FSCalendar */,
 				0EF4827828D46BAB00CC8A49 /* Alamofire */,
 				0EF4827B28D46BC100CC8A49 /* SwiftyJSON */,
-				0EF4828228D4E1D500CC8A49 /* Realm */,
-				0EF4828428D4E1D500CC8A49 /* RealmSwift */,
 				0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */,
 				0EB85EF928D8CB49002145A2 /* Kingfisher */,
 				0ED5D64E28DB6167009A1057 /* Tabman */,
 				0E37460B28E0EF5C000EEBA7 /* SkeletonView */,
 				0E8E753728E5E4ED00D52A2C /* Zip */,
 				0E8E753A28E5E9BB00D52A2C /* SWXMLHash */,
+				0E58BCD428E9D05500204275 /* Realm */,
+				0E58BCD628E9D05500204275 /* RealmSwift */,
 			);
 			productName = DailyTradingDiary;
 			productReference = 0E04A38E28D1B2200036D389 /* DailyTradingDiary.app */;
@@ -540,13 +549,13 @@
 				0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				0EF4827728D46BAB00CC8A49 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				0EF4827A28D46BC100CC8A49 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				0EF4828128D4E1D500CC8A49 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				0EB85EF828D8CB49002145A2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0ED5D64D28DB6167009A1057 /* XCRemoteSwiftPackageReference "Tabman" */,
 				0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */,
 				0E8E753628E5E4EC00D52A2C /* XCRemoteSwiftPackageReference "Zip" */,
 				0E8E753928E5E9BB00D52A2C /* XCRemoteSwiftPackageReference "SWXMLHash" */,
+				0E58BCD328E9D05500204275 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 0E04A38F28D1B2200036D389 /* Products */;
 			projectDirPath = "";
@@ -576,15 +585,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0EF4827028D468E200CC8A49 /* KRXModel.swift in Sources */,
 				0E8E752928E5866D00D52A2C /* ApisStockInfoResponse.swift in Sources */,
-				0E40BF6D28D9D74100F99DEF /* FearGreedData.swift in Sources */,
+				0E40BF6D28D9D74100F99DEF /* FearGreedDTO.swift in Sources */,
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
-				0E40BF6928D98B0D00F99DEF /* MarketNewsData.swift in Sources */,
-				0E8E753028E5B33B00D52A2C /* DartDividendModel.swift in Sources */,
+				0E40BF6928D98B0D00F99DEF /* MarketNewsDTO.swift in Sources */,
+				0E8E753028E5B33B00D52A2C /* DartDividendDTO.swift in Sources */,
 				0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */,
 				0E3323A928E44C3D00A1855F /* FinanceInfoTableViewCell.swift in Sources */,
-				0E8E752B28E5896800D52A2C /* StockSummaryModel.swift in Sources */,
+				0E8E752B28E5896800D52A2C /* StockSummaryDTO.swift in Sources */,
 				0E3323A328E40FCC00A1855F /* CorpAnalysis.swift in Sources */,
 				0E87354928D616060039D802 /* Date+Extension.swift in Sources */,
 				0E04A39228D1B2200036D389 /* AppDelegate.swift in Sources */,
@@ -592,10 +600,12 @@
 				0E8E754328E61B1E00D52A2C /* TradingSearchView.swift in Sources */,
 				0E04A3BC28D1CEDF0036D389 /* UIColor+Extension.swift in Sources */,
 				0E87353D28D58F600039D802 /* SettingViewController.swift in Sources */,
+				0E58BCA528E89DAC00204275 /* KRXListDTO.swift in Sources */,
 				0E3323A528E42FA400A1855F /* CorpSummaryTableViewCell.swift in Sources */,
 				0ED1834628DF73C400B31C2E /* IndexData.swift in Sources */,
-				0E8E754128E60FF100D52A2C /* List.swift in Sources */,
+				0E8E754128E60FF100D52A2C /* XMLListVO.swift in Sources */,
 				0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */,
+				0E58BCA728E8BB4400204275 /* UpdateTradingDiaryDTO.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */,
 				0EB85EF728D8BC4E002145A2 /* CustomTableViewHeaderView.swift in Sources */,
@@ -603,7 +613,6 @@
 				0EB85EE928D87419002145A2 /* InfoView.swift in Sources */,
 				0E37460428E0615F000EEBA7 /* EmptyView.swift in Sources */,
 				0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */,
-				0E9E9EBE28E1ED92009B5074 /* KRXListResponse.swift in Sources */,
 				0EF4827428D46AD300CC8A49 /* Endpoint.swift in Sources */,
 				0E2D652628DAE6F9002EF4BC /* PieSlice.swift in Sources */,
 				0E3323AB28E46B4900A1855F /* OpinionTableViewCell.swift in Sources */,
@@ -611,10 +620,11 @@
 				0E2DB01928D3399600CDFD14 /* BuySellTableViewCell.swift in Sources */,
 				0E04A3B328D1C6D00036D389 /* BaseTableViewCell.swift in Sources */,
 				0ED5D65A28DB6523009A1057 /* AssetStatusView.swift in Sources */,
-				0EF4828728D4E3C800CC8A49 /* UserMemoRepository.swift in Sources */,
+				0EF4828728D4E3C800CC8A49 /* TradingDiaryRepository.swift in Sources */,
 				0E40BF6B28D9D53300F99DEF /* FEARGREEDAPIManager.swift in Sources */,
 				0E8E753D28E5F3A100D52A2C /* CorpCodeRealmModel.swift in Sources */,
 				0E04A3BE28D1D2930036D389 /* Transition+Extension.swift in Sources */,
+				0E58BCA328E80F8C00204275 /* DartFinInfoResponse.swift in Sources */,
 				0E2DB01F28D33D0600CDFD14 /* UITextField+Extension.swift in Sources */,
 				0ED1834228DE0B4B00B31C2E /* SettingView.swift in Sources */,
 				0EB85EF528D881A6002145A2 /* BaseCollectionViewCell.swift in Sources */,
@@ -622,7 +632,7 @@
 				0EF4826528D4312C00CC8A49 /* TradingSearchViewController.swift in Sources */,
 				0EB85EFC28D8D2C2002145A2 /* WebViewController.swift in Sources */,
 				0E2D652828DAE7FF002EF4BC /* PieChartView.swift in Sources */,
-				0E8E753228E5BFDA00D52A2C /* DartFinStatModel.swift in Sources */,
+				0E8E753228E5BFDA00D52A2C /* DartFinInfoDTO.swift in Sources */,
 				0ED5D65C28DB7965009A1057 /* PortfolioChartView.swift in Sources */,
 				0EB85EEF28D874FA002145A2 /* FearGreedGraphTableViewCell.swift in Sources */,
 				0E40BF6728D98AC900F99DEF /* ALPHAAPIManager.swift in Sources */,
@@ -636,8 +646,10 @@
 				0E04A3CC28D1D6C40036D389 /* InfoViewController.swift in Sources */,
 				0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift in Sources */,
 				0E04A3CA28D1D5C10036D389 /* TabBarController.swift in Sources */,
+				0E58BCA128E6C89C00204275 /* CorpRegisterRealmModel.swift in Sources */,
 				0E04A3B728D1C7220036D389 /* Constants.swift in Sources */,
 				0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */,
+				0E58BCA928E9841700204275 /* CorpRegisterRepository.swift in Sources */,
 				0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */,
 				0E2DB01D28D339BC00CDFD14 /* TradingMemoTableViewCell.swift in Sources */,
 				0EF4827628D46B8900CC8A49 /* APISAPIManager.swift in Sources */,
@@ -909,6 +921,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		0E58BCD328E9D05500204275 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.29.0;
+			};
+		};
 		0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
@@ -965,14 +985,6 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		0EF4828128D4E1D500CC8A49 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/realm/realm-swift.git";
-			requirement = {
-				kind = exactVersion;
-				version = 10.30.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -990,6 +1002,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */;
 			productName = SkeletonView;
+		};
+		0E58BCD428E9D05500204275 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E58BCD328E9D05500204275 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		0E58BCD628E9D05500204275 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E58BCD328E9D05500204275 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1025,16 +1047,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0EF4827A28D46BC100CC8A49 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
-		};
-		0EF4828228D4E1D500CC8A49 /* Realm */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0EF4828128D4E1D500CC8A49 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = Realm;
-		};
-		0EF4828428D4E1D500CC8A49 /* RealmSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0EF4828128D4E1D500CC8A49 /* XCRemoteSwiftPackageReference "realm-swift" */;
-			productName = RealmSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

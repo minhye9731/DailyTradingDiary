@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DartFinStatModel : Decodable {
+struct DartFinInfoDTO : Decodable {
     let sjName : String // 구분
     let labelID : String // 항목 ID
     let labelName : String // 항목명

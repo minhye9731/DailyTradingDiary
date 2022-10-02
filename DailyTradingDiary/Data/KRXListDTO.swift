@@ -1,13 +1,13 @@
 //
-//  KRXModel.swift
+//  KRXListDTO.swift
 //  DailyTradingDiary
 //
-//  Created by 강민혜 on 9/16/22.
+//  Created by 강민혜 on 10/2/22.
 //
 
 import Foundation
 
-struct KRXModel {
+struct KRXListDTO: Decodable {
     let itemName: String
     let corpName: String
     let marketName: String

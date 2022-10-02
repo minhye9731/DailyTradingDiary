@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct StockSummaryModel {
+struct StockSummaryDTO {
     let updateDate: String
     let corpName: String
     let marketName: String

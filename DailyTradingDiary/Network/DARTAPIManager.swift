@@ -17,7 +17,7 @@ class DARTAPIManager {
     
     private init() { }
     
-    // 고유번호
+    // MARK: - 고유번호
     func downloadCorpCode(type: Endpoint) {
         
         let url = type.requestURL
@@ -101,7 +101,7 @@ class DARTAPIManager {
             let xml = XMLHash.lazy(data)
             // 파싱한 값을 렘에 저장하자
             
-            let listsArr: [List] = try xml["result"]["list"].value()
+            let listsArr: [XMLListVO] = try xml["result"]["list"].value()
             print("listsArr 첫 번째 요소의 종목코드 빈 값: \(listsArr[0].stock_code)")
             
             let corpCodeArr: [CorpCodeRealmModel] = listsArr.map {
@@ -122,29 +122,58 @@ class DARTAPIManager {
     }
     
     // MARK: - 재무제표
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    func fetchFinInfoAPI(type: Endpoint, dartCropCode: String, year: String, completionHandler: @escaping([DartFinInfoDTO]) -> ()) {
+        
+        let url = type.requestURL
+        
+        let parameter = ["crtfc_key": "\(APIKey.DART_KEY)",
+                         "corp_code": "\(dartCropCode)",
+                         "bsns_year": "\(year)",
+                         "reprt_code": "11011",
+                         "fs_div": "CFS"]
+        
+        AF.request(url,
+                   method: .get,
+                   parameters: parameter).validate(statusCode: 200..<500).response { response in
+            switch response.result {
+            case .success(let value):
+                print("dart 재무제표 통신 성공이다!")
+
+                let json = JSON(value)
+
+                let itemData = json["list"].arrayValue
+                
+                let finInfoArr: [DartFinInfoDTO] = itemData.map { item -> DartFinInfoDTO in
+
+                    let sjName = item["sj_nm"].stringValue
+                    let labelID = item["account_id"].stringValue
+                    let labelName = item["account_nm"].stringValue
+                    let oneYearBF = item["thstrm_amount"].stringValue
+                    let twoYearBF = item["frmtrm_amount"].stringValue
+                    let threeYearBF = item["bfefrmtrm_amount"].stringValue
+
+                    return DartFinInfoDTO(sjName: sjName, labelID: labelID, labelName: labelName, amount_1yr_bf: oneYearBF, amount_2yr_bf: twoYearBF, amount_3yr_bf: threeYearBF)
+                }
+                
+                completionHandler(finInfoArr)
+                
+            case .failure(let error):
+                print("erro당 \(error)")
+            }
+        }
+    }
+
     // MARK: - 배당
-    func fetchDividendAPI(type: Endpoint, dartCropCode: String, year: String, completionHandler: @escaping(DartDividendModel) -> ()) {
+    func fetchDividendAPI(type: Endpoint, dartCropCode: String, year: String, completionHandler: @escaping(DartDividendDTO) -> ()) {
         
-        let fullurl = "https://opendart.fss.or.kr/api/alotMatter.json?crtfc_key=ca813c8b10a246d2c6b722caeb58f99dffb20870&corp_code=00126380&bsns_year=2021&reprt_code=11011"
+        let fullurl = type.requestURL
         
-        AF.request(fullurl,
-                   method: .get).responseData { response in
+        let parameter = ["crtfc_key": "\(APIKey.DART_KEY)",
+                         "corp_code": "\(dartCropCode)",
+                         "bsns_year": "\(year)",
+                         "reprt_code": "11011"]
+        
+        AF.request(fullurl, method: .get, parameters: parameter).responseData { response in
             switch response.result {
             case .success(let value):
  
@@ -160,7 +189,7 @@ class DARTAPIManager {
                 let payoutRatio_two_bf = stockData[6]["frmtrm"].stringValue
                 let payoutRatio_three_bf = stockData[6]["lwfr"].stringValue
                 
-                let dividendInfo = DartDividendModel(dps_1yr_bf: dps_one_bf, dps_2yr_bf: dps_two_bf, dps_3yr_bf: dps_three_bf, dividend_payout_ratio_1yr_bf: payoutRatio_one_bf, dividend_payout_ratio_2yr_bf: payoutRatio_two_bf, dividend_payout_ratio_3yr_bf: payoutRatio_three_bf)
+                let dividendInfo = DartDividendDTO(dps_1yr_bf: dps_one_bf, dps_2yr_bf: dps_two_bf, dps_3yr_bf: dps_three_bf, dividend_payout_ratio_1yr_bf: payoutRatio_one_bf, dividend_payout_ratio_2yr_bf: payoutRatio_two_bf, dividend_payout_ratio_3yr_bf: payoutRatio_three_bf)
                 
                 completionHandler(dividendInfo)
                 
