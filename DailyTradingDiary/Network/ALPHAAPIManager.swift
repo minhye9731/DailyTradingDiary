@@ -25,7 +25,7 @@ class ALPHAAPIManager {
             case .success:
                 
                 guard let statusCode = response.response?.statusCode else { return }
-                guard let value = response.value else { return } // 결과데이터를 바로 뷰컨으로 보내지 않고, 상태코드별 판단을 거치고 가공을 한 후에 보낸다.
+                guard let value = response.value else { return }
                 let networkResult = self.judgeStatus(by: statusCode, value)
                 
                 completionHandler(networkResult)
@@ -39,10 +39,10 @@ class ALPHAAPIManager {
     // statusCode별 처리를 나눠줌
     private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         switch statusCode {
-        case 200: return isValidData(data: data) // 연결 성공시 데이터를 가공해서 전달해줘야 하기 때문에 별도 함수로 넘긴다
-        case 400: return .pathErr // 잘못된 요청
+        case 200: return isValidData(data: data)
+        case 400: return .pathErr
         case 500: return .serverErr
-        default: return .networkFail // 기타 등등 에러들은 모두 네트워크 에러로 분기처리 예정
+        default: return .networkFail
         }
     }
     

@@ -10,56 +10,49 @@ import Alamofire
 import SwiftyJSON
 import Network
 
+// MARK: - 공공데이터 api 통신
+
 class APISAPIManager {
     static let shared = APISAPIManager()
     private init() { }
     
-//    func fetchKRXItemAPI(type: Endpoint, baseDate: String, searchText: String, completionHandler: @escaping(NetworkResult<Any>) -> ()) {
-//        
-//        guard let searchText = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
-//        
-//        let url = type.requestURL + "serviceKey=\(APIKey.APIS_KEY)&likeItmsNm=\(searchText)&resultType=json&basDt=\(baseDate)"
-//        
-//        AF.request(url, method: .get).validate(statusCode: 200..<500).responseData { response in
-//            switch response.result {
-//            case .success:
-//                
-//                guard let statusCode = response.response?.statusCode else { return }
-//                guard let value = response.value else { return }
-//                let networkResult = self.judgeStatus(by: statusCode, value)
-//                
-//                completionHandler(networkResult)
-//                
-//            case .failure:
-//                completionHandler(.pathErr)
-//            }
-//        }
-//    }
-
-    func fetchApisStockAPI(type: Endpoint, baseDate: String, clickText: String, completionHandler: @escaping(NetworkResult<Any>) -> ()) {
+    
+     // MARK: - search 뷰컨의 상장종목 검색용
+    func fetchKRXItemAPI(type: Endpoint, baseDate: String, searchText: String, completionHandler: @escaping([KRXListDTO]) -> ()) {
         
-        guard let clickedText = clickText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        guard let searchText = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
-        let url = type.requestURL + "serviceKey=\(APIKey.APIS_KEY)&numOfRows=10&pageNo=1&itmsNm=\(clickedText)&resultType=json&basDt=\(baseDate)"
+        let url = type.requestURL + "serviceKey=\(APIKey.APIS_KEY)&likeItmsNm=\(searchText)&resultType=json&basDt=\(baseDate)"
         
-        AF.request(url, method: .get).validate(statusCode: 200..<500).responseData { response in
+        AF.request(url, method: .get).responseData { response in
             switch response.result {
-            case .success:
+            case .success(let value):
                 
-                guard let statusCode = response.response?.statusCode else { return }
-                print("statusCode: \(statusCode)")
-                guard let value = response.value else { return }
-                let networkResult = self.judgeStatusCode(by: statusCode, value)
+                print("search 통신은 성공")
+                let json = JSON(value)
                 
-                completionHandler(networkResult)
+                let data = json["response"]["body"]["items"]["item"].arrayValue
+                print(data)
+
+                let searchedCropArr: [KRXListDTO] = data.map { item -> KRXListDTO in
+                    let name = item["itmsNm"].stringValue // 검색 연결용
+                    let corpName = item["corpNm"].stringValue // 공식적인 이름 (주)
+                    let market = item["mrktCtg"].stringValue
+                    let srtnCd = item["srtnCd"].stringValue
+                    let isinCd = item["isinCd"].stringValue
+
+                    return KRXListDTO(itemName: name, corpName: corpName, marketName: market, srtnCode: srtnCd, isinCode: isinCd)
+                }
                 
-            case .failure:
-                completionHandler(.pathErr)
+                print("KRX 상장종목 검색결과 - \(searchedCropArr)")
+                completionHandler(searchedCropArr)
+                
+            case .failure(let error):
+                print("search 통신은 실패: \(error)")
             }
         }
     }
     
-    // 상장정보 한글명
 //    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
 //        switch statusCode {
 //        case 200: return isValidData(data: data)
@@ -72,11 +65,34 @@ class APISAPIManager {
 //    private func isValidData(data: Data) -> NetworkResult<Any> {
 //
 //        let decoder = JSONDecoder()
-//        guard let decodedData = try? decoder.decode(KRXListResponse.self, from: data) else { return .pathErr }
-//        return .success(decodedData.response.body.items.item)
+//        guard let decodedData = try? decoder.decode(KRXListDTO.self, from: data) else { return .pathErr }
+//        return .success(decodedData)
 //    }
     
-    // 주식 시세정보
+
+    // MARK: - '기업등록'페이지내 summary에 들어갈 종목 summary 데이터 통신용
+    func fetchApisStockAPI(type: Endpoint, baseDate: String, clickText: String, completionHandler: @escaping(NetworkResult<Any>) -> ()) {
+        
+        guard let clickedText = clickText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
+        
+        let url = type.requestURL + "serviceKey=\(APIKey.APIS_KEY)&numOfRows=10&pageNo=1&itmsNm=\(clickedText)&resultType=json&basDt=\(baseDate)"
+        
+        AF.request(url, method: .get).validate(statusCode: 200..<500).responseData { response in
+            switch response.result {
+            case .success:
+                
+                guard let statusCode = response.response?.statusCode else { return }
+                guard let value = response.value else { return }
+                let networkResult = self.judgeStatusCode(by: statusCode, value)
+                
+                completionHandler(networkResult)
+                
+            case .failure:
+                completionHandler(.pathErr)
+            }
+        }
+    }
+    
     private func judgeStatusCode(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
         switch statusCode {
         case 200: return isValidResult(data: data)
@@ -87,10 +103,8 @@ class APISAPIManager {
     }
     
     private func isValidResult(data: Data) -> NetworkResult<Any> {
-        
         let decoder = JSONDecoder()
         guard let decodedData = try? decoder.decode(APISStockInfoResponse.self, from: data) else { return .pathErr }
-        dump("decodedData: \(decodedData)")
         return .success(decodedData.response.body.items.item)
     }
     
