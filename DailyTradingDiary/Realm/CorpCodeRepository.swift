@@ -13,6 +13,7 @@ protocol CorpCodeRepositoryType {
     func fetchRealmRegisterMode()
     func fetchRealmTradingMode()
     
+    func filterSelectedCrop(searchText: String) -> String
     func filteredRegisterMode(searchText: String)
     func filteredTradingMode(searchText: String)
     
@@ -40,6 +41,16 @@ class CorpCodeRepository: CorpCodeRepositoryType {
     }
     
     // MARK: - 실시간 검색시
+    
+    func filterSelectedCrop(searchText: String) -> String {
+        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.corpName == searchText }
+        return tasks[0].corpCode
+    }
+    
+    
+    
+    
+    // 아래..필요없음ㅠㅠ
     func filteredRegisterMode(searchText: String) {
 //        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where {
 //            ($0.stockCode != " "  && $0.corpName == searchText) || ($0.stockCode != " "  && $0.stockCode == searchText)
