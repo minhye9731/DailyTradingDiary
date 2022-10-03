@@ -11,16 +11,17 @@ import UIKit
 
 protocol DiaryRepositoryType {
     func fetchRealm()
-    func sortByRegDate()
+    
     func filteredByTradingDate(selectedDate: Date)
+    func sortByRegDate()
     func sort(_ sort: String) -> Results<TradingDiaryRealmModel>
     
     func getTotalBuyPrice(from: Date, to: Date) -> Int
     func getTotalSellPrice(from: Date, to: Date) -> Int
     func getPercentagePerStock() -> [newVersionSlice]
     func makeRandomColor() -> UIColor
-    func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int)
     
+    func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int)
 }
 
 class TradingDiaryRepository: DiaryRepositoryType {
@@ -39,10 +40,6 @@ class TradingDiaryRepository: DiaryRepositoryType {
         tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self)
     }
     
-    func sortByRegDate() {
-        tasks = localRealm.objects(TradingDiaryRealmModel.self).sorted(byKeyPath: "regDate", ascending: true)
-    }
-    
     // home화면 - 선택일자 기준표기용 필터
     func filteredByTradingDate(selectedDate: Date) {
         tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where {
@@ -50,6 +47,10 @@ class TradingDiaryRepository: DiaryRepositoryType {
         }
     }
 
+    func sortByRegDate() {
+        tasks = localRealm.objects(TradingDiaryRealmModel.self).sorted(byKeyPath: "regDate", ascending: true)
+    }
+    
     func sort(_ sort: String) -> Results<TradingDiaryRealmModel> {
         print(#function)
         return localRealm.objects(TradingDiaryRealmModel.self).sorted(byKeyPath: sort, ascending: true)
