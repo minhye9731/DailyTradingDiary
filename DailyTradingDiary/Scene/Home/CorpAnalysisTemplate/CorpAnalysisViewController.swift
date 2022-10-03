@@ -58,9 +58,9 @@ class CorpAnalysisViewController: BaseViewController {
         mainView.tableView.dataSource = self
         setNav()
         setNavItem()
-        
-        self.mainView.searchButton.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
+        setSearchBtn()
     }
+    
     
     func setNav() {
         self.navigationItem.title = "관심기업 등록"
@@ -409,26 +409,40 @@ extension CorpAnalysisViewController: SendDataDelegate {
     func sendData(_ vc: UIViewController, Input value: String, formalName: String, dartCode code: String, srtnCode: String) {
         print("관심기업 등록 화면 : \(value), \(formalName), \(code) 기업을 선택하셨습니다!")
         self.mainView.nameResultLabel.text = formalName
+        newRegisterData.formalCorpName = formalName
+        
         connectAPI(name: value, dartcode: code)
     }
     
     func connectAPI(name: String, dartcode: String) {
-        fetchCorpSumData(corpName: name)
-        fetchCorpFinInfoData(dartCode: dartcode)
-        fetchCorpDividendData(dartCode: dartcode)
+        self.fetchCorpFinInfoData(dartCode: dartcode)
+        self.fetchCorpDividendData(dartCode: dartcode)
+        self.fetchCorpSumData(corpName: name)
     }
     
     // corpname 기준으로 '공공데이터-주가시세정보' API 통신
     func fetchCorpSumData(corpName: String) {
-        APISAPIManager.shared.fetchApisStockAPI(type: .apisStockInfo, baseDate: "20220928", clickText: corpName) { (response) in
+        
+        var totalCount = "0"
+        var baseDt = Calendar.current.date(byAdding: .day, value: -2, to: Date())
+        print("baseDt : \(baseDt)")
+        
+        while totalCount != "0" {
+            APISAPIManager.shared.fetchApisStockAPI(type: .apisStockInfo, baseDate: baseDt!, clickText: corpName) { (response) in
             
             switch(response) {
             case .success(let result):
                 
+                if let countData = result as? Body {
+                    totalCount = String(countData.totalCount)
+                    print("totalCount - \(totalCount)")
+                    baseDt = Calendar.current.date(byAdding: .day, value: -1, to: baseDt!)
+                    print("통신함수 내부에서의 baseDt - \(baseDt)")
+                }
+                
                 if let data = result as? [Item] {
-                    
+
                     let stockDataArray: [StockSummaryDTO] = data.map { data -> StockSummaryDTO in
-                        
                         let update = data.basDt
                         let name = data.itmsNm
                         let market = data.mrktCtg
@@ -438,10 +452,8 @@ extension CorpAnalysisViewController: SendDataDelegate {
                         let low = data.lopr
                         let quantity = data.trqu
                         let total = data.mrktTotAmt
-                        
                         return StockSummaryDTO(updateDate: update, corpName: name, marketName: market, srtnCode: code, nowPrice: now, highPrice: high, lowPrice: low, tradingQnt: quantity, totAmt: total)
                     }
-                    
                     switch self.addOrEditAction {
                     case .write :
                         self.clickedCorpSum.removeAll()
@@ -452,28 +464,63 @@ extension CorpAnalysisViewController: SendDataDelegate {
                         self.refreshClickedCorpSum.append(contentsOf: stockDataArray)
                         print("refresh 종합정보: \(self.refreshClickedCorpSum)")
                     }
-                    
                     DispatchQueue.main.async  {
                         self.mainView.tableView.reloadData()
                     }
                 }
                 
+     
+
+//                if let data = result as? [Item] {
+//
+//                    let stockDataArray: [StockSummaryDTO] = data.map { data -> StockSummaryDTO in
+//                        let update = data.basDt
+//                        let name = data.itmsNm
+//                        let market = data.mrktCtg
+//                        let code = data.srtnCD
+//                        let now = data.mkp
+//                        let high = data.hipr
+//                        let low = data.lopr
+//                        let quantity = data.trqu
+//                        let total = data.mrktTotAmt
+//                        return StockSummaryDTO(updateDate: update, corpName: name, marketName: market, srtnCode: code, nowPrice: now, highPrice: high, lowPrice: low, tradingQnt: quantity, totAmt: total)
+//                    }
+//                    switch self.addOrEditAction {
+//                    case .write :
+//                        self.clickedCorpSum.removeAll()
+//                        self.clickedCorpSum.append(contentsOf: stockDataArray)
+//                        print("종합정보: \(self.clickedCorpSum)")
+//                    case .edit :
+//                        self.refreshClickedCorpSum.removeAll()
+//                        self.refreshClickedCorpSum.append(contentsOf: stockDataArray)
+//                        print("refresh 종합정보: \(self.refreshClickedCorpSum)")
+//                    }
+//                    DispatchQueue.main.async  {
+//                        self.mainView.tableView.reloadData()
+//                    }
+//                }
+                
             case .requestErr(let message) :
                 print("requestErr")
                 self.showAlertMessageDetail(title: "요청 에러가 발생했습니다.", message: "\(message)")
+                break
             case .pathErr :
                 self.showAlertMessageDetail(title: "<알림>", message: "요청 경로가 잘못되었습니다. 잠시 후 재시도해 주세요 :)")
+                break
             case .serverErr :
                 self.showAlertMessageDetail(title: "<알림>", message: "서버 에러가 발생했습니다. 잠시 후 재시도해 주세요 :)")
+                break
             case .networkFail :
                 self.showAlertMessageDetail(title: "<알림>", message: "네트워크 통신 에러가 발생했습니다. 인터넷 환경을 확인 후 재시도해 주세요 :)")
+                break
+            }
             }
         }
     }
     
     // corpcode 기준으로 'DART-단일회사 전체 재무제표 개발가이드' API 통신
     func fetchCorpFinInfoData(dartCode: String) {
-        DARTAPIManager.shared.fetchFinInfoAPI(type: .dartFinInfo, dartCropCode: dartCode, year: "2021") { finInfoArr in
+        DARTAPIManager.shared.fetchFinInfoAPI(type: .dartFinInfo, dartCropCode: dartCode, year: getLastYear()) { finInfoArr in
 
             
             if finInfoArr.isEmpty {
@@ -512,7 +559,7 @@ extension CorpAnalysisViewController: SendDataDelegate {
     
     // corpcode 기준으로 'DART-배당에 관한 사항' API 통신
     func fetchCorpDividendData(dartCode: String) {
-        DARTAPIManager.shared.fetchDividendAPI(type: .dartDivdInfo, dartCropCode: dartCode, year: "2021") { data in
+        DARTAPIManager.shared.fetchDividendAPI(type: .dartDivdInfo, dartCropCode: dartCode, year: getLastYear()) { data in
 
             switch self.addOrEditAction {
             case .write :
@@ -526,6 +573,36 @@ extension CorpAnalysisViewController: SendDataDelegate {
             DispatchQueue.main.async {
                 self.mainView.tableView.reloadData()
             }
+        }
+    }
+    
+    
+    
+    
+    func getLastYear() -> String {
+        let currentYear = Calendar.current.component(.year, from: Date())
+        let lastYear = String(currentYear - 1)
+        print("lastYear : \(lastYear)")
+        return lastYear
+    }
+    
+    func setSearchBtn() {
+        if addOrEditAction == .write {
+            let searchButton: UIButton = {
+                let button = UIButton()
+                button.setImage(UIImage(systemName: Constants.ImageName.magnifyingGlass.rawValue), for: .normal)
+                button.tintColor = .mainTextColor
+                button.addTarget(self, action: #selector(searchButtonClicked), for: .touchUpInside)
+                return button
+            }()
+            
+            self.mainView.addSubview(searchButton)
+            
+            searchButton.snp.makeConstraints { make in
+                make.trailing.equalTo(mainView.selectCorpView.snp.trailing).offset(-27)
+                make.centerY.equalTo(mainView.selectCorpView)
+            }
+            
         }
     }
     

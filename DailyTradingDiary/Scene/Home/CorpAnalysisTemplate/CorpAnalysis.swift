@@ -41,14 +41,6 @@ final class CorpAnalysis: BaseView {
         return label
     }()
     
-    let searchButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: Constants.ImageName.magnifyingGlass.rawValue), for: .normal)
-        button.tintColor = .mainTextColor
-        return button
-    }()
-    
-    
     // 테이블뷰
     lazy var tableView: UITableView = {
         let tableview = UITableView(frame: .zero, style: .insetGrouped)
@@ -63,7 +55,10 @@ final class CorpAnalysis: BaseView {
     }()
     
     override func configureUI() {
-        [selectCorpView, showselectCorpView, nameLabel, nameResultLabel, searchButton, tableView].forEach {
+        
+        
+        
+        [selectCorpView, showselectCorpView, nameLabel, nameResultLabel, tableView].forEach {
             self.addSubview($0)
         }
         
@@ -89,13 +84,8 @@ final class CorpAnalysis: BaseView {
             make.centerY.equalTo(showselectCorpView)
         }
         
-        searchButton.snp.makeConstraints { make in
-            make.centerY.equalTo(showselectCorpView)
-            make.trailing.equalTo(showselectCorpView.snp.trailing).offset(-18)
-        }
-        
         nameResultLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(searchButton.snp.leading).offset(-20)
+            make.trailing.equalTo(showselectCorpView.snp.trailing).offset(-45)
             make.centerY.equalTo(showselectCorpView)
         }
         
