@@ -15,8 +15,6 @@ protocol DiaryRepositoryType {
     func filteredByTradingDate(selectedDate: Date)
     func sort(_ sort: String) -> Results<TradingDiaryRealmModel>
     
-    func deleteDiary(item: TradingDiaryRealmModel)
-    
     func getTotalBuyPrice(from: Date, to: Date) -> Int
     func getTotalSellPrice(from: Date, to: Date) -> Int
     func getPercentagePerStock() -> [newVersionSlice]
@@ -57,20 +55,6 @@ class TradingDiaryRepository: DiaryRepositoryType {
         return localRealm.objects(TradingDiaryRealmModel.self).sorted(byKeyPath: sort, ascending: true)
     }
 
-
-    
-    // MARK: - 추가 및 삭제
-    
-    func deleteDiary(item: TradingDiaryRealmModel) {
-        do {
-            try localRealm.write {
-                localRealm.delete(item)
-            }
-        } catch let error {
-            // 얼럿표시
-            print(error)
-        }
-    }
     
     // MARK: - 매매내역 조회조건값에 따른 매매총액 계산기
     func getTotalBuyPrice(from: Date, to: Date) -> Int {

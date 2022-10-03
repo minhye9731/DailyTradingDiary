@@ -18,8 +18,8 @@ protocol RegisterRepositoryType {
     
     func diaryInListupdate(updateTarget: TradingDiaryRealmModel, updateData: UpdateTradingDiaryDTO)
     
-    
     func deleteRegisteredCorp(item: CorpRegisterRealmModel)
+    func deleteDiaryatList(item: TradingDiaryRealmModel)
     
     func isRegistered(item: KRXListDTO) -> Bool
 }
@@ -56,12 +56,10 @@ class CorpRegisterRepository: RegisterRepositoryType {
         }
     }
     
-    // 매매일지 list로 추가 (strn 코드로 parent 찾아가기)
+    // 매매일지 list 추가 (strn 코드로 parent 찾아가기)
     func plusDiaryatList(item: TradingDiaryRealmModel) {
         
         let corp = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).where{ $0.corpName == item.corpName }
-        
-        print("corp = \(corp)")
         
         do {
             try localRealm.write{
@@ -98,12 +96,23 @@ class CorpRegisterRepository: RegisterRepositoryType {
         }
     }
     
-    
     // 등록기업 삭제 (연관된 매매일지도 함께 삭제되려나..?)
     func deleteRegisteredCorp(item: CorpRegisterRealmModel) {
         do {
             try localRealm.write {
                 localRealm.delete(item)
+            }
+        } catch let error {
+            // 얼럿표시
+            print(error)
+        }
+    }
+    
+    // 매매일지 list 삭제
+    func deleteDiaryatList(item: TradingDiaryRealmModel) {
+        do {
+            try localRealm.write {
+                CorpRegisterRepository.standard.localRealm.delete(item)
             }
         } catch let error {
             // 얼럿표시

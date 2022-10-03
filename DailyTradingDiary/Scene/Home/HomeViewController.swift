@@ -111,23 +111,19 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let row = Array(TradingDiaryRepository.standard.tasks)[indexPath.row]
+        
         let delete = UIContextualAction(style: .normal, title: nil) { action, view, completion in
             self.deleteConfirmAlert(title: "해당 메모를 삭제하시겠습니까?") { _ in
                 
-                TradingDiaryRepository.standard.deleteDiary(item: row) // 수정필ㄴ요
-                
-                TradingDiaryRepository.standard.sortByRegDate()
-
+                CorpRegisterRepository.standard.deleteDiaryatList(item: row)
                 self.isEmptyCheck()
-                
-                // 에러는 안나지만 적용안됨, 데이터랑 뷰 둘 중에 뭐가 문제인가??
-//                self.eventsArr = TradingDiaryRepository.standard.tasks.map {
-//                    guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
-//                    return result
-//                }
-                
+                TradingDiaryRepository.standard.sortByRegDate()
+                self.eventsArr = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).map {
+                    guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+                    return result
+                }
                 self.mainView.tableView.reloadData()
-                self.mainView.layoutIfNeeded() // 추가해봄
+                self.mainView.calendar.reloadData()
             }
         }
         
