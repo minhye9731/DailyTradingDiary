@@ -14,6 +14,7 @@ class CorpAnalysisViewController: BaseViewController {
     var addOrEditAction: PageMode = .write
     var finInfoNameList = ["매출액", "영업이익", "당기순이익", "부채총계", "자본총계"]
     var dividendeNameList = ["주당배당금", "배당성향"]
+    var registeredSrtnCdArr: [String] = []
     
     // api 통신시에 담아줄 데이터
     var clickedCorpSum: [StockSummaryDTO] = [StockSummaryDTO(updateDate: " 00000000 ", corpName: " - ", marketName: " - ", srtnCode: "0000000", nowPrice: " - ", highPrice: " - ", lowPrice: " - ", tradingQnt: " - ", totAmt: " - ")]
@@ -25,7 +26,7 @@ class CorpAnalysisViewController: BaseViewController {
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-")]
     var dividendData = DartDividendDTO(dps_1yr_bf: "-", dps_2yr_bf: "-", dps_3yr_bf: "-", dividend_payout_ratio_1yr_bf: "-", dividend_payout_ratio_2yr_bf: "-", dividend_payout_ratio_3yr_bf: "-")
     
-    // api refresch시 담아줄 데이터
+    // api refresh시 담아줄 데이터
     var refreshClickedCorpSum: [StockSummaryDTO] = [StockSummaryDTO(updateDate: " 00000000 ", corpName: " - ", marketName: " - ", srtnCode: "0000000", nowPrice: " - ", highPrice: " - ", lowPrice: " - ", tradingQnt: " - ", totAmt: " - ")]
     var refreshFinStatementDataArr: [DartFinInfoDTO] = [
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
@@ -326,10 +327,17 @@ extension CorpAnalysisViewController {
     @objc func doneButtonTapped() {
         print("저장 완료!")
         
-        newRegisterData.regDate = Date()
-        CorpRegisterRepository.standard.plusRegisterCorp(item: newRegisterData)
-        navigationController?.popViewController(animated: true)
+        // edit 모드 분기처리는 update 때
+        self.registeredSrtnCdArr = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).map { $0.srtnCode }
         
+        if self.mainView.nameLabel.text == "(기업명)" {
+            self.showAlertMessageDetail(title: "<알림>", message: "등록할 기업데이터가 없습니다. 기업명을 검색하여 관심기업 정보를 기입해주세요.")
+            return
+        } else {
+            newRegisterData.regDate = Date()
+            CorpRegisterRepository.standard.plusRegisterCorp(item: newRegisterData)
+            navigationController?.popViewController(animated: true)
+        }
         
     }
     

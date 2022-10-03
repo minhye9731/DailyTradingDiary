@@ -294,7 +294,7 @@ extension TradingDiaryViewController {
         switch addOrEditAction {
         case .write:
             if diaryData.corpName == "매매한 종목 검색하기" || diaryData.tradingPrice == 0 || diaryData.tradingAmount == 0 {
-                self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
+                self.showAlertMessageDetail(title: "<알림>", message: "필수 입력 항목을 모두 채워주세요.")
                 return
             } else {
                 diaryData.regDate = Date()
@@ -303,7 +303,7 @@ extension TradingDiaryViewController {
             }
         case .edit:
             if updateData.corpName == "매매한 종목 검색하기" || updateData.tradingPrice == 0 || updateData.tradingAmount == 0 {
-                self.showAlertMessage(title: "필수 입력 항목을 모두 채워주세요.")
+                self.showAlertMessageDetail(title: "<알림>", message: "필수 입력 항목을 모두 채워주세요.")
                 return
             } else {
                 updateData.regDate = Date()
