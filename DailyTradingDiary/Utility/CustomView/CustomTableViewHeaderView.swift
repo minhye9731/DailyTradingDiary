@@ -1,5 +1,5 @@
 //
-//  InfoTableViewHeaderView.swift
+//  CustomTableViewHeaderView.swift
 //  DailyTradingDiary
 //
 //  Created by 강민혜 on 9/20/22.
@@ -36,7 +36,6 @@ final class CustomTableViewHeaderView: UITableViewHeaderFooterView {
     }
     
     func configure() {
-        
         [sectionTitleLabel, grayline].forEach {
             contentView.addSubview($0)
         }
