@@ -17,7 +17,7 @@ class CorpAnalysisViewController: BaseViewController {
     var registeredSrtnCdArr: [String] = []
     
     // api 통신시에 담아줄 데이터
-    var clickedCorpSum: [StockSummaryDTO] = [StockSummaryDTO(updateDate: " 00000000 ", corpName: " - ", marketName: " - ", srtnCode: "0000000", nowPrice: " - ", highPrice: " - ", lowPrice: " - ", tradingQnt: " - ", totAmt: " - ")]
+    var clickedCorpSum: [StockSummaryDTO] = [StockSummaryDTO(updateDate: " 00000000 ", corpName: " - ", marketName: " - ", srtnCode: "000000", nowPrice: " - ", highPrice: " - ", lowPrice: " - ", tradingQnt: " - ", totAmt: " - ")]
     var finStatementDataArr: [DartFinInfoDTO] = [
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
@@ -27,7 +27,7 @@ class CorpAnalysisViewController: BaseViewController {
     var dividendData = DartDividendDTO(dps_1yr_bf: "-", dps_2yr_bf: "-", dps_3yr_bf: "-", dividend_payout_ratio_1yr_bf: "-", dividend_payout_ratio_2yr_bf: "-", dividend_payout_ratio_3yr_bf: "-")
     
     // api refresh시 담아줄 데이터
-    var refreshClickedCorpSum: [StockSummaryDTO] = [StockSummaryDTO(updateDate: " 00000000 ", corpName: " - ", marketName: " - ", srtnCode: "0000000", nowPrice: " - ", highPrice: " - ", lowPrice: " - ", tradingQnt: " - ", totAmt: " - ")]
+    var refreshClickedCorpSum: [StockSummaryDTO] = [StockSummaryDTO(updateDate: " 00000000 ", corpName: " - ", marketName: " - ", srtnCode: "000000", nowPrice: " - ", highPrice: " - ", lowPrice: " - ", tradingQnt: " - ", totAmt: " - ")]
     var refreshFinStatementDataArr: [DartFinInfoDTO] = [
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
@@ -37,8 +37,8 @@ class CorpAnalysisViewController: BaseViewController {
     var refreshDividendData = DartDividendDTO(dps_1yr_bf: "-", dps_2yr_bf: "-", dps_3yr_bf: "-", dividend_payout_ratio_1yr_bf: "-", dividend_payout_ratio_2yr_bf: "-", dividend_payout_ratio_3yr_bf: "-")
     
     // 신규작성&업데이트시 데이터를 상세하게 다루기 위해 잠시 담아둘 Realm용 변수
-    var newRegisterData: CorpRegisterRealmModel = CorpRegisterRealmModel(formalCorpName: "(기업명)", updateDate: Date(), corpName: " - ", marketName: " - ", srtnCode: "0000000", nowPrice: 0, highPrice: 0, lowPrice: 0, tradingQnt: 0, totAmt: 0, revenueThr: 0, revenueTwo: 0, revenueOne: 0, opIncomeThr: 0, opIncomeTwo: 0, opIncomeOne: 0, nProfitThr: 0, nProfitTwo: 0, nProfitOne: 0, totalDebtThr: 0, totalDebtTwo: 0, totalDebtOne: 0, totalCapThr: 0, totalCapTwo: 0, totalCapOne: 0, dpsThr: 0, dpsTwo: 0, dpsOne: 0, diviPayoutRatioThr: 0.0, diviPayoutRatioTwo: 0.0, diviPayoutRatioOne: 0.0, regDate: Date(), opinion: "", buyPricePlan: 0, buyDatePlan: Date(), sellPricePlan: 0, sellDatePlan: Date())
-    var updateRegisteredData: CorpRegisterRealmModel = CorpRegisterRealmModel(formalCorpName: "(기업명)", updateDate: Date(), corpName: " - ", marketName: " - ", srtnCode: "0000000", nowPrice: 0, highPrice: 0, lowPrice: 0, tradingQnt: 0, totAmt: 0, revenueThr: 0, revenueTwo: 0, revenueOne: 0, opIncomeThr: 0, opIncomeTwo: 0, opIncomeOne: 0, nProfitThr: 0, nProfitTwo: 0, nProfitOne: 0, totalDebtThr: 0, totalDebtTwo: 0, totalDebtOne: 0, totalCapThr: 0, totalCapTwo: 0, totalCapOne: 0, dpsThr: 0, dpsTwo: 0, dpsOne: 0, diviPayoutRatioThr: 0.0, diviPayoutRatioTwo: 0.0, diviPayoutRatioOne: 0.0, regDate: Date(), opinion: "", buyPricePlan: 0, buyDatePlan: Date(), sellPricePlan: 0, sellDatePlan: Date())
+    var newRegisterData: CorpRegisterRealmModel = CorpRegisterRealmModel(formalCorpName: "(기업명)", updateDate: Date(), corpName: " - ", marketName: " - ", srtnCode: "000000", nowPrice: 0, highPrice: 0, lowPrice: 0, tradingQnt: 0, totAmt: 0, revenueThr: 0, revenueTwo: 0, revenueOne: 0, opIncomeThr: 0, opIncomeTwo: 0, opIncomeOne: 0, nProfitThr: 0, nProfitTwo: 0, nProfitOne: 0, totalDebtThr: 0, totalDebtTwo: 0, totalDebtOne: 0, totalCapThr: 0, totalCapTwo: 0, totalCapOne: 0, dpsThr: 0, dpsTwo: 0, dpsOne: 0, diviPayoutRatioThr: 0.0, diviPayoutRatioTwo: 0.0, diviPayoutRatioOne: 0.0, regDate: Date(), opinion: "", buyPricePlan: 0, buyDatePlan: Date(), sellPricePlan: 0, sellDatePlan: Date())
+    var updateRegisteredData: CorpRegisterRealmModel = CorpRegisterRealmModel(formalCorpName: "(기업명)", updateDate: Date(), corpName: " - ", marketName: " - ", srtnCode: "000000", nowPrice: 0, highPrice: 0, lowPrice: 0, tradingQnt: 0, totAmt: 0, revenueThr: 0, revenueTwo: 0, revenueOne: 0, opIncomeThr: 0, opIncomeTwo: 0, opIncomeOne: 0, nProfitThr: 0, nProfitTwo: 0, nProfitOne: 0, totalDebtThr: 0, totalDebtTwo: 0, totalDebtOne: 0, totalCapThr: 0, totalCapTwo: 0, totalCapOne: 0, dpsThr: 0, dpsTwo: 0, dpsOne: 0, diviPayoutRatioThr: 0.0, diviPayoutRatioTwo: 0.0, diviPayoutRatioOne: 0.0, regDate: Date(), opinion: "", buyPricePlan: 0, buyDatePlan: Date(), sellPricePlan: 0, sellDatePlan: Date())
     
     // MARK: - lifecycle
     override func loadView() {
@@ -325,17 +325,21 @@ extension CorpAnalysisViewController: UITextFieldDelegate {
 extension CorpAnalysisViewController {
     
     @objc func doneButtonTapped() {
-        print("저장 완료!")
         
-        // edit 모드 분기처리는 update 때
+        // edit 모드 분기처리는 update 때 추가예정
         self.registeredSrtnCdArr = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).map { $0.srtnCode }
+        print("registeredSrtnCdArr : \(registeredSrtnCdArr)")
         
-        if self.mainView.nameLabel.text == "(기업명)" {
+        if self.newRegisterData.srtnCode == "000000" {
             self.showAlertMessageDetail(title: "<알림>", message: "등록할 기업데이터가 없습니다. 기업명을 검색하여 관심기업 정보를 기입해주세요.")
+            return
+        } else if self.registeredSrtnCdArr.contains(newRegisterData.srtnCode) {
+            self.showAlertMessageDetail(title: "<알림>", message: "이미 등록되어 있는 기업입니다.")
             return
         } else {
             newRegisterData.regDate = Date()
             CorpRegisterRepository.standard.plusRegisterCorp(item: newRegisterData)
+            print("저장 완료!")
             navigationController?.popViewController(animated: true)
         }
         
@@ -371,7 +375,7 @@ extension CorpAnalysisViewController {
 
     
     // corpSum 데이터를 relam용 큰변수에 합치기
-    func mergeCorpSumData(wholeData: CorpRegisterRealmModel,corpData: [StockSummaryDTO] ) {
+    func mergeCorpSumData(wholeData: CorpRegisterRealmModel, corpData: [StockSummaryDTO] ) {
         wholeData.updateDate = corpData[0].updateDate.toDateforAPI() ?? Date()
         wholeData.corpName = corpData[0].corpName
         wholeData.marketName = corpData[0].marketName
