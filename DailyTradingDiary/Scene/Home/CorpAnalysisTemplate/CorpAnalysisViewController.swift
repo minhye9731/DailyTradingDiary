@@ -101,7 +101,7 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.section {
-        case 0: return 160
+        case 0: return 70 // 160
         case 1: return 0
         case 2, 3: return 50
         case 4: return 400
@@ -224,14 +224,23 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         guard let customHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: CustomTableViewHeaderView.reuseIdentifier) as? CustomTableViewHeaderView else { return UIView() }
+        guard let customListNameHeaderView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ContentTableViewHeaderView.reuseIdentifier) as? ContentTableViewHeaderView else { return UIView() }
+        
         switch section {
-        case 0: customHeaderView.sectionTitleLabel.text = "종합"
-        case 1: customHeaderView.sectionTitleLabel.text = "주요재무"
-        case 2, 3: customHeaderView.sectionTitleLabel.text = "항목명" // 이거 다른셀로 커스텀해서 적용
-        case 4: customHeaderView.sectionTitleLabel.text = "My Opinion"
-        default: customHeaderView.sectionTitleLabel.text = ""
+        case 0:
+            customHeaderView.sectionTitleLabel.text = "종합"
+            return customHeaderView
+        case 1:
+            customHeaderView.sectionTitleLabel.text = "주요재무"
+            return customHeaderView
+        case 2, 3: return customListNameHeaderView
+        case 4:
+            customHeaderView.sectionTitleLabel.text = "My Opinion"
+            return customHeaderView
+        default:
+            customHeaderView.sectionTitleLabel.text = ""
+            return customHeaderView
         }
-        return customHeaderView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -423,25 +432,13 @@ extension CorpAnalysisViewController: SendDataDelegate {
     // corpname 기준으로 '공공데이터-주가시세정보' API 통신
     func fetchCorpSumData(corpName: String) {
         
-        var totalCount = "0"
-        var baseDt = Calendar.current.date(byAdding: .day, value: -2, to: Date())
-        print("baseDt : \(baseDt)")
-        
-        while totalCount != "0" {
-            APISAPIManager.shared.fetchApisStockAPI(type: .apisStockInfo, baseDate: baseDt!, clickText: corpName) { (response) in
+        APISAPIManager.shared.fetchApisStockAPI(type: .apisStockInfo, clickText: corpName) { (response) in
             
             switch(response) {
             case .success(let result):
                 
-                if let countData = result as? Body {
-                    totalCount = String(countData.totalCount)
-                    print("totalCount - \(totalCount)")
-                    baseDt = Calendar.current.date(byAdding: .day, value: -1, to: baseDt!)
-                    print("통신함수 내부에서의 baseDt - \(baseDt)")
-                }
-                
                 if let data = result as? [Item] {
-
+                    
                     let stockDataArray: [StockSummaryDTO] = data.map { data -> StockSummaryDTO in
                         let update = data.basDt
                         let name = data.itmsNm
@@ -452,53 +449,26 @@ extension CorpAnalysisViewController: SendDataDelegate {
                         let low = data.lopr
                         let quantity = data.trqu
                         let total = data.mrktTotAmt
+                        
                         return StockSummaryDTO(updateDate: update, corpName: name, marketName: market, srtnCode: code, nowPrice: now, highPrice: high, lowPrice: low, tradingQnt: quantity, totAmt: total)
                     }
-                    switch self.addOrEditAction {
-                    case .write :
-                        self.clickedCorpSum.removeAll()
-                        self.clickedCorpSum.append(contentsOf: stockDataArray)
-                        print("종합정보: \(self.clickedCorpSum)")
-                    case .edit :
-                        self.refreshClickedCorpSum.removeAll()
-                        self.refreshClickedCorpSum.append(contentsOf: stockDataArray)
-                        print("refresh 종합정보: \(self.refreshClickedCorpSum)")
-                    }
+                    
+                        switch self.addOrEditAction {
+                        case .write :
+                            self.clickedCorpSum.removeAll()
+                            self.clickedCorpSum.append(contentsOf: stockDataArray)
+                            print("종합정보: \(self.clickedCorpSum)")
+                            
+                        case .edit :
+                            self.refreshClickedCorpSum.removeAll()
+                            self.refreshClickedCorpSum.append(contentsOf: stockDataArray)
+                            print("refresh 종합정보: \(self.refreshClickedCorpSum)")
+                        }
+
                     DispatchQueue.main.async  {
                         self.mainView.tableView.reloadData()
                     }
                 }
-                
-     
-
-//                if let data = result as? [Item] {
-//
-//                    let stockDataArray: [StockSummaryDTO] = data.map { data -> StockSummaryDTO in
-//                        let update = data.basDt
-//                        let name = data.itmsNm
-//                        let market = data.mrktCtg
-//                        let code = data.srtnCD
-//                        let now = data.mkp
-//                        let high = data.hipr
-//                        let low = data.lopr
-//                        let quantity = data.trqu
-//                        let total = data.mrktTotAmt
-//                        return StockSummaryDTO(updateDate: update, corpName: name, marketName: market, srtnCode: code, nowPrice: now, highPrice: high, lowPrice: low, tradingQnt: quantity, totAmt: total)
-//                    }
-//                    switch self.addOrEditAction {
-//                    case .write :
-//                        self.clickedCorpSum.removeAll()
-//                        self.clickedCorpSum.append(contentsOf: stockDataArray)
-//                        print("종합정보: \(self.clickedCorpSum)")
-//                    case .edit :
-//                        self.refreshClickedCorpSum.removeAll()
-//                        self.refreshClickedCorpSum.append(contentsOf: stockDataArray)
-//                        print("refresh 종합정보: \(self.refreshClickedCorpSum)")
-//                    }
-//                    DispatchQueue.main.async  {
-//                        self.mainView.tableView.reloadData()
-//                    }
-//                }
                 
             case .requestErr(let message) :
                 print("requestErr")
@@ -514,17 +484,16 @@ extension CorpAnalysisViewController: SendDataDelegate {
                 self.showAlertMessageDetail(title: "<알림>", message: "네트워크 통신 에러가 발생했습니다. 인터넷 환경을 확인 후 재시도해 주세요 :)")
                 break
             }
-            }
         }
     }
     
     // corpcode 기준으로 'DART-단일회사 전체 재무제표 개발가이드' API 통신
     func fetchCorpFinInfoData(dartCode: String) {
         DARTAPIManager.shared.fetchFinInfoAPI(type: .dartFinInfo, dartCropCode: dartCode, year: getLastYear()) { finInfoArr in
-
             
             if finInfoArr.isEmpty {
                 self.showAlertMessageDetail(title: "<알림>", message: "검색하신 기업의 재무제표 데이터가 없습니다. 다른 기업으로 재검색해 주세요 :)")
+                self.finStatementDataArr.removeAll()
             } else {
                 
                 print("\(finInfoArr[0])")
@@ -548,13 +517,10 @@ extension CorpAnalysisViewController: SendDataDelegate {
                     }
                     print("refresh 재무제표 데이터: \(self.refreshFinStatementDataArr)")
                 }
-                
-                
-                
-                DispatchQueue.main.async { self.mainView.tableView.reloadData() }
             }
-
-         }
+            DispatchQueue.main.async { self.mainView.tableView.reloadData() }
+            
+        }
     }
     
     // corpcode 기준으로 'DART-배당에 관한 사항' API 통신
@@ -575,9 +541,6 @@ extension CorpAnalysisViewController: SendDataDelegate {
             }
         }
     }
-    
-    
-    
     
     func getLastYear() -> String {
         let currentYear = Calendar.current.component(.year, from: Date())

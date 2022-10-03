@@ -63,6 +63,7 @@
 		0E87354528D5EFA80039D802 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */; };
 		0E87354728D609D10039D802 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354628D609D00039D802 /* Word.swift */; };
 		0E87354928D616060039D802 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354828D616060039D802 /* Date+Extension.swift */; };
+		0E87D58628EB249E00570A5D /* ContentTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87D58528EB249D00570A5D /* ContentTableViewHeaderView.swift */; };
 		0E8E752928E5866D00D52A2C /* ApisStockInfoResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */; };
 		0E8E752B28E5896800D52A2C /* StockSummaryDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752A28E5896700D52A2C /* StockSummaryDTO.swift */; };
 		0E8E752E28E5B0D300D52A2C /* DARTAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E752D28E5B0D300D52A2C /* DARTAPIManager.swift */; };
@@ -153,6 +154,7 @@
 		0E87354128D5DEC50039D802 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		0E87354628D609D00039D802 /* Word.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Word.swift; sourceTree = "<group>"; };
 		0E87354828D616060039D802 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		0E87D58528EB249D00570A5D /* ContentTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentTableViewHeaderView.swift; sourceTree = "<group>"; };
 		0E8E752828E5866D00D52A2C /* ApisStockInfoResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApisStockInfoResponse.swift; sourceTree = "<group>"; };
 		0E8E752A28E5896700D52A2C /* StockSummaryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StockSummaryDTO.swift; sourceTree = "<group>"; };
 		0E8E752D28E5B0D300D52A2C /* DARTAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DARTAPIManager.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 			isa = PBXGroup;
 			children = (
 				0EB85EF628D8BC4E002145A2 /* CustomTableViewHeaderView.swift */,
+				0E87D58528EB249D00570A5D /* ContentTableViewHeaderView.swift */,
 				0E2D652728DAE7FF002EF4BC /* PieChartView.swift */,
 				0ED5D65B28DB7965009A1057 /* PortfolioChartView.swift */,
 				0E37460328E0615F000EEBA7 /* EmptyView.swift */,
@@ -616,6 +619,7 @@
 				0E04A3C828D1D5030036D389 /* HomeViewController.swift in Sources */,
 				0E04A39428D1B2200036D389 /* SceneDelegate.swift in Sources */,
 				0E04A3CC28D1D6C40036D389 /* InfoViewController.swift in Sources */,
+				0E87D58628EB249E00570A5D /* ContentTableViewHeaderView.swift in Sources */,
 				0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift in Sources */,
 				0E04A3CA28D1D5C10036D389 /* TabBarController.swift in Sources */,
 				0E58BCA128E6C89C00204275 /* CorpRegisterRealmModel.swift in Sources */,

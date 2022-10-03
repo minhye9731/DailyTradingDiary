@@ -22,7 +22,7 @@ class APISAPIManager {
         
         guard let searchText = searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
-        let url = type.requestURL + "serviceKey=\(APIKey.APIS_KEY)&likeItmsNm=\(searchText)&resultType=json&basDt=\(baseDate)"
+        let url = type.requestURL + "serviceKey=\(APIKey.APIS_KEY)&likeItmsNm=\(searchText)&resultType=json&basDt=20220928"
         
         AF.request(url, method: .get).responseData { response in
             switch response.result {
@@ -55,22 +55,19 @@ class APISAPIManager {
     
 
     // MARK: - '기업등록'페이지내 summary에 들어갈 종목 summary 데이터 통신용
-    func fetchApisStockAPI(type: Endpoint, baseDate: String, clickText: String, completionHandler: @escaping(NetworkResult<Any>) -> ()) {
+    func fetchApisStockAPI(type: Endpoint, clickText: String, completionHandler: @escaping(NetworkResult<Any>) -> ()) {
         
         guard let clickedText = clickText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
-        let url = type.requestURL + "serviceKey=\(APIKey.APIS_KEY)&numOfRows=10&pageNo=1&itmsNm=\(clickedText)&resultType=json&basDt=\(baseDate)"
+        let url = type.requestURL + "serviceKey=\(APIKey.APIS_KEY)&numOfRows=10&pageNo=1&itmsNm=\(clickedText)&resultType=json&basDt=20220928"
         
         AF.request(url, method: .get).validate(statusCode: 200..<500).responseData { response in
             switch response.result {
             case .success:
-                
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let value = response.value else { return }
                 let networkResult = self.judgeStatusCode(by: statusCode, value)
-                
                 completionHandler(networkResult)
-                
             case .failure:
                 completionHandler(.pathErr)
             }

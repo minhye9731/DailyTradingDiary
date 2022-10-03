@@ -13,7 +13,7 @@ final class CorpSummaryTableViewCell: BaseTableViewCell {
         let label = UILabel()
         label.text = "(UPDATE ----.--.--)"
         label.font = .systemFont(ofSize: 12)
-        label.textColor = .subTextColor
+        label.textColor = .subBackgroundColor
         return label
     }()
     

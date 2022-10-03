@@ -51,6 +51,7 @@ final class CorpAnalysis: BaseView {
         tableview.register(OpinionTableViewCell.self, forCellReuseIdentifier: OpinionTableViewCell.reuseIdentifier)
         
         tableview.register(CustomTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CustomTableViewHeaderView.reuseIdentifier)
+        tableview.register(ContentTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: ContentTableViewHeaderView.reuseIdentifier)
         return tableview
     }()
     
