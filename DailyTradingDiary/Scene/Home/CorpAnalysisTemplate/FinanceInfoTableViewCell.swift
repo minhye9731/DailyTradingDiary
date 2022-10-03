@@ -11,8 +11,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
     
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "매출액" // test
-        label.font = .boldSystemFont(ofSize: 18)
+        label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .mainTextColor
         label.textAlignment = .left
         return label
@@ -21,7 +20,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
     let threeYrsBfValueLabel: UILabel = {
         let label = UILabel()
         label.text = "-" // test
-        label.font = .systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 12)
         label.textColor = .mainTextColor
         label.textAlignment = .right
         return label
@@ -30,7 +29,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
     let twoYrsBfValueLabel: UILabel = {
         let label = UILabel()
         label.text = "-" // test
-        label.font = .systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 12)
         label.textColor = .mainTextColor
         label.textAlignment = .right
         return label
@@ -39,7 +38,7 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
     let oneYrsBfValueLabel: UILabel = {
         let label = UILabel()
         label.text = "-" // test
-        label.font = .systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 12)
         label.textColor = .mainTextColor
         label.textAlignment = .right
         return label
