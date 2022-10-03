@@ -15,9 +15,6 @@ protocol DiaryRepositoryType {
     func filteredByTradingDate(selectedDate: Date)
     func sort(_ sort: String) -> Results<TradingDiaryRealmModel>
     
-    func update(oldItem: TradingDiaryRealmModel, newItem: UpdateTradingDiaryDTO)
-    func plusDiary(item: TradingDiaryRealmModel)
-    
     func deleteDiary(item: TradingDiaryRealmModel)
     
     func getTotalBuyPrice(from: Date, to: Date) -> Int
@@ -48,50 +45,21 @@ class TradingDiaryRepository: DiaryRepositoryType {
         tasks = localRealm.objects(TradingDiaryRealmModel.self).sorted(byKeyPath: "regDate", ascending: true)
     }
     
+    // home화면 - 선택일자 기준표기용 필터
     func filteredByTradingDate(selectedDate: Date) {
         tasks = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where {
             $0.tradingDate >= calendar.startOfDay(for: selectedDate) && $0.tradingDate < calendar.startOfDay(for: selectedDate) + 86400
         }
     }
 
-
-
     func sort(_ sort: String) -> Results<TradingDiaryRealmModel> {
         print(#function)
         return localRealm.objects(TradingDiaryRealmModel.self).sorted(byKeyPath: sort, ascending: true)
     }
 
-    func update(oldItem: TradingDiaryRealmModel, newItem: UpdateTradingDiaryDTO) {
-        do {
-            try localRealm.write {
-                oldItem.corpName = newItem.corpName
-                oldItem.tradingPrice = newItem.tradingPrice
-                oldItem.tradingAmount = newItem.tradingAmount
-                oldItem.buyAndSell = newItem.buyAndSell
-                oldItem.tradingDate = newItem.tradingDate
-                oldItem.tradingMemo = newItem.tradingMemo
 
-                oldItem.regDate = newItem.regDate
-            }
-        } catch let error {
-            // 얼럿표시
-            print(error)
-        }
-    }
-
-  
     
     // MARK: - 추가 및 삭제
-    func plusDiary(item: TradingDiaryRealmModel) {
-        do {
-            try localRealm.write{
-                localRealm.add(item)
-            }
-        } catch let error {
-            // 얼럿표시
-            print(error)
-        }
-    }
     
     func deleteDiary(item: TradingDiaryRealmModel) {
         do {

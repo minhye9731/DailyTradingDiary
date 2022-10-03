@@ -114,6 +114,7 @@ class DARTAPIManager {
             }
             print("corpCodeArr 첫 번째 요소: \(corpCodeArr[0])")
             
+            // 이때 corpCodeArr 상장종목만 걸러서 저장하는 것은 어떨까
             CorpCodeRepository.standard.plusCorpCode(item: corpCodeArr)
             
         } catch {

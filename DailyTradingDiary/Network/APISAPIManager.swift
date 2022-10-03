@@ -53,22 +53,6 @@ class APISAPIManager {
         }
     }
     
-//    private func judgeStatus(by statusCode: Int, _ data: Data) -> NetworkResult<Any> {
-//        switch statusCode {
-//        case 200: return isValidData(data: data)
-//        case 400: return .pathErr
-//        case 500: return .serverErr
-//        default: return .networkFail
-//        }
-//    }
-//
-//    private func isValidData(data: Data) -> NetworkResult<Any> {
-//
-//        let decoder = JSONDecoder()
-//        guard let decodedData = try? decoder.decode(KRXListDTO.self, from: data) else { return .pathErr }
-//        return .success(decodedData)
-//    }
-    
 
     // MARK: - '기업등록'페이지내 summary에 들어갈 종목 summary 데이터 통신용
     func fetchApisStockAPI(type: Endpoint, baseDate: String, clickText: String, completionHandler: @escaping(NetworkResult<Any>) -> ()) {

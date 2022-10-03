@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 
 protocol SendDataDelegate {
-    func sendData(_ vc: UIViewController, Input value: String, formalName: String, dartCode: String)
+    func sendData(_ vc: UIViewController, Input value: String, formalName: String, dartCode: String, srtnCode: String)
 }
 
 class TradingSearchViewController: BaseViewController {
@@ -148,9 +148,11 @@ extension TradingSearchViewController: UITableViewDelegate, UITableViewDataSourc
         let generalName = filteredArray[indexPath.row].itemName // 삼성전자
         let formalName = filteredArray[indexPath.row].corpName // 삼성전자(주)
         let selectedCorpCode = CorpCodeRepository.standard.filterSelectedCrop(searchText: generalName)
-        print("눌렸다, \(generalName), \(formalName), \(selectedCorpCode) 선택")
+        let srtnCode = String(filteredArray[indexPath.row].srtnCode.dropFirst())
         
-        delegate?.sendData(self, Input: generalName, formalName: formalName, dartCode: selectedCorpCode)
+        print("눌렸다, \(generalName), \(formalName), \(selectedCorpCode), \(srtnCode) 선택")
+        
+        delegate?.sendData(self, Input: generalName, formalName: formalName, dartCode: selectedCorpCode, srtnCode: srtnCode)
         
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }

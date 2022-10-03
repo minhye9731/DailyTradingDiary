@@ -7,6 +7,7 @@
 
 import Foundation
 
+//뉴스
 struct AlphaMarketNewsResponse: Decodable {
     let items, sentimentScoreDefinition, relevanceScoreDefinition: String
     let feed: [Feed]

@@ -14,8 +14,6 @@ protocol CorpCodeRepositoryType {
     func fetchRealmTradingMode()
     
     func filterSelectedCrop(searchText: String) -> String
-    func filteredRegisterMode(searchText: String)
-    func filteredTradingMode(searchText: String)
     
     func plusCorpCode(item: [CorpCodeRealmModel])
     func deleteAllItem()
@@ -45,27 +43,6 @@ class CorpCodeRepository: CorpCodeRepositoryType {
     func filterSelectedCrop(searchText: String) -> String {
         tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.corpName == searchText }
         return tasks[0].corpCode
-    }
-    
-    
-    
-    
-    // 아래..필요없음ㅠㅠ
-    func filteredRegisterMode(searchText: String) {
-//        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where {
-//            ($0.stockCode != " "  && $0.corpName == searchText) || ($0.stockCode != " "  && $0.stockCode == searchText)
-//        }
-        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.stockCode != " " }.where { $0.corpName.contains(searchText) || $0.stockCode.contains(searchText) }
-        // 이렇게 2개로 나누어서 조건을 필터링해도 괜찮은지??
-        print("filteredRegisterMode - \(tasks.count)")
-    }
-    
-    func filteredTradingMode(searchText: String) {
-//        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where {
-//            $0.isRegistered == true && ($0.stockCode != " "  && $0.corpName == searchText) || ($0.stockCode != " "  && $0.stockCode == searchText)
-//        }
-        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.isRegistered == true }.where { $0.corpName == searchText || $0.stockCode == searchText }
-        print("filteredTradingMode - \(tasks.count)")
     }
     
     // MARK: - 추가 / 삭제 / 업데이트

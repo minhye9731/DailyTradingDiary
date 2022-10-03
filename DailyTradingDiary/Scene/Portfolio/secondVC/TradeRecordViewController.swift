@@ -13,13 +13,11 @@ class TradeRecordViewController: BaseViewController {
     let mainView = TradeRecordView()
     
     override func loadView() {
-        print("TradeRecordViewController - \(#function)")
         self.view = mainView
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("TradeRecordViewController - \(#function)")
         
         TradingDiaryRepository.standard.fetchRealm()
         
@@ -32,12 +30,9 @@ class TradeRecordViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         filteringQualificatinos()
         self.tabBarController?.tabBar.isHidden = false
-        print("TradeRecordViewController - \(#function)")
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print("TradeRecordViewController - \(#function)")
-        
         buySellChangedResult()
         filteringQualificatinos()
         self.mainView.tableView.reloadData()
@@ -82,8 +77,6 @@ extension TradeRecordViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("\(indexPath.row)번 째 셀을 클릭했습니다. 해당 생성파일의 보기으로 넘어감")
-        
         let tradeDiaryVC = TradingDiaryViewController()
         let row = Array(TradingDiaryRepository.standard.tasks)[indexPath.row]
         
@@ -99,8 +92,6 @@ extension TradeRecordViewController: UITableViewDelegate, UITableViewDataSource 
 extension TradeRecordViewController {
     
     @objc func onDidChangeFromDate(sender: UIDatePicker) {
-        print("onDidChangeFromDate가 눌림! \(sender.date)")
-        
         // 이거 왜 실행이 안되냐
         if sender.date > mainView.toDatePicker.date {
             showAlertMessage(title: "시작일이 종료일보다 클 수 없습니다.")
@@ -113,7 +104,6 @@ extension TradeRecordViewController {
     }
     
     @objc func onDidChangeToDate(sender: UIDatePicker) {
-        print("onDidChangeToDate가 눌림! \(sender.date)")
         
         // 이거 왜 실행이 안되냐
         if sender.date < mainView.fromDatePicker.date {
@@ -153,15 +143,12 @@ extension TradeRecordViewController {
         case 0:
             getBuyTotal()
             getSellTotal()
-            mainView.profitLossValueLabel.text = "구현중"
         case 1:
             getBuyTotal()
             mainView.totalSellValueLabel.text = "0 \(Constants.CurrencySign.won.rawValue)"
-            mainView.profitLossValueLabel.text = "0\(Constants.CurrencySign.won.rawValue) (0.00%)"
         case 2:
             mainView.totalBuyValueLabel.text = "0 \(Constants.CurrencySign.won.rawValue)"
             getSellTotal()
-            mainView.profitLossValueLabel.text = "구현중"
         default : break
         }
     }

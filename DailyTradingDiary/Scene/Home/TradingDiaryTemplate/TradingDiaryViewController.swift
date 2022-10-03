@@ -15,6 +15,7 @@ final class TradingDiaryViewController: BaseViewController {
     var addOrEditAction: PageMode = .write
 
     var diaryData: TradingDiaryRealmModel = TradingDiaryRealmModel(corpName: "매매한 종목 검색하기", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, regDate: Date(), tradingDate: Date(), tradingMemo: "")
+    
     var updateData: UpdateTradingDiaryDTO = UpdateTradingDiaryDTO(corpName: "", corpCode: "000000", tradingPrice: 0, tradingAmount: 0, buyAndSell: false, regDate: Date(), tradingDate: Date(), tradingMemo: "")
     
     // MARK: - lifecycle
@@ -166,7 +167,6 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             if self.addOrEditAction == .edit {
                 cell.datePicker.date = updateData.tradingDate
             }
-            
             return cell
             
         case 5:
@@ -207,7 +207,7 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.section == 0 {
+        if indexPath.section == 0 && addOrEditAction == .write {
             let vc = TradingSearchViewController()
             vc.delegate = self
             vc.RegisterOrTrading = .tradingDiary
@@ -232,21 +232,15 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         switch self.addOrEditAction {
         case .write:
             switch sender.tag {
-            case 0:
-                self.diaryData.tradingPrice = Int(result) ?? 0
-            case 1:
-                self.diaryData.tradingAmount = Int(result) ?? 0
-            default:
-                break
+            case 0: self.diaryData.tradingPrice = Int(result) ?? 0
+            case 1: self.diaryData.tradingAmount = Int(result) ?? 0
+            default: break
             }
         case .edit:
             switch sender.tag {
-            case 0:
-                self.updateData.tradingPrice = Int(result) ?? 0
-            case 1:
-                self.updateData.tradingAmount = Int(result) ?? 0
-            default:
-                break
+            case 0: self.updateData.tradingPrice = Int(result) ?? 0
+            case 1: self.updateData.tradingAmount = Int(result) ?? 0
+            default: break
             }
         }
     }
@@ -269,15 +263,11 @@ extension TradingDiaryViewController: UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         switch addOrEditAction {
-        case .write:
-                self.diaryData.tradingMemo = textView.text
-        case .edit:
-            self.updateData.tradingMemo = textView.text
+        case .write: self.diaryData.tradingMemo = textView.text
+        case .edit: self.updateData.tradingMemo = textView.text
         }
         
-        if textView.text.count > 300 {
-            textView.deleteBackward()
-        }
+        if textView.text.count > 300 { textView.deleteBackward() }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -288,10 +278,8 @@ extension TradingDiaryViewController: UITextViewDelegate {
         }
         
         switch addOrEditAction {
-        case .write:
-                self.diaryData.tradingMemo = textView.text
-        case .edit:
-            self.updateData.tradingMemo = textView.text
+        case .write: self.diaryData.tradingMemo = textView.text
+        case .edit: self.updateData.tradingMemo = textView.text
         }
     }
     
@@ -310,7 +298,6 @@ extension TradingDiaryViewController {
                 return
             } else {
                 diaryData.regDate = Date()
-//                TradingDiaryRepository.standard.plusDiary(item: diaryData)
                 CorpRegisterRepository.standard.plusDiaryatList(item: diaryData)
                 navigationController?.popViewController(animated: true)
             }
@@ -320,8 +307,7 @@ extension TradingDiaryViewController {
                 return
             } else {
                 updateData.regDate = Date()
-                TradingDiaryRepository.standard.update(oldItem: diaryData, newItem: updateData)
-                
+                CorpRegisterRepository.standard.diaryInListupdate(updateTarget: diaryData, updateData: updateData)
                 navigationController?.popViewController(animated: true)
             }
         }
@@ -344,15 +330,18 @@ extension TradingDiaryViewController {
 
 
 extension TradingDiaryViewController: SendDataDelegate {
-    func sendData(_ vc: UIViewController, Input value: String, formalName: String, dartCode: String) {
+    func sendData(_ vc: UIViewController, Input value: String, formalName: String, dartCode: String, srtnCode: String) {
         
         print("매매일지로 넘어옴 : \(value), \(formalName), \(dartCode) 선택")
         
         switch addOrEditAction {
-        case .write: self.diaryData.corpName = value
-        case .edit: self.updateData.corpName = value
+        case .write:
+            self.diaryData.corpName = value
+            self.diaryData.corpCode = srtnCode
+        case .edit:
+            self.updateData.corpName = value
+            self.updateData.corpCode = srtnCode
         }
-
         self.mainView.tableView.reloadData()
     }
     

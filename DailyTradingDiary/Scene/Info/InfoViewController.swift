@@ -15,7 +15,6 @@ final class InfoViewController: BaseViewController {
     let mainView = InfoView()
     var alphaNewsList: [MarketNewsDTO] = []
     var fearGreedIndex: FearGreedDTO = FearGreedDTO(updateTime: "0000.00.00", now: FearGreed(indexValue: 0, indexStatus: ""), weekAgo: FearGreed(indexValue: 0, indexStatus: ""))
-    var fxList: [IndexData] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()

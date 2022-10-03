@@ -60,6 +60,7 @@ class CorpRegisterRealmModel: Object {
         
         self.init()
         self.formalCorpName = formalCorpName
+        
         // 종합 데이터
         self.updateDate = updateDate
         self.corpName = corpName
@@ -70,29 +71,37 @@ class CorpRegisterRealmModel: Object {
         self.lowPrice = lowPrice
         self.tradingQnt = tradingQnt
         self.totAmt = totAmt
+        
         // 재무 데이터
         self.revenueThr = revenueThr
         self.revenueTwo = revenueTwo
         self.revenueOne = revenueOne
+        
         self.opIncomeThr = opIncomeThr
         self.opIncomeTwo = opIncomeTwo
         self.opIncomeOne = opIncomeOne
+        
         self.nProfitThr = nProfitThr
         self.nProfitTwo = nProfitTwo
         self.nProfitOne = nProfitOne
+        
         self.totalDebtThr = totalDebtThr
         self.totalDebtTwo = totalDebtTwo
         self.totalDebtOne = totalDebtOne
+        
         self.totalCapThr = totalCapThr
         self.totalCapTwo = totalCapTwo
         self.totalCapOne = totalCapOne
+        
         // 배당 데이터
         self.dpsThr = dpsThr
         self.dpsTwo = dpsTwo
         self.dpsOne = dpsOne
+        
         self.diviPayoutRatioThr = diviPayoutRatioThr
         self.diviPayoutRatioTwo = diviPayoutRatioTwo
         self.diviPayoutRatioOne = diviPayoutRatioOne
+        
         // My Opinion
         self.regDate = regDate
         self.opinion = opinion

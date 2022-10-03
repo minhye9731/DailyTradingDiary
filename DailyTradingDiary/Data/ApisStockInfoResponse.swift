@@ -7,6 +7,7 @@
 
 import Foundation
 
+// 공공데이터 주식시세 (기업등록 > summary에 들어갈 주식정보 데이터 받는 response)
 struct APISStockInfoResponse: Decodable {
     let response: Response
 }

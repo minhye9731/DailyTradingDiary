@@ -13,11 +13,11 @@ protocol RegisterRepositoryType {
     func fetchRealm()
     func sortByRegDate()
     
-    
     func plusRegisterCorp(item: CorpRegisterRealmModel)
     func plusDiaryatList(item: TradingDiaryRealmModel)
     
-    func updateDiaryatList(oldItem: TradingDiaryRealmModel, newItem: UpdateTradingDiaryDTO)
+    func diaryInListupdate(updateTarget: TradingDiaryRealmModel, updateData: UpdateTradingDiaryDTO)
+    
     
     func deleteRegisteredCorp(item: CorpRegisterRealmModel)
     
@@ -32,39 +32,7 @@ class CorpRegisterRepository: RegisterRepositoryType {
     
     let localRealm = try! Realm()
     var tasks: Results<CorpRegisterRealmModel>!
-    
-    
-    func updateDiaryatList(oldItem: TradingDiaryRealmModel, newItem: UpdateTradingDiaryDTO) {
-        
-        do {
-            try localRealm.write {
-                oldItem.corpName = newItem.corpName
-                oldItem.tradingPrice = newItem.tradingPrice
-                oldItem.tradingAmount = newItem.tradingAmount
-                oldItem.buyAndSell = newItem.buyAndSell
-                oldItem.tradingDate = newItem.tradingDate
-                oldItem.tradingMemo = newItem.tradingMemo
 
-                oldItem.regDate = newItem.regDate
-            }
-        } catch let error {
-            // 얼럿표시
-            print(error)
-        }
-    }
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     // 데이터 패치하기
     func fetchRealm() {
@@ -92,14 +60,37 @@ class CorpRegisterRepository: RegisterRepositoryType {
     func plusDiaryatList(item: TradingDiaryRealmModel) {
         
         let corp = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).where{ $0.corpName == item.corpName }
-            
-//            .filter { $0.srtnCode == item.corpCode }.first! // 이렇게 하면 옵셔널 언래핑할때 런타임 오류남
         
         print("corp = \(corp)")
         
         do {
             try localRealm.write{
                 corp.first?.tradingDiaries.append(item)
+            }
+        } catch let error {
+            // 얼럿표시
+            print(error)
+        }
+    }
+    
+    // 매매일지 list 수정 추가
+    func diaryInListupdate(updateTarget: TradingDiaryRealmModel, updateData: UpdateTradingDiaryDTO) {
+        
+        let updateDiary = TradingDiaryRealmModel()
+        updateDiary.objectId = updateTarget.objectId
+
+        updateDiary.corpName = updateData.corpName
+        updateDiary.corpCode = updateData.corpCode
+        updateDiary.tradingPrice = updateData.tradingPrice
+        updateDiary.tradingAmount = updateData.tradingAmount
+        updateDiary.buyAndSell = updateData.buyAndSell
+        updateDiary.regDate = updateData.regDate
+        updateDiary.tradingDate = updateData.tradingDate
+        updateDiary.tradingMemo = updateData.tradingMemo
+        
+        do {
+            try localRealm.write {
+                CorpRegisterRepository.standard.localRealm.add(updateDiary, update: .modified)
             }
         } catch let error {
             // 얼럿표시

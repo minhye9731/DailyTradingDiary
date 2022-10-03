@@ -10,7 +10,6 @@ import SnapKit
 import FSCalendar
 import RealmSwift
 
-
 final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalendarDataSource, UIGestureRecognizerDelegate {
     
     let mainView = HomeView()
@@ -35,8 +34,6 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     override func loadView() {
         self.view = mainView
         print("HomeViewController - \(#function)")
-        
-        TradingDiaryRepository.standard.sortByRegDate()
         self.mainView.tableView.reloadData()
     }
 
@@ -54,27 +51,14 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         super.viewDidLoad()
         print("HomeViewController - \(#function)")
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
         TradingDiaryRepository.standard.sortByRegDate()
+
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         mainView.tempfloatingButton.addTarget(self, action: #selector(tempfloatingBtnTapped), for: .touchUpInside) // 삭제예정
         
-        
-        // 이벤트 점 추가하기 -> 이거 옵셔널 에러때문에 런타이 ㅁ에러남
-//        eventsArr = TradingDiaryRepository.standard.tasks.map {
-//            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
-//            return result
-//        }
-        
-        // dart 기업정보 통신해서 realm에 저장!
+        // dart 기업 고유번호 - 앱시작시에 선다운
         DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
-        
-        
-    }
-    
-    func setGesture() {
-        self.mainView.addGestureRecognizer(self.scopeGesture)
-        self.mainView.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
-        self.mainView.calendar.scope = .month
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -83,44 +67,16 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     override func viewDidAppear(_ animated: Bool) {
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
-        
         isEmptyCheck()
-        
-        // 이벤트 점 추가하기 - 아래처럼 추가해도 바로 표기가 안됨
-//        self.eventsArr = TradingDiaryRepository.standard.tasks.map {
-//            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
-//            return result
-//        }
-        
+        self.eventsArr = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).map {
+            guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
+            return result
+        }
         self.mainView.tableView.reloadData()
+        self.mainView.calendar.reloadData()
     }
     
-    func setNav() {
-        let titleLabel = UILabel()
-        titleLabel.text = "Trading Diary"
-        titleLabel.textAlignment = .left
-        titleLabel.textColor = .pointColor
-        titleLabel.font = .systemFont(ofSize: 27, weight: .bold)
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
-        self.navigationController?.navigationBar.tintColor = .pointColor
-        
-        let navibarAppearance = UINavigationBarAppearance()
-        navibarAppearance.backgroundColor = .backgroundColor
-        
-        self.navigationItem.scrollEdgeAppearance = navibarAppearance
-        self.navigationItem.standardAppearance = navibarAppearance
-    }
-    
-    func setNavItem() {
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        
-        let settingButton = UIBarButtonItem(image: UIImage(systemName: Constants.ImageName.setting.rawValue), style: .plain, target: self, action: #selector(settingButtonTapped))
-        let todayButton = UIBarButtonItem(title: "Today", style: .plain, target: self, action: #selector(todayButtonClicked))
-        
-        self.navigationItem.rightBarButtonItems = [settingButton, todayButton]
-        self.navigationItem.backBarButtonItem = backBarButtonItem
-    }
+
 }
 
 // MARK: - tableview 설정
@@ -132,20 +88,18 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
-        return TradingDiaryRepository.standard.tasks.count
+        return  TradingDiaryRepository.standard.tasks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         guard let tradeCell = tableView.dequeueReusableCell(withIdentifier: TradeTableViewCell.reuseIdentifier) as? TradeTableViewCell else { return UITableViewCell() }
-
         tradeCell.setData(arr: Array(TradingDiaryRepository.standard.tasks), indexPath: indexPath)
-                
         return tradeCell
     }
         
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tradeDiaryVC = TradingDiaryViewController()
+        
         let row = Array(TradingDiaryRepository.standard.tasks)[indexPath.row]
         
         tradeDiaryVC.diaryData = row
@@ -159,7 +113,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         let row = Array(TradingDiaryRepository.standard.tasks)[indexPath.row]
         let delete = UIContextualAction(style: .normal, title: nil) { action, view, completion in
             self.deleteConfirmAlert(title: "해당 메모를 삭제하시겠습니까?") { _ in
-                TradingDiaryRepository.standard.deleteDiary(item: row)
+                
+                TradingDiaryRepository.standard.deleteDiary(item: row) // 수정필ㄴ요
+                
                 TradingDiaryRepository.standard.sortByRegDate()
 
                 self.isEmptyCheck()
@@ -272,7 +228,7 @@ extension HomeViewController: FSCalendarDelegateAppearance {
    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
 
-        self.eventsArr = TradingDiaryRepository.standard.tasks.map {
+        self.eventsArr = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).map {
             guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
             return result
         }
@@ -289,36 +245,33 @@ extension HomeViewController: FSCalendarDelegateAppearance {
 // MARK: - 기타함수들
 extension HomeViewController {
     
-    @objc func floatingBtnTapped() {
-        let vc = TradingDiaryViewController()
-        vc.addOrEditAction = .write
-        transition(vc, transitionStyle: .push)
+    func setGesture() {
+        self.mainView.addGestureRecognizer(self.scopeGesture)
+        self.mainView.tableView.panGestureRecognizer.require(toFail: self.scopeGesture)
+        self.mainView.calendar.scope = .month
     }
-    
-    // 삭제예정
-    @objc func tempfloatingBtnTapped() {
-        let vc = CorpAnalysisViewController()
-        vc.addOrEditAction = .write
-        transition(vc, transitionStyle: .push)
+    func setNav() {
+        let titleLabel = UILabel()
+        titleLabel.text = "Trady"
+        titleLabel.textAlignment = .left
+        titleLabel.textColor = .pointColor
+        titleLabel.font = .systemFont(ofSize: 27, weight: .bold)
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem.init(customView: titleLabel)
+        self.navigationController?.navigationBar.tintColor = .pointColor
+        
+        let navibarAppearance = UINavigationBarAppearance()
+        navibarAppearance.backgroundColor = .backgroundColor
+        
+        self.navigationItem.scrollEdgeAppearance = navibarAppearance
+        self.navigationItem.standardAppearance = navibarAppearance
     }
-    
-    @objc func settingButtonTapped() {
-        let vc = SettingViewController()
-        transition(vc, transitionStyle: .push)
-    }
-    
-    @objc func todayButtonClicked() {
-        self.mainView.calendar.select(Date())
-    }
-    
-    func isEmptyCheck() {
-        if TradingDiaryRepository.standard.tasks.count == 0 {
-            self.mainView.tableView.isHidden = true
-            self.mainView.emptyView.isHidden = false
-        } else {
-            self.mainView.tableView.isHidden = false
-            self.mainView.emptyView.isHidden = true
-        }
+    func setNavItem() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        let todayButton = UIBarButtonItem(title: "Today", style: .plain, target: self, action: #selector(todayButtonClicked))
+        
+        self.navigationItem.rightBarButtonItem = todayButton
+        self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
     func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
@@ -337,11 +290,33 @@ extension HomeViewController {
         return shouldBegin
     }
     
-}
-
-// MARK: - 앱 시작시 Dart 기업 고유정보 다운로드 및 저장
-extension HomeViewController {
+    func isEmptyCheck() {
+        if TradingDiaryRepository.standard.tasks.count == 0 {
+            self.mainView.tableView.isHidden = true
+            self.mainView.emptyView.isHidden = false
+        } else {
+            self.mainView.tableView.isHidden = false
+            self.mainView.emptyView.isHidden = true
+        }
+    }
+    
+    @objc func floatingBtnTapped() {
+        let vc = TradingDiaryViewController()
+        vc.addOrEditAction = .write
+        transition(vc, transitionStyle: .push)
+    }
+    
+    // 삭제예정
+    @objc func tempfloatingBtnTapped() {
+        let vc = CorpAnalysisViewController()
+        vc.addOrEditAction = .write
+        transition(vc, transitionStyle: .push)
+    }
+    
+    @objc func todayButtonClicked() {
+        self.mainView.calendar.select(Date())
+    }
     
 
-    
+
 }

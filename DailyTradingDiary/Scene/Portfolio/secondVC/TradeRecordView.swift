@@ -99,24 +99,6 @@ final class TradeRecordView: BaseView {
         return label
     }()
     
-    // 실현손익
-    let profitLossLabel: UILabel = {
-        let label = UILabel()
-        label.text = "실현 손익"
-        label.textColor = .mainTextColor
-        label.font = .boldSystemFont(ofSize: 16)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    let profitLossValueLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .mainTextColor
-        label.font = .systemFont(ofSize: 16)
-        label.textAlignment = .right
-        return label
-    }()
-    
     let grayline: UIView = {
         let view = UIView()
         view.backgroundColor = .lightGray
@@ -143,7 +125,7 @@ final class TradeRecordView: BaseView {
             self.addSubview($0)
         }
         
-        [fromDatePicker, tildeLabel, toDatePicker, seperateLabel, segmentControl, totalBuyLabel, totalBuyValueLabel, totalSellLabel, totalSellValueLabel, profitLossLabel, profitLossValueLabel, grayline].forEach {
+        [fromDatePicker, tildeLabel, toDatePicker, seperateLabel, segmentControl, totalBuyLabel, totalBuyValueLabel, totalSellLabel, totalSellValueLabel, grayline].forEach {
             searchView.addSubview($0)
         }
         
@@ -156,7 +138,7 @@ final class TradeRecordView: BaseView {
         // MARK: - searchview
         searchView.snp.makeConstraints { make in
             make.leading.top.trailing.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(210)
+            make.height.equalTo(180)
         }
         
         // 기간선택
@@ -201,16 +183,6 @@ final class TradeRecordView: BaseView {
         totalSellValueLabel.snp.makeConstraints { make in
             make.trailing.equalTo(searchView.snp.trailing).inset(14)
             make.centerY.equalTo(totalSellLabel.snp.centerY)
-        }
-        
-        // 실현손익
-        profitLossLabel.snp.makeConstraints { make in
-            make.leading.equalTo(searchView.snp.leading).offset(14)
-            make.top.equalTo(totalSellLabel.snp.bottom).offset(spacing)
-        }
-        profitLossValueLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(searchView.snp.trailing).inset(14)
-            make.centerY.equalTo(profitLossLabel.snp.centerY)
         }
         
         grayline.snp.makeConstraints { make in
