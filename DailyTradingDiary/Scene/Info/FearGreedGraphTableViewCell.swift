@@ -12,11 +12,9 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
     
     let updateTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "ex) 업데이트 2022.09.19 07:27" // 삭제예정
         label.textColor = .subTextColor
         label.font = .boldSystemFont(ofSize: 12)
         label.textAlignment = .left
-        label.isSkeletonable = true
         return label
     }()
     
@@ -47,7 +45,6 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
         label.textColor = .mainTextColor
         label.font = .boldSystemFont(ofSize: 20)
         label.textAlignment = .center
-        label.isSkeletonable = true
         return label
     }()
 
@@ -56,7 +53,6 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
         label.textColor = .mainTextColor
         label.font = .boldSystemFont(ofSize: 44)
         label.textAlignment = .center
-        label.isSkeletonable = true
         return label
     }()
     
@@ -65,18 +61,25 @@ final class FearGreedGraphTableViewCell: BaseTableViewCell {
         label.textColor = .mainTextColor
         label.font = .systemFont(ofSize: 12)
         label.textAlignment = .center
-        label.isSkeletonable = true
         return label
     }()
     
     
     override func configure() {
+        self.isSkeletonable = true
+        contentView.isSkeletonable = true
+        
         [updateTimeLabel, chartView, fearLabel, greedLabel].forEach {
             contentView.addSubview($0)
         }
         
         [nowValueLabel, nowStatusLabel, weekAgoValueLabel].forEach {
             chartView.addSubview($0)
+        }
+        
+        [updateTimeLabel, nowValueLabel, nowStatusLabel, weekAgoValueLabel].forEach {
+            $0.isSkeletonable = true
+            $0.linesCornerRadius = 5
         }
         
     }

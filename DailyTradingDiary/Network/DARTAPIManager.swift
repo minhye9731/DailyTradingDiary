@@ -165,7 +165,7 @@ class DARTAPIManager {
     }
 
     // MARK: - 배당
-    func fetchDividendAPI(type: Endpoint, dartCropCode: String, year: String, completionHandler: @escaping(DartDividendDTO) -> ()) {
+    func fetchDividendAPI(type: Endpoint, dartCropCode: String, year: String, completionHandler: @escaping([DartDividendDTO]) -> ()) {
         
         let fullurl = type.requestURL
         
@@ -177,23 +177,24 @@ class DARTAPIManager {
         AF.request(fullurl, method: .get, parameters: parameter).responseData { response in
             switch response.result {
             case .success(let value):
- 
+
+                print("dart 배당금 통신 자체는 성공이다!")
                 let json = JSON(value)
 
-                let stockData = json["list"].arrayValue
+                let data = json["list"].arrayValue
+                
+                let diviInfoArr: [DartDividendDTO] = data.map { item -> DartDividendDTO in
 
-                let dps_one_bf = stockData[11]["thstrm"].stringValue
-                let dps_two_bf = stockData[11]["frmtrm"].stringValue
-                let dps_three_bf = stockData[11]["lwfr"].stringValue
+                    let labelName = item["se"].stringValue
+                    let stkKind = item["stock_knd"].stringValue
+                    let oneYearBF = item["thstrm"].stringValue
+                    let twoYearBF = item["frmtrm"].stringValue
+                    let threeYearBF = item["lwfr"].stringValue
+
+                    return DartDividendDTO(labelName: labelName, stockKind: stkKind, amount_1yr_bf: oneYearBF, amount_2yr_bf: twoYearBF, amount_3yr_bf: threeYearBF)
+                }
                 
-                let payoutRatio_one_bf = stockData[6]["thstrm"].stringValue
-                let payoutRatio_two_bf = stockData[6]["frmtrm"].stringValue
-                let payoutRatio_three_bf = stockData[6]["lwfr"].stringValue
-                
-                let dividendInfo = DartDividendDTO(dps_1yr_bf: dps_one_bf, dps_2yr_bf: dps_two_bf, dps_3yr_bf: dps_three_bf, dividend_payout_ratio_1yr_bf: payoutRatio_one_bf, dividend_payout_ratio_2yr_bf: payoutRatio_two_bf, dividend_payout_ratio_3yr_bf: payoutRatio_three_bf)
-                
-                completionHandler(dividendInfo)
-                
+                completionHandler(diviInfoArr)
                 
             case .failure(let error):
                 print(error)

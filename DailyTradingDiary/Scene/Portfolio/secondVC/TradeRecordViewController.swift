@@ -165,12 +165,6 @@ extension TradeRecordViewController {
         mainView.totalSellValueLabel.text = "\(thousandSeparatorCommas(value: sellResult)) \(Constants.CurrencySign.won.rawValue)"
     }
     
-    func thousandSeparatorCommas(value: Int) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        return numberFormatter.string(for: value) ?? "0"
-    }
-    
     func isEmptyCheck() {
         if TradingDiaryRepository.standard.tasks.count == 0 {
             self.mainView.tableView.isHidden = true

@@ -14,9 +14,6 @@ class BaseTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
         setConstraints()
-        
-        self.isSkeletonable = true
-        self.contentView.isSkeletonable = true
     }
     
     required init?(coder: NSCoder) {
@@ -24,7 +21,6 @@ class BaseTableViewCell: UITableViewCell {
     }
     
     func configure() {
-        
         self.backgroundColor = .subBackgroundColor
     }
     

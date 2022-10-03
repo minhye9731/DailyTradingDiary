@@ -87,18 +87,13 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
     }
     
     // MARK: - 배당금 데이터 적용
-    func setDividendData(data: DartDividendDTO, indexPath: IndexPath) {
-        switch indexPath.row {
-        case 0:
-            threeYrsBfValueLabel.text = data.dps_3yr_bf
-            twoYrsBfValueLabel.text = data.dps_2yr_bf
-            oneYrsBfValueLabel.text = data.dps_1yr_bf
-        case 1:
-            threeYrsBfValueLabel.text = data.dividend_payout_ratio_3yr_bf
-            twoYrsBfValueLabel.text = data.dividend_payout_ratio_2yr_bf
-            oneYrsBfValueLabel.text = data.dividend_payout_ratio_1yr_bf
-        default: break
-        }
+    func setDividendData(data: [DartDividendDTO], indexPath: IndexPath) {
+        
+        let row = data[indexPath.row]
+        self.threeYrsBfValueLabel.text = makeHundMil(rawValue: row.amount_3yr_bf)
+        self.twoYrsBfValueLabel.text = makeHundMil(rawValue: row.amount_2yr_bf)
+        self.oneYrsBfValueLabel.text = makeHundMil(rawValue: row.amount_1yr_bf)
+
     }
     
     // 단위별 상세처리 필요

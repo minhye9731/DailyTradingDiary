@@ -54,4 +54,10 @@ class BaseViewController: UIViewController {
         label.attributedText = attributeLabelStr
     }
     
+    func thousandSeparatorCommas(value: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter.string(for: value) ?? "0"
+    }
+    
 }

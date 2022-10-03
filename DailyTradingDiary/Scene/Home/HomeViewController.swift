@@ -57,8 +57,11 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         mainView.tempfloatingButton.addTarget(self, action: #selector(tempfloatingBtnTapped), for: .touchUpInside) // 삭제예정
         
-        // dart 기업 고유번호 - 앱시작시에 선다운
-        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
+        DispatchQueue.global().async {
+            print("dart 기업 고유번호 - 앱시작시에 다운시작")
+            DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

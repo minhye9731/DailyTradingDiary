@@ -27,72 +27,61 @@ final class AssetStatusView: BaseView {
     }()
     
     // 투자원금
-    let investmentLabel: UILabel = {
-        let label = UILabel()
-        label.text = "투자원금"
-        label.textColor = .mainTextColor
-        label.font = .boldSystemFont(ofSize: 16)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    let investmentValueLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .mainTextColor
-        label.font = .systemFont(ofSize: 16)
-        label.textAlignment = .right
-        return label
-    }()
-    
-    // 평가손익
-    let gainLossLabel: UILabel = {
-        let label = UILabel()
-        label.text = "평가손익"
-        label.textColor = .mainTextColor
-        label.font = .boldSystemFont(ofSize: 16)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    let gainLossValueLabel: UILabel = {
-        let label = UILabel()
-        label.text = "+ 22,222 \(Constants.CurrencySign.won.rawValue)" // 뷰컨에서 전달예정
-        label.textColor = .systemRed // 뷰컨에서 로직걸기
-        label.font = .systemFont(ofSize: 16)
-        label.textAlignment = .right
-        return label
-    }()
-    
-    // 수익률
-    let earningsRateLabel: UILabel = {
-        let label = UILabel()
-        label.text = "수익률"
-        label.textColor = .mainTextColor
-        label.font = .boldSystemFont(ofSize: 16)
-        label.textAlignment = .left
-        return label
-    }()
-    
-    let earningsRateValueLabel: UILabel = {
-        let label = UILabel()
-        label.text = "+ 28.57 %" // 뷰컨에서 전달예정
-        label.textColor = .systemRed // 뷰컨에서 로직걸기
-        label.font = .systemFont(ofSize: 16)
-        label.textAlignment = .right
-        return label
-    }()
-    
-    // MARK: - 여기서부터 수정
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+//    let investmentLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "투자원금"
+//        label.textColor = .mainTextColor
+//        label.font = .boldSystemFont(ofSize: 16)
+//        label.textAlignment = .left
+//        return label
+//    }()
+//
+//    let investmentValueLabel: UILabel = {
+//        let label = UILabel()
+//        label.textColor = .mainTextColor
+//        label.font = .systemFont(ofSize: 16)
+//        label.textAlignment = .right
+//        return label
+//    }()
+//
+//    // 평가손익
+//    let gainLossLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "평가손익"
+//        label.textColor = .mainTextColor
+//        label.font = .boldSystemFont(ofSize: 16)
+//        label.textAlignment = .left
+//        return label
+//    }()
+//
+//    let gainLossValueLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "+ 22,222 \(Constants.CurrencySign.won.rawValue)" // 뷰컨에서 전달예정
+//        label.textColor = .systemRed // 뷰컨에서 로직걸기
+//        label.font = .systemFont(ofSize: 16)
+//        label.textAlignment = .right
+//        return label
+//    }()
+//
+//    // 수익률
+//    let earningsRateLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "수익률"
+//        label.textColor = .mainTextColor
+//        label.font = .boldSystemFont(ofSize: 16)
+//        label.textAlignment = .left
+//        return label
+//    }()
+//
+//    let earningsRateValueLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "+ 28.57 %" // 뷰컨에서 전달예정
+//        label.textColor = .systemRed // 뷰컨에서 로직걸기
+//        label.font = .systemFont(ofSize: 16)
+//        label.textAlignment = .right
+//        return label
+//    }()
+     
     // MARK: - chartView
     let chartView: UIView = {
        let view = UIView()
@@ -118,7 +107,6 @@ final class AssetStatusView: BaseView {
     
     
     lazy var ratioChart: PortfolioChartView = {
-//        let pieChartView = PortfolioChartView(frame: CGRect(x: self.chartView.frame.width / 2, y: self.chartView.frame.height / 2, width: 100, height: 100))
         let pieChartView = PortfolioChartView()
         return pieChartView
     }()
@@ -135,9 +123,11 @@ final class AssetStatusView: BaseView {
             self.addSubview($0)
         }
         
-        [resultLabel, investmentLabel, investmentValueLabel, gainLossLabel, gainLossValueLabel, earningsRateLabel, earningsRateValueLabel].forEach {
-            resultView.addSubview($0)
-        }
+//        [resultLabel, investmentLabel, investmentValueLabel, gainLossLabel, gainLossValueLabel, earningsRateLabel, earningsRateValueLabel].forEach {
+//            resultView.addSubview($0)
+//        }
+        
+        resultView.addSubview(resultLabel)
         
         [ratioLabel, grayline, ratioChart, emptyView].forEach {
             chartView.addSubview($0)
@@ -150,43 +140,42 @@ final class AssetStatusView: BaseView {
         // MARK: - resultView
         resultView.snp.makeConstraints { make in
             make.leading.top.trailing.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(170)
+            make.height.equalTo(110)
         }
         
         resultLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(self.resultView)
-            make.top.equalTo(resultView.snp.top).offset(20)
+            make.centerX.centerY.equalTo(self.resultView)
         }
         
-        // 투자원금
-        investmentLabel.snp.makeConstraints { make in
-            make.leading.equalTo(resultView.snp.leading).offset(14)
-            make.top.equalTo(resultLabel.snp.bottom).offset(20)
-        }
-        investmentValueLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(resultView.snp.trailing).inset(14)
-            make.top.equalTo(resultLabel.snp.bottom).offset(20)
-        }
-        
-        // 평가손익
-        gainLossLabel.snp.makeConstraints { make in
-            make.leading.equalTo(resultView.snp.leading).offset(14)
-            make.top.equalTo(investmentLabel.snp.bottom).offset(16)
-        }
-        gainLossValueLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(resultView.snp.trailing).inset(14)
-            make.top.equalTo(investmentValueLabel.snp.bottom).offset(16)
-        }
-        
-        // 수익률
-        earningsRateLabel.snp.makeConstraints { make in
-            make.leading.equalTo(resultView.snp.leading).offset(14)
-            make.top.equalTo(gainLossLabel.snp.bottom).offset(16)
-        }
-        earningsRateValueLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(resultView.snp.trailing).inset(14)
-            make.top.equalTo(gainLossValueLabel.snp.bottom).offset(16)
-        }
+//        // 투자원금
+//        investmentLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(resultView.snp.leading).offset(14)
+//            make.top.equalTo(resultLabel.snp.bottom).offset(20)
+//        }
+//        investmentValueLabel.snp.makeConstraints { make in
+//            make.trailing.equalTo(resultView.snp.trailing).inset(14)
+//            make.top.equalTo(resultLabel.snp.bottom).offset(20)
+//        }
+//
+//        // 평가손익
+//        gainLossLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(resultView.snp.leading).offset(14)
+//            make.top.equalTo(investmentLabel.snp.bottom).offset(16)
+//        }
+//        gainLossValueLabel.snp.makeConstraints { make in
+//            make.trailing.equalTo(resultView.snp.trailing).inset(14)
+//            make.top.equalTo(investmentValueLabel.snp.bottom).offset(16)
+//        }
+//
+//        // 수익률
+//        earningsRateLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(resultView.snp.leading).offset(14)
+//            make.top.equalTo(gainLossLabel.snp.bottom).offset(16)
+//        }
+//        earningsRateValueLabel.snp.makeConstraints { make in
+//            make.trailing.equalTo(resultView.snp.trailing).inset(14)
+//            make.top.equalTo(gainLossValueLabel.snp.bottom).offset(16)
+//        }
         
         // MARK: - chartView
         chartView.snp.makeConstraints { make in

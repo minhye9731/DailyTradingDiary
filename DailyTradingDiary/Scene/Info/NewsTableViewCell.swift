@@ -17,7 +17,6 @@ final class NewsTableViewCell: BaseTableViewCell {
         label.font = .boldSystemFont(ofSize: 15)
         label.textAlignment = .left
         label.numberOfLines = 2
-        label.isSkeletonable = true
         return label
     }()
     
@@ -26,7 +25,6 @@ final class NewsTableViewCell: BaseTableViewCell {
         label.textColor = .subTextColor
         label.font = .systemFont(ofSize: 12)
         label.textAlignment = .left
-        label.isSkeletonable = true
         return label
     }()
     
@@ -35,7 +33,6 @@ final class NewsTableViewCell: BaseTableViewCell {
         label.textColor = .systemBlue
         label.font = .boldSystemFont(ofSize: 13)
         label.textAlignment = .left
-        label.isSkeletonable = true
         return label
     }()
     
@@ -47,7 +44,6 @@ final class NewsTableViewCell: BaseTableViewCell {
         label.textAlignment = .left
         label.layer.cornerRadius = 4
         label.layer.masksToBounds = true
-        label.isSkeletonable = true
         return label
     }()
     
@@ -59,7 +55,6 @@ final class NewsTableViewCell: BaseTableViewCell {
         label.textAlignment = .left
         label.layer.cornerRadius = 4
         label.layer.masksToBounds = true
-        label.isSkeletonable = true
         return label
     }()
     
@@ -68,14 +63,19 @@ final class NewsTableViewCell: BaseTableViewCell {
         imageview.layer.cornerRadius = 6
         imageview.contentMode = .scaleAspectFill
         imageview.layer.masksToBounds = true
-        imageview.isSkeletonable = true
         return imageview
     }()
     
     override func configure() {
+        self.isSkeletonable = true
+        contentView.isSkeletonable = true
+        
         [titleLabel, releaseDateLabel, sourceLabel, topicLabel, tickerLabel, profileImageView].forEach {
             contentView.addSubview($0)
+            $0.isSkeletonable = true
         }
+        
+        self.profileImageView.skeletonCornerRadius = 6
     }
     
     override func setConstraints() {

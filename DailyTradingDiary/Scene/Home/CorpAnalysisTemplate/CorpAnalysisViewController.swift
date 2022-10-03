@@ -24,7 +24,9 @@ class CorpAnalysisViewController: BaseViewController {
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-")]
-    var dividendData = DartDividendDTO(dps_1yr_bf: "-", dps_2yr_bf: "-", dps_3yr_bf: "-", dividend_payout_ratio_1yr_bf: "-", dividend_payout_ratio_2yr_bf: "-", dividend_payout_ratio_3yr_bf: "-")
+    var dividendDataArr: [DartDividendDTO] = [
+        DartDividendDTO(labelName: "-", stockKind: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
+        DartDividendDTO(labelName: "-", stockKind: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-")]
     
     // api refresh시 담아줄 데이터
     var refreshClickedCorpSum: [StockSummaryDTO] = [StockSummaryDTO(updateDate: " 00000000 ", corpName: " - ", marketName: " - ", srtnCode: "000000", nowPrice: " - ", highPrice: " - ", lowPrice: " - ", tradingQnt: " - ", totAmt: " - ")]
@@ -34,7 +36,9 @@ class CorpAnalysisViewController: BaseViewController {
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
         DartFinInfoDTO(sjName: "-", labelID: "-", labelName: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-")]
-    var refreshDividendData = DartDividendDTO(dps_1yr_bf: "-", dps_2yr_bf: "-", dps_3yr_bf: "-", dividend_payout_ratio_1yr_bf: "-", dividend_payout_ratio_2yr_bf: "-", dividend_payout_ratio_3yr_bf: "-")
+    var refreshdividendDataArr: [DartDividendDTO] = [
+        DartDividendDTO(labelName: "-", stockKind: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-"),
+        DartDividendDTO(labelName: "-", stockKind: "-", amount_1yr_bf: "-", amount_2yr_bf: "-", amount_3yr_bf: "-")]
     
     // 신규작성&업데이트시 데이터를 상세하게 다루기 위해 잠시 담아둘 Realm용 변수
     var newRegisterData: CorpRegisterRealmModel = CorpRegisterRealmModel(formalCorpName: "(기업명)", updateDate: Date(), corpName: " - ", marketName: " - ", srtnCode: "000000", nowPrice: 0, highPrice: 0, lowPrice: 0, tradingQnt: 0, totAmt: 0, revenueThr: 0, revenueTwo: 0, revenueOne: 0, opIncomeThr: 0, opIncomeTwo: 0, opIncomeOne: 0, nProfitThr: 0, nProfitTwo: 0, nProfitOne: 0, totalDebtThr: 0, totalDebtTwo: 0, totalDebtOne: 0, totalCapThr: 0, totalCapTwo: 0, totalCapOne: 0, dpsThr: 0, dpsTwo: 0, dpsOne: 0, diviPayoutRatioThr: 0.0, diviPayoutRatioTwo: 0.0, diviPayoutRatioOne: 0.0, regDate: Date(), opinion: "", buyPricePlan: 0, buyDatePlan: Date(), sellPricePlan: 0, sellDatePlan: Date())
@@ -164,11 +168,11 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
             
             switch addOrEditAction {
             case .write:
-                finInfoCell.setDividendData(data: self.dividendData, indexPath: indexPath) // view에 데이터 표시
-                mergeDividData(wholeData: newRegisterData, dividData: dividendData) // 데이터 merge
+                finInfoCell.setDividendData(data: self.dividendDataArr, indexPath: indexPath) // view에 데이터 표시
+                mergeDividData(wholeData: newRegisterData, dividData: dividendDataArr) // 데이터 merge
             case .edit:
-                finInfoCell.setDividendData(data: self.refreshDividendData, indexPath: indexPath) // view에 데이터 표시
-                mergeDividData(wholeData: updateRegisteredData, dividData: refreshDividendData) // 데이터 merge
+                finInfoCell.setDividendData(data: self.refreshdividendDataArr, indexPath: indexPath) // view에 데이터 표시
+                mergeDividData(wholeData: updateRegisteredData, dividData: refreshdividendDataArr) // 데이터 merge
             }
             return finInfoCell
             
@@ -412,15 +416,16 @@ extension CorpAnalysisViewController {
     }
     
     // divi 데이터를 relam용 큰변수에 합치기
-    func mergeDividData(wholeData: CorpRegisterRealmModel,dividData: DartDividendDTO ) {
+    func mergeDividData(wholeData: CorpRegisterRealmModel, dividData: [DartDividendDTO] ) {
         
-        wholeData.dpsThr = Int((dividData.dps_3yr_bf).trimmingCharacters(in: [","]))
-        wholeData.dpsTwo = Int((dividData.dps_2yr_bf).trimmingCharacters(in: [","]))
-        wholeData.dpsOne = Int((dividData.dps_1yr_bf).trimmingCharacters(in: [","]))
+        wholeData.dpsThr = Int(dividData[0].amount_3yr_bf.replacingOccurrences(of: ",", with: ""))
+        wholeData.dpsTwo = Int(dividData[0].amount_2yr_bf.replacingOccurrences(of: ",", with: ""))
+        wholeData.dpsOne = Int(dividData[0].amount_1yr_bf.replacingOccurrences(of: ",", with: ""))
         
-        wholeData.diviPayoutRatioThr = Double(dividData.dividend_payout_ratio_3yr_bf)
-        wholeData.diviPayoutRatioTwo = Double(dividData.dividend_payout_ratio_2yr_bf)
-        wholeData.diviPayoutRatioOne = Double(dividData.dividend_payout_ratio_1yr_bf)
+        wholeData.diviPayoutRatioThr = Double(dividData[1].amount_3yr_bf)
+        wholeData.diviPayoutRatioTwo = Double(dividData[1].amount_2yr_bf)
+        wholeData.diviPayoutRatioOne = Double(dividData[1].amount_1yr_bf)
+
     }
     
 }
@@ -505,15 +510,24 @@ extension CorpAnalysisViewController: SendDataDelegate {
             
             if finInfoArr.isEmpty {
                 self.showAlertMessageDetail(title: "<알림>", message: "검색하신 기업의 재무제표 데이터가 없습니다. 다른 기업으로 재검색해 주세요 :)")
-                self.finStatementDataArr.removeAll()
+                return
             } else {
                 
                 print("\(finInfoArr[0])")
-                let revenueData = finInfoArr.filter { $0.labelID == "ifrs-full_Revenue" } // 매출액
+                let revenueData = finInfoArr.filter { $0.labelID == "ifrs-full_Revenue" }
+                print("revenueData : \(revenueData)")
+                // 매출액
                 let opIncomeData = finInfoArr.filter { $0.labelID == "dart_OperatingIncomeLoss" } // 영업이익
+                print("opIncomeData : \(opIncomeData)")
+                
                 let netProfitData = finInfoArr.filter { $0.sjName.contains("포괄손익계산서") && $0.labelID == "ifrs-full_ProfitLoss" } // 당기순이익
+                print("netProfitData : \(netProfitData)")
+                
                 let fullLiabilData = finInfoArr.filter { $0.labelID == "ifrs-full_Liabilities" } // 부채총계
+                print("fullLiabilData : \(fullLiabilData)")
+                
                 let fullEqtData = finInfoArr.filter { $0.sjName.contains("재무상태표") && $0.labelID == "ifrs-full_Equity" } // 자본총계
+                print("fullEqtData : \(fullEqtData)")
                 
                 switch self.addOrEditAction {
                 case .write :
@@ -531,26 +545,43 @@ extension CorpAnalysisViewController: SendDataDelegate {
                 }
             }
             DispatchQueue.main.async { self.mainView.tableView.reloadData() }
-            
         }
     }
     
     // corpcode 기준으로 'DART-배당에 관한 사항' API 통신
     func fetchCorpDividendData(dartCode: String) {
-        DARTAPIManager.shared.fetchDividendAPI(type: .dartDivdInfo, dartCropCode: dartCode, year: getLastYear()) { data in
-
-            switch self.addOrEditAction {
-            case .write :
-                self.dividendData = data
-                print("배당금 데이터: \(self.dividendData)")
-            case .edit :
-                self.refreshDividendData = data
-                print("refresh 배당금 데이터: \(self.refreshDividendData)")
-            }
+        DARTAPIManager.shared.fetchDividendAPI(type: .dartDivdInfo, dartCropCode: dartCode, year: getLastYear()) { diviInfoArr in
             
-            DispatchQueue.main.async {
-                self.mainView.tableView.reloadData()
+            if diviInfoArr.isEmpty {
+                self.showAlertMessageDetail(title: "<알림>", message: "검색하신 기업은 배당금 데이터가 없습니다.")
+                return
+            } else {
+                print("\(diviInfoArr[0])")
+                
+                // 주당 현금배당금
+                let dpsData = diviInfoArr.filter { $0.labelName == "주당 현금배당금(원)" && $0.stockKind == "보통주" }
+                print("revenueData : \(dpsData)")
+
+                // 배당성향
+                let pyRioData = diviInfoArr.filter { $0.labelName == "(연결)현금배당성향(%)" }
+                print("opIncomeData : \(pyRioData)")
+                
+                switch self.addOrEditAction {
+                case .write :
+                    self.dividendDataArr.removeAll()
+                    [dpsData, pyRioData].forEach {
+                        self.dividendDataArr.append(contentsOf: $0)
+                    }
+                    print("배당금 데이터 : \(self.dividendDataArr)")
+                case .edit :
+                    self.refreshdividendDataArr.removeAll()
+                    [dpsData, pyRioData].forEach {
+                        self.refreshdividendDataArr.append(contentsOf: $0)
+                    }
+                    print("refresh 배당금 데이터: \(self.refreshdividendDataArr)")
+                }
             }
+            DispatchQueue.main.async { self.mainView.tableView.reloadData() }
         }
     }
     

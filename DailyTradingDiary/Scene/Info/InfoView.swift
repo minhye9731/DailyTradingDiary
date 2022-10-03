@@ -17,7 +17,7 @@ final class InfoView: BaseView {
         tableview.register(FearGreedGraphTableViewCell.self, forCellReuseIdentifier: FearGreedGraphTableViewCell.reuseIdentifier)
         tableview.register(NewsTableViewCell.self, forCellReuseIdentifier: NewsTableViewCell.reuseIdentifier)
         tableview.register(CustomTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CustomTableViewHeaderView.reuseIdentifier)
-        tableview.isSkeletonable = true
+
         return tableview
     }()
     

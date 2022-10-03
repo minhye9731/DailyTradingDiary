@@ -22,8 +22,8 @@ class AssetStatusViewController: BaseViewController {
         print("AssetStatusViewController - \(#function)")
         super.viewDidLoad()
         
-        TradingDiaryRepository.standard.fetchRealm() // 데이터 fetching하고
-        isEmptyCheck() // 데이터여부 확인해서 view 선택적용
+        TradingDiaryRepository.standard.fetchRealm()
+        isEmptyCheck()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +55,8 @@ class AssetStatusViewController: BaseViewController {
     
     func getTotalInput() {
         let buyTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
-        mainView.investmentValueLabel.text = "\(buyTotalAmount) \(Constants.CurrencySign.won.rawValue)"
+//        mainView.investmentValueLabel.text = "\(buyTotalAmount) \(Constants.CurrencySign.won.rawValue)"
+        mainView.resultLabel.text = "\(thousandSeparatorCommas(value: buyTotalAmount)) \(Constants.CurrencySign.won.rawValue)"
     }
     
     func isEmptyCheck() {

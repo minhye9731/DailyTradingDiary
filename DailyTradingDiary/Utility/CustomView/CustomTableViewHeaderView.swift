@@ -15,6 +15,7 @@ final class CustomTableViewHeaderView: UITableViewHeaderFooterView {
         label.textColor = .mainTextColor
         label.font = .boldSystemFont(ofSize: 18)
         label.textAlignment = .left
+        label.isSkeletonable = true
         return label
     }()
     
@@ -26,6 +27,7 @@ final class CustomTableViewHeaderView: UITableViewHeaderFooterView {
     
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
+        isSkeletonable = true
         configure()
         setConstraints()
     }
