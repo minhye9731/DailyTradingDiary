@@ -30,18 +30,16 @@ class CorpCodeRepository: CorpCodeRepositoryType {
     // MARK: - 데이터 패치
     func fetchRealmRegisterMode() {
         tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.stockCode != " " }
-        print("fetchRealmRegisterMode - \(tasks.count)")
     }
     
     func fetchRealmTradingMode() {
         tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.isRegistered == true }
-        print("fetchRealmTradingMode - \(tasks.count)")
     }
     
     // MARK: - 실시간 검색시
     
     func filterSelectedCrop(searchText: String) -> String {
-        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.corpName == searchText }
+        tasks = CorpCodeRepository.standard.localRealm.objects(CorpCodeRealmModel.self).where { $0.stockCode == searchText }
         return tasks[0].corpCode
     }
     
