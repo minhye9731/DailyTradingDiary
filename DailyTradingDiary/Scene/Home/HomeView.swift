@@ -35,15 +35,37 @@ final class HomeView: BaseView {
         return button
     }()
     
-    // 임시데이터
-    let tempfloatingButton: UIButton = {
+    let firstFloatingButton: UIButton = {
        let button = UIButton()
         button.tintColor = .white
+        button.setTitle("매매일지", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.layer.cornerRadius = 30
-        button.backgroundColor = .pointColor
+        button.backgroundColor = .backgroundColor
         button.layer.shadowRadius = 10
         button.layer.shadowOpacity = 0.3
         return button
+    }()
+    
+    let secondFloatingButton: UIButton = {
+       let button = UIButton()
+        button.tintColor = .white
+        button.setTitle("기업등록", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        button.layer.cornerRadius = 30
+        button.backgroundColor = .backgroundColor
+        button.layer.shadowRadius = 10
+        button.layer.shadowOpacity = 0.3
+        return button
+    }()
+    
+    let floatingStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.axis = .vertical
+        stackview.alignment = .fill
+        stackview.distribution = .equalSpacing
+        stackview.spacing = 12
+        return stackview
     }()
     
     // empty view
@@ -54,11 +76,16 @@ final class HomeView: BaseView {
     }()
 
     override func configureUI() {
-        [calendar, tableView, emptyView, floatingButton, tempfloatingButton].forEach {
+        [calendar, tableView, emptyView, floatingStackView].forEach {
             self.addSubview($0)
         }
         
+        [secondFloatingButton, firstFloatingButton, floatingButton].forEach {
+            floatingStackView.addArrangedSubview($0)
+        }
+        
         let image = UIImage(systemName: Constants.ImageName.plus.rawValue, withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .light))
+        
         floatingButton.setImage(image, for: .normal)
         floatingButton.setTitleColor(.backgroundColor, for: .normal)
     }
@@ -78,15 +105,21 @@ final class HomeView: BaseView {
         }
         
         floatingButton.snp.makeConstraints { make in
-            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-28)
-            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-36)
-            make.width.height.equalTo(60)
+                        make.height.equalTo(60)
+                    }
+        
+        firstFloatingButton.snp.makeConstraints { make in
+            make.height.equalTo(60)
         }
         
-        tempfloatingButton.snp.makeConstraints { make in
+        secondFloatingButton.snp.makeConstraints { make in
+            make.height.equalTo(60)
+        }
+        
+        floatingStackView.snp.makeConstraints { make in
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-36)
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-28)
-            make.bottom.equalTo(floatingButton.snp.top).offset(-12)
-            make.width.height.equalTo(60)
+            make.width.equalTo(60)
         }
         
         // emptyview

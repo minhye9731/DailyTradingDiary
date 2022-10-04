@@ -30,6 +30,17 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         return panGesture
     }()
     
+    lazy var fltyButtons: [UIButton] = [self.mainView.firstFloatingButton, self.mainView.secondFloatingButton]
+    var isShowFloating: Bool = false
+    lazy var floatingDimView: UIView = {
+        let view = UIView(frame: self.mainView.frame)
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        view.alpha = 0
+        view.isHidden = true
+        self.mainView.insertSubview(view, belowSubview: self.mainView.floatingStackView)
+        return view
+    }()
+    
     // MARK: - Lifecycle
     override func loadView() {
         self.view = mainView
@@ -53,9 +64,15 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         TradingDiaryRepository.standard.sortByRegDate()
+        
+        // 플로팅 버튼
+        self.mainView.firstFloatingButton.isHidden = true
+        self.mainView.secondFloatingButton.isHidden = true
 
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
-        mainView.tempfloatingButton.addTarget(self, action: #selector(tempfloatingBtnTapped), for: .touchUpInside) // 삭제예정
+        mainView.firstFloatingButton.addTarget(self, action: #selector(firstFloatinBtnTapped), for: .touchUpInside)
+        mainView.secondFloatingButton.addTarget(self, action: #selector(secondFloatingBtnTapped), for: .touchUpInside)
+        
         
         DispatchQueue.global().async {
             print("dart 기업 고유번호 - 앱시작시에 다운시작")
@@ -69,6 +86,22 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     }
     
     override func viewDidAppear(_ animated: Bool) {
+       
+        fltyButtons.reversed().forEach { button in
+            UIView.animate(withDuration: 0.3) {
+                button.isHidden = true
+                self.mainView.layoutIfNeeded()
+            }
+        }
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.floatingDimView.alpha = 0
+        }) { _ in
+            self.floatingDimView.isHidden = true
+        }
+        
+        
+        
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
         isEmptyCheck()
         self.eventsArr = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).map {
@@ -299,14 +332,64 @@ extension HomeViewController {
         }
     }
     
+    // 플로팅 버튼
     @objc func floatingBtnTapped() {
+        // 표기, 숨기기기 기능
+        if isShowFloating {
+            fltyButtons.reversed().forEach { button in
+                UIView.animate(withDuration: 0.3) {
+                    button.isHidden = true
+                    self.mainView.layoutIfNeeded()
+                }
+            }
+            
+            UIView.animate(withDuration: 0.5, animations: {
+                self.floatingDimView.alpha = 0
+            }) { _ in
+                self.floatingDimView.isHidden = true
+            }
+        } else {
+            self.floatingDimView.isHidden = false
+            
+            UIView.animate(withDuration: 0.5) {
+                self.floatingDimView.alpha = 1
+            }
+            
+            fltyButtons.forEach { [weak self] button in
+                button.isHidden = false
+                button.alpha = 0
+                
+                UIView.animate(withDuration: 0.3) {
+                    button.alpha = 1
+                    self?.mainView.layoutIfNeeded()
+                }
+            }
+        }
+        
+        // 표기여부 플래그
+        isShowFloating = !isShowFloating
+        
+        // 플로팅 버튼 이미지
+        let image = isShowFloating ? UIImage(systemName: Constants.ImageName.x.rawValue, withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .light)) : UIImage(systemName: Constants.ImageName.plus.rawValue, withConfiguration: UIImage.SymbolConfiguration(pointSize: 32, weight: .light))
+        
+        // 회전액션
+        let rotation = isShowFloating ? CGAffineTransform(rotationAngle: .pi - (.pi / 4)) : CGAffineTransform.identity
+        
+        // 플로팅 버튼 이미지 + 회전액션 기능
+        UIView.animate(withDuration: 0.3) {
+            self.mainView.floatingButton.setImage(image, for: .normal)
+            self.mainView.floatingButton.transform = rotation
+        }
+    }
+    
+
+    @objc func firstFloatinBtnTapped() {
         let vc = TradingDiaryViewController()
         vc.addOrEditAction = .write
         transition(vc, transitionStyle: .push)
     }
     
-    // 삭제예정
-    @objc func tempfloatingBtnTapped() {
+    @objc func secondFloatingBtnTapped() {
         let vc = CorpAnalysisViewController()
         vc.addOrEditAction = .write
         transition(vc, transitionStyle: .push)
@@ -316,6 +399,4 @@ extension HomeViewController {
         self.mainView.calendar.select(Date())
     }
     
-
-
 }

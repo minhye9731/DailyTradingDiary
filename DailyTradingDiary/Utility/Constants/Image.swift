@@ -16,6 +16,7 @@ extension Constants {
         case diary = "square.and.pencil"
         case corporation = "building"
         case plus = "plus"
+        case x = "xmark"
         case setting = "gearshape"
         case trash = "trash.fill"
         
