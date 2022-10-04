@@ -59,9 +59,6 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         mainView.firstFloatingButton.addTarget(self, action: #selector(firstFloatinBtnTapped), for: .touchUpInside)
         mainView.secondFloatingButton.addTarget(self, action: #selector(secondFloatingBtnTapped), for: .touchUpInside)
-        
-        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

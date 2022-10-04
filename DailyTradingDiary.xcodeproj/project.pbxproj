@@ -56,6 +56,7 @@
 		0E58BCA928E9841700204275 /* CorpRegisterRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E58BCA828E9841600204275 /* CorpRegisterRepository.swift */; };
 		0E58BCD528E9D05500204275 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0E58BCD428E9D05500204275 /* Realm */; };
 		0E58BCD728E9D05500204275 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E58BCD628E9D05500204275 /* RealmSwift */; };
+		0E5D614B28EC898D00B339C5 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D614A28EC898D00B339C5 /* IntroViewController.swift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E87354028D598840039D802 /* PageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353F28D598840039D802 /* PageMode.swift */; };
 		0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354128D5DEC50039D802 /* String+Extension.swift */; };
@@ -148,6 +149,7 @@
 		0E58BCA428E89DAB00204275 /* KRXListDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KRXListDTO.swift; sourceTree = "<group>"; };
 		0E58BCA628E8BB4400204275 /* UpdateTradingDiaryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTradingDiaryDTO.swift; sourceTree = "<group>"; };
 		0E58BCA828E9841600204275 /* CorpRegisterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpRegisterRepository.swift; sourceTree = "<group>"; };
+		0E5D614A28EC898D00B339C5 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
 		0E87353F28D598840039D802 /* PageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMode.swift; sourceTree = "<group>"; };
 		0E87354128D5DEC50039D802 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -307,6 +309,7 @@
 		0E04A3C028D1D3DF0036D389 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				0E5D614A28EC898D00B339C5 /* IntroViewController.swift */,
 				0E04A3C228D1D43E0036D389 /* Home */,
 				0EF4826328D430EE00CC8A49 /* Search */,
 				0E04A3C328D1D44F0036D389 /* Info */,
@@ -623,6 +626,7 @@
 				0E04A3CA28D1D5C10036D389 /* TabBarController.swift in Sources */,
 				0E58BCA128E6C89C00204275 /* CorpRegisterRealmModel.swift in Sources */,
 				0E04A3B728D1C7220036D389 /* Constants.swift in Sources */,
+				0E5D614B28EC898D00B339C5 /* IntroViewController.swift in Sources */,
 				0E04A3CE28D1D8660036D389 /* PortfolioViewController.swift in Sources */,
 				0E58BCA928E9841700204275 /* CorpRegisterRepository.swift in Sources */,
 				0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */,
