@@ -18,7 +18,10 @@ class ALPHAAPIManager {
     // 뉴스
     func fetchAlphaNewsAPI(type: Endpoint, completionHandler: @escaping(NetworkResult<Any>) -> ()) {
         
-        let url = type.requestURL + "&apikey=\(APIKey.ALPHA_KEY_1)"
+        let alphaKey = [APIKey.ALPHA_KEY_1, APIKey.ALPHA_KEY_2, APIKey.ALPHA_KEY_3, APIKey.ALPHA_KEY_4].randomElement()!
+        
+        let url = type.requestURL + "&apikey=\(alphaKey)"
+        print("news에 사용된 alpha key : \(alphaKey)")
         
         AF.request(url, method: .get).validate(statusCode: 200..<500).responseData { response in
             switch response.result {

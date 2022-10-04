@@ -28,7 +28,6 @@
 		0E04A3D028D205C60036D389 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E04A3CF28D205C60036D389 /* HomeView.swift */; };
 		0E04A3D328D215CA0036D389 /* FSCalendar in Frameworks */ = {isa = PBXBuildFile; productRef = 0E04A3D228D215CA0036D389 /* FSCalendar */; };
 		0E2D652628DAE6F9002EF4BC /* PieSlice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2D652528DAE6F9002EF4BC /* PieSlice.swift */; };
-		0E2D652828DAE7FF002EF4BC /* PieChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2D652728DAE7FF002EF4BC /* PieChartView.swift */; };
 		0E2DB01128D32C8700CDFD14 /* TradingDiaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01028D32C8600CDFD14 /* TradingDiaryViewController.swift */; };
 		0E2DB01328D32D1B00CDFD14 /* TradingDiaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01228D32D1B00CDFD14 /* TradingDiaryView.swift */; };
 		0E2DB01528D3395900CDFD14 /* CorpNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E2DB01428D3395900CDFD14 /* CorpNameTableViewCell.swift */; };
@@ -124,7 +123,6 @@
 		0E04A3CD28D1D8660036D389 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		0E04A3CF28D205C60036D389 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0E2D652528DAE6F9002EF4BC /* PieSlice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieSlice.swift; sourceTree = "<group>"; };
-		0E2D652728DAE7FF002EF4BC /* PieChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PieChartView.swift; sourceTree = "<group>"; };
 		0E2DB01028D32C8600CDFD14 /* TradingDiaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDiaryViewController.swift; sourceTree = "<group>"; };
 		0E2DB01228D32D1B00CDFD14 /* TradingDiaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDiaryView.swift; sourceTree = "<group>"; };
 		0E2DB01428D3395900CDFD14 /* CorpNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpNameTableViewCell.swift; sourceTree = "<group>"; };
@@ -276,7 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				0EB85EF628D8BC4E002145A2 /* CustomTableViewHeaderView.swift */,
-				0E2D652728DAE7FF002EF4BC /* PieChartView.swift */,
 				0ED5D65B28DB7965009A1057 /* PortfolioChartView.swift */,
 				0E37460328E0615F000EEBA7 /* EmptyView.swift */,
 				0E87D58728EB30E100570A5D /* ContentTableViewHeaderView.swift */,
@@ -611,7 +608,6 @@
 				0E04A3AD28D1BF3C0036D389 /* ReusableProtocol.swift in Sources */,
 				0EF4826528D4312C00CC8A49 /* TradingSearchViewController.swift in Sources */,
 				0EB85EFC28D8D2C2002145A2 /* WebViewController.swift in Sources */,
-				0E2D652828DAE7FF002EF4BC /* PieChartView.swift in Sources */,
 				0E8E753228E5BFDA00D52A2C /* DartFinInfoDTO.swift in Sources */,
 				0ED5D65C28DB7965009A1057 /* PortfolioChartView.swift in Sources */,
 				0EB85EEF28D874FA002145A2 /* FearGreedGraphTableViewCell.swift in Sources */,
@@ -795,7 +791,7 @@
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyTradingDiary/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Trading Diary";
+				INFOPLIST_KEY_CFBundleDisplayName = Trady;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -830,7 +826,7 @@
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyTradingDiary/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Trading Diary";
+				INFOPLIST_KEY_CFBundleDisplayName = Trady;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
