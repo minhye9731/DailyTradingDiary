@@ -39,7 +39,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         print("HomeViewController - \(#function)")
         self.mainView.tableView.reloadData()
     }
-
+    
     override func configure() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
@@ -52,20 +52,15 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("HomeViewController - \(#function)")
         print(Realm.Configuration.defaultConfiguration.fileURL!)
         
         TradingDiaryRepository.standard.sortByRegDate()
-
+        
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
         mainView.firstFloatingButton.addTarget(self, action: #selector(firstFloatinBtnTapped), for: .touchUpInside)
         mainView.secondFloatingButton.addTarget(self, action: #selector(secondFloatingBtnTapped), for: .touchUpInside)
         
-        
-//        DispatchQueue.global().async {
-            print("dart 기업 고유번호 - 앱시작시에 다운시작")
-            DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
-//        }
+        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
         
     }
     
@@ -79,10 +74,6 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
-        
-        
-
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
         isEmptyCheck()
         self.eventsArr = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).map {
@@ -93,7 +84,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         self.mainView.calendar.reloadData()
     }
     
-
+    
 }
 
 // MARK: - tableview 설정
@@ -113,7 +104,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         tradeCell.setData(arr: Array(TradingDiaryRepository.standard.tasks), indexPath: indexPath)
         return tradeCell
     }
-        
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let tradeDiaryVC = TradingDiaryViewController()
         
@@ -148,7 +139,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         delete.image = UIImage(systemName: Constants.ImageName.trash.rawValue)
         delete.backgroundColor = .deleteColor
-
+        
         return UISwipeActionsConfiguration(actions: [delete])
     }
 }
@@ -238,14 +229,14 @@ extension HomeViewController: FSCalendarDelegateAppearance {
         isEmptyCheck()
         self.mainView.tableView.reloadData()
     }
-   
+    
     func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int {
-
+        
         self.eventsArr = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).map {
             guard let result = $0.tradingDate.toStringinKR().toDateinKR() else { return Date() }
             return result
         }
-
+        
         if self.eventsArr.contains(date) {
             return 1
         } else {
@@ -334,14 +325,10 @@ extension HomeViewController {
                 }
             }
         }
-        
-        // 표기여부 플래그
         isShowFloating = !isShowFloating
-        
     }
     
     
-
     @objc func firstFloatinBtnTapped() {
         let vc = TradingDiaryViewController()
         vc.addOrEditAction = .write
@@ -356,7 +343,7 @@ extension HomeViewController {
     
     @objc func todayButtonClicked() {
         self.mainView.calendar.select(Date())
-//        TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
+        //        TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
         isEmptyCheck()
     }
     

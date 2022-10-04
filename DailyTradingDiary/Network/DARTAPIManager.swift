@@ -31,8 +31,10 @@ class DARTAPIManager {
             return (fileURL, [.removePreviousFile, .createIntermediateDirectories])
         }
         
+        // 네트워크를 다른 스레드로 보내서 처리시키자
+        let queue = DispatchQueue.global(qos: .utility)
         
-        AF.download(url, method: .get, parameters: parameter, to: destination).response { response in
+        AF.download(url, method: .get, parameters: parameter, to: destination).response(queue: queue) { response in
             switch response.result {
             case .success(let response):
                 
