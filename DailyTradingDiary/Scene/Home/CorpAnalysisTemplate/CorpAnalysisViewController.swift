@@ -421,12 +421,15 @@ extension CorpAnalysisViewController {
     // divi 데이터를 relam용 큰변수에 합치기
     func mergeDividData(wholeData: CorpRegisterRealmModel, dividData: [DartDividendDTO] ) {
         
-        wholeData.dpsThr = Int(dividData[0].amount_3yr_bf.replacingOccurrences(of: ",", with: ""))
-        wholeData.dpsTwo = Int(dividData[0].amount_2yr_bf.replacingOccurrences(of: ",", with: ""))
-        wholeData.dpsOne = Int(dividData[0].amount_1yr_bf.replacingOccurrences(of: ",", with: ""))
+//        wholeData.dpsThr = Int(dividData[0].amount_3yr_bf.replacingOccurrences(of: ",", with: ""))
+//        wholeData.dpsTwo = Int(dividData[0].amount_2yr_bf.replacingOccurrences(of: ",", with: ""))
+//        wholeData.dpsOne = Int(dividData[0].amount_1yr_bf.replacingOccurrences(of: ",", with: ""))
+        
+        wholeData.dpsThr = dividData[0].amount_3yr_bf == "-" ? 0 : Int(dividData[0].amount_3yr_bf.replacingOccurrences(of: ",", with: ""))
+        wholeData.dpsTwo = dividData[0].amount_2yr_bf == "-" ? 0 : Int(dividData[0].amount_2yr_bf.replacingOccurrences(of: ",", with: ""))
+        wholeData.dpsOne = dividData[0].amount_1yr_bf == "-" ? 0 : Int(dividData[0].amount_1yr_bf.replacingOccurrences(of: ",", with: ""))
         
         wholeData.diviPayoutRatioThr = dividData[1].amount_3yr_bf == "-" ? 0.0 : Double(dividData[1].amount_3yr_bf)
-        
         wholeData.diviPayoutRatioTwo =  dividData[1].amount_2yr_bf == "-" ? 0.0 : Double(dividData[1].amount_2yr_bf)
         wholeData.diviPayoutRatioOne =  dividData[1].amount_2yr_bf == "-" ? 0.0 : Double(dividData[1].amount_2yr_bf)
     }
@@ -562,25 +565,35 @@ extension CorpAnalysisViewController: SendDataDelegate {
                 print("\(diviInfoArr[0])")
                 
                 // 주당 현금배당금
-                let dpsData = diviInfoArr.filter { $0.labelName == "주당 현금배당금(원)" && $0.stockKind == "보통주" }
-                print("revenueData : \(dpsData)")
+                let dpsData = diviInfoArr.filter { $0.labelName == "주당 현금배당금(원)" }[0]
+                print("dpsData : \(dpsData)")
 
                 // 배당성향
-                let pyRioData = diviInfoArr.filter { $0.labelName == "(연결)현금배당성향(%)" }
+                let pyRioData = diviInfoArr.filter { $0.labelName == "(연결)현금배당성향(%)" }[0]
                 print("opIncomeData : \(pyRioData)")
                 
                 switch self.addOrEditAction {
                 case .write :
                     self.dividendDataArr.removeAll()
+//                    [dpsData, pyRioData].forEach {
+//                        self.dividendDataArr.append(contentsOf: $0)
+//                    }
                     [dpsData, pyRioData].forEach {
-                        self.dividendDataArr.append(contentsOf: $0)
+                        self.dividendDataArr.append($0)
                     }
+                    
+                    
+                    
                     print("배당금 데이터 : \(self.dividendDataArr)")
                 case .edit :
                     self.refreshdividendDataArr.removeAll()
+//                    [dpsData, pyRioData].forEach {
+//                        self.refreshdividendDataArr.append(contentsOf: $0)
+//                    }
                     [dpsData, pyRioData].forEach {
-                        self.refreshdividendDataArr.append(contentsOf: $0)
+                        self.refreshdividendDataArr.append($0)
                     }
+                    
                     print("refresh 배당금 데이터: \(self.refreshdividendDataArr)")
                 }
             }

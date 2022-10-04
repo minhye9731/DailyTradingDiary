@@ -90,9 +90,12 @@ final class FinanceInfoTableViewCell: BaseTableViewCell {
     func setDividendData(data: [DartDividendDTO], indexPath: IndexPath) {
         
         let row = data[indexPath.row]
-        self.threeYrsBfValueLabel.text = makeHundMil(rawValue: row.amount_3yr_bf)
-        self.twoYrsBfValueLabel.text = makeHundMil(rawValue: row.amount_2yr_bf)
-        self.oneYrsBfValueLabel.text = makeHundMil(rawValue: row.amount_1yr_bf)
+//        self.threeYrsBfValueLabel.text = makeHundMil(rawValue: row.amount_3yr_bf)
+//        self.twoYrsBfValueLabel.text = makeHundMil(rawValue: row.amount_2yr_bf)
+//        self.oneYrsBfValueLabel.text = makeHundMil(rawValue: row.amount_1yr_bf)
+        self.threeYrsBfValueLabel.text = row.amount_3yr_bf
+        self.twoYrsBfValueLabel.text = row.amount_3yr_bf
+        self.oneYrsBfValueLabel.text = row.amount_3yr_bf
 
     }
     
