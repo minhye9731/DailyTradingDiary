@@ -7,7 +7,6 @@
 
 import UIKit
 import Kingfisher
-import SkeletonView
 
 final class NewsTableViewCell: BaseTableViewCell {
     
@@ -67,15 +66,9 @@ final class NewsTableViewCell: BaseTableViewCell {
     }()
     
     override func configure() {
-        self.isSkeletonable = true
-        contentView.isSkeletonable = true
-        
         [titleLabel, releaseDateLabel, sourceLabel, topicLabel, tickerLabel, profileImageView].forEach {
             contentView.addSubview($0)
-            $0.isSkeletonable = true
         }
-        
-        self.profileImageView.skeletonCornerRadius = 6
     }
     
     override func setConstraints() {
@@ -136,11 +129,7 @@ final class NewsTableViewCell: BaseTableViewCell {
             self.tickerLabel.text = " \(row.relatedTicker[0].ticker) "
         }
         
-//        self.topicLabel.text = " \(row.topic[0].topic) "
-//        self.tickerLabel.text = " \(row.relatedTicker[0].ticker) "
-        
         let url = URL(string: row.profileImageUrl)
-        
         self.profileImageView.kf.indicatorType = .activity
         self.profileImageView.kf.setImage(with: url, placeholder: UIImage(named: "newsPlaceholder.png") )
     }
