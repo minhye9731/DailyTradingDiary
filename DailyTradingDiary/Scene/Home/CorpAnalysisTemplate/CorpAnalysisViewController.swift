@@ -344,8 +344,10 @@ extension CorpAnalysisViewController {
         } else {
             newRegisterData.regDate = Date()
             CorpRegisterRepository.standard.plusRegisterCorp(item: newRegisterData)
-            print("저장 완료!")
-            navigationController?.popViewController(animated: true)
+            presentAlert(title: "\(newRegisterData.corpName) 이 관심기업으로 등록되었습니다.", message: "해당 기업의 매매일지를 작성할 수 있습니다! :)", preferredStyle: .alert) {_ in
+                self.navigationController?.popViewController(animated: true)
+            }
+            
         }
         
     }
@@ -423,10 +425,10 @@ extension CorpAnalysisViewController {
         wholeData.dpsTwo = Int(dividData[0].amount_2yr_bf.replacingOccurrences(of: ",", with: ""))
         wholeData.dpsOne = Int(dividData[0].amount_1yr_bf.replacingOccurrences(of: ",", with: ""))
         
-        wholeData.diviPayoutRatioThr = Double(dividData[1].amount_3yr_bf)
-        wholeData.diviPayoutRatioTwo = Double(dividData[1].amount_2yr_bf)
-        wholeData.diviPayoutRatioOne = Double(dividData[1].amount_1yr_bf)
-
+        wholeData.diviPayoutRatioThr = dividData[1].amount_3yr_bf == "-" ? 0.0 : Double(dividData[1].amount_3yr_bf)
+        
+        wholeData.diviPayoutRatioTwo =  dividData[1].amount_2yr_bf == "-" ? 0.0 : Double(dividData[1].amount_2yr_bf)
+        wholeData.diviPayoutRatioOne =  dividData[1].amount_2yr_bf == "-" ? 0.0 : Double(dividData[1].amount_2yr_bf)
     }
     
 }

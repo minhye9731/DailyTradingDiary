@@ -29,8 +29,6 @@ class AssetStatusViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         print("AssetStatusViewController - \(#function)")
         
-        // viewWillAppear 에서도 데이터fetching, empty여부 체크하는 이유는 매매내역에서 매매일지 내용을 수정할 수도 있기 때문!
-        // 그럼 보유자산 %가 달라지니까
         TradingDiaryRepository.standard.fetchRealm() // 데이터 fetching하고
         isEmptyCheck() // 데이터여부 확인해서 view 선택적용
         
@@ -49,13 +47,14 @@ class AssetStatusViewController: BaseViewController {
     }
     
     func getPieChart() {
+        // 수정필요
         let slideArr = TradingDiaryRepository.standard.getPercentagePerStock()
         self.mainView.ratioChart.slices = slideArr.sorted(by: { $0.percent > $1.percent })
     }
     
     func getTotalInput() {
         let buyTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
-//        mainView.investmentValueLabel.text = "\(buyTotalAmount) \(Constants.CurrencySign.won.rawValue)"
+    
         mainView.resultLabel.text = "\(thousandSeparatorCommas(value: buyTotalAmount)) \(Constants.CurrencySign.won.rawValue)"
     }
     
