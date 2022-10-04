@@ -48,6 +48,7 @@ class TradingSearchViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.mainView.backgroundColor = .backgroundColor
         isEmptyCheck()
         self.mainView.tableView.reloadData()
         self.mainView.tableView.keyboardDismissMode = .onDrag
@@ -90,15 +91,28 @@ extension TradingSearchViewController: UISearchResultsUpdating {
         guard let searchText = searchController.searchBar.text else { return }
         self.registeredCorpArr = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).map { return $0.corpName }
         
+        print("searchText - \(searchText)")
         print("registeredCorpArr - \(registeredCorpArr)")
         
         // 일자관련 함수 설정하기
         APISAPIManager.shared.fetchKRXItemAPI(type: .krxItemInfo, baseDate: "20220928", searchText: searchText) { searchedCropArr in
             
+            print("searchedCropArr - \(searchedCropArr)")
             switch self.RegisterOrTrading {
             case .registerCorp: self.filteredArray = searchedCropArr
-            case .tradingDiary: if self.registeredCorpArr.contains(searchText) { self.filteredArray = searchedCropArr }
+            case .tradingDiary: self.filteredArray = searchedCropArr.filter {
+                self.registeredCorpArr.contains($0.itemName)
             }
+            print("filteredArray - \(self.filteredArray)")
+//                map { data -> KRXListDTO in
+//                self.registeredCorpArr.contains(data.corpName)
+//            }
+                
+            }
+            // registeredCorpArr.contains($0.corpName) }
+                
+//            if self.registeredCorpArr.contains(searchText) { self.filteredArray = searchedCropArr }
+//            }
             
             DispatchQueue.main.async {
                 self.isEmptyCheck()
