@@ -255,6 +255,7 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
 
 // MARK: - opinionTextView 설정
 extension CorpAnalysisViewController: UITextViewDelegate {
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.textColor = .subTextColor

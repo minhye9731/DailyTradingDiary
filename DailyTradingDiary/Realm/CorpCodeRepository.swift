@@ -52,7 +52,6 @@ class CorpCodeRepository: CorpCodeRepositoryType {
                 localRealm.add(item)
             }
         } catch let error {
-            // 얼럿표시
             print(error)
         }
     }
@@ -65,7 +64,6 @@ class CorpCodeRepository: CorpCodeRepositoryType {
                 localRealm.delete(allItems)
             }
         } catch let error {
-            // 얼럿표시
             print(error)
         }
     }

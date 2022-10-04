@@ -62,31 +62,29 @@ class TradeTableViewCell: BaseTableViewCell {
     
     override func setConstraints() {
         
-        //        let spacing = 16
-        
         tagLabel.snp.makeConstraints { make in
             make.leading.top.equalTo(self.safeAreaLayoutGuide).offset(8)
             make.width.equalTo(50)
         }
         
         nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(15)
             make.top.equalTo(self.tagLabel.snp.bottom).offset(6)
         }
         
         amountLabel.snp.makeConstraints { make in
-            make.leading.equalTo(nameLabel.snp.trailing).offset(36)
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(30)
+            make.centerX.equalTo(self.safeAreaLayoutGuide)
+            make.centerY.equalTo(nameLabel)
         }
         
         isTradingLabel.snp.makeConstraints { make in
-            make.leading.equalTo(amountLabel.snp.trailing).offset(12)
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(30)
+            make.leading.equalTo(amountLabel.snp.trailing).offset(15)
+            make.centerY.equalTo(nameLabel)
         }
         
         priceLabel.snp.makeConstraints { make in
-            make.leading.equalTo(isTradingLabel.snp.trailing).offset(12)
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(30)
+            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
+            make.centerY.equalTo(nameLabel)
         }
     }
     
@@ -96,8 +94,13 @@ class TradeTableViewCell: BaseTableViewCell {
         
         self.nameLabel.text = row.corpName
         self.amountLabel.text = "\(row.tradingAmount) \(Constants.Word.countStock.rawValue)"
+        
         self.isTradingLabel.text = row.buyAndSell ? Constants.Word.sell.rawValue : Constants.Word.buy.rawValue
+        self.isTradingLabel.textColor = row.buyAndSell ? .systemBlue : .systemRed
+        
         self.priceLabel.text = "(\(Constants.Word.tradingPrice.rawValue) : \(row.tradingPrice) \(Constants.CurrencySign.won.rawValue))"
+        
+        
     }
     
 }

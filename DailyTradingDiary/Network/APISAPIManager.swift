@@ -5,10 +5,11 @@
 //  Created by 강민혜 on 9/16/22.
 //
 
-import Foundation
+import UIKit
 import Alamofire
 import SwiftyJSON
 import Network
+import Toast
 
 // MARK: - 공공데이터 api 통신
 
@@ -52,7 +53,6 @@ class APISAPIManager {
             }
         }
     }
-    
 
     // MARK: - '기업등록'페이지내 summary에 들어갈 종목 summary 데이터 통신용
     func fetchApisStockAPI(type: Endpoint, clickText: String, completionHandler: @escaping(NetworkResult<Any>) -> ()) {

@@ -101,7 +101,6 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         }
         
         
-        
         TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
         isEmptyCheck()
         self.eventsArr = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).map {

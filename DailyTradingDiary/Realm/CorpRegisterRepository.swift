@@ -51,7 +51,6 @@ class CorpRegisterRepository: RegisterRepositoryType {
                 localRealm.add(item)
             }
         } catch let error {
-            // 얼럿표시
             print(error)
         }
     }
@@ -66,7 +65,6 @@ class CorpRegisterRepository: RegisterRepositoryType {
                 corp.first?.tradingDiaries.append(item)
             }
         } catch let error {
-            // 얼럿표시
             print(error)
         }
     }
@@ -91,7 +89,6 @@ class CorpRegisterRepository: RegisterRepositoryType {
                 CorpRegisterRepository.standard.localRealm.add(updateDiary, update: .modified)
             }
         } catch let error {
-            // 얼럿표시
             print(error)
         }
     }
@@ -103,7 +100,6 @@ class CorpRegisterRepository: RegisterRepositoryType {
                 localRealm.delete(item)
             }
         } catch let error {
-            // 얼럿표시
             print(error)
         }
     }
@@ -115,7 +111,6 @@ class CorpRegisterRepository: RegisterRepositoryType {
                 CorpRegisterRepository.standard.localRealm.delete(item)
             }
         } catch let error {
-            // 얼럿표시
             print(error)
         }
     }
