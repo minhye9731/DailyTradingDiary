@@ -262,7 +262,7 @@ extension CorpAnalysisViewController: UITextViewDelegate {
             textView.text = Constants.Word.corpRigMemoPlchdr.rawValue
         } else if textView.text == Constants.Word.trdDryMemoPlchdr.rawValue {
             textView.textColor = .mainTextColor
-            textView.text = nil
+            textView.text = ""
         }
         textView.textColor = .mainTextColor
     }

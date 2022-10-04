@@ -39,9 +39,10 @@ final class HomeView: BaseView {
        let button = UIButton()
         button.tintColor = .white
         button.setTitle("매매일지", for: .normal)
+        button.setTitleColor(.mainTextColor, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.layer.cornerRadius = 30
-        button.backgroundColor = .backgroundColor
+        button.backgroundColor = .subBackgroundColor
         button.layer.shadowRadius = 10
         button.layer.shadowOpacity = 0.3
         return button
@@ -51,9 +52,10 @@ final class HomeView: BaseView {
        let button = UIButton()
         button.tintColor = .white
         button.setTitle("기업등록", for: .normal)
+        button.setTitleColor(.mainTextColor, for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.layer.cornerRadius = 30
-        button.backgroundColor = .backgroundColor
+        button.backgroundColor = .subBackgroundColor
         button.layer.shadowRadius = 10
         button.layer.shadowOpacity = 0.3
         return button
