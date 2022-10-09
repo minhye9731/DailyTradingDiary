@@ -81,7 +81,6 @@ final class HomeView: BaseView {
     let floatingStackView: UIStackView = {
         let stackview = UIStackView()
         stackview.axis = .vertical
-//        stackview.alignment = .fill
         stackview.alignment = .trailing
         stackview.distribution = .equalSpacing
         stackview.spacing = 12

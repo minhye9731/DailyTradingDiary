@@ -71,6 +71,7 @@ class BaseViewController: UIViewController {
     func thousandSeparatorCommas(value: Int) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 0
         return numberFormatter.string(for: value) ?? "0"
     }
     

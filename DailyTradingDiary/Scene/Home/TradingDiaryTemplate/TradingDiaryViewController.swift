@@ -112,7 +112,7 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             cell.amountTextField.delegate = self
             
             if addOrEditAction == .edit {
-                cell.amountTextField.text = "\(updateData.tradingPrice)"
+                cell.amountTextField.text = "\(thousandSeparatorCommas(value: updateData.tradingPrice))"
             }
             return cell
             
@@ -127,7 +127,7 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             cell.amountTextField.delegate = self
             
             if addOrEditAction == .edit {
-                cell.amountTextField.text = "\(updateData.tradingAmount)"
+                cell.amountTextField.text = "\(thousandSeparatorCommas(value: updateData.tradingAmount))"
             }
             return cell
             
@@ -229,14 +229,6 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         
         guard let result = sender.text else { return }
         
-        if result.count > 13 {
-            sender.deleteBackward()
-        } else if result == "0" {
-            sender.text = "0"
-        } else if result.hasPrefix("0") {
-            sender.text = String(result.dropFirst())
-        }
-        
         switch self.addOrEditAction {
         case .write:
             switch sender.tag {
@@ -255,8 +247,27 @@ extension TradingDiaryViewController: UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if Int(string) != nil || string == "" {
-            return true
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        
+        guard var result = textField.text else { return true }
+        result = result.replacingOccurrences(of: ",", with: "")
+        
+        if string.isEmpty {
+            // 삭제할 때
+            if result.count > 1 {
+                guard let num = Int.init("\(result.prefix(result.count - 1))") else { return true }
+                guard let resultToShow = formatter.string(from: NSNumber(value: num)) else { return true }
+                textField.text = "\(resultToShow)"
+            } else {
+                textField.text = ""
+            }
+        } else if Int(string) != nil {
+            // 추가할 때
+            guard let num = Int.init("\(result)\(string)") else { return true }
+            guard let resultToShow = formatter.string(from: NSNumber(value: num)) else { return true }
+            textField.text = "\(resultToShow)"
         }
         return false
     }
