@@ -9,7 +9,6 @@ import Foundation
 import RealmSwift
 
 class CorpRegisterRealmModel: Object {
-    
     @Persisted var formalCorpName: String // 공식 기업명(주) (필수)
     //summary
     @Persisted var updateDate = Date() // 종합정보 업데이트 일자(필수)
@@ -51,7 +50,6 @@ class CorpRegisterRealmModel: Object {
     @Persisted var buyDatePlan = Date() // 매수 희망일
     @Persisted var sellPricePlan : Int? // 매도 희망가
     @Persisted var sellDatePlan = Date() // 매도 희망일
-
     @Persisted var tradingDiaries: List<TradingDiaryRealmModel>
     
     @Persisted(primaryKey: true) var objectId: ObjectId

@@ -24,7 +24,6 @@ protocol RegisterRepositoryType {
     func isRegistered(item: KRXListDTO) -> Bool
 }
 
-
 class CorpRegisterRepository: RegisterRepositoryType {
     
     private init() { }

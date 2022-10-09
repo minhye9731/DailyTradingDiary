@@ -15,7 +15,7 @@ class TradingDiaryRealmModel: Object {
 
     @Persisted var tradingPrice : Int // 매매 가격(필수)
     @Persisted var tradingAmount : Int // 매매 수량(필수)
-    @Persisted var buyAndSell : Bool // 매수매도 구분(필수) -> false=매수, true=매도
+    @Persisted var buyAndSell : Bool // 매수매도 구분(필수) : false=매수, true=매도
     @Persisted var regDate = Date()  // 등록 날짜(필수)
     @Persisted var tradingDate = Date()  // 매매 일자(필수)
     @Persisted var tradingMemo : String? // 매매일지 메모(옵션)

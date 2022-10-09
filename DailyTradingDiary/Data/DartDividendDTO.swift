@@ -15,3 +15,4 @@ struct DartDividendDTO : Decodable {
     let amount_2yr_bf : String // 수치(2년 전)
     let amount_3yr_bf : String // 수치(3년 전)
 }
+

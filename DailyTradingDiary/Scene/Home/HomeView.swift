@@ -37,12 +37,21 @@ final class HomeView: BaseView {
     
     let firstFloatingButton: UIButton = {
        let button = UIButton()
-        button.tintColor = .white
-        button.setTitle("매매일지", for: .normal)
-        button.setTitleColor(.mainTextColor, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        button.layer.cornerRadius = 30
-        button.backgroundColor = .subBackgroundColor
+        
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .subBackgroundColor
+        configuration.baseForegroundColor = .mainTextColor
+        configuration.image = UIImage(systemName: Constants.ImageName.diary.rawValue)
+        configuration.imagePlacement = .leading
+        configuration.imagePadding = 12
+        configuration.cornerStyle = .large
+        
+        var title = AttributedString.init("매매일지")
+        title.font = .boldSystemFont(ofSize: 13)
+        configuration.attributedTitle = title
+        
+        button.configuration = configuration
+
         button.layer.shadowRadius = 10
         button.layer.shadowOpacity = 0.3
         return button
@@ -50,12 +59,20 @@ final class HomeView: BaseView {
     
     let secondFloatingButton: UIButton = {
        let button = UIButton()
-        button.tintColor = .white
-        button.setTitle("기업등록", for: .normal)
-        button.setTitleColor(.mainTextColor, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        button.layer.cornerRadius = 30
-        button.backgroundColor = .subBackgroundColor
+        var configuration = UIButton.Configuration.filled()
+        configuration.baseBackgroundColor = .subBackgroundColor
+        configuration.baseForegroundColor = .mainTextColor
+        configuration.image = UIImage(systemName: Constants.ImageName.corporation.rawValue)
+        configuration.imagePlacement = .leading
+        configuration.imagePadding = 12
+        configuration.cornerStyle = .large
+        
+        var title = AttributedString.init("기업등록")
+        title.font = .boldSystemFont(ofSize: 13)
+        configuration.attributedTitle = title
+        
+        button.configuration = configuration
+        
         button.layer.shadowRadius = 10
         button.layer.shadowOpacity = 0.3
         return button
@@ -64,7 +81,8 @@ final class HomeView: BaseView {
     let floatingStackView: UIStackView = {
         let stackview = UIStackView()
         stackview.axis = .vertical
-        stackview.alignment = .fill
+//        stackview.alignment = .fill
+        stackview.alignment = .trailing
         stackview.distribution = .equalSpacing
         stackview.spacing = 12
         return stackview
@@ -107,21 +125,23 @@ final class HomeView: BaseView {
         }
         
         floatingButton.snp.makeConstraints { make in
-                        make.height.equalTo(60)
-                    }
+            make.height.equalTo(60)
+            make.width.equalTo(60)
+        }
         
         firstFloatingButton.snp.makeConstraints { make in
-            make.height.equalTo(60)
+            make.height.equalTo(45)
+            make.width.equalTo(120)
         }
         
         secondFloatingButton.snp.makeConstraints { make in
-            make.height.equalTo(60)
+            make.height.equalTo(45)
+            make.width.equalTo(120)
         }
         
         floatingStackView.snp.makeConstraints { make in
             make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-36)
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-28)
-            make.width.equalTo(60)
         }
         
         // emptyview
