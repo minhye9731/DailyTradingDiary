@@ -231,7 +231,11 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         
         if result.count > 13 {
             sender.deleteBackward()
-        } 
+        } else if result == "0" {
+            sender.text = "0"
+        } else if result.hasPrefix("0") {
+            sender.text = String(result.dropFirst())
+        }
         
         switch self.addOrEditAction {
         case .write:
