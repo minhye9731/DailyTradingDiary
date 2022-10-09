@@ -229,6 +229,10 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         
         guard let result = sender.text else { return }
         
+        if result.count > 13 {
+            sender.deleteBackward()
+        } 
+        
         switch self.addOrEditAction {
         case .write:
             switch sender.tag {
@@ -243,6 +247,14 @@ extension TradingDiaryViewController: UITextFieldDelegate {
             default: break
             }
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if Int(string) != nil || string == "" {
+            return true
+        }
+        return false
     }
 
 }

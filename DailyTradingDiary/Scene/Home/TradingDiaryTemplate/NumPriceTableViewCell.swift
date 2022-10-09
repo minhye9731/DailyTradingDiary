@@ -41,7 +41,7 @@ class NumPriceTableViewCell: BaseTableViewCell {
         
         amountTextField.snp.makeConstraints { make in
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
-            make.width.equalTo(120)
+            make.width.equalTo(160)
             make.centerY.equalTo(self)
         }
     }
