@@ -139,6 +139,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         
         return UISwipeActionsConfiguration(actions: [delete])
     }
+    
 }
 
 // MARK: - FSCalendar 설정

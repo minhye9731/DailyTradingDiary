@@ -7,100 +7,128 @@
 
 import UIKit
 
-class TradeTableViewCell: BaseTableViewCell {
+final class TradeTableViewCell: BaseTableViewCell {
     
-    let tagLabel: UILabel = {
+    let infoView: UIView = {
+       let view = UIView()
+        view.layer.cornerRadius = 10
+        view.backgroundColor = .cellBackgroundColor
+        view.layer.shadowColor = UIColor.gray.cgColor
+        view.layer.shadowOpacity = 1.0
+        view.layer.shadowOffset = CGSize.zero
+        view.layer.shadowRadius = 6
+        return view
+    }()
+    
+    let isTradingLabel: UILabel = {
         let label = UILabel()
-        label.text = "매매일지"
-        label.textColor = .black
-        label.backgroundColor = .tradeDiaryTagColor
-        label.font = .boldSystemFont(ofSize: 10)
-        label.textAlignment = .center
-        label.layer.cornerRadius = 4
-        label.layer.masksToBounds = true
+        label.font = .systemFont(ofSize: 16)
+        label.textAlignment = .left
         return label
     }()
     
     let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .mainTextColor
-        label.font = .boldSystemFont(ofSize: 24)
+        label.font = .boldSystemFont(ofSize: 18)
         label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
     let amountLabel: UILabel = {
         let label = UILabel()
         label.textColor = .mainTextColor
-        label.font = .systemFont(ofSize: 16)
+        label.font = .systemFont(ofSize: 14)
         label.textAlignment = .left
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
-    let isTradingLabel: UILabel = {
+    let totalLabel: UILabel = {
         let label = UILabel()
         label.textColor = .mainTextColor
-        label.font = .systemFont(ofSize: 16)
-        label.textAlignment = .left
+        label.font = .boldSystemFont(ofSize: 20)
+        label.textAlignment = .right
+        label.adjustsFontSizeToFitWidth = true
+        label.minimumScaleFactor = 0.5
         return label
     }()
     
-    let priceLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .mainTextColor
-        label.font = .systemFont(ofSize: 12)
-        label.textAlignment = .center
-        return label
+    let stockStackView: UIStackView = {
+        let stackview = UIStackView()
+        stackview.axis = .vertical
+        stackview.alignment = .leading
+        stackview.distribution = .equalSpacing
+        stackview.spacing = 3
+        return stackview
     }()
     
     override func configure() {
-        backgroundColor = .cellBackgroundColor
-        [tagLabel, nameLabel, amountLabel, isTradingLabel, priceLabel].forEach {
-            contentView.addSubview($0)
+        contentView.addSubview(infoView)
+        
+        [isTradingLabel, stockStackView, totalLabel].forEach {
+            infoView.addSubview($0)
         }
+        
+        [nameLabel, amountLabel].forEach {
+            stockStackView.addArrangedSubview($0)
+        }
+        
+        
     }
     
     override func setConstraints() {
         
-        tagLabel.snp.makeConstraints { make in
-            make.leading.top.equalTo(self.safeAreaLayoutGuide).offset(8)
-            make.width.equalTo(50)
-        }
-        
-        nameLabel.snp.makeConstraints { make in
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(15)
-            make.top.equalTo(self.tagLabel.snp.bottom).offset(6)
-        }
-        
-        amountLabel.snp.makeConstraints { make in
-            make.centerX.equalTo(self.safeAreaLayoutGuide)
-            make.centerY.equalTo(nameLabel)
+        infoView.snp.makeConstraints { make in
+            make.height.equalTo(70)
+            make.centerY.equalTo(self.safeAreaLayoutGuide)
+            make.leading.trailing.equalTo(self.safeAreaLayoutGuide).inset(15)
         }
         
         isTradingLabel.snp.makeConstraints { make in
-            make.leading.equalTo(amountLabel.snp.trailing).offset(15)
-            make.centerY.equalTo(nameLabel)
+            make.centerY.equalTo(infoView.snp.centerY)
+            make.leading.equalTo(infoView.snp.leading).offset(12)
         }
         
-        priceLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
-            make.centerY.equalTo(nameLabel)
+        stockStackView.snp.makeConstraints { make in
+            make.centerY.equalTo(infoView.snp.centerY)
+            make.leading.equalTo(isTradingLabel.snp.trailing).offset(12)
+            make.width.equalTo(130)
         }
+        
+        totalLabel.snp.makeConstraints { make in
+            make.centerY.equalTo(infoView.snp.centerY)
+            make.trailing.equalTo(infoView.snp.trailing).offset(-15)
+            make.width.equalTo(infoView.snp.width).multipliedBy(0.55)
+        }
+        
     }
     
     func setData(arr: [TradingDiaryRealmModel], indexPath: IndexPath) {
         
         let row = arr[indexPath.row]
-        
-        self.nameLabel.text = row.corpName
-        self.amountLabel.text = "\(row.tradingAmount) \(Constants.Word.countStock.rawValue)"
+        let price = thousandSeparatorCommas(value: row.tradingAmount * row.tradingPrice)
+        print(price)
         
         self.isTradingLabel.text = row.buyAndSell ? Constants.Word.sell.rawValue : Constants.Word.buy.rawValue
         self.isTradingLabel.textColor = row.buyAndSell ? .systemBlue : .systemRed
         
-        self.priceLabel.text = "(\(Constants.Word.tradingPrice.rawValue) : \(row.tradingPrice) \(Constants.CurrencySign.won.rawValue))"
+        self.nameLabel.text = row.corpName
+        self.amountLabel.text = "\(row.tradingAmount) \(Constants.Word.countStock.rawValue)"
         
-        
+        self.totalLabel.text = "\(price) \(Constants.CurrencySign.won.rawValue)"
     }
+    
+    func thousandSeparatorCommas(value: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.maximumFractionDigits = 0
+        return numberFormatter.string(for: value) ?? "0"
+    }
+    
+    
     
 }
