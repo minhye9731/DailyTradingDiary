@@ -108,7 +108,6 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             
             cell.selectionStyle = .none
             cell.amountTextField.tag = 0
-            cell.amountTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             cell.amountTextField.delegate = self
             
             if addOrEditAction == .edit {
@@ -123,7 +122,6 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             
             cell.selectionStyle = .none
             cell.amountTextField.tag = 1
-            cell.amountTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             cell.amountTextField.delegate = self
             
             if addOrEditAction == .edit {
@@ -225,26 +223,6 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         return true
     }
     
-    @objc func textFieldDidChange(_ sender: UITextField) {
-        
-        guard let result = sender.text else { return }
-        
-        switch self.addOrEditAction {
-        case .write:
-            switch sender.tag {
-            case 0: self.diaryData.tradingPrice = Int(result) ?? 0
-            case 1: self.diaryData.tradingAmount = Int(result) ?? 0
-            default: break
-            }
-        case .edit:
-            switch sender.tag {
-            case 0: self.updateData.tradingPrice = Int(result) ?? 0
-            case 1: self.updateData.tradingAmount = Int(result) ?? 0
-            default: break
-            }
-        }
-    }
-    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let formatter = NumberFormatter()
@@ -260,6 +238,22 @@ extension TradingDiaryViewController: UITextFieldDelegate {
                 guard let num = Int.init("\(result.prefix(result.count - 1))") else { return true }
                 guard let resultToShow = formatter.string(from: NSNumber(value: num)) else { return true }
                 textField.text = "\(resultToShow)"
+                
+                switch self.addOrEditAction {
+                case .write:
+                    switch textField.tag {
+                    case 0: self.diaryData.tradingPrice = num
+                    case 1: self.diaryData.tradingAmount = num
+                    default: break
+                    }
+                case .edit:
+                    switch textField.tag {
+                    case 0: self.updateData.tradingPrice = num
+                    case 1: self.updateData.tradingAmount = num
+                    default: break
+                    }
+                }
+
             } else {
                 textField.text = ""
             }
@@ -268,6 +262,21 @@ extension TradingDiaryViewController: UITextFieldDelegate {
             guard let num = Int.init("\(result)\(string)") else { return true }
             guard let resultToShow = formatter.string(from: NSNumber(value: num)) else { return true }
             textField.text = "\(resultToShow)"
+            
+            switch self.addOrEditAction {
+            case .write:
+                switch textField.tag {
+                case 0: self.diaryData.tradingPrice = num
+                case 1: self.diaryData.tradingAmount = num
+                default: break
+                }
+            case .edit:
+                switch textField.tag {
+                case 0: self.updateData.tradingPrice = num
+                case 1: self.updateData.tradingAmount = num
+                default: break
+                }
+            }
         }
         return false
     }
@@ -322,6 +331,8 @@ extension TradingDiaryViewController {
         case .write:
             if diaryData.corpName == "매매한 종목 검색하기" || diaryData.tradingPrice == 0 || diaryData.tradingAmount == 0 {
                 self.showAlertMessageDetail(title: "<알림>", message: "필수 입력 항목을 모두 채워주세요.")
+                print("tradingPrice - \(diaryData.tradingPrice)")
+                print("tradingAmount - \(diaryData.tradingAmount)")
                 return
             } else {
                 diaryData.regDate = Date()
