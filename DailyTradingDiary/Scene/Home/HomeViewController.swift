@@ -99,6 +99,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let tradeCell = tableView.dequeueReusableCell(withIdentifier: TradeTableViewCell.reuseIdentifier) as? TradeTableViewCell else { return UITableViewCell() }
         tradeCell.setData(arr: Array(TradingDiaryRepository.standard.tasks), indexPath: indexPath)
+        tradeCell.selectionStyle = .none
         return tradeCell
     }
     

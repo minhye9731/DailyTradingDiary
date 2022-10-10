@@ -100,6 +100,7 @@ extension InfoViewController:  UITableViewDelegate, UITableViewDataSource {
             return fearGreedCell
         case 1:
             newsCell.setData(data: self.alphaNewsList, indexPath: indexPath)
+            newsCell.selectionStyle = .none
             return newsCell
         default: return fearGreedCell
         }
