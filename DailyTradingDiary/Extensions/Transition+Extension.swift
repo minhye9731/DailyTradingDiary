@@ -13,6 +13,7 @@ extension UIViewController {
         case present
         case prsentNavigation
         case presentFullNavigation
+        case presentFull
         case push
     }
     
@@ -28,6 +29,9 @@ extension UIViewController {
             let navi = UINavigationController(rootViewController: vc)
             navi.modalPresentationStyle = .fullScreen
             self.present(navi, animated: true)
+        case .presentFull:
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: true)
         case .push:
             self.navigationController?.pushViewController(vc, animated: true)
         }

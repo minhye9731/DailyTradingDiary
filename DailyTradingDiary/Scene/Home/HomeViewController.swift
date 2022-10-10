@@ -327,7 +327,6 @@ extension HomeViewController {
         isShowFloating = !isShowFloating
     }
     
-    
     @objc func firstFloatinBtnTapped() {
         let vc = TradingDiaryViewController()
         vc.addOrEditAction = .write
@@ -342,7 +341,6 @@ extension HomeViewController {
     
     @objc func todayButtonClicked() {
         self.mainView.calendar.select(Date())
-        //        TradingDiaryRepository.standard.filteredByTradingDate(selectedDate: self.mainView.calendar.selectedDate!)
         isEmptyCheck()
     }
     

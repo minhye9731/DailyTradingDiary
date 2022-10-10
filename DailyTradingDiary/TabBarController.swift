@@ -47,5 +47,13 @@ class TabBarController: UITabBarController {
         tabBar.tintColor = .pointColor
     }
 
+    // 첫실행 여부 확인함수
+    func checkFirstRun() {
+        if UserDefaults.standard.bool(forKey: "FirstRun") == false {
+            let vc = WalkThroughViewController()
+            transition(vc, transitionStyle: .presentFull)
+        }
+        
+    }
 }
 

@@ -16,8 +16,6 @@ final class IntroViewController: BaseViewController {
         return image
     }()
     
-    
-    
     override func configure() {
         self.view.backgroundColor = .white
         logoImageView.image = UIImage(named: "TradyIntro")
@@ -34,6 +32,7 @@ final class IntroViewController: BaseViewController {
             let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate
             sceneDelegate?.window?.rootViewController = navigationController
             
+            vc.checkFirstRun()
         }
         
     }

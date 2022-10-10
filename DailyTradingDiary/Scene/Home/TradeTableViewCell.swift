@@ -33,7 +33,7 @@ final class TradeTableViewCell: BaseTableViewCell {
         label.font = .boldSystemFont(ofSize: 18)
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.5
+        label.minimumScaleFactor = 0.4
         return label
     }()
     
@@ -96,7 +96,7 @@ final class TradeTableViewCell: BaseTableViewCell {
         stockStackView.snp.makeConstraints { make in
             make.centerY.equalTo(infoView.snp.centerY)
             make.leading.equalTo(isTradingLabel.snp.trailing).offset(12)
-            make.width.equalTo(130)
+            make.width.equalTo(120)
         }
         
         totalLabel.snp.makeConstraints { make in
@@ -110,7 +110,7 @@ final class TradeTableViewCell: BaseTableViewCell {
     func setData(arr: [TradingDiaryRealmModel], indexPath: IndexPath) {
         
         let row = arr[indexPath.row]
-        let price = thousandSeparatorCommas(value: row.tradingAmount * row.tradingPrice)
+        let price = thousandSeparatorCommas(value: row.tradingAmount &* row.tradingPrice)
         print(price)
         
         self.isTradingLabel.text = row.buyAndSell ? Constants.Word.sell.rawValue : Constants.Word.buy.rawValue

@@ -100,6 +100,7 @@
 		0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 0EF4827B28D46BC100CC8A49 /* SwiftyJSON */; };
 		0EF4828028D4E19600CC8A49 /* TradingDiaryRealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4827F28D4E19600CC8A49 /* TradingDiaryRealmModel.swift */; };
 		0EF4828728D4E3C800CC8A49 /* TradingDiaryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF4828628D4E3C800CC8A49 /* TradingDiaryRepository.swift */; };
+		0EFECB1928F4413200AF2352 /* WalkThroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EFECB1828F4413200AF2352 /* WalkThroughViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -185,6 +186,7 @@
 		0EF4827528D46B8900CC8A49 /* APISAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APISAPIManager.swift; sourceTree = "<group>"; };
 		0EF4827F28D4E19600CC8A49 /* TradingDiaryRealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDiaryRealmModel.swift; sourceTree = "<group>"; };
 		0EF4828628D4E3C800CC8A49 /* TradingDiaryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingDiaryRepository.swift; sourceTree = "<group>"; };
+		0EFECB1828F4413200AF2352 /* WalkThroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkThroughViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				0E5D614A28EC898D00B339C5 /* IntroViewController.swift */,
+				0EFECB1728F4410000AF2352 /* WalkThrough */,
 				0E04A3C228D1D43E0036D389 /* Home */,
 				0EF4826328D430EE00CC8A49 /* Search */,
 				0E04A3C328D1D44F0036D389 /* Info */,
@@ -467,6 +470,14 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		0EFECB1728F4410000AF2352 /* WalkThrough */ = {
+			isa = PBXGroup;
+			children = (
+				0EFECB1828F4413200AF2352 /* WalkThroughViewController.swift */,
+			);
+			path = WalkThrough;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -574,6 +585,7 @@
 				0E04A3AF28D1C67B0036D389 /* BaseViewController.swift in Sources */,
 				0E40BF6928D98B0D00F99DEF /* MarketNewsDTO.swift in Sources */,
 				0E8E753028E5B33B00D52A2C /* DartDividendDTO.swift in Sources */,
+				0EFECB1928F4413200AF2352 /* WalkThroughViewController.swift in Sources */,
 				0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */,
 				0E3323A928E44C3D00A1855F /* FinanceInfoTableViewCell.swift in Sources */,
 				0E8E752B28E5896800D52A2C /* StockSummaryDTO.swift in Sources */,
