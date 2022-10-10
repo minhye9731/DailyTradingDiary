@@ -223,6 +223,11 @@ extension TradingDiaryViewController: UITextFieldDelegate {
         return true
     }
     
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let result = textField.text else { return }
+        if result.count > 13 { textField.deleteBackward() }
+    }
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
         let formatter = NumberFormatter()
