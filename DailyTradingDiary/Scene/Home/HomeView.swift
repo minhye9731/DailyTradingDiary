@@ -22,6 +22,7 @@ final class HomeView: BaseView {
         tableview.backgroundColor = .backgroundColor
         tableview.rowHeight = 86
         tableview.register(TradeTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
+        tableview.separatorStyle = .none
         return tableview
     }()
     
@@ -39,8 +40,8 @@ final class HomeView: BaseView {
        let button = UIButton()
         
         var configuration = UIButton.Configuration.filled()
-        configuration.baseBackgroundColor = .subBackgroundColor
-        configuration.baseForegroundColor = .mainTextColor
+        configuration.baseBackgroundColor = .pointColor //.subBackgroundColor
+        configuration.baseForegroundColor = .white //.mainTextColor
         configuration.image = UIImage(systemName: Constants.ImageName.diary.rawValue)
         configuration.imagePlacement = .leading
         configuration.imagePadding = 12
@@ -60,8 +61,8 @@ final class HomeView: BaseView {
     let secondFloatingButton: UIButton = {
        let button = UIButton()
         var configuration = UIButton.Configuration.filled()
-        configuration.baseBackgroundColor = .subBackgroundColor
-        configuration.baseForegroundColor = .mainTextColor
+        configuration.baseBackgroundColor = .pointColor //.subBackgroundColor
+        configuration.baseForegroundColor = .white // .mainTextColor
         configuration.image = UIImage(systemName: Constants.ImageName.corporation.rawValue)
         configuration.imagePlacement = .leading
         configuration.imagePadding = 12
