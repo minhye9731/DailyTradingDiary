@@ -108,9 +108,10 @@ final class TradeRecordView: BaseView {
     lazy var tableView: UITableView = {
         let tableview = UITableView(frame: .zero, style: .plain)
         tableview.backgroundColor = .backgroundColor
-        tableview.rowHeight = 70
+        tableview.rowHeight = 86
         tableview.register(TradeTableViewCell.self, forCellReuseIdentifier: TradeTableViewCell.reuseIdentifier)
         tableview.register(CustomTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CustomTableViewHeaderView.reuseIdentifier)
+        tableview.separatorStyle = .none
         return tableview
     }()
     

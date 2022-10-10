@@ -72,6 +72,7 @@ extension TradeRecordViewController: UITableViewDelegate, UITableViewDataSource 
         guard let tradeCell = tableView.dequeueReusableCell(withIdentifier: TradeTableViewCell.reuseIdentifier) as? TradeTableViewCell else { return UITableViewCell() }
         
         tradeCell.setData(arr: Array(TradingDiaryRepository.standard.tasks), indexPath: indexPath)
+        tradeCell.selectionStyle = .none
         
         return tradeCell
     }

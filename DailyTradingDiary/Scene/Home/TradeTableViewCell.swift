@@ -14,7 +14,7 @@ final class TradeTableViewCell: BaseTableViewCell {
         view.layer.cornerRadius = 10
         view.backgroundColor = .cellBackgroundColor
         view.layer.shadowColor = UIColor.gray.cgColor
-        view.layer.shadowOpacity = 1.0
+        view.layer.shadowOpacity = 0.7
         view.layer.shadowOffset = CGSize.zero
         view.layer.shadowRadius = 6
         return view
