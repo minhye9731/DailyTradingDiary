@@ -44,6 +44,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func sceneWillEnterForeground(_ scene: UIScene) {
         // Called as the scene transitions from the background to the foreground.
         // Use this method to undo the changes made on entering the background.
+        UNUserNotificationCenter.current().removeAllPendingNotificationRequests()
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        UIApplication.shared.applicationIconBadgeNumber = 0
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
@@ -55,3 +58,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+extension SceneDelegate {
+    
+    // 화면 변경해주는 함수
+    func changeRootVC(_ vc:UIViewController, animated: Bool) {
+        guard let window = self.window else { return }
+        window.rootViewController = vc
+        
+        UIView.transition(with: window, duration: 0.2, options: [.transitionCrossDissolve], animations: nil, completion: nil)
+      }
+    
+}

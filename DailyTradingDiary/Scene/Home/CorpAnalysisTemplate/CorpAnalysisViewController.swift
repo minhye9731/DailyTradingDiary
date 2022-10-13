@@ -59,6 +59,10 @@ class CorpAnalysisViewController: BaseViewController {
         self.updateRegisteredData = newRegisterData
     }
     
+    deinit {
+        print("관심기업 등록화면이 deinit 되었다!")
+    }
+    
     override func configure() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self

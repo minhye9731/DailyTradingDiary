@@ -42,6 +42,11 @@
 		0E3323A728E445D100A1855F /* TitleNameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A628E445D100A1855F /* TitleNameTableViewCell.swift */; };
 		0E3323A928E44C3D00A1855F /* FinanceInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323A828E44C3D00A1855F /* FinanceInfoTableViewCell.swift */; };
 		0E3323AB28E46B4900A1855F /* OpinionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E3323AA28E46B4900A1855F /* OpinionTableViewCell.swift */; };
+		0E34517F28F55B9B00E1BB23 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 0E34517E28F55B9B00E1BB23 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		0E34518128F55B9B00E1BB23 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0E34518028F55B9B00E1BB23 /* FirebaseCrashlytics */; };
+		0E34518328F55B9B00E1BB23 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 0E34518228F55B9B00E1BB23 /* FirebaseMessaging */; };
+		0E34518628F5673C00E1BB23 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E34518528F5673C00E1BB23 /* GoogleService-Info.plist */; };
+		0E34518928F6A87400E1BB23 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34518828F6A87400E1BB23 /* UIViewController+Extension.swift */; };
 		0E37460428E0615F000EEBA7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460328E0615F000EEBA7 /* EmptyView.swift */; };
 		0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */; };
 		0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */; };
@@ -139,6 +144,9 @@
 		0E3323A628E445D100A1855F /* TitleNameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleNameTableViewCell.swift; sourceTree = "<group>"; };
 		0E3323A828E44C3D00A1855F /* FinanceInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceInfoTableViewCell.swift; sourceTree = "<group>"; };
 		0E3323AA28E46B4900A1855F /* OpinionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OpinionTableViewCell.swift; sourceTree = "<group>"; };
+		0E34518428F55D6D00E1BB23 /* DailyTradingDiary.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = DailyTradingDiary.entitlements; sourceTree = "<group>"; };
+		0E34518528F5673C00E1BB23 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0E34518828F6A87400E1BB23 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		0E37460328E0615F000EEBA7 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaMarketNewsResponse.swift; sourceTree = "<group>"; };
@@ -194,6 +202,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E34518328F55B9B00E1BB23 /* FirebaseMessaging in Frameworks */,
 				0E58BCD728E9D05500204275 /* RealmSwift in Frameworks */,
 				0E58BCD528E9D05500204275 /* Realm in Frameworks */,
 				0E87D58C28EC013400570A5D /* Toast in Frameworks */,
@@ -205,6 +214,8 @@
 				0EB85EFA28D8CB49002145A2 /* Kingfisher in Frameworks */,
 				0E8E753828E5E4ED00D52A2C /* Zip in Frameworks */,
 				0ED5D64F28DB6167009A1057 /* Tabman in Frameworks */,
+				0E34517F28F55B9B00E1BB23 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				0E34518128F55B9B00E1BB23 /* FirebaseCrashlytics in Frameworks */,
 				0EF4827C28D46BC100CC8A49 /* SwiftyJSON in Frameworks */,
 				0E04A3D328D215CA0036D389 /* FSCalendar in Frameworks */,
 			);
@@ -233,6 +244,7 @@
 		0E04A39028D1B2200036D389 /* DailyTradingDiary */ = {
 			isa = PBXGroup;
 			children = (
+				0E34518428F55D6D00E1BB23 /* DailyTradingDiary.entitlements */,
 				0E04A39128D1B2200036D389 /* AppDelegate.swift */,
 				0E04A39328D1B2200036D389 /* SceneDelegate.swift */,
 				0E04A3C928D1D5C10036D389 /* TabBarController.swift */,
@@ -304,6 +316,7 @@
 				0E2DB01E28D33D0600CDFD14 /* UITextField+Extension.swift */,
 				0E87354128D5DEC50039D802 /* String+Extension.swift */,
 				0E87354828D616060039D802 /* Date+Extension.swift */,
+				0E34518828F6A87400E1BB23 /* UIViewController+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -435,6 +448,7 @@
 		0EF4826B28D467C600CC8A49 /* Key */ = {
 			isa = PBXGroup;
 			children = (
+				0E34518528F5673C00E1BB23 /* GoogleService-Info.plist */,
 				0EF4826C28D467DD00CC8A49 /* APIKey.swift */,
 			);
 			path = Key;
@@ -488,6 +502,7 @@
 				0E04A38A28D1B2200036D389 /* Sources */,
 				0E04A38B28D1B2200036D389 /* Frameworks */,
 				0E04A38C28D1B2200036D389 /* Resources */,
+				0E34518728F570B500E1BB23 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -508,6 +523,9 @@
 				0E58BCD428E9D05500204275 /* Realm */,
 				0E58BCD628E9D05500204275 /* RealmSwift */,
 				0E87D58B28EC013400570A5D /* Toast */,
+				0E34517E28F55B9B00E1BB23 /* FirebaseAnalyticsWithoutAdIdSupport */,
+				0E34518028F55B9B00E1BB23 /* FirebaseCrashlytics */,
+				0E34518228F55B9B00E1BB23 /* FirebaseMessaging */,
 			);
 			productName = DailyTradingDiary;
 			productReference = 0E04A38E28D1B2200036D389 /* DailyTradingDiary.app */;
@@ -551,6 +569,7 @@
 				0E8E753928E5E9BB00D52A2C /* XCRemoteSwiftPackageReference "SWXMLHash" */,
 				0E58BCD328E9D05500204275 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				0E87D58A28EC013300570A5D /* XCRemoteSwiftPackageReference "Toast-Swift" */,
+				0E34517D28F55B9B00E1BB23 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 0E04A38F28D1B2200036D389 /* Products */;
 			projectDirPath = "";
@@ -570,10 +589,33 @@
 				0E04A39E28D1B2220036D389 /* LaunchScreen.storyboard in Resources */,
 				0E04A39B28D1B2220036D389 /* Assets.xcassets in Resources */,
 				0E04A39928D1B2200036D389 /* Main.storyboard in Resources */,
+				0E34518628F5673C00E1BB23 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0E34518728F570B500E1BB23 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
+				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		0E04A38A28D1B2200036D389 /* Sources */ = {
@@ -646,6 +688,7 @@
 				0EF4827628D46B8900CC8A49 /* APISAPIManager.swift in Sources */,
 				0E8E752E28E5B0D300D52A2C /* DARTAPIManager.swift in Sources */,
 				0EF4828028D4E19600CC8A49 /* TradingDiaryRealmModel.swift in Sources */,
+				0E34518928F6A87400E1BB23 /* UIViewController+Extension.swift in Sources */,
 				0EF4827228D469A900CC8A49 /* URL+Extension.swift in Sources */,
 				0EF4826D28D467DD00CC8A49 /* APIKey.swift in Sources */,
 				0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */,
@@ -802,8 +845,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DailyTradingDiary/DailyTradingDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyTradingDiary/Info.plist;
@@ -819,7 +864,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.mhkang.DailyTradingDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -837,8 +882,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = DailyTradingDiary/DailyTradingDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = DailyTradingDiary/Info.plist;
@@ -854,7 +901,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 1.0.1;
 				PRODUCT_BUNDLE_IDENTIFIER = net.mhkang.DailyTradingDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -903,6 +950,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
+			};
+		};
+		0E34517D28F55B9B00E1BB23 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
 			};
 		};
 		0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
@@ -997,6 +1052,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */;
 			productName = FSCalendar;
+		};
+		0E34517E28F55B9B00E1BB23 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E34517D28F55B9B00E1BB23 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		0E34518028F55B9B00E1BB23 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E34517D28F55B9B00E1BB23 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		0E34518228F55B9B00E1BB23 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E34517D28F55B9B00E1BB23 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 		0E37460B28E0EF5C000EEBA7 /* SkeletonView */ = {
 			isa = XCSwiftPackageProductDependency;

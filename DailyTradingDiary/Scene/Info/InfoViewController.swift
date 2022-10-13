@@ -22,6 +22,14 @@ final class InfoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.connectAPI()
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print(self.tabBarController?.tabBar.isHidden)
+        
+        self.tabBarController?.tabBar.isHidden = false // 
     }
     
     override func configure() {
