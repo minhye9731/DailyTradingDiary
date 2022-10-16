@@ -11,7 +11,7 @@ final class OpinionTableViewCell: BaseTableViewCell {
     
     let opinionTextView: UITextView = {
         let textview = UITextView()
-        textview.textContainerInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        textview.textContainerInset = UIEdgeInsets(top: 4, left: 4, bottom: 4, right: 0)
         textview.font = .systemFont(ofSize: 16)
         textview.tintColor = .pointColor
         textview.backgroundColor = .clear
@@ -23,6 +23,15 @@ final class OpinionTableViewCell: BaseTableViewCell {
         textview.autocapitalizationType = .none
         return textview
     }()
+    
+//    let letterCountLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "0/300"
+//        label.font = .systemFont(ofSize: 16)
+//        label.textColor = .subTextColor
+//        label.textAlignment = .right
+//        return label
+//    }()
     
     // 매수희망가
     let eBuyPriceLabel: UILabel = {
@@ -37,7 +46,7 @@ final class OpinionTableViewCell: BaseTableViewCell {
         textfield.placeholder = "0"
         textfield.tintColor = .pointColor
         textfield.font = .systemFont(ofSize: 20)
-        textfield.textAlignment = .center
+        textfield.textAlignment = .right
         textfield.keyboardType = .numberPad
         return textfield
     }()
@@ -72,7 +81,7 @@ final class OpinionTableViewCell: BaseTableViewCell {
         textfield.placeholder = "0"
         textfield.tintColor = .pointColor
         textfield.font = .systemFont(ofSize: 20)
-        textfield.textAlignment = .center
+        textfield.textAlignment = .right
         textfield.keyboardType = .numberPad
         return textfield
     }()
@@ -99,7 +108,7 @@ final class OpinionTableViewCell: BaseTableViewCell {
         [opinionTextView, eBuyPriceLabel, eBuyDateLabel, eSellPriceLabel, eSellDateLabel, eBuyTextField, eSellTextField, eBuyDatePicker, eSellDatePicker].forEach {
             contentView.addSubview($0)
         }
-        
+
     }
     
     override func setConstraints() {
@@ -110,6 +119,11 @@ final class OpinionTableViewCell: BaseTableViewCell {
             make.height.equalTo(200)
         }
         
+//        letterCountLabel.snp.makeConstraints { make in
+//            make.trailing.equalTo(opinionTextView.snp.trailing).offset(-4)
+//            make.bottom.equalTo(opinionTextView.snp.bottom).offset(-4)
+//        }
+        
         // 매수희망가
         eBuyPriceLabel.snp.makeConstraints { make in
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(15)
@@ -118,6 +132,7 @@ final class OpinionTableViewCell: BaseTableViewCell {
         eBuyTextField.snp.makeConstraints { make in
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
             make.centerY.equalTo(eBuyPriceLabel.snp.centerY)
+            make.width.equalTo(160)
         }
 
         // 매수희망일
@@ -134,6 +149,7 @@ final class OpinionTableViewCell: BaseTableViewCell {
         eSellPriceLabel.snp.makeConstraints { make in
             make.leading.equalTo(self.safeAreaLayoutGuide).offset(15)
             make.top.equalTo(eBuyDateLabel.snp.bottom).offset(18)
+            make.width.equalTo(160)
         }
         eSellTextField.snp.makeConstraints { make in
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)

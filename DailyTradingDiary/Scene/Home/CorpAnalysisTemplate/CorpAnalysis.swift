@@ -56,9 +56,7 @@ final class CorpAnalysis: BaseView {
     }()
     
     override func configureUI() {
-        
-        
-        
+
         [selectCorpView, showselectCorpView, nameLabel, nameResultLabel, tableView].forEach {
             self.addSubview($0)
         }
@@ -96,6 +94,7 @@ final class CorpAnalysis: BaseView {
             make.top.equalTo(selectCorpView.snp.bottom)
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
         }
+
     }
     
     

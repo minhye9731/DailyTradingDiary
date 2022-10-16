@@ -57,6 +57,8 @@ class CorpAnalysisViewController: BaseViewController {
         
         // edit 상태에서 아래항목들을 수정하지 않고 저장했을때, 누락되는 경우를 방지하기 위함
         self.updateRegisteredData = newRegisterData
+        
+
     }
     
     deinit {
@@ -221,10 +223,7 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
                 opinionCell.eSellDatePicker.date = self.updateRegisteredData.sellDatePlan
             }
             
-            opinionCell.eBuyTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             opinionCell.eBuyDatePicker.addTarget(self, action: #selector(onDidChangeDate(sender:)), for: .valueChanged)
-            
-            opinionCell.eSellTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
             opinionCell.eSellDatePicker.addTarget(self, action: #selector(onDidChangeDate(sender:)), for: .valueChanged)
             
             return opinionCell
@@ -265,24 +264,20 @@ extension CorpAnalysisViewController: UITextViewDelegate {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.textColor = .subTextColor
             textView.text = Constants.Word.corpRigMemoPlchdr.rawValue
-        } else if textView.text == Constants.Word.trdDryMemoPlchdr.rawValue {
+        } else if textView.text == Constants.Word.corpRigMemoPlchdr.rawValue {
             textView.textColor = .mainTextColor
-            textView.text = ""
+            textView.text = nil
         }
         textView.textColor = .mainTextColor
     }
     
     func textViewDidChange(_ textView: UITextView) {
         switch addOrEditAction {
-        case .write:
-            self.newRegisterData.opinion = textView.text
-        case .edit:
-            self.updateRegisteredData.opinion = textView.text
+        case .write: self.newRegisterData.opinion = textView.text
+        case .edit: self.updateRegisteredData.opinion = textView.text
         }
         
-        if textView.text.count > 300 {
-            textView.deleteBackward()
-        }
+        if textView.text.count > 300 { textView.deleteBackward() }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
@@ -292,11 +287,24 @@ extension CorpAnalysisViewController: UITextViewDelegate {
         }
         
         switch addOrEditAction {
-        case .write:
-            self.newRegisterData.opinion = textView.text
-        case .edit:
-            self.updateRegisteredData.opinion = textView.text
+        case .write: self.newRegisterData.opinion = textView.text
+        case .edit: self.updateRegisteredData.opinion = textView.text
         }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        
+        // 실시간으로 opinionCell 안에 글자수를 입력해주려고 아래처럼 셀등록함. 이렇게 구현하는게 적절할까
+//        let opinionCell = mainView.tableView.dequeueReusableCell(withIdentifier: OpinionTableViewCell.reuseIdentifier) as? OpinionTableViewCell
+        
+        
+        let currentText = textView.text ?? ""
+        guard let stringRange = Range(range, in: currentText) else { return false }
+
+        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
+//        opinionCell?.letterCountLabel.text = "\(changedText.count)/300"
+        
+        return changedText.count <= 299
     }
     
 }
@@ -309,24 +317,67 @@ extension CorpAnalysisViewController: UITextFieldDelegate {
         return true
     }
     
-    @objc func textFieldDidChange(_ sender: UITextField) {
-        print("입력한 희망 가격이 바뀌었다!")
-        guard let result = sender.text else { return }
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        guard let result = textField.text else { return }
+        if result.count > 13 { textField.deleteBackward() }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        switch self.addOrEditAction {
-        case .write:
-            switch sender.tag {
-            case 0: self.newRegisterData.buyPricePlan = Int(result)
-            case 1: self.newRegisterData.sellPricePlan = Int(result)
-            default: break
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 0
+        
+        guard var result = textField.text else { return true }
+        result = result.replacingOccurrences(of: ",", with: "")
+        
+        if string.isEmpty {
+            // 삭제할 때
+            if result.count > 1 {
+                guard let num = Int.init("\(result.prefix(result.count - 1))") else { return true }
+                guard let resultToShow = formatter.string(from: NSNumber(value: num)) else { return true }
+                textField.text = "\(resultToShow)"
+                
+                switch self.addOrEditAction {
+                case .write:
+                    switch textField.tag {
+                    case 0: self.newRegisterData.buyPricePlan = Int(result)
+                    case 1: self.newRegisterData.sellPricePlan = Int(result)
+                    default: break
+                    }
+                case .edit:
+                    switch textField.tag {
+                    case 0: self.updateRegisteredData.buyPricePlan = Int(result)
+                    case 1: self.updateRegisteredData.sellPricePlan = Int(result)
+                    default: break
+                    }
+                }
+
+            } else {
+                textField.text = ""
             }
-        case .edit:
-            switch sender.tag {
-            case 0: self.updateRegisteredData.buyPricePlan = Int(result)
-            case 1: self.updateRegisteredData.sellPricePlan = Int(result)
-            default: break
+        } else if Int(string) != nil {
+            // 추가할 때
+            guard let num = Int.init("\(result)\(string)") else { return true }
+            guard let resultToShow = formatter.string(from: NSNumber(value: num)) else { return true }
+            textField.text = "\(resultToShow)"
+            
+            switch self.addOrEditAction {
+            case .write:
+                switch textField.tag {
+                case 0: self.newRegisterData.buyPricePlan = Int(result)
+                case 1: self.newRegisterData.sellPricePlan = Int(result)
+                default: break
+                }
+            case .edit:
+                switch textField.tag {
+                case 0: self.updateRegisteredData.buyPricePlan = Int(result)
+                case 1: self.updateRegisteredData.sellPricePlan = Int(result)
+                default: break
+                }
             }
         }
+        return false
     }
     
 }
