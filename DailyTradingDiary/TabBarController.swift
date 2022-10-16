@@ -8,11 +8,14 @@
 import UIKit
 
 class TabBarController: UITabBarController {
-
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         setupTabBarAppearance()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(showInfoPage(_:)), name: Notification.Name("showInfoPage"), object: nil)
     }
     
     func configure() {
@@ -53,7 +56,16 @@ class TabBarController: UITabBarController {
             let vc = WalkThroughViewController()
             transition(vc, transitionStyle: .presentFull)
         }
-        
+    }
+    
+    // local 알림 클릭시 화면이동 함수
+    @objc func showInfoPage(_ notification: Notification) {
+        if let userInfo = notification.userInfo {
+            if let index = userInfo["index"] as? Int {
+                self.selectedIndex = index
+                print("index 1 탭으로 화면이동~")
+            }
+        }
     }
 }
 

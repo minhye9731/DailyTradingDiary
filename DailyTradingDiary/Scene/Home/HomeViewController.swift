@@ -9,12 +9,14 @@ import UIKit
 import SnapKit
 import FSCalendar
 import RealmSwift
+import UserNotifications
 
 final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalendarDataSource, UIGestureRecognizerDelegate {
     
     let mainView = HomeView()
     var selectedDate: Date = Date()
     var eventsArr = [Date]()
+    let notificationCenter = UNUserNotificationCenter.current()
     
     lazy var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -48,6 +50,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         setNavItem()
         setCalendarUI()
         setGesture()
+        requestAuthorization()
     }
     
     override func viewDidLoad() {
@@ -345,3 +348,48 @@ extension HomeViewController {
     }
     
 }
+
+// MARK: - 아침 local 알림 설정
+extension HomeViewController {
+    
+    func requestAuthorization() {
+        
+        let authorizationOptions = UNAuthorizationOptions(arrayLiteral: .alert, .badge, .sound)
+        
+        notificationCenter.requestAuthorization(options: authorizationOptions) { success, error in
+            if success {
+                self.sendNotification()
+            }
+        }
+    }
+    
+    func sendNotification() {
+        
+        let morningNotification = UNMutableNotificationContent()
+        morningNotification.title = "🗞 Time to be Trady 🗞"
+        morningNotification.body = "오늘의 시장 상황을 확인하며 하루를 시작해보세요 :)"
+        morningNotification.badge = 1
+        
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.hour = 8
+        dateComponents.minute = 40
+        
+        let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
+        
+        let uuidString = UUID().uuidString
+        let request = UNNotificationRequest(identifier: uuidString,
+                                            content: morningNotification,
+                                            trigger: trigger)
+        
+        notificationCenter.add(request) { error in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+        
+    }
+    
+}
+
+
