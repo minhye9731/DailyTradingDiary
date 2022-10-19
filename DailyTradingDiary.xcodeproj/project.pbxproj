@@ -81,6 +81,8 @@
 		0E8E753F28E5F5D400D52A2C /* CorpCodeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */; };
 		0E8E754128E60FF100D52A2C /* XMLListVO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E754028E60FF100D52A2C /* XMLListVO.swift */; };
 		0E8E754328E61B1E00D52A2C /* TradingSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8E754228E61B1E00D52A2C /* TradingSearchView.swift */; };
+		0EAF0EF928FFF48800DD41EA /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF0EF828FFF48800DD41EA /* SettingViewController.swift */; };
+		0EAF0EFB28FFF69600DD41EA /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAF0EFA28FFF69600DD41EA /* SettingView.swift */; };
 		0EB85EE928D87419002145A2 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EE828D87419002145A2 /* InfoView.swift */; };
 		0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */; };
 		0EB85EEF28D874FA002145A2 /* FearGreedGraphTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EEE28D874FA002145A2 /* FearGreedGraphTableViewCell.swift */; };
@@ -174,6 +176,8 @@
 		0E8E753E28E5F5D400D52A2C /* CorpCodeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpCodeRepository.swift; sourceTree = "<group>"; };
 		0E8E754028E60FF100D52A2C /* XMLListVO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XMLListVO.swift; sourceTree = "<group>"; };
 		0E8E754228E61B1E00D52A2C /* TradingSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradingSearchView.swift; sourceTree = "<group>"; };
+		0EAF0EF828FFF48800DD41EA /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		0EAF0EFA28FFF69600DD41EA /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		0EB85EE828D87419002145A2 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		0EB85EEC28D874BF002145A2 /* NewsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		0EB85EEE28D874FA002145A2 /* FearGreedGraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FearGreedGraphTableViewCell.swift; sourceTree = "<group>"; };
@@ -326,6 +330,7 @@
 			children = (
 				0E5D614A28EC898D00B339C5 /* IntroViewController.swift */,
 				0EFECB1728F4410000AF2352 /* WalkThrough */,
+				0EAF0EF728FFF3B200DD41EA /* Setting */,
 				0E04A3C228D1D43E0036D389 /* Home */,
 				0EF4826328D430EE00CC8A49 /* Search */,
 				0E04A3C328D1D44F0036D389 /* Info */,
@@ -401,6 +406,15 @@
 				0E87353F28D598840039D802 /* PageMode.swift */,
 			);
 			path = Enum;
+			sourceTree = "<group>";
+		};
+		0EAF0EF728FFF3B200DD41EA /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				0EAF0EF828FFF48800DD41EA /* SettingViewController.swift */,
+				0EAF0EFA28FFF69600DD41EA /* SettingView.swift */,
+			);
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		0ED5D65628DB64E5009A1057 /* firstVC */ = {
@@ -640,8 +654,10 @@
 				0E58BCA528E89DAC00204275 /* KRXListDTO.swift in Sources */,
 				0E3323A528E42FA400A1855F /* CorpSummaryTableViewCell.swift in Sources */,
 				0E8E754128E60FF100D52A2C /* XMLListVO.swift in Sources */,
+				0EAF0EF928FFF48800DD41EA /* SettingViewController.swift in Sources */,
 				0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */,
 				0E58BCA728E8BB4400204275 /* UpdateTradingDiaryDTO.swift in Sources */,
+				0EAF0EFB28FFF69600DD41EA /* SettingView.swift in Sources */,
 				0E04A3D028D205C60036D389 /* HomeView.swift in Sources */,
 				0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */,
 				0EB85EF728D8BC4E002145A2 /* CustomTableViewHeaderView.swift in Sources */,
@@ -847,7 +863,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DailyTradingDiary/DailyTradingDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -864,7 +880,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.mhkang.DailyTradingDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -884,7 +900,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = DailyTradingDiary/DailyTradingDiary.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = U8U4L6FXAF;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -901,7 +917,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.1;
+				MARKETING_VERSION = 1.0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = net.mhkang.DailyTradingDiary;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -973,7 +989,7 @@
 			repositoryURL = "https://github.com/realm/realm-swift.git";
 			requirement = {
 				kind = exactVersion;
-				version = 10.29.0;
+				version = 10.30.0;
 			};
 		};
 		0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {

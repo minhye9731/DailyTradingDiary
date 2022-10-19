@@ -286,7 +286,7 @@ extension CorpAnalysisViewController: UITextViewDelegate {
             textView.text = Constants.Word.corpRigMemoPlchdr.rawValue
         }
         
-        switch addOrEditAction {
+        switch addOrEditAction { 
         case .write: self.newRegisterData.opinion = textView.text
         case .edit: self.updateRegisteredData.opinion = textView.text
         }

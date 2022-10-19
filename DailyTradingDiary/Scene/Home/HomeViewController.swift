@@ -275,8 +275,9 @@ extension HomeViewController {
     func setNavItem() {
         let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         let todayButton = UIBarButtonItem(title: "Today", style: .plain, target: self, action: #selector(todayButtonClicked))
+        let settingButton = UIBarButtonItem(image: UIImage(systemName: Constants.ImageName.setting.rawValue), style: .plain, target: self, action: #selector(settingButtonTapped))
         
-        self.navigationItem.rightBarButtonItem = todayButton
+        self.navigationItem.rightBarButtonItems = [settingButton, todayButton]
         self.navigationItem.backBarButtonItem = backBarButtonItem
     }
     
@@ -345,6 +346,11 @@ extension HomeViewController {
     @objc func todayButtonClicked() {
         self.mainView.calendar.select(Date())
         isEmptyCheck()
+    }
+    
+    @objc func settingButtonTapped() {
+        let vc = SettingViewController()
+        transition(vc, transitionStyle: .push)
     }
     
 }
