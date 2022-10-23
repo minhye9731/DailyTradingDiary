@@ -20,10 +20,10 @@ class PortfolioViewController: TabmanViewController {
         setNav()
         setNavItem()
         
-//        let firstVC = AssetStatusViewController()
+        let firstVC = AssetStatusViewController()
         let secondVC = TradeRecordViewController()
         
-//        viewControllers.append(firstVC)
+        viewControllers.append(firstVC)
         viewControllers.append(secondVC)
         
         self.dataSource = self
@@ -62,11 +62,11 @@ extension PortfolioViewController: PageboyViewControllerDataSource, TMBarDataSou
         func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
             
             switch index {
-            case 0: return TMBarItem(title: "매매내역") // 자산현황
-//            case 1: return TMBarItem(title: "매매내역")
+            case 0: return TMBarItem(title: "자산현황")
+            case 1: return TMBarItem(title: "매매내역")
             default:
-                let title = "Page \(index)"
-                return TMBarItem(title: title)
+//                let title = "Page \(index)"
+                return TMBarItem(title: "Page")
             }
         }
         
