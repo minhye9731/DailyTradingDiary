@@ -23,6 +23,7 @@ protocol DiaryRepositoryType {
     func calculateRemainAmountEdit(originTrade: TradingDiaryRealmModel, newTrade: UpdateTradingDiaryDTO) -> Int
     
     func getPercentagePerStock() -> [newVersionSlice]
+    func getTotalAmount() -> Double
     func makeRandomColor() -> UIColor
     
     func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int)
@@ -67,6 +68,11 @@ class TradingDiaryRepository: DiaryRepositoryType {
         return result
     }
     
+    func getTotalSellPrice(from: Date, to: Date) -> Int {
+         let result = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where { $0.tradingDate >= calendar.startOfDay(for: from) && ($0.tradingDate <= calendar.startOfDay(for: to) + 86400) && $0.buyAndSell == true }.map{ $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+        return result
+    }
+    
     // 매매내역 작성시 매도금액 제한용
     func calculateRemainAmountWrite(newTrade: TradingDiaryRealmModel) -> Int {
         let buyTotal = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where { $0.corpCode == newTrade.corpCode && $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
@@ -94,29 +100,33 @@ class TradingDiaryRepository: DiaryRepositoryType {
         return updateRemain
     }
     
-    
-    
-    
-    func getTotalSellPrice(from: Date, to: Date) -> Int {
-         let result = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where { $0.tradingDate >= calendar.startOfDay(for: from) && ($0.tradingDate <= calendar.startOfDay(for: to) + 86400) && $0.buyAndSell == true }.map{ $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
-        return result
-    }
 
     // 매수한 종목별 퍼센트 및 색상 뱉기
     func getPercentagePerStock() -> [newVersionSlice] {
-        let buyTotalAmount: Double = Double(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +))
-        print("buyTotalAmount - \(buyTotalAmount)")
+        
 
         let realmSliceArr: [newVersionSlice] = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where {
             $0.buyAndSell == false }.map {
 
-                let percent: Double = Double($0.tradingPrice) * Double($0.tradingAmount) / buyTotalAmount
+                let percent: Double = Double($0.tradingPrice) * Double($0.tradingAmount) / getTotalAmount()
                 print("percent - \(percent)")
                 let color = makeRandomColor()
 
                 return newVersionSlice(percent: CGFloat(percent), color: color)
             }
         return realmSliceArr
+    }
+    
+    func getTotalAmount() -> Double {
+        
+        let buyTotal = Double(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +))
+        
+        let sellTotal = Double(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +))
+        
+        let result = buyTotal - sellTotal
+        print("getTotalAmount \(result) = buyTotal \(buyTotal) - sellTotal \(sellTotal)")
+        
+        return result
     }
 
     func makeRandomColor() -> UIColor {

@@ -22,6 +22,15 @@ protocol RegisterRepositoryType {
     func deleteDiaryatList(item: TradingDiaryRealmModel)
     
     func isRegistered(item: KRXListDTO) -> Bool
+    
+    func getTotalInvest() -> Int
+    
+    func buyArrPerCorp() -> [Int]
+    func sellArrPerCorp() -> [Int]
+    
+    func getPercentagePerStock() -> [newVersionSlice]
+    func makeRandomColor() -> UIColor
+    
 }
 
 class CorpRegisterRepository: RegisterRepositoryType {
@@ -126,6 +135,65 @@ class CorpRegisterRepository: RegisterRepositoryType {
         return registeredSRTNCrop.count == 1
         
     }
+    
+    
+    // 현재 총 자산
+    func getTotalInvest() -> Int {
+        
+        // 각 등록기업의 총 매수금액 합계
+        let buyTotal = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).map { $0.tradingDiaries.filter { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +) }.reduce(0, +)
+        
+        // 각 등록기업의 총 매도금액 합계
+        let sellTotal = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).map { $0.tradingDiaries.filter { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +) }.reduce(0, +)
+        
+        let result = buyTotal - sellTotal
+        print("result \(result) = buyTotal \(buyTotal) - sellTotal \(sellTotal)")
+        
+        return result
+    }
+    
+    // 각 등록기업별 총 매수금액 배열
+    func buyArrPerCorp() -> [Int] {
+        let buyTotal: [Int] = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).map { $0.tradingDiaries.filter { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +) }
+        
+        print("각 등록기업별 총 매수금액 배열 = \(buyTotal)")
+        
+        return buyTotal
+    }
+    
+    // 각 등록기업별 총 매도금액 배열
+    func sellArrPerCorp() -> [Int] {
+        let sellTotal: [Int] = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).map { $0.tradingDiaries.filter { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +) }
+        
+        print("각 등록기업별 총 매도금액 배열 = \(sellTotal)")
+        
+        return sellTotal
+    }
+    
+    
+    // 매수한 종목별 퍼센트 및 색상 뱉기
+    func getPercentagePerStock() -> [newVersionSlice] {
+        
+        var realmSliceArr: [newVersionSlice] = CorpRegisterRepository.standard.localRealm.objects(CorpRegisterRealmModel.self).map {
+            
+            let remain = $0.tradingDiaries.filter { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +) - $0.tradingDiaries.filter { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+            
+            let percent: Double = Double(remain) / Double(getTotalInvest())
+            let color = makeRandomColor()
+            
+            return newVersionSlice(percent: CGFloat(percent), color: color)
+        }
+        
+        return realmSliceArr
+    }
+
+    func makeRandomColor() -> UIColor {
+        let r : CGFloat = CGFloat.random(in: 0.2...0.6)
+        let g : CGFloat = CGFloat.random(in: 0.2...0.8)
+        let b : CGFloat = CGFloat.random(in: 0.7...1)
+        return UIColor(red: r, green: g, blue: b, alpha: 1)
+    }
+    
     
     
 }

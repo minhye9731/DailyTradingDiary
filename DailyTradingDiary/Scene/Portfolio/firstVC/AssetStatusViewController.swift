@@ -21,20 +21,14 @@ class AssetStatusViewController: BaseViewController {
     override func viewDidLoad() {
         print("AssetStatusViewController - \(#function)")
         super.viewDidLoad()
-        
-//        TradingDiaryRepository.standard.fetchRealm()
-        CorpRegisterRepository.standard.fetchRealm()
-        
         isEmptyCheck()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("AssetStatusViewController - \(#function)")
         
-//        TradingDiaryRepository.standard.fetchRealm() // 데이터 fetching하고
-        CorpRegisterRepository.standard.fetchRealm()
-        
-        isEmptyCheck() // 데이터여부 확인해서 view 선택적용
+        getTotalInput()
+        isEmptyCheck()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
             self.getPieChart()
@@ -51,15 +45,14 @@ class AssetStatusViewController: BaseViewController {
     }
     
     func getPieChart() {
-        // 수정필요
-        let slideArr = TradingDiaryRepository.standard.getPercentagePerStock()
+        let slideArr = CorpRegisterRepository.standard.getPercentagePerStock()
+        
         self.mainView.ratioChart.slices = slideArr.sorted(by: { $0.percent > $1.percent })
     }
     
     func getTotalInput() {
-        let buyTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
-    
-        mainView.resultLabel.text = "\(thousandSeparatorCommas(value: buyTotalAmount)) \(Constants.CurrencySign.won.rawValue)"
+        let totalAmount = CorpRegisterRepository.standard.getTotalInvest()
+        mainView.resultLabel.text = "\(thousandSeparatorCommas(value: totalAmount)) \(Constants.CurrencySign.won.rawValue)"
     }
     
     func isEmptyCheck() {
