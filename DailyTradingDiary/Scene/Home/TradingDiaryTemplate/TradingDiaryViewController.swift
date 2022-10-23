@@ -339,6 +339,10 @@ extension TradingDiaryViewController {
                 print("tradingPrice - \(diaryData.tradingPrice)")
                 print("tradingAmount - \(diaryData.tradingAmount)")
                 return
+            } else if diaryData.buyAndSell && TradingDiaryRepository.standard.calculateRemainAmountWrite(newTrade: diaryData) < 0 {
+                self.showAlertMessageDetail(title: "<알림>", message: "매도금액이 현재 보유중인 자산보다 클 수 없습니다.")
+                print(TradingDiaryRepository.standard.calculateRemainAmountWrite(newTrade: diaryData))
+                return
             } else {
                 diaryData.regDate = Date()
                 CorpRegisterRepository.standard.plusDiaryatList(item: diaryData)
@@ -347,6 +351,10 @@ extension TradingDiaryViewController {
         case .edit:
             if updateData.corpName == "매매한 종목 검색하기" || updateData.tradingPrice == 0 || updateData.tradingAmount == 0 {
                 self.showAlertMessageDetail(title: "<알림>", message: "필수 입력 항목을 모두 채워주세요.")
+                return
+            } else if updateData.buyAndSell && TradingDiaryRepository.standard.calculateRemainAmountEdit(originTrade: diaryData, newTrade: updateData) < 0 {
+                self.showAlertMessageDetail(title: "<알림>", message: "매도금액이 현재 보유중인 자산보다 클 수 없습니다.")
+                print(TradingDiaryRepository.standard.calculateRemainAmountEdit(originTrade: diaryData, newTrade: updateData))
                 return
             } else {
                 updateData.regDate = Date()

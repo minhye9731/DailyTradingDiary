@@ -22,14 +22,18 @@ class AssetStatusViewController: BaseViewController {
         print("AssetStatusViewController - \(#function)")
         super.viewDidLoad()
         
-        TradingDiaryRepository.standard.fetchRealm()
+//        TradingDiaryRepository.standard.fetchRealm()
+        CorpRegisterRepository.standard.fetchRealm()
+        
         isEmptyCheck()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         print("AssetStatusViewController - \(#function)")
         
-        TradingDiaryRepository.standard.fetchRealm() // 데이터 fetching하고
+//        TradingDiaryRepository.standard.fetchRealm() // 데이터 fetching하고
+        CorpRegisterRepository.standard.fetchRealm()
+        
         isEmptyCheck() // 데이터여부 확인해서 view 선택적용
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
