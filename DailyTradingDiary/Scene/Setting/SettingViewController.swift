@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MessageUI
 
 struct SettingList: Hashable {
     let id = UUID().uuidString
@@ -52,6 +53,17 @@ extension SettingViewController {
         
         self.navigationItem.scrollEdgeAppearance = navibarAppearance
         self.navigationItem.standardAppearance = navibarAppearance
+    }
+    
+    func sendEmailTapped() {
+        
+        if MFMailComposeViewController.canSendMail() {
+            
+        }
+        else {
+            
+        }
+        
     }
 }
 
