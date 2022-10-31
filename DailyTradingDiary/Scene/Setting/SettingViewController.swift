@@ -65,6 +65,21 @@ extension SettingViewController {
         }
         
     }
+    
+    func writeReviewTapped() {
+        
+        if let appstoreUrl = URL(string: "https://apps.apple.com/app/id{앱스토어ID}") {
+            var urlComp = URLComponents(url: appstoreUrl, resolvingAgainstBaseURL: false)
+            urlComp?.queryItems = [
+                URLQueryItem(name: "action", value: "write-review")
+            ]
+            guard let reviewUrl = urlComp?.url else {
+                return
+            }
+            UIApplication.shared.open(reviewUrl, options: [:], completionHandler: nil)
+        }
+        
+    }
 }
 
 // MARK: - compositional
