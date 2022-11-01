@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 final class IntroViewController: BaseViewController {
     
@@ -23,9 +24,12 @@ final class IntroViewController: BaseViewController {
         self.view.addSubview(logoImageView)
         
         // 통신
-        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
+//        let startTime = CFAbsoluteTimeGetCurrent()
+//        print(Realm.Configuration.defaultConfiguration.fileURL!)
+//        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
+//        print("downloadCorpCode 작업 소요시간 🤔: \(CFAbsoluteTimeGetCurrent() - startTime)")
         
-        // 하면전환
+        // 화면전환
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
             let vc = TabBarController()
             let navigationController = UINavigationController(rootViewController: vc)

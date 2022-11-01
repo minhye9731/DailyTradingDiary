@@ -18,7 +18,9 @@ class DARTAPIManager {
     private init() { }
     
     // MARK: - 고유번호
+    
     func downloadCorpCode(type: Endpoint) {
+        let startTime = CFAbsoluteTimeGetCurrent()
         
         let url = type.requestURL
         let parameter = ["crtfc_key": "\(APIKey.DART_KEY)"]
@@ -51,11 +53,10 @@ class DARTAPIManager {
                     do {
                         try Zip.unzipFile(newfileURL, destination: documentDirectoryPath, overwrite: true, password: nil, progress: { progress in
                         }, fileOutputHandler: { unzippedFile in
-                            print("unzippedFile(1): \(unzippedFile)")
-                            
+//                            print("unzippedFile(1): \(unzippedFile)")
                             CorpCodeRepository.standard.deleteAllItem() // 일단 해당렘 전체삭제
                             self.getDataFromXmlFile() // 파싱 함수 호출
-                            
+                            print("알라모파이어 압축파일 unzip & XML parsing & realm 3천5백 row 저장 완료 🗞: \(CFAbsoluteTimeGetCurrent() - startTime)")
                         })
                     } catch {
                         print("압축 해제에 실패했습니다.(1)")
@@ -93,17 +94,18 @@ class DARTAPIManager {
     // 파싱
     func getDataFromXmlFile() {
         
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
         let fileURL = documentDirectoryPath()?.appendingPathComponent("CORPCODE.xml")
         do {
             let data = try String(contentsOf: fileURL!, encoding: .utf8)
-            print("xml 파일 내부의 raw값 rawDirectoryContents 가져오기 성공~")
+
             let xml = XMLHash.lazy(data)
-            // 파싱한 값을 렘에 저장하자
             
             let listsArr: [XMLListVO] = try xml["result"]["list"].value()
-            print("listsArr 첫 번째 요소의 종목코드 빈 값: \(listsArr[0].stock_code)")
             
-            let corpCodeArr: [CorpCodeRealmModel] = listsArr.map {
+            let listedCorp: [CorpCodeRealmModel] = listsArr.filter { $0.stock_code != " " }.map {
+                
                 let dartCd = $0.corp_code
                 let name = $0.corp_name
                 let stckCd = $0.stock_code
@@ -111,10 +113,9 @@ class DARTAPIManager {
                 
                 return CorpCodeRealmModel(corpCode: dartCd, corpName: name, stockCode: stckCd, modifyDate: mDate)
             }
-            print("corpCodeArr 첫 번째 요소: \(corpCodeArr[0])")
-            
-            // 이때 corpCodeArr 상장종목만 걸러서 저장하는 것은 어떨까
-            CorpCodeRepository.standard.plusCorpCode(item: corpCodeArr)
+
+            print("전체 데이터 parsing 성공해서 배열에 담기 완료 🧮: \(CFAbsoluteTimeGetCurrent() - startTime)")
+            CorpCodeRepository.standard.plusCorpCode(item: listedCorp)
             
         } catch {
             print("xml 파일 내부의 raw값 가져오기 실패!")

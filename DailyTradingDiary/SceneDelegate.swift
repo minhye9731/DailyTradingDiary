@@ -18,10 +18,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: scene.coordinateSpace.bounds)
         window?.windowScene = scene
                 
-        let viewController = IntroViewController()
+        let viewController = TabBarController()
         window?.rootViewController = UINavigationController(rootViewController: viewController)
         window?.makeKeyAndVisible()
         
+        viewController.checkFirstRun()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

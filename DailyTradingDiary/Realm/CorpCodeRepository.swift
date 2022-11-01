@@ -45,9 +45,12 @@ class CorpCodeRepository: CorpCodeRepositoryType {
     
     // MARK: - 추가 / 삭제 / 업데이트
     func plusCorpCode(item: [CorpCodeRealmModel]) {
+        let startTime = CFAbsoluteTimeGetCurrent()
+
         do {
             try localRealm.write{
                 localRealm.add(item)
+                print("(상장기업 한정) 데이터 realm에 저장 완료 ✅: \(CFAbsoluteTimeGetCurrent() - startTime)")
             }
         } catch let error {
             print(error)
@@ -56,10 +59,15 @@ class CorpCodeRepository: CorpCodeRepositoryType {
     
     // 전체삭제
     func deleteAllItem() {
+        let startTime = CFAbsoluteTimeGetCurrent()
+        
         do {
             try localRealm.write{
                 let allItems = localRealm.objects(CorpCodeRealmModel.self)
                 localRealm.delete(allItems)
+                
+                print("기존 realm내 저장된 기업정도 전체삭제 🗑: \(CFAbsoluteTimeGetCurrent() - startTime)")
+                
             }
         } catch let error {
             print(error)

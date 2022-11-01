@@ -38,6 +38,7 @@ class AssetStatusViewController: BaseViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         print("AssetStatusViewController - \(#function)")
+//        CorpRegisterRepository.standard.fetchRealm()
     }
     
     override func configure() {

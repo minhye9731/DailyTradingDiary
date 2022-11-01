@@ -7,6 +7,7 @@
 
 import UIKit
 
+// MARK: - 앱 첫 실행시 사용메뉴얼 안내 화면
 final class WalkThroughViewController: BaseViewController {
     
     let manualImage: UIImageView = {
@@ -22,6 +23,9 @@ final class WalkThroughViewController: BaseViewController {
     }()
 
     override func configure() {
+        
+        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
+        
         [manualImage, exitButton].forEach {
             self.view.addSubview($0)
         }
