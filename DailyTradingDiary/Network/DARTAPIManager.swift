@@ -54,7 +54,7 @@ class DARTAPIManager {
                         try Zip.unzipFile(newfileURL, destination: documentDirectoryPath, overwrite: true, password: nil, progress: { progress in
                         }, fileOutputHandler: { unzippedFile in
 //                            print("unzippedFile(1): \(unzippedFile)")
-                            CorpCodeRepository.standard.deleteAllItem() // 일단 해당렘 전체삭제
+//                            CorpCodeRepository.standard.deleteAllItem() // 일단 해당렘 전체삭제
                             self.getDataFromXmlFile() // 파싱 함수 호출
                             print("알라모파이어 압축파일 unzip & XML parsing & realm 3천5백 row 저장 완료 🗞: \(CFAbsoluteTimeGetCurrent() - startTime)")
                         })

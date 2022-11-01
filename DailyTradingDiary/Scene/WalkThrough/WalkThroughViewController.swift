@@ -24,7 +24,7 @@ final class WalkThroughViewController: BaseViewController {
 
     override func configure() {
         
-        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
+//        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
         
         [manualImage, exitButton].forEach {
             self.view.addSubview($0)

@@ -58,7 +58,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
 
         // 90000 row 데이터 받기
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-//        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
+        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
         
         TradingDiaryRepository.standard.sortByRegDate()
         
