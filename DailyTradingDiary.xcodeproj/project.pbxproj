@@ -64,6 +64,7 @@
 		0E58BCD528E9D05500204275 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 0E58BCD428E9D05500204275 /* Realm */; };
 		0E58BCD728E9D05500204275 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E58BCD628E9D05500204275 /* RealmSwift */; };
 		0E5D614B28EC898D00B339C5 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D614A28EC898D00B339C5 /* IntroViewController.swift */; };
+		0E5EB29C291576E70006B3C9 /* Realm+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5EB29B291576E70006B3C9 /* Realm+Extension.swift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E87354028D598840039D802 /* PageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353F28D598840039D802 /* PageMode.swift */; };
 		0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354128D5DEC50039D802 /* String+Extension.swift */; };
@@ -154,7 +155,7 @@
 		0E37460328E0615F000EEBA7 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
 		0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResult.swift; sourceTree = "<group>"; };
 		0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlphaMarketNewsResponse.swift; sourceTree = "<group>"; };
-		0E3C308E29105095007E0C3A /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = file; name = Package.resolved; path = DailyTradingDiary.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved; sourceTree = SOURCE_ROOT; };
+		0E3C308E29105095007E0C3A /* Package.resolved */ = {isa = PBXFileReference; lastKnownFileType = text; name = Package.resolved; path = DailyTradingDiary.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved; sourceTree = SOURCE_ROOT; };
 		0E40BF6628D98AC900F99DEF /* ALPHAAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ALPHAAPIManager.swift; sourceTree = "<group>"; };
 		0E40BF6828D98B0D00F99DEF /* MarketNewsDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketNewsDTO.swift; sourceTree = "<group>"; };
 		0E40BF6A28D9D53300F99DEF /* FEARGREEDAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FEARGREEDAPIManager.swift; sourceTree = "<group>"; };
@@ -164,6 +165,7 @@
 		0E58BCA628E8BB4400204275 /* UpdateTradingDiaryDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTradingDiaryDTO.swift; sourceTree = "<group>"; };
 		0E58BCA828E9841600204275 /* CorpRegisterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpRegisterRepository.swift; sourceTree = "<group>"; };
 		0E5D614A28EC898D00B339C5 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
+		0E5EB29B291576E70006B3C9 /* Realm+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extension.swift"; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
 		0E87353F28D598840039D802 /* PageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMode.swift; sourceTree = "<group>"; };
 		0E87354128D5DEC50039D802 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 				0E87354128D5DEC50039D802 /* String+Extension.swift */,
 				0E87354828D616060039D802 /* Date+Extension.swift */,
 				0E34518828F6A87400E1BB23 /* UIViewController+Extension.swift */,
+				0E5EB29B291576E70006B3C9 /* Realm+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -719,6 +722,7 @@
 				0E2DB01B28D339AB00CDFD14 /* NumPriceTableViewCell.swift in Sources */,
 				0E2DB01328D32D1B00CDFD14 /* TradingDiaryView.swift in Sources */,
 				0E87D58828EB30E100570A5D /* ContentTableViewHeaderView.swift in Sources */,
+				0E5EB29C291576E70006B3C9 /* Realm+Extension.swift in Sources */,
 				0E3323A128E4017200A1855F /* CorpAnalysisViewController.swift in Sources */,
 				0E2DB01128D32C8700CDFD14 /* TradingDiaryViewController.swift in Sources */,
 				0EF4826728D4593900CC8A49 /* SearchedStockTableViewCell.swift in Sources */,

@@ -7,8 +7,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
-import Network
 
 class ALPHAAPIManager {
     static let shared = ALPHAAPIManager()
@@ -28,6 +26,7 @@ class ALPHAAPIManager {
                 
                 guard let statusCode = response.response?.statusCode else { return }
                 guard let value = response.value else { return }
+                
                 let networkResult = self.judgeStatus(by: statusCode, value)
                 
                 completionHandler(networkResult)

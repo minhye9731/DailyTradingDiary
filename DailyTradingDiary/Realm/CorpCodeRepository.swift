@@ -49,34 +49,58 @@ class CorpCodeRepository: CorpCodeRepositoryType {
     // 전체 삭제 & 추가
     func plusCorpCode(item: [CorpCodeRealmModel]) {
         let startTime = CFAbsoluteTimeGetCurrent()
-
-        do {
-            try localRealm.write{
-                let allItems = self.localRealm.objects(CorpCodeRealmModel.self)
-                self.localRealm.delete(allItems)
-                localRealm.add(item)
-                print("(상장기업 한정) 데이터 realm에 저장 완료 ✅: \(CFAbsoluteTimeGetCurrent() - startTime)")
+        
+        
+        DispatchQueue.global().async {
+            let startTime = CFAbsoluteTimeGetCurrent()
+            let realm = try! Realm()
+            
+            autoreleasepool {
+                
+                try! realm.write({
+                    realm.add(item)
+                })
+                
             }
-            
-//            try localRealm.writeAsync {
-//                let allItems = self.localRealm.objects(CorpCodeRealmModel.self)
-//                self.localRealm.delete(allItems)
-//
-//                self.localRealm.add(item)
-//                print("(상장기업 한정) 데이터 realm에 저장 완료 ✅: \(CFAbsoluteTimeGetCurrent() - startTime)")
-//            }
-            
-//            try localRealm.beginAsyncWrite {
-//                let allItems = self.localRealm.objects(CorpCodeRealmModel.self)
-//                self.localRealm.delete(allItems)
-//                self.localRealm.add(item)
-//                self.localRealm.commitAsyncWrite()
-//                print("(상장기업 한정) 데이터 realm에 저장 완료 ✅: \(CFAbsoluteTimeGetCurrent() - startTime)")
-//            }
-            
-        } catch let error {
-            print(error)
+            print("=========(상장기업 한정) 데이터 realm에 저장 완료 / onComplete :======== \(CFAbsoluteTimeGetCurrent() - startTime)")
         }
+        
+        
+        ////        do {
+        ////            try localRealm.write{
+        ////                let allItems = self.localRealm.objects(CorpCodeRealmModel.self)
+        ////                self.localRealm.delete(allItems)
+        ////                localRealm.add(item)
+        ////                print("(상장기업 한정) 데이터 realm에 저장 완료 ✅: \(CFAbsoluteTimeGetCurrent() - startTime)")
+        ////            }
+        //
+        //        //try
+        //        // <background write>
+        //        localRealm.writeAsync {
+        //                // 기존 전체 데이터 삭제 필요
+        ////                let allItems = self.localRealm.objects(CorpCodeRealmModel.self)
+        ////                self.localRealm.delete(allItems)
+        //
+        //                self.localRealm.add(item)
+        //                print("(상장기업 한정) 데이터 realm에 저장 완료 ✅: \(CFAbsoluteTimeGetCurrent() - startTime)")
+        ////            }
+        //
+        ////            try localRealm.beginAsyncWrite {
+        ////                let allItems = self.localRealm.objects(CorpCodeRealmModel.self)
+        ////                self.localRealm.delete(allItems)
+        ////                self.localRealm.add(item)
+        ////                self.localRealm.commitAsyncWrite()
+        ////                print("(상장기업 한정) 데이터 realm에 저장 완료 ✅: \(CFAbsoluteTimeGetCurrent() - startTime)")
+        ////            }
+        //
+        //        } onComplete: { _ in
+        //            // completion block - write 컴파일이 끝나고 나서(성공이든 실패든) source thread에서 실행되는 메서드
+        //            print("=========(상장기업 한정) 데이터 realm에 저장 완료 / onComplete :======== \(CFAbsoluteTimeGetCurrent() - startTime)")
+        //        }
+        ////        catch let error {
+        ////            print(error.localizedDescription)
+        ////        }
+        //    }
     }
 
     

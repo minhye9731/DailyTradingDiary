@@ -13,6 +13,7 @@ import UserNotifications
 
 final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalendarDataSource, UIGestureRecognizerDelegate {
     
+    // MARK: - property
     let mainView = HomeView()
     var selectedDate: Date = Date()
     var eventsArr = [Date]()
@@ -38,26 +39,15 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     // MARK: - Lifecycle
     override func loadView() {
         self.view = mainView
-        print("HomeViewController - \(#function)")
         self.mainView.tableView.reloadData()
-    }
-    
-    override func configure() {
-        mainView.tableView.delegate = self
-        mainView.tableView.dataSource = self
-        
-        setNav()
-        setNavItem()
-        setCalendarUI()
-        setGesture()
-        requestAuthorization()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // 90000 row 데이터 받기
         print(Realm.Configuration.defaultConfiguration.fileURL!)
+        
+        // 90000 row 데이터 받기
         DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
         
         TradingDiaryRepository.standard.sortByRegDate()
@@ -87,6 +77,17 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         self.mainView.calendar.reloadData()
     }
     
+    // MARK: - functions
+    override func configure() {
+        mainView.tableView.delegate = self
+        mainView.tableView.dataSource = self
+        
+        setNav()
+        setNavItem()
+        setCalendarUI()
+        setGesture()
+        requestAuthorization()
+    }
     
 }
 
@@ -138,9 +139,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
                 self.mainView.calendar.reloadData()
             }
         }
-        
-        
-        
         delete.image = UIImage(systemName: Constants.ImageName.trash.rawValue)
         delete.backgroundColor = .deleteColor
         
