@@ -64,9 +64,7 @@ extension PortfolioViewController: PageboyViewControllerDataSource, TMBarDataSou
             switch index {
             case 0: return TMBarItem(title: "자산현황")
             case 1: return TMBarItem(title: "매매내역")
-            default:
-//                let title = "Page \(index)"
-                return TMBarItem(title: "Page")
+            default: return TMBarItem(title: "Page")
             }
         }
         

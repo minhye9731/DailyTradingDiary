@@ -430,7 +430,6 @@ extension CorpAnalysisViewController {
             default : break
             }
         }
-        
     }
 
     // corpSum 데이터를 relam용 큰변수에 합치기

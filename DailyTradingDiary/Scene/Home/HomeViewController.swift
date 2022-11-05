@@ -46,10 +46,7 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
         super.viewDidLoad()
 
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-        
-        // 90000 row 데이터 받기
-//        DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
-        
+
         TradingDiaryRepository.standard.sortByRegDate()
         
         mainView.floatingButton.addTarget(self, action: #selector(floatingBtnTapped), for: .touchUpInside)
@@ -59,11 +56,9 @@ final class HomeViewController: BaseViewController, FSCalendarDelegate, FSCalend
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
-        
         isShowFloating = false
         self.mainView.firstFloatingButton.isHidden = true
         self.mainView.secondFloatingButton.isHidden = true
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {

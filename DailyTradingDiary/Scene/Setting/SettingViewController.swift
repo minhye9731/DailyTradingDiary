@@ -16,8 +16,7 @@ struct SettingList: Hashable {
     let subTitle: String
 }
 
-
-class SettingViewController: BaseViewController, MFMailComposeViewControllerDelegate {
+final class SettingViewController: BaseViewController, MFMailComposeViewControllerDelegate {
     
     let mainView = SettingView()
     

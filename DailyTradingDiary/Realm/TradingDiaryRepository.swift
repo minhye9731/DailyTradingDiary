@@ -22,9 +22,7 @@ protocol DiaryRepositoryType {
     func calculateRemainAmountWrite(newTrade: TradingDiaryRealmModel) -> Int
     func calculateRemainAmountEdit(originTrade: TradingDiaryRealmModel, newTrade: UpdateTradingDiaryDTO) -> Int
     
-    func getPercentagePerStock() -> [newVersionSlice]
     func getTotalAmount() -> Double
-    func makeRandomColor() -> UIColor
     
     func filteredByAllTrading(from: Date, to: Date, buySellIndex: Int)
 }
@@ -100,25 +98,7 @@ class TradingDiaryRepository: DiaryRepositoryType {
         return updateRemain
     }
     
-
-    // 매수한 종목별 퍼센트 및 색상 뱉기
-    func getPercentagePerStock() -> [newVersionSlice] {
-        
-
-        let realmSliceArr: [newVersionSlice] = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where {
-            $0.buyAndSell == false }.map {
-
-                let percent: Double = Double($0.tradingPrice) * Double($0.tradingAmount) / getTotalAmount()
-                print("percent - \(percent)")
-                let color = makeRandomColor()
-
-                return newVersionSlice(percent: CGFloat(percent), color: color)
-            }
-        return realmSliceArr
-    }
-    
     func getTotalAmount() -> Double {
-        
         let buyTotal = Double(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +))
         
         let sellTotal = Double(TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +))
@@ -128,15 +108,6 @@ class TradingDiaryRepository: DiaryRepositoryType {
         
         return result
     }
-
-    func makeRandomColor() -> UIColor {
-        let r : CGFloat = CGFloat.random(in: 0.2...0.6)
-        let g : CGFloat = CGFloat.random(in: 0.2...0.8)
-        let b : CGFloat = CGFloat.random(in: 0.7...1)
-        return UIColor(red: r, green: g, blue: b, alpha: 1)
-    }
-
-
 
 
     // MARK: - 매매내역 조회조건값에 따른 tableview 계산기
