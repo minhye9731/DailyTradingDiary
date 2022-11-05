@@ -148,15 +148,19 @@ extension TradingSearchViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
-        let generalName = filteredArray[indexPath.row].itemName // 삼성전자
-        let formalName = filteredArray[indexPath.row].corpName // 삼성전자(주)
-        
-        let srtnCode = String(filteredArray[indexPath.row].srtnCode.dropFirst())
-        let selectedCorpCode = CorpCodeRepository.standard.filterSelectedCrop(searchText: srtnCode)
-        
-        delegate?.sendData(self, Input: generalName, formalName: formalName, dartCode: selectedCorpCode, srtnCode: srtnCode) // 여기서 realm threading 에러발생
-        
-        self.presentingViewController?.dismiss(animated: true, completion: nil)
+            let startTime = CFAbsoluteTimeGetCurrent()
+            let generalName = self.filteredArray[indexPath.row].itemName // 삼성전자
+            let formalName = self.filteredArray[indexPath.row].corpName // 삼성전자(주)
+            
+            let srtnCode = String(self.filteredArray[indexPath.row].srtnCode.dropFirst())
+            
+            let selectedCorpCode = CorpCodeRepository.standard.filterSelectedCrop(srtnCd: srtnCode)
+            
+            self.delegate?.sendData(self, Input: generalName, formalName: formalName, dartCode: selectedCorpCode, srtnCode: srtnCode) // 여기서 realm threading 에러발생
+            
+            print("선택기업의 정보 -> 기업등록 화면으로 전달 완료 📩: \(CFAbsoluteTimeGetCurrent() - startTime)")
+            
+            self.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

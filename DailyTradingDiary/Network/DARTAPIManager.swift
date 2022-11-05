@@ -54,8 +54,7 @@ class DARTAPIManager {
                         try Zip.unzipFile(newfileURL, destination: documentDirectoryPath, overwrite: true, password: nil, progress: { progress in
                         }, fileOutputHandler: { unzippedFile in
                             print("알라모파이어 압축파일 unzip 완료 📦: \(CFAbsoluteTimeGetCurrent() - startTime)")
-//                            print("unzippedFile(1): \(unzippedFile)")
-//                            CorpCodeRepository.standard.deleteAllItem() // 일단 해당렘 전체삭제
+
                             self.getDataFromXmlFile() // 파싱 함수 호출
                             print("알라모파이어 압축파일 unzip & XML parsing & realm 3천5백 row 저장 완료 🗞: \(CFAbsoluteTimeGetCurrent() - startTime)")
                         })
@@ -94,7 +93,6 @@ class DARTAPIManager {
 
     // 파싱
     func getDataFromXmlFile() {
-        
         DispatchQueue.global().async {
             let startTime = CFAbsoluteTimeGetCurrent()
             
@@ -105,19 +103,12 @@ class DARTAPIManager {
                 let xml = XMLHash.lazy(data)
                 
                 let listsArr: [XMLListVO] = try xml["result"]["list"].value()
-                
-                //            let listedCorp: [CorpCodeRealmModel] = listsArr.filter { $0.stock_code != " " }.map {
-                //
-                //                let dartCd = $0.corp_code
-                //                let name = $0.corp_name
-                //                let stckCd = $0.stock_code
-                //                let mDate = $0.modify_date
-                //
-                //                return CorpCodeRealmModel(corpCode: dartCd, corpName: name, stockCode: stckCd, modifyDate: mDate)
-                //            }
-                
+
                 print("전체 데이터 parsing해서 배열담기 완료 🧮: \(CFAbsoluteTimeGetCurrent() - startTime)")
-                CorpCodeRepository.standard.plusCorpCode(item: listsArr)
+                
+                DispatchQueue.main.async {
+                    CorpCodeRepository.standard.plusCorpCode(item: listsArr)
+                }
                 
             } catch {
                 print("xml 파일 내부의 raw값 가져오기 실패!")

@@ -487,7 +487,9 @@ extension CorpAnalysisViewController: SendDataDelegate {
     
     func sendData(_ vc: UIViewController, Input value: String, formalName: String, dartCode code: String, srtnCode: String) {
         print("관심기업 등록 화면 : \(value), \(formalName), \(code) 기업을 선택하셨습니다!")
+        
         self.mainView.nameResultLabel.text = formalName
+        
         newRegisterData.formalCorpName = formalName
         
         connectAPI(name: value, dartcode: code)
