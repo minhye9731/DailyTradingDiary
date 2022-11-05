@@ -150,10 +150,11 @@ extension TradingSearchViewController: UITableViewDelegate, UITableViewDataSourc
 
         let generalName = filteredArray[indexPath.row].itemName // 삼성전자
         let formalName = filteredArray[indexPath.row].corpName // 삼성전자(주)
-        let srtnCode = String(filteredArray[indexPath.row].srtnCode.dropFirst()) //
+        
+        let srtnCode = String(filteredArray[indexPath.row].srtnCode.dropFirst())
         let selectedCorpCode = CorpCodeRepository.standard.filterSelectedCrop(searchText: srtnCode)
         
-        delegate?.sendData(self, Input: generalName, formalName: formalName, dartCode: selectedCorpCode, srtnCode: srtnCode)
+        delegate?.sendData(self, Input: generalName, formalName: formalName, dartCode: selectedCorpCode, srtnCode: srtnCode) // 여기서 realm threading 에러발생
         
         self.presentingViewController?.dismiss(animated: true, completion: nil)
     }

@@ -15,7 +15,7 @@ protocol CorpCodeRepositoryType {
     
     func filterSelectedCrop(searchText: String) -> String
     
-    func plusCorpCode(item: [CorpCodeRealmModel])
+    func plusCorpCode(item: [XMLListVO])
 //    func deleteAllItem()
     
 }
@@ -47,23 +47,34 @@ class CorpCodeRepository: CorpCodeRepositoryType {
     // MARK: - 추가 / 삭제 / 업데이트
     
     // 전체 삭제 & 추가
-    func plusCorpCode(item: [CorpCodeRealmModel]) {
-        let startTime = CFAbsoluteTimeGetCurrent()
+    func plusCorpCode(item: [XMLListVO]) {
         
+        // 추가
+//        let realmObject = localRealm.objects(CorpCodeRealmModel.self)
+//        let realmThreadSafeRef = ThreadSafeReference(to: realmObject)
         
         DispatchQueue.global().async {
             let startTime = CFAbsoluteTimeGetCurrent()
-            let realm = try! Realm()
+            
+            let realmOnBackground = try! Realm()
+
+            let filteredList = item.filter { $0.stock_code != " " }.map {
+                let dartCd = $0.corp_code
+                let name = $0.corp_name
+                let stckCd = $0.stock_code
+                let mDate = $0.modify_date
+                
+                return CorpCodeRealmModel(corpCode: dartCd, corpName: name, stockCode: stckCd, modifyDate: mDate)
+            }
             
             autoreleasepool {
-                
-                try! realm.write({
-                    realm.add(item)
+                try! realmOnBackground.write({
+                    realmOnBackground.add(filteredList)
                 })
-                
             }
-            print("=========(상장기업 한정) 데이터 realm에 저장 완료 / onComplete :======== \(CFAbsoluteTimeGetCurrent() - startTime)")
+            print("=========(상장기업 한정) 데이터 realm에 저장 완료 / onComplete ✅ :======== \(CFAbsoluteTimeGetCurrent() - startTime)")
         }
+    }
         
         
         ////        do {
@@ -101,7 +112,7 @@ class CorpCodeRepository: CorpCodeRepositoryType {
         ////            print(error.localizedDescription)
         ////        }
         //    }
-    }
+    
 
     
 }
