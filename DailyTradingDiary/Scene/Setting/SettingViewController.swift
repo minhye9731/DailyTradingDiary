@@ -22,10 +22,11 @@ class SettingViewController: BaseViewController, MFMailComposeViewControllerDele
     let mainView = SettingView()
     
     var contents = [
+        SettingList(title: "상장기업 데이터 업데이트하기", subTitle: ""),
         SettingList(title: "문의하기", subTitle: ""),
         SettingList(title: "리뷰쓰기", subTitle: ""),
         SettingList(title: "오픈소스 라이선스", subTitle: ""),
-        SettingList(title: "버전", subTitle: "0.0.0")
+        SettingList(title: "버전", subTitle: "0.0.0"),
     ]
     
     private var dataSource: UICollectionViewDiffableDataSource<Int, SettingList>!
@@ -93,10 +94,11 @@ extension SettingViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         switch indexPath.row {
-        case 0: self.sendEmailTapped()
-        case 1: self.writeReviewTapped()
-        case 2: self.showPackageList()
-        case 3: print("버전확인 - \(self.currentAppVersion())")
+        case 0: self.updateCorpCodeData()
+        case 1: self.sendEmailTapped()
+        case 2: self.writeReviewTapped()
+        case 3: self.showPackageList()
+        case 4: print("버전확인 - \(self.currentAppVersion())")
         default: print("tap")
         }
     }
@@ -117,9 +119,21 @@ extension SettingViewController {
         self.navigationItem.standardAppearance = navibarAppearance
     }
     
+    func updateCorpCodeData() {
+        let alert = UIAlertController(title: "<안내>", message: "기업등록 검색을 위한 상장기업 데이터를 업데이트 하시겠습니까?", preferredStyle: .alert)
+        
+        let ok = UIAlertAction(title: "업데이트하기", style: .default) { _ in
+            DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)
+        }
+        let cancel = UIAlertAction(title: "취소", style: .cancel)
+        
+        alert.addAction(ok)
+        alert.addAction(cancel)
+        self.present(alert, animated: true)
+    }
+    
     // 메일 보내기
     func sendEmailTapped() {
-        
         if MFMailComposeViewController.canSendMail() {
             
             let compseVC = MFMailComposeViewController()
