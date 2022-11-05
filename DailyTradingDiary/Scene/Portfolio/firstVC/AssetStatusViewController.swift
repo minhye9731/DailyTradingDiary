@@ -30,7 +30,6 @@ final class AssetStatusViewController: BaseViewController {
         isEmptyCheck()
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-//            CorpRegisterRepository.standard.fetchRealm()
             self.getPieChart()
             self.mainView.ratioChart.animateChart()
         }

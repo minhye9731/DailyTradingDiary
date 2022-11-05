@@ -65,6 +65,7 @@
 		0E58BCD728E9D05500204275 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E58BCD628E9D05500204275 /* RealmSwift */; };
 		0E5D614B28EC898D00B339C5 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5D614A28EC898D00B339C5 /* IntroViewController.swift */; };
 		0E5EB29C291576E70006B3C9 /* Realm+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5EB29B291576E70006B3C9 /* Realm+Extension.swift */; };
+		0E5EB2B42916EF4F0006B3C9 /* AssetListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E5EB2B32916EF4F0006B3C9 /* AssetListTableViewCell.swift */; };
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E87354028D598840039D802 /* PageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353F28D598840039D802 /* PageMode.swift */; };
 		0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354128D5DEC50039D802 /* String+Extension.swift */; };
@@ -166,6 +167,7 @@
 		0E58BCA828E9841600204275 /* CorpRegisterRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorpRegisterRepository.swift; sourceTree = "<group>"; };
 		0E5D614A28EC898D00B339C5 /* IntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 		0E5EB29B291576E70006B3C9 /* Realm+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Extension.swift"; sourceTree = "<group>"; };
+		0E5EB2B32916EF4F0006B3C9 /* AssetListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetListTableViewCell.swift; sourceTree = "<group>"; };
 		0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeTableViewCell.swift; sourceTree = "<group>"; };
 		0E87353F28D598840039D802 /* PageMode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageMode.swift; sourceTree = "<group>"; };
 		0E87354128D5DEC50039D802 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
@@ -430,6 +432,7 @@
 			children = (
 				0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */,
 				0ED5D65928DB6523009A1057 /* AssetStatusView.swift */,
+				0E5EB2B32916EF4F0006B3C9 /* AssetListTableViewCell.swift */,
 			);
 			path = firstVC;
 			sourceTree = "<group>";
@@ -665,6 +668,7 @@
 				0E58BCA528E89DAC00204275 /* KRXListDTO.swift in Sources */,
 				0E3323A528E42FA400A1855F /* CorpSummaryTableViewCell.swift in Sources */,
 				0E8E754128E60FF100D52A2C /* XMLListVO.swift in Sources */,
+				0E5EB2B42916EF4F0006B3C9 /* AssetListTableViewCell.swift in Sources */,
 				0EAF0EF928FFF48800DD41EA /* SettingViewController.swift in Sources */,
 				0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */,
 				0E58BCA728E8BB4400204275 /* UpdateTradingDiaryDTO.swift in Sources */,

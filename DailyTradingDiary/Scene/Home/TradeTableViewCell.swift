@@ -9,6 +9,7 @@ import UIKit
 
 final class TradeTableViewCell: BaseTableViewCell {
     
+    // MARK: - property
     let infoView: UIView = {
        let view = UIView()
         view.layer.cornerRadius = 10
@@ -66,6 +67,7 @@ final class TradeTableViewCell: BaseTableViewCell {
         return stackview
     }()
     
+    // MARK: - functions
     override func configure() {
         contentView.addSubview(infoView)
         
@@ -76,8 +78,6 @@ final class TradeTableViewCell: BaseTableViewCell {
         [nameLabel, amountLabel].forEach {
             stockStackView.addArrangedSubview($0)
         }
-        
-        
     }
     
     override func setConstraints() {

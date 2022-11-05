@@ -9,6 +9,16 @@ import UIKit
 
 final class AssetStatusView: BaseView {
     
+    lazy var tableView: UITableView = {
+        let tableview = UITableView(frame: .zero, style: .plain)
+        tableview.backgroundColor = .backgroundColor
+        tableview.rowHeight = 86
+        tableview.register(AssetListTableViewCell.self, forCellReuseIdentifier: AssetListTableViewCell.reuseIdentifier)
+//        tableview.register(CustomTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CustomTableViewHeaderView.reuseIdentifier)
+        tableview.separatorStyle = .none
+        return tableview
+    }()
+    
     // MARK: - resultView
     let resultView: UIView = {
        let view = UIView()
@@ -95,7 +105,6 @@ final class AssetStatusView: BaseView {
         return view
     }()
     
-    // 자산비중 라벨
     let ratioLabel: UILabel = {
         let label = UILabel()
         label.text = "자산구성"
@@ -105,12 +114,12 @@ final class AssetStatusView: BaseView {
         return label
     }()
     
-    
     lazy var ratioChart: PortfolioChartView = {
         let pieChartView = PortfolioChartView()
         return pieChartView
     }()
     
+    // MARK: - emptyView
     let emptyView: EmptyView = {
        let view = EmptyView()
         view.setDataAtEmptyView(image: "pieChart.png", main: "현재 보유하고 있는 자산이 없어요.", sub: "홈화면의 + 버튼으로 매매일지를 작성해\n자산구성을 확인해보세요.")
