@@ -21,13 +21,8 @@ final class TradeRecordViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         TradingDiaryRepository.standard.fetchRealm()
-        
-        buySellChangedResult()
-        filteringQualificatinos()
-        isEmptyCheck()
-        self.mainView.tableView.reloadData()
+        updateData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,9 +31,7 @@ final class TradeRecordViewController: BaseViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        buySellChangedResult()
-        filteringQualificatinos()
-        self.mainView.tableView.reloadData()
+        updateData()
     }
     
     // MARK: - functions
