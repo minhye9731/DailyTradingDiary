@@ -11,10 +11,12 @@ import SwiftyJSON
 
 final class InfoViewController: BaseViewController {
     
+    // MARK: - property
     let mainView = InfoView()
     var alphaNewsList: [MarketNewsDTO] = []
     var fearGreedIndex: FearGreedDTO = FearGreedDTO(updateTime: "0000.00.00", now: FearGreed(indexValue: 0, indexStatus: ""), weekAgo: FearGreed(indexValue: 0, indexStatus: ""))
     
+    // MARK: - Lifecycle
     override func loadView() {
         self.view = mainView
     }
@@ -22,16 +24,14 @@ final class InfoViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.connectAPI()
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        print(self.tabBarController?.tabBar.isHidden)
-        
-        self.tabBarController?.tabBar.isHidden = false // 
+        self.tabBarController?.tabBar.isHidden = false
     }
     
+    // MARK: - functions
     override func configure() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
@@ -54,7 +54,6 @@ final class InfoViewController: BaseViewController {
         self.navigationItem.scrollEdgeAppearance = navibarAppearance
         self.navigationItem.standardAppearance = navibarAppearance
     }
-
 }
 
 
