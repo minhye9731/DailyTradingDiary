@@ -44,7 +44,6 @@ final class SettingViewController: BaseViewController, MFMailComposeViewControll
     
 }
 
-
 // MARK: - compositional
 extension SettingViewController {
     
@@ -63,15 +62,13 @@ extension SettingViewController {
             content.secondaryText = itemIdentifier.subTitle
             content.textProperties.color = .mainTextColor
             
-            // 버전정보 표기
-            if indexPath.row == 3 { content.secondaryText = self.currentAppVersion() }
+            if indexPath.row == 4 { content.secondaryText = self.currentAppVersion() }
             
             cell.contentConfiguration = content
             
             var background = UIBackgroundConfiguration.listPlainCell()
             background.backgroundColor = .backgroundColor
             cell.backgroundConfiguration = background
-            
         }
         
         dataSource = UICollectionViewDiffableDataSource(collectionView: mainView.collectionView, cellProvider: { collectionView, indexPath, itemIdentifier in
@@ -144,12 +141,10 @@ extension SettingViewController {
             compseVC.modalPresentationStyle = .overFullScreen
             
             self.present(compseVC, animated: true, completion: nil)
-            
         }
         else {
             self.showSendMailErrorAlert()
         }
-        
     }
     
     // 디바이스내 mail앱을 이용할 수 없는 경우
@@ -163,13 +158,20 @@ extension SettingViewController {
     
     // 메일 보내기 완료 후, 창닫기
     func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {
-        
-        
-        
-        
+        switch result {
+        case .cancelled:
+            view.makeToast("메일 전송을 취소했습니다.")
+        case .failed:
+            view.makeToast("메일 전송이 실패했습니다.")
+        case .saved:
+            view.makeToast("메일을 임시 저장했습니다.")
+        case .sent:
+            view.makeToast("메일이 전송되었습니다.")
+        @unknown default:
+            fatalError()
+        }
         controller.dismiss(animated: true, completion: nil)
     }
-    
     
     // 리뷰쓰기
     func writeReviewTapped() {
