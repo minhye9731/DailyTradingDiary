@@ -35,7 +35,7 @@ class PortfolioChartView: UIView {
         let path = UIBezierPath(arcCenter: self.center,
                                 radius: canvasWidth * 3 / 8, //여기
                                 startAngle: percentToRadian(currentPercent),
-                                endAngle: percentToRadian(currentPercent + slice.percent),
+                                endAngle: (slice.percent == 1.0) ? 270.0 : percentToRadian(currentPercent + slice.percent),
                                 clockwise: true)
         
         let animation = CABasicAnimation(keyPath: "strokeEnd")
@@ -101,12 +101,12 @@ class PortfolioChartView: UIView {
         if angle >= 360 {
             angle -= 360
         }
-        return percent == 1.0 ? 360.0 : angle * CGFloat.pi / 180.0
+        return angle * CGFloat.pi / 180.0
     }
     
     // 전체 animation 시간을 각 slice 비율만큼 할당
     func getDuration(_ slice: newVersionSlice) -> CFTimeInterval {
-        return slice.percent == 1.0 ? 50.0 : CFTimeInterval(slice.percent / 1.0 * animation_duration)
+        return CFTimeInterval(slice.percent / 1.0 * animation_duration)
     }
     
     // 현 pieChartView의 subview 중 UILabel 모두 삭제
