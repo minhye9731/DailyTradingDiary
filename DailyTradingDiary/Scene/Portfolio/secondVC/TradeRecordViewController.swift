@@ -97,37 +97,32 @@ extension TradeRecordViewController: UITableViewDelegate, UITableViewDataSource 
 extension TradeRecordViewController {
     
     @objc func onDidChangeFromDate(sender: UIDatePicker) {
-            if sender.date > self.mainView.toDatePicker.date {
-                self.mainView.makeToast("시작일이 종료일보다 클 수 없습니다. \n 검색일자를 다시 선택해주세요.",  duration: 2.0, position: .center)
-                dismiss(animated: true)
-                return
+        if sender.date > self.mainView.toDatePicker.date {
+            self.mainView.makeToast("시작일이 종료일보다 클 수 없습니다. \n 검색일자를 다시 선택해주세요.",  duration: 2.0, position: .center)
+            dismiss(animated: true)
+            return
         }
-        filteringQualificatinos()
-        isEmptyCheck()
-        self.mainView.tableView.reloadData()
+        updateData()
     }
     
     @objc func onDidChangeToDate(sender: UIDatePicker) {
-        
         if sender.date < mainView.fromDatePicker.date {
             self.mainView.makeToast("종료일이 시작일보다 작을 수 없습니다. \n 검색일자를 다시 선택해주세요.",  duration: 2.0, position: .center)
             dismiss(animated: true)
             return
         }
-        filteringQualificatinos()
-        isEmptyCheck()
-        self.mainView.tableView.reloadData()
+        updateData()
     }
     
     @objc func buysellChanged() {
+        updateData()
+    }
+    
+    func updateData() {
         buySellChangedResult()
         filteringQualificatinos()
         isEmptyCheck()
         self.mainView.tableView.reloadData()
-    }
-    
-    func filteringQualificatinos() {
-        TradingDiaryRepository.standard.filteredByAllTrading(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date, buySellIndex: mainView.segmentControl.selectedSegmentIndex)
     }
     
     func buySellChangedResult() {
@@ -145,16 +140,8 @@ extension TradeRecordViewController {
         }
     }
     
-    func getBuyTotal() {
-        let buyResult = TradingDiaryRepository.standard.getTotalBuyPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
-        
-        mainView.totalBuyValueLabel.text = "\(thousandSeparatorCommas(value: buyResult)) \(Constants.CurrencySign.won.rawValue)"
-    }
-    
-    func getSellTotal() {
-        let sellResult = TradingDiaryRepository.standard.getTotalSellPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
-        
-        mainView.totalSellValueLabel.text = "\(thousandSeparatorCommas(value: sellResult)) \(Constants.CurrencySign.won.rawValue)"
+    func filteringQualificatinos() {
+        TradingDiaryRepository.standard.filteredByAllTrading(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date, buySellIndex: mainView.segmentControl.selectedSegmentIndex)
     }
     
     func isEmptyCheck() {
@@ -167,16 +154,25 @@ extension TradeRecordViewController {
         }
     }
     
+    func getBuyTotal() {
+        let buyResult = TradingDiaryRepository.standard.getTotalBuyPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
+        mainView.totalBuyValueLabel.text = "\(thousandSeparatorCommas(value: buyResult)) \(Constants.CurrencySign.won.rawValue)"
+    }
     
+    func getSellTotal() {
+        let sellResult = TradingDiaryRepository.standard.getTotalSellPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
+        mainView.totalSellValueLabel.text = "\(thousandSeparatorCommas(value: sellResult)) \(Constants.CurrencySign.won.rawValue)"
+    }
+
     // 아래 두개 사용 안하는 듯. 추후 수정하거나 삭제예정
-    func getBuyTotalAmount() -> Int {
-        let buyTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
-        return buyTotalAmount
-    }
-    
-    func getSellTotalAmount() -> Int {
-        let sellTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
-        return sellTotalAmount
-    }
+//    func getBuyTotalAmount() -> Int {
+//        let buyTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+//        return buyTotalAmount
+//    }
+//
+//    func getSellTotalAmount() -> Int {
+//        let sellTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
+//        return sellTotalAmount
+//    }
     
 }
