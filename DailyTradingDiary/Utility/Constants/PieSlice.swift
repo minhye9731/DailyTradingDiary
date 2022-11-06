@@ -16,6 +16,7 @@ struct Slice {
 
 struct newVersionSlice {
     var name: String
+    var totalRemain: Int
     var percent: CGFloat
     var color: UIColor
 }
