@@ -80,21 +80,20 @@ class TradingDiaryRepository: DiaryRepositoryType {
         let newSellAmount = newTrade.tradingPrice * newTrade.tradingAmount
         
         let updateRemain = buyTotal - sellTotal - newSellAmount
-        print("updateRemain: \(updateRemain) = buyTotal \(buyTotal) - sellTotal \(sellTotal) - newSellAmount \(newSellAmount)")
         
         return updateRemain
     }
     
     func calculateRemainAmountEdit(originTrade: TradingDiaryRealmModel, newTrade: UpdateTradingDiaryDTO) -> Int {
-        let buyTotalUpdate = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where { $0.corpCode == newTrade.corpCode && $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +) - (originTrade.tradingPrice * originTrade.tradingAmount)
+        let buyTotalUpdate = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where { $0.corpCode == newTrade.corpCode && $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
         
         let sellTotal = TradingDiaryRepository.standard.localRealm.objects(TradingDiaryRealmModel.self).where { $0.corpCode == newTrade.corpCode && $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
         
+        let originSellAmount = originTrade.tradingPrice * originTrade.tradingAmount
         let newSellAmount = newTrade.tradingPrice * newTrade.tradingAmount
         
-        let updateRemain = buyTotalUpdate - sellTotal - newSellAmount
-        print("updateRemain: \(updateRemain) = buyTotalUpdate \(buyTotalUpdate) - sellTotal \(sellTotal) - newSellTotal \(newSellAmount)")
-        
+        let updateRemain = buyTotalUpdate - (sellTotal - originSellAmount) - newSellAmount
+ 
         return updateRemain
     }
     
