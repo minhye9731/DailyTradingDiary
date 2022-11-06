@@ -9,7 +9,8 @@ import UIKit
 
 final class TradeRecordView: BaseView {
     
-    // MARK: - searchView
+    // MARK: - property
+    // searchView
     let searchView: UIView = {
        let view = UIView()
         view.backgroundColor = .backgroundColor
@@ -121,6 +122,7 @@ final class TradeRecordView: BaseView {
         return view
     }()
     
+    // MARK: - functions
     override func configureUI() {
         [searchView, tableView, emptyView].forEach {
             self.addSubview($0)
@@ -136,7 +138,7 @@ final class TradeRecordView: BaseView {
         
         let spacing = 16
         
-        // MARK: - searchview
+        // searchview
         searchView.snp.makeConstraints { make in
             make.leading.top.trailing.equalTo(self.safeAreaLayoutGuide)
             make.height.equalTo(180)
@@ -192,13 +194,13 @@ final class TradeRecordView: BaseView {
             make.height.equalTo(1)
         }
         
-        // MARK: - tableview
+        // tableview
         tableView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
             make.top.equalTo(searchView.snp.bottom)
         }
         
-        //emptyView
+        // emptyView
         emptyView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
             make.top.equalTo(searchView.snp.bottom)

@@ -7,11 +7,14 @@
 
 import UIKit
 import RealmSwift
+import Toast
 
-class TradeRecordViewController: BaseViewController {
+final class TradeRecordViewController: BaseViewController {
     
+    // MARK: - property
     let mainView = TradeRecordView()
     
+    // MARK: - Lifecycle
     override func loadView() {
         self.view = mainView
     }
@@ -38,6 +41,7 @@ class TradeRecordViewController: BaseViewController {
         self.mainView.tableView.reloadData()
     }
     
+    // MARK: - functions
     override func configure() {
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
@@ -93,12 +97,11 @@ extension TradeRecordViewController: UITableViewDelegate, UITableViewDataSource 
 extension TradeRecordViewController {
     
     @objc func onDidChangeFromDate(sender: UIDatePicker) {
-        // 이거 왜 실행이 안되냐
-        if sender.date > mainView.toDatePicker.date {
-            showAlertMessage(title: "시작일이 종료일보다 클 수 없습니다.")
-            return
+            if sender.date > self.mainView.toDatePicker.date {
+                self.mainView.makeToast("시작일이 종료일보다 클 수 없습니다. \n 검색일자를 다시 선택해주세요.",  duration: 2.0, position: .center)
+                dismiss(animated: true)
+                return
         }
-        
         filteringQualificatinos()
         isEmptyCheck()
         self.mainView.tableView.reloadData()
@@ -106,9 +109,9 @@ extension TradeRecordViewController {
     
     @objc func onDidChangeToDate(sender: UIDatePicker) {
         
-        // 이거 왜 실행이 안되냐
         if sender.date < mainView.fromDatePicker.date {
-            showAlertMessage(title: "종료일이 시작일보다 작을 수 없습니다.")
+            self.mainView.makeToast("종료일이 시작일보다 작을 수 없습니다. \n 검색일자를 다시 선택해주세요.",  duration: 2.0, position: .center)
+            dismiss(animated: true)
             return
         }
         filteringQualificatinos()
