@@ -9,10 +9,10 @@ import UIKit
 
 final class AssetListTableViewCell: BaseTableViewCell {
     
+    // MARK: - property
     let colorView: UIView = {
        let view = UIView()
-        view.layer.cornerRadius = 10
-        view.backgroundColor = .lightGray
+        view.layer.cornerRadius = 4
         return view
     }()
     
@@ -55,6 +55,7 @@ final class AssetListTableViewCell: BaseTableViewCell {
         return stackview
     }()
     
+    // MARK: - functions
     override func configure() {
         [colorView, stockStackView, totalLabel].forEach {
             contentView.addSubview($0)
@@ -68,9 +69,10 @@ final class AssetListTableViewCell: BaseTableViewCell {
     override func setConstraints() {
         colorView.snp.makeConstraints { make in
             make.centerY.equalTo(self.safeAreaLayoutGuide)
-            make.leading.equalTo(self.safeAreaLayoutGuide).offset(12)
-            make.verticalEdges.equalTo(self.safeAreaLayoutGuide).offset(12)
-            make.width.equalTo(14)
+            make.leading.equalTo(self.safeAreaLayoutGuide).offset(15)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(12)
+            make.bottom.equalTo(self.safeAreaLayoutGuide).offset(-12)
+            make.width.equalTo(8)
         }
         
         stockStackView.snp.makeConstraints { make in
@@ -86,5 +88,15 @@ final class AssetListTableViewCell: BaseTableViewCell {
         }
     }
     
+    func setData(data: [newVersionSlice], indexPath: IndexPath) {
+        
+        let row = data[indexPath.row]
+        let percentage = round(row.percent * 1000) / 10
+        
+        colorView.backgroundColor = row.color
+        nameLabel.text = row.name
+        amountLabel.text = "\(percentage)%"
+        totalLabel.text = "\(row.totalRemain)₩"
+    }
     
 }
