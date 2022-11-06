@@ -111,24 +111,12 @@ final class TradeTableViewCell: BaseTableViewCell {
         
         let row = arr[indexPath.row]
         let price = thousandSeparatorCommas(value: row.tradingAmount &* row.tradingPrice)
-        print(price)
         
-        self.isTradingLabel.text = row.buyAndSell ? Constants.Word.sell.rawValue : Constants.Word.buy.rawValue
-        self.isTradingLabel.textColor = row.buyAndSell ? .systemBlue : .systemRed
-        
-        self.nameLabel.text = row.corpName
-        self.amountLabel.text = "\(row.tradingAmount) \(Constants.Word.countStock.rawValue)"
-        
-        self.totalLabel.text = "\(price) \(Constants.CurrencySign.won.rawValue)"
+        isTradingLabel.text = row.buyAndSell ? Constants.Word.sell.rawValue : Constants.Word.buy.rawValue
+        isTradingLabel.textColor = row.buyAndSell ? .systemBlue : .systemRed
+        nameLabel.text = row.corpName
+        amountLabel.text = "\(row.tradingAmount) \(Constants.Word.countStock.rawValue)"
+        totalLabel.text = "\(price) \(Constants.CurrencySign.won.rawValue)"
     }
-    
-    func thousandSeparatorCommas(value: Int) -> String {
-        let numberFormatter = NumberFormatter()
-        numberFormatter.numberStyle = .decimal
-        numberFormatter.maximumFractionDigits = 0
-        return numberFormatter.string(for: value) ?? "0"
-    }
-    
-    
     
 }

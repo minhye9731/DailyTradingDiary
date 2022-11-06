@@ -26,9 +26,9 @@ final class AssetListTableViewCell: BaseTableViewCell {
         return label
     }()
     
-    let amountLabel: UILabel = {
+    let percentLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .mainTextColor
+        label.textColor = .subTextColor
         label.font = .systemFont(ofSize: 14)
         label.textAlignment = .left
         label.adjustsFontSizeToFitWidth = true
@@ -61,7 +61,7 @@ final class AssetListTableViewCell: BaseTableViewCell {
             contentView.addSubview($0)
         }
         
-        [nameLabel, amountLabel].forEach {
+        [nameLabel, percentLabel].forEach {
             stockStackView.addArrangedSubview($0)
         }
     }
@@ -84,7 +84,7 @@ final class AssetListTableViewCell: BaseTableViewCell {
         totalLabel.snp.makeConstraints { make in
             make.centerY.equalTo(self.safeAreaLayoutGuide)
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
-            make.width.equalTo(self.safeAreaLayoutGuide).multipliedBy(0.55)
+            make.width.equalTo(self.frame.width).multipliedBy(0.55)
         }
     }
     
@@ -92,11 +92,12 @@ final class AssetListTableViewCell: BaseTableViewCell {
         
         let row = data[indexPath.row]
         let percentage = round(row.percent * 1000) / 10
+        let price = thousandSeparatorCommas(value: row.totalRemain)
         
         colorView.backgroundColor = row.color
         nameLabel.text = row.name
-        amountLabel.text = "\(percentage)%"
-        totalLabel.text = "\(row.totalRemain)₩"
+        percentLabel.text = "\(percentage)%"
+        totalLabel.text = "\(price) \(Constants.CurrencySign.won.rawValue)"
     }
     
 }
