@@ -179,12 +179,12 @@ class CorpRegisterRepository: RegisterRepositoryType {
             let remain = $0.tradingDiaries.filter { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +) - $0.tradingDiaries.filter { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
             
             let corpName = $0.formalCorpName
-            let percent: Double = Double(remain) / Double(getTotalInvest())
-            let color = makeRandomColor()
+            let percent: Double = Double(remain) / Double(self.getTotalInvest())
+            let color = self.makeRandomColor()
             
-//            return newVersionSlice(percent: CGFloat(percent), color: color)
-            return newVersionSlice(name: corpName, percent: CGFloat(percent), color: color)
-        }
+            return newVersionSlice(name: corpName, totalRemain: remain, percent: CGFloat(percent), color: color)
+        }.filter { $0.totalRemain != 0 }
+        
         dump(realmSliceArr)
         return realmSliceArr
     }
@@ -195,7 +195,5 @@ class CorpRegisterRepository: RegisterRepositoryType {
         let b : CGFloat = CGFloat.random(in: 0.7...1)
         return UIColor(red: r, green: g, blue: b, alpha: 1)
     }
-    
-    
     
 }
