@@ -13,28 +13,30 @@ final class AssetStatusView: BaseView {
         let tableview = UITableView(frame: .zero, style: .plain)
         tableview.backgroundColor = .backgroundColor
         tableview.rowHeight = 86
+        tableview.register(AssetSummaryTableViewCell.self, forCellReuseIdentifier: AssetSummaryTableViewCell.reuseIdentifier)
+        tableview.register(AssetChartTableViewCell.self, forCellReuseIdentifier: AssetChartTableViewCell.reuseIdentifier)
         tableview.register(AssetListTableViewCell.self, forCellReuseIdentifier: AssetListTableViewCell.reuseIdentifier)
-//        tableview.register(CustomTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CustomTableViewHeaderView.reuseIdentifier)
+        tableview.register(CustomTableViewHeaderView.self, forHeaderFooterViewReuseIdentifier: CustomTableViewHeaderView.reuseIdentifier)
         tableview.separatorStyle = .none
         return tableview
     }()
     
     // MARK: - resultView
-    let resultView: UIView = {
-       let view = UIView()
-        view.backgroundColor = .backgroundColor
-        return view
-    }()
+//    let resultView: UIView = {
+//       let view = UIView()
+//        view.backgroundColor = .backgroundColor
+//        return view
+//    }()
     
     // 총 자산(평가금액)
-    let resultLabel: UILabel = {
-        let label = UILabel()
-        label.text = "99,999 \(Constants.CurrencySign.won.rawValue)" // 뷰컨에서 전달예정
-        label.textColor = .mainTextColor
-        label.font = .boldSystemFont(ofSize: 28)
-        label.textAlignment = .center
-        return label
-    }()
+//    let resultLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "99,999 \(Constants.CurrencySign.won.rawValue)" // 뷰컨에서 전달예정
+//        label.textColor = .mainTextColor
+//        label.font = .boldSystemFont(ofSize: 28)
+//        label.textAlignment = .center
+//        return label
+//    }()
     
     // 투자원금
 //    let investmentLabel: UILabel = {
@@ -93,68 +95,74 @@ final class AssetStatusView: BaseView {
 //    }()
      
     // MARK: - chartView
-    let chartView: UIView = {
-       let view = UIView()
-        view.backgroundColor = .backgroundColor
-        return view
-    }()
+//    let chartView: UIView = {
+//       let view = UIView()
+//        view.backgroundColor = .backgroundColor
+//        return view
+//    }()
     
-    let grayline: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        return view
-    }()
+//    let grayline: UIView = {
+//        let view = UIView()
+//        view.backgroundColor = .lightGray
+//        return view
+//    }()
     
-    let ratioLabel: UILabel = {
-        let label = UILabel()
-        label.text = "자산구성"
-        label.textColor = .mainTextColor
-        label.font = .boldSystemFont(ofSize: 20)
-        label.textAlignment = .left
-        return label
-    }()
+//    let ratioLabel: UILabel = {
+//        let label = UILabel()
+//        label.text = "자산구성"
+//        label.textColor = .mainTextColor
+//        label.font = .boldSystemFont(ofSize: 20)
+//        label.textAlignment = .left
+//        return label
+//    }()
     
-    lazy var ratioChart: PortfolioChartView = {
-        let pieChartView = PortfolioChartView()
-        return pieChartView
-    }()
-    
-    // MARK: - emptyView
-    let emptyView: EmptyView = {
-       let view = EmptyView()
-        view.setDataAtEmptyView(image: "pieChart.png", main: "현재 보유하고 있는 자산이 없어요.", sub: "홈화면의 + 버튼으로 매매일지를 작성해\n자산구성을 확인해보세요.")
-        return view
-    }()
+//    lazy var ratioChart: PortfolioChartView = {
+//        let pieChartView = PortfolioChartView()
+//        return pieChartView
+//    }()
+//
+//    // MARK: - emptyView
+//    let emptyView: EmptyView = {
+//       let view = EmptyView()
+//        view.setDataAtEmptyView(image: "pieChart.png", main: "현재 보유하고 있는 자산이 없어요.", sub: "홈화면의 + 버튼으로 매매일지를 작성해\n자산구성을 확인해보세요.")
+//        return view
+//    }()
     
     override func configureUI() {
+        
+        self.addSubview(tableView)
 
-        [resultView, chartView].forEach {
-            self.addSubview($0)
-        }
+//        [resultView, chartView].forEach {
+//            self.addSubview($0)
+//        }
         
 //        [resultLabel, investmentLabel, investmentValueLabel, gainLossLabel, gainLossValueLabel, earningsRateLabel, earningsRateValueLabel].forEach {
 //            resultView.addSubview($0)
 //        }
         
-        resultView.addSubview(resultLabel)
+//        resultView.addSubview(resultLabel)
         
-        [ratioLabel, grayline, ratioChart, emptyView].forEach {
-            chartView.addSubview($0)
-        }
+//        [ratioLabel, grayline, ratioChart, emptyView].forEach {
+//            chartView.addSubview($0)
+//        }
         
     }
     
     override func setConstraints() {
-        
-        // MARK: - resultView
-        resultView.snp.makeConstraints { make in
-            make.leading.top.trailing.equalTo(self.safeAreaLayoutGuide)
-            make.height.equalTo(110)
+        tableView.snp.makeConstraints { make in
+            make.edges.equalTo(self.safeAreaLayoutGuide)
         }
         
-        resultLabel.snp.makeConstraints { make in
-            make.centerX.centerY.equalTo(self.resultView)
-        }
+        
+//         MARK: - resultView
+//        resultView.snp.makeConstraints { make in
+//            make.leading.top.trailing.equalTo(self.safeAreaLayoutGuide)
+//            make.height.equalTo(110)
+//        }
+        
+//        resultLabel.snp.makeConstraints { make in
+//            make.centerX.centerY.equalTo(self.resultView)
+//        }
         
 //        // 투자원금
 //        investmentLabel.snp.makeConstraints { make in
@@ -186,37 +194,37 @@ final class AssetStatusView: BaseView {
 //            make.top.equalTo(gainLossValueLabel.snp.bottom).offset(16)
 //        }
         
-        // MARK: - chartView
-        chartView.snp.makeConstraints { make in
-            make.top.equalTo(resultView.snp.bottom)
-            make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
-        }
+//        // MARK: - chartView
+//        chartView.snp.makeConstraints { make in
+//            make.top.equalTo(resultView.snp.bottom)
+//            make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
+//        }
+//
+//        // empty화면
+//        emptyView.snp.makeConstraints { make in
+//            make.top.equalTo(ratioLabel.snp.bottom)
+//            make.leading.bottom.trailing.equalTo(self.chartView)
+//        }
+//
+//        grayline.snp.makeConstraints { make in
+//            make.top.equalTo(chartView.snp.top).offset(10)
+//            make.leading.trailing.equalTo(self.chartView).inset(14)
+//            make.height.equalTo(1)
+//        }
+//
+//        ratioLabel.snp.makeConstraints { make in
+//            make.leading.equalTo(chartView.snp.leading).offset(14)
+//            make.top.equalTo(grayline.snp.bottom).offset(14)
+//        }
+//
+//        // 파이차트
+//        ratioChart.snp.makeConstraints { make in
+//            make.center.equalTo(chartView.snp.center)
+//            make.width.equalTo(chartView.snp.width)
+//            make.height.equalTo(chartView.snp.height)
+//        }
+//
         
-        // empty화면
-        emptyView.snp.makeConstraints { make in
-            make.top.equalTo(ratioLabel.snp.bottom)
-            make.leading.bottom.trailing.equalTo(self.chartView)
-        }
-        
-        grayline.snp.makeConstraints { make in
-            make.top.equalTo(chartView.snp.top).offset(10)
-            make.leading.trailing.equalTo(self.chartView).inset(14)
-            make.height.equalTo(1)
-        }
-        
-        ratioLabel.snp.makeConstraints { make in
-            make.leading.equalTo(chartView.snp.leading).offset(14)
-            make.top.equalTo(grayline.snp.bottom).offset(14)
-        }
-        
-        // 파이차트
-        ratioChart.snp.makeConstraints { make in
-            make.center.equalTo(chartView.snp.center)
-            make.width.equalTo(chartView.snp.width)
-            make.height.equalTo(chartView.snp.height)
-        }
-        
-
     }
     
 }
