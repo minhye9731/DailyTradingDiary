@@ -33,57 +33,57 @@ class PortfolioChartView: UIView {
     func addSlice(_ slice: newVersionSlice) {
         let canvasWidth = self.frame.width * 0.65 //여기
         let path = UIBezierPath(arcCenter: self.center,
-                                    radius: canvasWidth * 3 / 8, //여기
-                                    startAngle: percentToRadian(currentPercent),
-                                    endAngle: percentToRadian(currentPercent + slice.percent),
-                                    clockwise: true)
+                                radius: canvasWidth * 3 / 8, //여기
+                                startAngle: percentToRadian(currentPercent),
+                                endAngle: percentToRadian(currentPercent + slice.percent),
+                                clockwise: true)
         
-            let animation = CABasicAnimation(keyPath: "strokeEnd")
-            animation.fromValue = 0
-            animation.toValue = 1
-            animation.duration = getDuration(slice) // 전체 animation 시간을 각 slice 비율만큼 할당
-            animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear) // 이건뭘까
-            animation.delegate = self
-            
-            let sliceLayer = CAShapeLayer()
-            sliceLayer.path = path.cgPath
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.fromValue = 0
+        animation.toValue = 1
+        animation.duration = getDuration(slice) // 전체 animation 시간을 각 slice 비율만큼 할당
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
+        animation.delegate = self
+        
+        let sliceLayer = CAShapeLayer()
+        sliceLayer.path = path.cgPath
         sliceLayer.fillColor = nil
-            sliceLayer.strokeColor = slice.color.cgColor
-            sliceLayer.lineWidth = canvasWidth * 2 / 8 // 여기
-            sliceLayer.strokeEnd = 1
-            sliceLayer.add(animation, forKey: animation.keyPath)
-            
-            self.layer.addSublayer(sliceLayer)
-        }
+        sliceLayer.strokeColor = slice.color.cgColor
+        sliceLayer.lineWidth = canvasWidth * 2 / 8 // 여기
+        sliceLayer.strokeEnd = 1
+        sliceLayer.add(animation, forKey: animation.keyPath)
+        
+        self.layer.addSublayer(sliceLayer)
+    }
     
     // MARK: - label 더해주는 함수
     private func addLabel(_ slice: newVersionSlice) {
-            let center = self.center
+        let center = self.center
         let labelCenter = getLabelCenter(currentPercent, currentPercent + slice.percent) // 라벨 위치잡기
-            
-            // 종목명 라벨
-            let label = UILabel()
-            label.textColor = .black
-            label.numberOfLines = 0
-            label.textAlignment = .center
-            addSubview(label)
-            
-            // 구성비율 라벨
-            let roundedPercentage = round(slice.percent * 1000) / 10
-            label.text = "\(roundedPercentage)%"
-            
-            label.translatesAutoresizingMaskIntoConstraints = false
-            NSLayoutConstraint.activate([label.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: labelCenter.x - center.x),
-                                         label.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: labelCenter.y - center.y)])
-            
-            self.layoutIfNeeded()
-        }
+        
+        // 종목명 라벨
+        let label = UILabel()
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        addSubview(label)
+        
+        // 구성비율 라벨
+        let roundedPercentage = round(slice.percent * 1000) / 10
+        label.text = "\(roundedPercentage)%"
+        
+        label.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([label.centerXAnchor.constraint(equalTo: self.centerXAnchor, constant: labelCenter.x - center.x),
+                                     label.centerYAnchor.constraint(equalTo: self.centerYAnchor, constant: labelCenter.y - center.y)])
+        
+        self.layoutIfNeeded()
+    }
     
     // MARK: - 기타 함수들
     // 라벨 위치 잡기
     private func getLabelCenter(_ fromPercent: CGFloat, _ toPercent: CGFloat) -> CGPoint {
-            let canvasWidth = self.frame.width * 0.65 // 여기
-            let radius = canvasWidth * 3 / 8 // 여기
+            let canvasWidth = self.frame.width * 0.65
+            let radius = canvasWidth * 3 / 8
             let labelAngle = percentToRadian((toPercent - fromPercent) / 2 + fromPercent)
             let path = UIBezierPath(arcCenter: self.center,
                                     radius: radius,
@@ -101,12 +101,12 @@ class PortfolioChartView: UIView {
         if angle >= 360 {
             angle -= 360
         }
-        return angle * CGFloat.pi / 180.0
+        return percent == 1.0 ? 360.0 : angle * CGFloat.pi / 180.0
     }
     
     // 전체 animation 시간을 각 slice 비율만큼 할당
     func getDuration(_ slice: newVersionSlice) -> CFTimeInterval {
-        return CFTimeInterval(slice.percent / 1.0 * animation_duration)
+        return slice.percent == 1.0 ? 50.0 : CFTimeInterval(slice.percent / 1.0 * animation_duration)
     }
     
     // 현 pieChartView의 subview 중 UILabel 모두 삭제
