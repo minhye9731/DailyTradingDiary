@@ -100,12 +100,6 @@ final class TradeRecordView: BaseView {
         return label
     }()
     
-    let grayline: UIView = {
-        let view = UIView()
-        view.backgroundColor = .lightGray
-        return view
-    }()
-    
     lazy var tableView: UITableView = {
         let tableview = UITableView(frame: .zero, style: .plain)
         tableview.backgroundColor = .backgroundColor
@@ -128,7 +122,7 @@ final class TradeRecordView: BaseView {
             self.addSubview($0)
         }
         
-        [fromDatePicker, tildeLabel, toDatePicker, seperateLabel, segmentControl, totalBuyLabel, totalBuyValueLabel, totalSellLabel, totalSellValueLabel, grayline].forEach {
+        [fromDatePicker, tildeLabel, toDatePicker, seperateLabel, segmentControl, totalBuyLabel, totalBuyValueLabel, totalSellLabel, totalSellValueLabel].forEach {
             searchView.addSubview($0)
         }
         
@@ -188,12 +182,6 @@ final class TradeRecordView: BaseView {
             make.centerY.equalTo(totalSellLabel.snp.centerY)
         }
         
-        grayline.snp.makeConstraints { make in
-            make.bottom.equalTo(searchView.snp.bottom)
-            make.leading.trailing.equalTo(self.searchView).inset(14)
-            make.height.equalTo(1)
-        }
-        
         // tableview
         tableView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
@@ -205,9 +193,6 @@ final class TradeRecordView: BaseView {
             make.leading.trailing.bottom.equalTo(self.safeAreaLayoutGuide)
             make.top.equalTo(searchView.snp.bottom)
         }
-        
     }
-    
-    
     
 }

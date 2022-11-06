@@ -163,16 +163,5 @@ extension TradeRecordViewController {
         let sellResult = TradingDiaryRepository.standard.getTotalSellPrice(from: mainView.fromDatePicker.date, to: mainView.toDatePicker.date)
         mainView.totalSellValueLabel.text = "\(thousandSeparatorCommas(value: sellResult)) \(Constants.CurrencySign.won.rawValue)"
     }
-
-    // 아래 두개 사용 안하는 듯. 추후 수정하거나 삭제예정
-//    func getBuyTotalAmount() -> Int {
-//        let buyTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == false }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
-//        return buyTotalAmount
-//    }
-//
-//    func getSellTotalAmount() -> Int {
-//        let sellTotalAmount = TradingDiaryRepository.standard.tasks.where { $0.buyAndSell == true }.map { $0.tradingPrice * $0.tradingAmount }.reduce(0, +)
-//        return sellTotalAmount
-//    }
     
 }
