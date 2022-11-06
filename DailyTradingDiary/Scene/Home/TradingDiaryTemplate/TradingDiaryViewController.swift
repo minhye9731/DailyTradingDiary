@@ -11,6 +11,7 @@ import RealmSwift
 
 final class TradingDiaryViewController: BaseViewController {
 
+    // MARK: - property
     let mainView = TradingDiaryView()
     var addOrEditAction: PageMode = .write
 
@@ -38,30 +39,12 @@ final class TradingDiaryViewController: BaseViewController {
         self.updateData.tradingMemo = diaryData.tradingMemo
     }
     
+    // MARK: - functions
     override func configure() {
-        print(#function)
         mainView.tableView.delegate = self
         mainView.tableView.dataSource = self
         setNav()
         setNavItem()
-    }
-
-    func setNav() {
-        self.navigationItem.title = "매매일지 작성"
-        self.navigationController?.navigationBar.tintColor = .pointColor
-        let navibarAppearance = UINavigationBarAppearance()
-        navibarAppearance.backgroundColor = .backgroundColor
-        navibarAppearance.titleTextAttributes = [.foregroundColor: UIColor.mainTextColor, .font: UIFont.systemFont(ofSize: 18, weight: .bold)]
-        
-        self.navigationItem.scrollEdgeAppearance = navibarAppearance
-        self.navigationItem.standardAppearance = navibarAppearance
-    }
-    func setNavItem() {
-        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        let doneButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(doneButtonTapped))
-        
-        self.navigationItem.rightBarButtonItems = [doneButton]
-        self.navigationItem.backBarButtonItem = backBarButtonItem
     }
 }
 
@@ -329,6 +312,24 @@ extension TradingDiaryViewController: UITextViewDelegate {
 
 // MARK: - 기타 함수들
 extension TradingDiaryViewController {
+    
+    func setNav() {
+        self.navigationItem.title = "매매일지 작성"
+        self.navigationController?.navigationBar.tintColor = .pointColor
+        let navibarAppearance = UINavigationBarAppearance()
+        navibarAppearance.backgroundColor = .backgroundColor
+        navibarAppearance.titleTextAttributes = [.foregroundColor: UIColor.mainTextColor, .font: UIFont.systemFont(ofSize: 18, weight: .bold)]
+        
+        self.navigationItem.scrollEdgeAppearance = navibarAppearance
+        self.navigationItem.standardAppearance = navibarAppearance
+    }
+    func setNavItem() {
+        let backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        let doneButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(doneButtonTapped))
+        
+        self.navigationItem.rightBarButtonItems = [doneButton]
+        self.navigationItem.backBarButtonItem = backBarButtonItem
+    }
     
     @objc func doneButtonTapped() {
         

@@ -94,6 +94,8 @@
 		0EB85EF728D8BC4E002145A2 /* CustomTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EF628D8BC4E002145A2 /* CustomTableViewHeaderView.swift */; };
 		0EB85EFA28D8CB49002145A2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 0EB85EF928D8CB49002145A2 /* Kingfisher */; };
 		0EB85EFC28D8D2C2002145A2 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EB85EFB28D8D2C2002145A2 /* WebViewController.swift */; };
+		0EBBC42529179132000A5AE0 /* AssetChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBBC42429179132000A5AE0 /* AssetChartTableViewCell.swift */; };
+		0EBBC42729179151000A5AE0 /* AssetSummaryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EBBC42629179151000A5AE0 /* AssetSummaryTableViewCell.swift */; };
 		0ED1834028DBFF9300B31C2E /* TradeRecordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */; };
 		0ED5D64F28DB6167009A1057 /* Tabman in Frameworks */ = {isa = PBXBuildFile; productRef = 0ED5D64E28DB6167009A1057 /* Tabman */; };
 		0ED5D65128DB61D1009A1057 /* AssetStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */; };
@@ -191,6 +193,8 @@
 		0EB85EF428D881A6002145A2 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		0EB85EF628D8BC4E002145A2 /* CustomTableViewHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewHeaderView.swift; sourceTree = "<group>"; };
 		0EB85EFB28D8D2C2002145A2 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
+		0EBBC42429179132000A5AE0 /* AssetChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetChartTableViewCell.swift; sourceTree = "<group>"; };
+		0EBBC42629179151000A5AE0 /* AssetSummaryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetSummaryTableViewCell.swift; sourceTree = "<group>"; };
 		0ED1833F28DBFF9300B31C2E /* TradeRecordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordView.swift; sourceTree = "<group>"; };
 		0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetStatusViewController.swift; sourceTree = "<group>"; };
 		0ED5D65228DB61FC009A1057 /* TradeRecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeRecordViewController.swift; sourceTree = "<group>"; };
@@ -432,6 +436,8 @@
 			children = (
 				0ED5D65028DB61D1009A1057 /* AssetStatusViewController.swift */,
 				0ED5D65928DB6523009A1057 /* AssetStatusView.swift */,
+				0EBBC42629179151000A5AE0 /* AssetSummaryTableViewCell.swift */,
+				0EBBC42429179132000A5AE0 /* AssetChartTableViewCell.swift */,
 				0E5EB2B32916EF4F0006B3C9 /* AssetListTableViewCell.swift */,
 			);
 			path = firstVC;
@@ -657,6 +663,7 @@
 				0E8E753028E5B33B00D52A2C /* DartDividendDTO.swift in Sources */,
 				0EFECB1928F4413200AF2352 /* WalkThroughViewController.swift in Sources */,
 				0ED5D65328DB61FC009A1057 /* TradeRecordViewController.swift in Sources */,
+				0EBBC42729179151000A5AE0 /* AssetSummaryTableViewCell.swift in Sources */,
 				0E3323A928E44C3D00A1855F /* FinanceInfoTableViewCell.swift in Sources */,
 				0E8E752B28E5896800D52A2C /* StockSummaryDTO.swift in Sources */,
 				0E3323A328E40FCC00A1855F /* CorpAnalysis.swift in Sources */,
@@ -677,6 +684,7 @@
 				0EB85EED28D874BF002145A2 /* NewsTableViewCell.swift in Sources */,
 				0EB85EF728D8BC4E002145A2 /* CustomTableViewHeaderView.swift in Sources */,
 				0E8E753F28E5F5D400D52A2C /* CorpCodeRepository.swift in Sources */,
+				0EBBC42529179132000A5AE0 /* AssetChartTableViewCell.swift in Sources */,
 				0EB85EE928D87419002145A2 /* InfoView.swift in Sources */,
 				0E37460428E0615F000EEBA7 /* EmptyView.swift in Sources */,
 				0E04A3B128D1C6AD0036D389 /* BaseView.swift in Sources */,
