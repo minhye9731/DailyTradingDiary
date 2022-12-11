@@ -47,6 +47,7 @@
 		0E34518328F55B9B00E1BB23 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 0E34518228F55B9B00E1BB23 /* FirebaseMessaging */; };
 		0E34518628F5673C00E1BB23 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0E34518528F5673C00E1BB23 /* GoogleService-Info.plist */; };
 		0E34518928F6A87400E1BB23 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E34518828F6A87400E1BB23 /* UIViewController+Extension.swift */; };
+		0E3474B1294653D7008D0889 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E3474B0294653D7008D0889 /* IQKeyboardManagerSwift */; };
 		0E37460428E0615F000EEBA7 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460328E0615F000EEBA7 /* EmptyView.swift */; };
 		0E37460628E0CFBC000EEBA7 /* NetworkResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460528E0CFBC000EEBA7 /* NetworkResult.swift */; };
 		0E37460828E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E37460728E0EA3F000EEBA7 /* AlphaMarketNewsResponse.swift */; };
@@ -69,7 +70,6 @@
 		0E6E2FB428D24BF3004ED8D9 /* TradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E6E2FB328D24BF3004ED8D9 /* TradeTableViewCell.swift */; };
 		0E87354028D598840039D802 /* PageMode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87353F28D598840039D802 /* PageMode.swift */; };
 		0E87354228D5DEC60039D802 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354128D5DEC50039D802 /* String+Extension.swift */; };
-		0E87354528D5EFA80039D802 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */; };
 		0E87354728D609D10039D802 /* Word.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354628D609D00039D802 /* Word.swift */; };
 		0E87354928D616060039D802 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87354828D616060039D802 /* Date+Extension.swift */; };
 		0E87D58828EB30E100570A5D /* ContentTableViewHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E87D58728EB30E100570A5D /* ContentTableViewHeaderView.swift */; };
@@ -221,8 +221,8 @@
 				0E58BCD728E9D05500204275 /* RealmSwift in Frameworks */,
 				0E58BCD528E9D05500204275 /* Realm in Frameworks */,
 				0E87D58C28EC013400570A5D /* Toast in Frameworks */,
+				0E3474B1294653D7008D0889 /* IQKeyboardManagerSwift in Frameworks */,
 				0E8E753B28E5E9BB00D52A2C /* SWXMLHash in Frameworks */,
-				0E87354528D5EFA80039D802 /* IQKeyboardManagerSwift in Frameworks */,
 				0EF4827928D46BAB00CC8A49 /* Alamofire in Frameworks */,
 				0E04A3A728D1B4C10036D389 /* SnapKit in Frameworks */,
 				0E3C308D29104867007E0C3A /* AcknowList in Frameworks */,
@@ -545,7 +545,6 @@
 				0E04A3D228D215CA0036D389 /* FSCalendar */,
 				0EF4827828D46BAB00CC8A49 /* Alamofire */,
 				0EF4827B28D46BC100CC8A49 /* SwiftyJSON */,
-				0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */,
 				0EB85EF928D8CB49002145A2 /* Kingfisher */,
 				0ED5D64E28DB6167009A1057 /* Tabman */,
 				0E37460B28E0EF5C000EEBA7 /* SkeletonView */,
@@ -558,6 +557,7 @@
 				0E34518028F55B9B00E1BB23 /* FirebaseCrashlytics */,
 				0E34518228F55B9B00E1BB23 /* FirebaseMessaging */,
 				0E3C308C29104867007E0C3A /* AcknowList */,
+				0E3474B0294653D7008D0889 /* IQKeyboardManagerSwift */,
 			);
 			productName = DailyTradingDiary;
 			productReference = 0E04A38E28D1B2200036D389 /* DailyTradingDiary.app */;
@@ -593,7 +593,6 @@
 				0E04A3D128D215CA0036D389 /* XCRemoteSwiftPackageReference "FSCalendar" */,
 				0EF4827728D46BAB00CC8A49 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				0EF4827A28D46BC100CC8A49 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 				0EB85EF828D8CB49002145A2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				0ED5D64D28DB6167009A1057 /* XCRemoteSwiftPackageReference "Tabman" */,
 				0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */,
@@ -603,6 +602,7 @@
 				0E87D58A28EC013300570A5D /* XCRemoteSwiftPackageReference "Toast-Swift" */,
 				0E34517D28F55B9B00E1BB23 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				0E3C308B29104866007E0C3A /* XCRemoteSwiftPackageReference "AcknowList" */,
+				0E3474AF294653D7008D0889 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 0E04A38F28D1B2200036D389 /* Products */;
 			projectDirPath = "";
@@ -1002,6 +1002,14 @@
 				minimumVersion = 9.0.0;
 			};
 		};
+		0E3474AF294653D7008D0889 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = exactVersion;
+				version = 6.5.0;
+			};
+		};
 		0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Juanpe/SkeletonView.git";
@@ -1024,14 +1032,6 @@
 			requirement = {
 				kind = exactVersion;
 				version = 10.32.3;
-			};
-		};
-		0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
-			requirement = {
-				kind = exactVersion;
-				version = 6.5.0;
 			};
 		};
 		0E87D58A28EC013300570A5D /* XCRemoteSwiftPackageReference "Toast-Swift" */ = {
@@ -1118,6 +1118,11 @@
 			package = 0E34517D28F55B9B00E1BB23 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
 		};
+		0E3474B0294653D7008D0889 /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0E3474AF294653D7008D0889 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
 		0E37460B28E0EF5C000EEBA7 /* SkeletonView */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 0E37460A28E0EF5B000EEBA7 /* XCRemoteSwiftPackageReference "SkeletonView" */;
@@ -1137,11 +1142,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0E58BCD328E9D05500204275 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
-		};
-		0E87354428D5EFA80039D802 /* IQKeyboardManagerSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0E87354328D5EFA70039D802 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
-			productName = IQKeyboardManagerSwift;
 		};
 		0E87D58B28EC013400570A5D /* Toast */ = {
 			isa = XCSwiftPackageProductDependency;

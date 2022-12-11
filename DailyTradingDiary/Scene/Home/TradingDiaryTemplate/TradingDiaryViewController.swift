@@ -192,7 +192,7 @@ extension TradingDiaryViewController: UITableViewDelegate, UITableViewDataSource
             let vc = TradingSearchViewController()
             vc.delegate = self
             vc.RegisterOrTrading = .tradingDiary
-            transition(vc, transitionStyle: .prsentNavigation)
+            transition(vc, transitionStyle: .presentNavigation)
         }
     }
     
@@ -275,9 +275,11 @@ extension TradingDiaryViewController: UITextFieldDelegate {
 extension TradingDiaryViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
+        print(#function)
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.textColor = .subTextColor
             textView.text = Constants.Word.trdDryMemoPlchdr.rawValue
+            
         } else if textView.text == Constants.Word.trdDryMemoPlchdr.rawValue {
             textView.textColor = .mainTextColor
             textView.text = nil
@@ -286,24 +288,20 @@ extension TradingDiaryViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        guard let result = textView.text else { return }
+        
         switch addOrEditAction {
-        case .write: self.diaryData.tradingMemo = textView.text
-        case .edit: self.updateData.tradingMemo = textView.text
+        case .write: self.diaryData.tradingMemo = result
+        case .edit: self.updateData.tradingMemo = result
         }
         
         if textView.text.count > 300 { textView.deleteBackward() }
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
-        
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || textView.text == Constants.Word.trdDryMemoPlchdr.rawValue {
             textView.textColor = .subTextColor
             textView.text = Constants.Word.trdDryMemoPlchdr.rawValue
-        }
-        
-        switch addOrEditAction {
-        case .write: self.diaryData.tradingMemo = textView.text
-        case .edit: self.updateData.tradingMemo = textView.text
         }
     }
     
