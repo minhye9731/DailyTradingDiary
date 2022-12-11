@@ -57,8 +57,6 @@ class CorpAnalysisViewController: BaseViewController {
         
         // edit 상태에서 아래항목들을 수정하지 않고 저장했을때, 누락되는 경우를 방지하기 위함
         self.updateRegisteredData = newRegisterData
-        
-
     }
     
     deinit {
@@ -140,7 +138,6 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
         
         // 종합
         case 0:
-            summaryCell.selectionStyle = .none
             switch addOrEditAction {
             case .write:
                 summaryCell.setData(data: self.clickedCorpSum, indexPath: indexPath) // view에 데이터 표시
@@ -156,7 +153,6 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
         
         // 실제 주요제무 데이터
         case 2:
-            finInfoCell.selectionStyle = .none
             finInfoCell.nameLabel.text = finInfoNameList[indexPath.row]
             switch addOrEditAction {
             case .write:
@@ -170,7 +166,6 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
         
         // 실제 배당 데이터
         case 3:
-            finInfoCell.selectionStyle = .none
             finInfoCell.nameLabel.text = dividendeNameList[indexPath.row]
             
             switch addOrEditAction {
@@ -185,7 +180,6 @@ extension CorpAnalysisViewController:  UITableViewDelegate, UITableViewDataSourc
             
         // My Opinion
         case 4:
-            opinionCell.selectionStyle = .none
             opinionCell.opinionTextView.delegate = self
             
             opinionCell.eBuyTextField.delegate = self
@@ -272,41 +266,23 @@ extension CorpAnalysisViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
+        guard let result = textView.text else { return }
+
         switch addOrEditAction {
-        case .write: self.newRegisterData.opinion = textView.text
-        case .edit: self.updateRegisteredData.opinion = textView.text
+        case .write: self.newRegisterData.opinion = result
+        case .edit: self.updateRegisteredData.opinion = result
         }
-        
+
         if textView.text.count > 300 { textView.deleteBackward() }
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty || textView.text == Constants.Word.corpRigMemoPlchdr.rawValue {
             textView.textColor = .subTextColor
             textView.text = Constants.Word.corpRigMemoPlchdr.rawValue
         }
-        
-        switch addOrEditAction { 
-        case .write: self.newRegisterData.opinion = textView.text
-        case .edit: self.updateRegisteredData.opinion = textView.text
-        }
     }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        
-        // 실시간으로 opinionCell 안에 글자수를 입력해주려고 아래처럼 셀등록함. 이렇게 구현하는게 적절할까
-//        let opinionCell = mainView.tableView.dequeueReusableCell(withIdentifier: OpinionTableViewCell.reuseIdentifier) as? OpinionTableViewCell
-        
-        
-        let currentText = textView.text ?? ""
-        guard let stringRange = Range(range, in: currentText) else { return false }
 
-        let changedText = currentText.replacingCharacters(in: stringRange, with: text)
-//        opinionCell?.letterCountLabel.text = "\(changedText.count)/300"
-        
-        return changedText.count <= 299
-    }
-    
 }
 
 // MARK: - textfield 설정
@@ -403,16 +379,14 @@ extension CorpAnalysisViewController {
             presentAlert(title: "\(newRegisterData.corpName) 이 관심기업으로 등록되었습니다.", message: "해당 기업의 매매일지를 작성할 수 있습니다! :)", preferredStyle: .alert) {_ in
                 self.navigationController?.popViewController(animated: true)
             }
-            
         }
-        
     }
     
     @objc func searchButtonClicked() {
         let vc = TradingSearchViewController()
         vc.RegisterOrTrading = .registerCorp
         vc.delegate = self
-        transition(vc, transitionStyle: .prsentNavigation)
+        transition(vc, transitionStyle: .presentNavigation)
     }
     
     @objc func onDidChangeDate(sender: UIDatePicker) {
@@ -466,13 +440,13 @@ extension CorpAnalysisViewController {
         
         wholeData.totalCapThr = Int(finData[4].amount_3yr_bf)
         wholeData.totalCapTwo = Int(finData[4].amount_2yr_bf)
-        wholeData.totalCapOne = Int(finData[4].amount_1yr_bf)
+        wholeData.totalCapOne = Int(finData[4].amount_1yr_bf) // check
     }
     
     // divi 데이터를 relam용 큰변수에 합치기
     func mergeDividData(wholeData: CorpRegisterRealmModel, dividData: [DartDividendDTO] ) {
         wholeData.dpsThr = dividData[0].amount_3yr_bf == "-" ? 0 : Int(dividData[0].amount_3yr_bf.replacingOccurrences(of: ",", with: ""))
-        wholeData.dpsTwo = dividData[0].amount_2yr_bf == "-" ? 0 : Int(dividData[0].amount_2yr_bf.replacingOccurrences(of: ",", with: ""))
+        wholeData.dpsTwo = dividData[0].amount_2yr_bf == "-" ? 0 : Int(dividData[0].amount_2yr_bf.replacingOccurrences(of: ",", with: "")) // check
         wholeData.dpsOne = dividData[0].amount_1yr_bf == "-" ? 0 : Int(dividData[0].amount_1yr_bf.replacingOccurrences(of: ",", with: ""))
         
         wholeData.diviPayoutRatioThr = dividData[1].amount_3yr_bf == "-" ? 0.0 : Double(dividData[1].amount_3yr_bf)

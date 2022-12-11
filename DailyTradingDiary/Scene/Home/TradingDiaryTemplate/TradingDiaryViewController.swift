@@ -275,7 +275,6 @@ extension TradingDiaryViewController: UITextFieldDelegate {
 extension TradingDiaryViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        print(#function)
         if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
             textView.textColor = .subTextColor
             textView.text = Constants.Word.trdDryMemoPlchdr.rawValue
