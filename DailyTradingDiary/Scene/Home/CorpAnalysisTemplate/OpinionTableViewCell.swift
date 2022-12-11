@@ -23,16 +23,7 @@ final class OpinionTableViewCell: BaseTableViewCell {
         textview.autocapitalizationType = .none
         return textview
     }()
-    
-//    let letterCountLabel: UILabel = {
-//        let label = UILabel()
-//        label.text = "0/300"
-//        label.font = .systemFont(ofSize: 16)
-//        label.textColor = .subTextColor
-//        label.textAlignment = .right
-//        return label
-//    }()
-    
+
     // 매수희망가
     let eBuyPriceLabel: UILabel = {
         let label = UILabel()
@@ -118,11 +109,6 @@ final class OpinionTableViewCell: BaseTableViewCell {
             make.trailing.equalTo(self.safeAreaLayoutGuide).offset(-15)
             make.height.equalTo(200)
         }
-        
-//        letterCountLabel.snp.makeConstraints { make in
-//            make.trailing.equalTo(opinionTextView.snp.trailing).offset(-4)
-//            make.bottom.equalTo(opinionTextView.snp.bottom).offset(-4)
-//        }
         
         // 매수희망가
         eBuyPriceLabel.snp.makeConstraints { make in
