@@ -59,7 +59,7 @@ class CorpCodeRepository: CorpCodeRepositoryType {
             }
             
         try! localRealm.write({
-            localRealm.deleteAll()
+            localRealm.delete(localRealm.objects(CorpCodeRealmModel.self))
             localRealm.add(filteredList)
         })
             print("=========(상장기업 한정) 데이터 realm에 저장 완료 / onComplete ✅ :======== \(CFAbsoluteTimeGetCurrent() - startTime)")
