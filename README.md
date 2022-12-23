@@ -62,7 +62,46 @@
 * [Fear and Greed Index](https://rapidapi.com/rpi4gx/api/fear-and-greed-index)
 
 ## 개발과정
-(정리중)
+|    구분    |   README   |   README   |   README   |   README   |
+| ---------- | :--------: | :--------: | :--------: | :--------: |
+| iteration1 |    기획    |    기획    |    기획    |    기획    |
+| iteration2 | [20220912] | [20220913] | [20220914] |            |
+| iteration3 | [20220915] | [20220916] | [20220917] | [20220918] |
+| iteration4 | [20220919] | [20220920] | [20220921] |            |
+| iteration5 | [20220922] | [20220923] | [20220924] | [20220925] |
+| iteration6 | [20220926] | [20220927] | [20220928] |            |
+| iteration7 | [20220929] | [20220930] | [20221001] | [20221002] |
+| iteration8 | [20221003] | [20221004] |                        ||
+
+   [20220912]: <https://mhkang.notion.site/20220912-136705c74f9e45c6ad94df19f0268b0f>
+   [20220913]: <https://mhkang.notion.site/20220913-d39300201b6c49c8b1311aff0ee46e27>
+   [20220914]: <https://www.notion.so/mhkang/20220914-c08b2812eae2421294281f1fb03335dc>
+   
+   [20220915]: <https://www.notion.so/mhkang/20220915-1ffd2b7af0cd4498820d2ed495d72340>
+   [20220916]: <https://www.notion.so/mhkang/20220916-3b9b965d1f61478e94ed023901fead86>
+   [20220917]: <https://www.notion.so/mhkang/20220917-9dcd8215604c40dc805b2e58df81aeef>
+   [20220918]: <https://www.notion.so/mhkang/20220918-5f04cc59c9334c65b6e6f8ef7c25b7af>
+   
+   [20220919]: <https://www.notion.so/mhkang/20220919-54fe3e99d74540d7bee6f8281657ee9e>
+   [20220920]: <https://www.notion.so/mhkang/20220920-73b64270a27e4141a146860e520620e9>
+   [20220921]: <https://www.notion.so/mhkang/20220921-f71119991cd84486b2d5e9462d68e4a1>
+   
+   [20220922]: <https://www.notion.so/mhkang/20220922-6078840454194c6b9bcabb87aa074e67>
+   [20220923]: <https://www.notion.so/mhkang/20220923-b22f64e999c7470fa8b11a97261039cc>
+   [20220924]: <https://www.notion.so/mhkang/20220924-10c486f3bcb944a78a1dfa417600f0ff>
+   [20220925]: <https://mhkang.notion.site/20220925-5f7fc908c468432fb14cb23145c66116>
+   
+   [20220926]: <https://mhkang.notion.site/20220926-57cf695f9acc4feb807a8695c1135d12>
+   [20220927]: <https://mhkang.notion.site/20220927-ff99ea0a51a244b980a7b499de0de0b9>
+   [20220928]: <https://mhkang.notion.site/20220928-4a72a83988164f12876735fff19f7165>
+   
+   [20220929]: <https://mhkang.notion.site/20220929-c2f7da77d03c4cc68f6abad5042d25f5>
+   [20220930]: <https://mhkang.notion.site/20220930-4e0f0efc953840828b53eb71b5d5509d>
+   [20221001]: <https://mhkang.notion.site/20221001-6e87122cef47453695c847523574ea9a>
+   [20221002]: <https://mhkang.notion.site/20221002-73dc5e4d2e204ab0a99902f6dd54af21>
+   
+   [20221003]: <https://mhkang.notion.site/20221003-fc383dfd38b54a54a9a4eb179c32c561>
+   [20221004]: <https://mhkang.notion.site/20221004-2480f435dcb4493e814306732bde877f>
 
 ## 실행화면
 ##### Splash
