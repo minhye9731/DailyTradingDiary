@@ -97,14 +97,14 @@ class CorpRegisterRepository: RegisterRepositoryType {
 * `Main thread`에서 특정 처리작업 소요시간이 길어짐으로 인해 `UI Blocking` 발생하는 이슈.  
     &rarr; [`Alamofire`로 Zip파일 unzip → `SWXMLHash`로 unzip된 xml파일들 `XML Parsing` → `realm` DB에 저장]이라는 연속적인 작업 중, 가장 소요시간이 길었던 xml parsing 작업을 `Background`에서 `비동기적`으로 처리하여 해결
     
-```swift
+```swift 
 // 앱 첫 실행시 화면
 final class WalkThroughViewController: BaseViewController {
     DARTAPIManager.shared.downloadCorpCode(type: .dartCorpCode)  // (1)
 }
 ```
 
-```swift
+```swift 
 // API Manager
 class DARTAPIManager {
     static let shared = DARTAPIManager()
@@ -186,13 +186,14 @@ class CorpCodeRepository: CorpCodeRepositoryType {
   
 }
 ```
+ 
 <br>  
 
 
 * `UIBezierPath`로 생성한 파이차트의 `CABasicAnimation` 구현 시 첫 번째 slice 누락 이슈  
     &rarr; `dispatch_after`로 PortfolioChartView가 메모리에 올라간 후 0.2초 후에 `CABasicAnimation`가 실행되도록하여 해결 
 
-```swift
+```swift 
 final class AssetStatusViewController: BaseViewController {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
